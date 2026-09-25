@@ -1,0 +1,16 @@
+# Python/runtime transients
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# OS/editor transients
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Git-history reconstruction payload. It is intentionally shipped in the
+# handoff archive but must never be committed into the reconstructed repo.
+.bootstrap/

@@ -3,7 +3,7 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-25-r8.10
+version: planning-baseline-2026-09-25-r8.10-codex-handoff
 updated: '2026-09-25'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
@@ -38,6 +38,7 @@ provenance:
 - Harness Rig M8 local-process host qualification and topology-boundary verification, 2026-09-25
 - Harness Rig M9 gate-platform, Playwright, architecture, and mutation verification, 2026-09-25
 - Harness Rig M10 product CLI, migration, process cleanup, and release-provenance implementation and verification, 2026-09-25
+- User direction: post-r8.10 Git environment transformation targets Codex Desktop/CLI first and Claude Code second, 2026-09-25
 ---
 # Progressive remediation overlay
 
@@ -57,6 +58,19 @@ next: M11 RigYard disposition, source-history qualification, and field hardening
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.
+
+# Post-r8.10 host execution priority
+
+The real-repository handoff adopts an operational priority, not a maturity shortcut:
+
+```text
+primary operational target   -> Codex Desktop / Codex CLI
+secondary platform target    -> Claude Code
+```
+
+Codex must become the first fully operational real-host path in the transformed Git repository. Native capability claims remain evidence-gated: configuration or generated tool files do not prove isolation, permission, freshness, or runtime behavior. Claude qualification remains M11-T08 and follows the retained Codex operational baseline. A failed or unavailable Claude path does not weaken a genuinely qualified Codex path unless a later product requirement explicitly makes Claude mandatory.
+
+After Git reconstruction, OpenSpec remains the first-class external workflow for M11/M12 planning and execution. Do not add a second planning framework.
 
 `AuthorityRef`, `AuthorizationGrant`, and `StateIdentity` are Stable v1. `EvidenceReceipt` and `AcceptanceVerdict` remain Experimental shared pending earned consumers.
 

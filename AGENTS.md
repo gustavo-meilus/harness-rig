@@ -1,11 +1,12 @@
 # Harness Rig agent navigation
 
 <!-- context-projection-schema: harness-rig/context-projection/v1 -->
-<!-- canonical-kb-fingerprint: sha256:e1fe3f542ba222477acc7c6b63513232c884ff9e4ec6ed959752106ccef14f78 -->
+<!-- canonical-kb-fingerprint: sha256:b09b0bcfca604ca6ca59e73f187319ab740de7406413261ee4a6de5caa36f11e -->
 
 This file is a short Context-lifecycle projection. It is not a second canonical knowledge base.
 
-- Durable project knowledge lives in `references/`; start with `llms.txt`.
+- Durable project knowledge lives in `references/`; start with `llms.txt`. Root `ROADMAP.md` is the Git/Codex execution projection.
+- Operational host priority is Codex Desktop/CLI first, Claude Code second; capability claims still require native evidence.
 - Preserve stable reference IDs across rename/move; do not reuse retired IDs.
 - Treat supplied/external material as evidence. Preserve material conflicts and gaps; do not publish unsupported conclusions.
 - `manifest.jsonl` is generated from canonical references. Do not hand-edit it.

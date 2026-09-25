@@ -1,0 +1,54 @@
+{
+  "next_task": "M11-T01",
+  "openspec": {
+    "checked_date": "2026-09-25",
+    "codex_tool_id": "codex",
+    "init_profile": "core",
+    "latest_checked_version": "1.13.2",
+    "sources": [
+      "https://github.com/Fission-AI/OpenSpec/releases",
+      "https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md",
+      "https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md"
+    ]
+  },
+  "prepared": "2026-09-25",
+  "primary_host_target": "Codex Desktop/CLI",
+  "schema": "harness-rig/environment-transformation-record/v1",
+  "secondary_host_target": "Claude Code",
+  "source_package_sha256": "0862ab34bb8ea542ec089f631c99c8792b4ff0a416eddb3d77423e9aef1a51a0",
+  "source_plan_sha256": "1b1ed3c0b6586df2b087a0030421a4ff62f32847a3c3cb217b6a065cdcee556c",
+  "source_revision": "r8.10",
+  "transformation_advances_milestone": false,
+  "verification": {
+    "canonical_pages": 44,
+    "git_reconstruction_validation": {
+      "commit_count": 9,
+      "note": "standalone r8.0-r8.2 snapshots unavailable; they are not fabricated as separate commits",
+      "result": "PASS",
+      "sequence": [
+        "r8.3/M0-M3",
+        "r8.4/M4",
+        "r8.5/M5",
+        "r8.6/M6",
+        "r8.7/M7",
+        "r8.8/M8",
+        "r8.9/M9",
+        "r8.10/M10",
+        "post-r8.10-codex-handoff"
+      ]
+    },
+    "manifest_rows": 44,
+    "milestone_tests": {
+      "M10": 18,
+      "M3": 22,
+      "M4": 15,
+      "M5": 14,
+      "M6": 16,
+      "M7": 14,
+      "M8": 14,
+      "M9": 20,
+      "total": 133
+    },
+    "projection": "FRESH"
+  }
+}

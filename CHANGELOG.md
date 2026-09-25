@@ -26,6 +26,28 @@ source histories before final 1.0 qualification.
 ---
 
 
+
+## Post-r8.10 repository transformation — 2026-09-25 — Codex-first Git/OpenSpec handoff
+
+### Repository environment
+
+- Added root `ROADMAP.md`, `PROGRESSIVE_REMEDIATION_PLAN.md`, `CODEX_BOOTSTRAP_PROMPT.md`, and Git-history bootstrap guidance for a fresh Codex Desktop/CLI context.
+- Added deterministic `tools/bootstrap_git_history.py` using retained verified r8.3-r8.10 snapshots. The reconstructed commits are explicitly synthetic reconstruction history, not original development commits.
+- Because standalone r8.0-r8.2 package snapshots are unavailable, Git reconstruction begins with one consolidated verified M0-M3/r8.3 baseline and then applies exact r8.4-r8.10 milestone snapshots in order.
+- Added `tools/run_all_tests.py` as a cross-platform clean-process milestone regression runner for the retained M3-M10 suites.
+- Added a thin `CLAUDE.md` secondary-host entrypoint; `AGENTS.md` remains the small always-on project contract.
+
+### Host and workflow priority
+
+- Established Codex Desktop/CLI as the primary operational/native-qualification target after the real Git repository is created.
+- Established Claude Code as the secondary platform; M11-T08 remains its independent native-qualification task.
+- OpenSpec remains the first-class external workflow for M11/M12 after Git reconstruction. Current checked baseline remains 1.13.2; version-sensitive behavior must be rechecked in the real environment.
+
+### Scope boundary
+
+- This transformation does not advance M11 and does not convert synthetic reconstruction commits into original source provenance.
+- Original AIBoarding/TacticSwitch/Skill Kit object-complete histories and their rewrite/import mappings remain M11 work.
+
 ## r8.10 — 2026-09-25 — Product CLI, migration completion, and release provenance
 
 ### Product surface

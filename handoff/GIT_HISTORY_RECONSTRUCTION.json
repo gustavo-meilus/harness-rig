@@ -1,0 +1,96 @@
+{
+  "first_exact_package_snapshot": "r8.3",
+  "history_nature": "synthetic reconstruction from verified package snapshots; not original development history",
+  "milestones": [
+    {
+      "commit_subject": "chore(history): reconstruct verified M0-M3 baseline (r8.3)",
+      "milestone": "M0-M3",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.3.zip",
+      "package_sha256": "2456df7a390be92f0bca0e32d15abae84dd4bc68eb5ccec1d04cdaf4ceaa65f2",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m3-complete.md",
+      "plan_sha256": "c5b79529af21ba0543ad955f32f4937bf90398c7ff54c682ba69670f190cc7e3",
+      "revision": "r8.3"
+    },
+    {
+      "commit_subject": "feat(m4): reconstruct core promotion boundary (r8.4)",
+      "milestone": "M4",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.4.zip",
+      "package_sha256": "f947ac6d42a14b3906aaa8254dab4a8b14672f14dc9d202b5aadaaf204098e2a",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m4-complete.md",
+      "plan_sha256": "c662c4d4a874496efff60857238c5f932e0129967fdb363f868e47bbabe183f2",
+      "revision": "r8.4"
+    },
+    {
+      "commit_subject": "feat(m5): reconstruct context knowledge lifecycle (r8.5)",
+      "milestone": "M5",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.5.zip",
+      "package_sha256": "ff92e5fde8b8f004786eadcff3357b2d0fc219422d878d9ca24bf0c24a6e8241",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m5-complete.md",
+      "plan_sha256": "fdc95a9965892f542508251cdb4944b36aa38339a1cac0f8a98b296100f42257",
+      "revision": "r8.5"
+    },
+    {
+      "commit_subject": "feat(m6): reconstruct OpenSpec SpecEngine integration (r8.6)",
+      "milestone": "M6",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.6.zip",
+      "package_sha256": "df501611218ce29c830a1effb7b3f23ee6c2706982afd0a12687b5b5bc8c981d",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m6-complete.md",
+      "plan_sha256": "1cf334d1801bdc1a77332770fb77b0995b0c368f25f3d6bd50afdfe3d2eb86e3",
+      "revision": "r8.6"
+    },
+    {
+      "commit_subject": "feat(m7): reconstruct trusted repository enforcement (r8.7)",
+      "milestone": "M7",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.7.zip",
+      "package_sha256": "fc0e8314be1747d27fe42434ee26176fcb58811cc423136c458de089f5c5b442",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m7-complete.md",
+      "plan_sha256": "544011455ddc2d19e9449bad4a87a9629a00a0ede8e297007e2a1e064ebc66b6",
+      "revision": "r8.7"
+    },
+    {
+      "commit_subject": "feat(m8): reconstruct host capability qualification (r8.8)",
+      "milestone": "M8",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.8.zip",
+      "package_sha256": "e42a9df0ed6165815dc2257ca25946468adbfb087f651d464cac9d1d5d5921e5",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m8-complete.md",
+      "plan_sha256": "b445b7bc2ec1d53e58f691634c41dd4feb11e918623feb2e91826885c45f4428",
+      "revision": "r8.8"
+    },
+    {
+      "commit_subject": "feat(m9): reconstruct gate and mutation verification (r8.9)",
+      "milestone": "M9",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.9.zip",
+      "package_sha256": "8f7a633f13deb2c243e44d62f4a981991e540f8eb6e06de7bce5b0acd2cb4b0b",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m9-complete.md",
+      "plan_sha256": "5a9077afaa34be58a1129212874755106ab4a891eb2411925beb20abcbf84cac",
+      "revision": "r8.9"
+    },
+    {
+      "commit_subject": "feat(m10): reconstruct product CLI migration and provenance (r8.10)",
+      "milestone": "M10",
+      "package": "harness-rig-knowledge-base-2026-09-25-r8.10.zip",
+      "package_sha256": "0862ab34bb8ea542ec089f631c99c8792b4ff0a416eddb3d77423e9aef1a51a0",
+      "plan": "harness-rig-progressive-remediation-plan-r8-m10-complete.md",
+      "plan_sha256": "1b1ed3c0b6586df2b087a0030421a4ff62f32847a3c3cb217b6a065cdcee556c",
+      "revision": "r8.10"
+    }
+  ],
+  "missing_standalone_package_snapshots": [
+    "r8.0",
+    "r8.1",
+    "r8.2"
+  ],
+  "next_milestone": "M11",
+  "next_task": "M11-T01",
+  "openspec_checked_version": "1.13.2",
+  "prepared": "2026-09-25",
+  "primary_host_target": "Codex Desktop/CLI",
+  "schema": "harness-rig/git-history-reconstruction/v1",
+  "secondary_host_target": "Claude Code",
+  "source_root_name": "harness-rig-knowledge-base",
+  "transformation_commit": {
+    "advances_milestone": false,
+    "next_task": "M11-T01",
+    "subject": "chore(repo): prepare Codex-first Git/OpenSpec handoff"
+  }
+}

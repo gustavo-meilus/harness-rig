@@ -3,7 +3,7 @@ id: harness-rig-host-adapters-and-capabilities
 title: Host adapters and capability negotiation
 summary: Capability-based integration model for Claude Code, Codex, Copilot, and future hosts without pretending their enforcement
   surfaces are identical.
-version: planning-baseline-2026-09-25-r8.8
+version: planning-baseline-2026-09-25-r8.10-codex-handoff
 updated: '2026-09-25'
 provenance:
 - TacticSwitch protocol, governance, and adapter evidence policy, accessed 2026-09-21
@@ -20,6 +20,7 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- User direction: Codex Desktop/CLI is the primary operational host target and Claude Code is secondary after r8.10 Git transformation, 2026-09-25
 ---
 
 # M8 qualified baseline
@@ -29,6 +30,15 @@ M8/r8.8 qualifies only the native `local-subprocess` adapter as Stable, and only
 The current M8 environment has no `codex`, `claude`, or `copilot` executable, so those adapters remain unqualified. `local-subprocess` explicitly reports `fresh_verifier`, `read_only_worker`, `isolated_worker`, `worktree_worker`, `permission_enforcement`, and `isolated_writer` as unsupported. Required requests for those capabilities return `BLOCKED`.
 
 See [M8 host capability and topology qualification](m8-host-capability-and-topology-qualification.md) for the retained native evidence and executable maturity rules.
+
+# Post-r8.10 qualification order
+
+Operational priority for the real Git repository is:
+
+1. Codex Desktop/CLI first;
+2. Claude Code second.
+
+This priority does not promote a Codex adapter by declaration. The transformed repository must retain native Codex discovery/invocation/runtime evidence before any Stable host-specific claim is made. M11 field pilots should establish the Codex path first. M11-T08 then qualifies Claude independently as the secondary platform. Unsupported host capabilities remain `BLOCKED` or `UNVERIFIED`; no cross-host symmetry credit is allowed.
 
 # Principle
 

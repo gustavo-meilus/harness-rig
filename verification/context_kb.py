@@ -159,7 +159,8 @@ def render_agents_projection(root: Path) -> str:
 
 This file is a short Context-lifecycle projection. It is not a second canonical knowledge base.
 
-- Durable project knowledge lives in `references/`; start with `llms.txt`.
+- Durable project knowledge lives in `references/`; start with `llms.txt`. Root `ROADMAP.md` is the Git/Codex execution projection.
+- Operational host priority is Codex Desktop/CLI first, Claude Code second; capability claims still require native evidence.
 - Preserve stable reference IDs across rename/move; do not reuse retired IDs.
 - Treat supplied/external material as evidence. Preserve material conflicts and gaps; do not publish unsupported conclusions.
 - `manifest.jsonl` is generated from canonical references. Do not hand-edit it.
