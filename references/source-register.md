@@ -3,7 +3,7 @@ id: harness-rig-source-register
 title: Source register
 summary: Primary repository sources and external references used to ground the Harness Rig architecture, governance, migration,
   and runtime-harness recommendations.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.6
 updated: '2026-09-25'
 provenance:
 - Sources directly inspected or explicitly supplied during Harness Rig research through 2026-09-21
@@ -13,7 +13,7 @@ provenance:
 - Harness Rig expected-feature synthesis, refreshed 2026-09-21
 - Skill Kit llm-knowledge-base-maintainer v1.1.0, SKILL.md and DEFAULT_LAYOUT.md, inspected 2026-09-24
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
-- OpenSpec v1.13.2 release baseline rechecked 2026-09-24
+- OpenSpec v1.13.2 release, package metadata, CLI docs and agent contract rechecked 2026-09-25
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
 - User-supplied Harness Rig adversarial architecture review, 2026-09-24

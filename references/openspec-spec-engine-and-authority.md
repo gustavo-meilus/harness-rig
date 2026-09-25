@@ -3,14 +3,15 @@ id: harness-rig-openspec-spec-engine-and-authority
 title: OpenSpec spec engine, authority, and brainstorming integration
 summary: 'OpenSpec-first spec-driven architecture for Harness Rig: default external SpecEngine, content-addressed authority,
   authorization separation, validation/archive guards, rigor tiers, and no hard dependency.'
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.6
 updated: '2026-09-25'
 provenance:
 - User-supplied openspec_harness_engineering_analysis.md, research snapshot 2026-09-21
 - User-supplied openspec-brainstorming-improved.zip, supplied 2026-09-21
 - Harness Rig planning analysis, refreshed 2026-09-21
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
-- OpenSpec v1.13.2 release baseline rechecked 2026-09-24
+- OpenSpec v1.13.2 release/CLI/agent-contract baseline rechecked 2026-09-25
+- Harness Rig M6 OpenSpec adapter and guarded-archive implementation/verification, 2026-09-25
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
 - User-supplied Harness Rig adversarial architecture review, 2026-09-24
@@ -21,6 +22,10 @@ provenance:
 - Node.js official child_process documentation rechecked 2026-09-24
 ---
 # Status
+
+M6/r8.6 now implements the first bounded OpenSpec integration described by this page. The authoritative implemented subset, exact authority profile, compatibility boundary, fail-closed conditions, and archive evidence are recorded in [M6 OpenSpec first-class SpecEngine implementation](m6-openspec-spec-engine.md).
+
+The current compatibility profile was rechecked on 2026-09-25 against OpenSpec `1.13.2` public machine-readable CLI/agent contracts. Broader concepts below remain design guidance unless the M6 implementation page or executable tests say they are implemented.
 
 This page defines the **recommended Harness Rig integration architecture** for OpenSpec.
 

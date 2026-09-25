@@ -1,0 +1,71 @@
+{
+  "schema": "harness-rig/m6-fixture-results/v1",
+  "revision": "r8.6",
+  "result": "PASS",
+  "tests": [
+    {
+      "test": "test_archive_partial_mutation_and_postcondition_mismatch_block",
+      "result": "PASS"
+    },
+    {
+      "test": "test_archive_requires_current_bounded_authorization",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authority_bearing_referenced_spec_is_hashed_and_change_invalidates_authority",
+      "result": "PASS"
+    },
+    {
+      "test": "test_base_harness_works_without_openspec_and_required_workflow_blocks",
+      "result": "PASS"
+    },
+    {
+      "test": "test_cli_exposes_guarded_spec_archive",
+      "result": "PASS"
+    },
+    {
+      "test": "test_custom_artifact_graph_is_consumed_without_freezing_default_paths",
+      "result": "PASS"
+    },
+    {
+      "test": "test_default_authority_profile_ignores_tasks_and_incidental_metadata_but_binds_behavior",
+      "result": "PASS"
+    },
+    {
+      "test": "test_effective_context_and_rules_are_authority_bearing_but_engine_version_is_not",
+      "result": "PASS"
+    },
+    {
+      "test": "test_external_cli_invocation_is_argv_based_and_never_uses_shell",
+      "result": "PASS"
+    },
+    {
+      "test": "test_guarded_archive_success_records_transition_and_rechecks_final_authority_state",
+      "result": "PASS"
+    },
+    {
+      "test": "test_malformed_effective_rules_and_strict_validation_failure_block",
+      "result": "PASS"
+    },
+    {
+      "test": "test_required_semantic_coherence_failure_blocks_without_mutation",
+      "result": "PASS"
+    },
+    {
+      "test": "test_skip_specs_is_supported_without_treating_skip_as_verification_bypass",
+      "result": "PASS"
+    },
+    {
+      "test": "test_supported_version_and_effective_health_pass",
+      "result": "PASS"
+    },
+    {
+      "test": "test_unhealthy_root_and_unsupported_primary_store_fail_closed",
+      "result": "PASS"
+    },
+    {
+      "test": "test_unresolved_authority_reference_blocks_but_tasks_only_reference_does_not",
+      "result": "PASS"
+    }
+  ]
+}

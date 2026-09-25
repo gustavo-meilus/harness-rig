@@ -1,6 +1,6 @@
-"""Harness Rig r8.5 prototype: stable trust identities, Experimental evidence path, and module-local Context lifecycle."""
+"""Harness Rig r8.6 prototype: Stable trust identities, Context lifecycle, and bounded OpenSpec integration."""
 
-from .authority import AuthorityRef, DirectAuthority, load_authority_ref
+from .authority import AuthorityRef, DirectAuthority, DirectAuthorityProvider, load_authority_ref
 from .authorization import AuthorizationGrant, GrantValidation, load_authorization_grant
 from .state import StateIdentity, capture_state, load_state_identity
 from .assurance import AssuranceRequirement, AssurancePlan
@@ -9,9 +9,11 @@ from .evidence import EvidenceReceipt
 from .gate import CommandGate, GateRequest
 from .acceptance import AcceptanceVerdict, evaluate_acceptance
 from .vertical import VerticalSliceRequest, VerticalSliceResult, run_vertical_slice
+from .spec_engine import SpecEngine, SpecEngineHealth, SpecArchiveMutation
+from .openspec import OpenSpecAdapter, OpenSpecAuthoritySnapshot, GuardedArchiveResult, guarded_archive
 
 __all__ = [
-    "AuthorityRef", "DirectAuthority", "load_authority_ref",
+    "AuthorityRef", "DirectAuthority", "DirectAuthorityProvider", "load_authority_ref",
     "AuthorizationGrant", "GrantValidation", "load_authorization_grant",
     "StateIdentity", "capture_state", "load_state_identity",
     "AssuranceRequirement", "AssurancePlan",
@@ -20,4 +22,6 @@ __all__ = [
     "CommandGate", "GateRequest",
     "AcceptanceVerdict", "evaluate_acceptance",
     "VerticalSliceRequest", "VerticalSliceResult", "run_vertical_slice",
+    "SpecEngine", "SpecEngineHealth", "SpecArchiveMutation",
+    "OpenSpecAdapter", "OpenSpecAuthoritySnapshot", "GuardedArchiveResult", "guarded_archive",
 ]

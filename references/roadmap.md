@@ -3,7 +3,7 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-25-r8.5
+version: planning-baseline-2026-09-25-r8.6
 updated: '2026-09-25'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
@@ -33,6 +33,7 @@ provenance:
 - 'Local runtime evidence: Python 3.13.5 and Git 2.47.3, 2026-09-25'
 - Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 - Harness Rig M5 Context convergence implementation and verification, 2026-09-25
+- Harness Rig M6 OpenSpec SpecEngine implementation and verification, 2026-09-25
 ---
 # Progressive remediation overlay
 
@@ -43,7 +44,8 @@ M2 / r8.2 PASS — CHANGELOG-backed source consolidation baseline
 M3 / r8.3 PASS — thin complete Experimental direct vertical slice
 M4 / r8.4 PASS — partial Stable core promotion and module-boundary convergence
 M5 / r8.5 PASS — canonical Context knowledge/lifecycle ownership convergence
-next: M6 OpenSpec as the first-class external SpecEngine
+M6 / r8.6 PASS — OpenSpec first-class external SpecEngine and guarded archive
+next: M7 trusted repository enforcement
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.

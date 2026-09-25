@@ -1,0 +1,24 @@
+{
+  "schema": "harness-rig/m6-external-baseline/v1",
+  "checked_date": "2026-09-25",
+  "openspec": {
+    "qualified_version": "1.13.2",
+    "compatibility_policy": "EXACT_ALLOWLIST_FOR_M6",
+    "surfaces": [
+      "doctor --json",
+      "status --change <id> --json",
+      "instructions apply --change <id> --json",
+      "instructions archive --change <id> --json",
+      "instructions <artifact> --change <id> --json",
+      "validate <change> --type change --strict --json",
+      "show <spec> --type spec --store <id> --json",
+      "archive <change> --yes --json"
+    ],
+    "sources": [
+      "https://github.com/Fission-AI/OpenSpec/releases",
+      "https://github.com/Fission-AI/OpenSpec/blob/main/docs/agent-contract.md",
+      "https://github.com/Fission-AI/OpenSpec/blob/main/docs/cli.md",
+      "https://www.npmjs.com/package/@fission-ai/openspec"
+    ]
+  }
+}

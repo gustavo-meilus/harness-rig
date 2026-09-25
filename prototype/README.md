@@ -1,6 +1,6 @@
-# Harness Rig r8.5 prototype
+# Harness Rig r8.6 prototype
 
-This directory contains the executable direct Harness Rig trust path plus the M5 module-local Context lifecycle semantics.
+This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, and the M6 bounded OpenSpec integration.
 
 ```text
 Direct Authority
@@ -86,11 +86,33 @@ The CLI remains a test surface. Product CLI design is a later milestone.
 - Root `AGENTS.md` is not canonical knowledge and is excluded from `manifest.jsonl`.
 - No vector/RAG/embedding/semantic-index subsystem exists.
 
-## Explicit non-goals at r8.5
+## M6 OpenSpec integration
 
-Not implemented/promoted in M4:
+- `DirectAuthorityProvider` preserves the direct-file provider behind Stable `AuthorityRef`.
+- Experimental `SpecEngine` now has only the operations required by the current consumer: availability, health, authority resolution, and archive.
+- `OpenSpecAdapter` targets the verified OpenSpec 1.13.2 machine-readable CLI contract; OpenSpec remains an external optional executable.
+- The default authority profile binds non-task planning artifacts, effective context/rules, schema/artifact graph, and resolved authority-bearing referenced specs.
+- `harness-rig spec archive` is guarded by exact `(A0,S0)`, bounded `spec_archive` authorization, readiness evidence, postconditions, transition evidence, and final `(A1,S1)` stale-precondition reevaluation.
+- Primary external Store roots remain unqualified for archive because Stable StateIdentity currently observes the repository worktree. Referenced stores are read-only authority inputs.
 
-- OpenSpec provider or finalized `SpecEngine`;
+## Experimental spec archive CLI
+
+```bash
+PYTHONPATH=prototype python -m harness_rig spec archive \
+  --repo /path/to/repo \
+  --change change-id \
+  --run-id archive-123 \
+  --now 2026-09-25T12:00:00Z \
+  --issued-at 2026-09-25T11:00:00Z \
+  --expires-at 2026-09-25T13:00:00Z
+```
+
+The CLI is still an experimental test/product surface; M10 owns final CLI compatibility and exit-code/versioning policy.
+
+## Explicit non-goals at r8.6
+
+Not implemented/promoted through M6:
+
 - multi-agent orchestration;
 - recurrence platform;
 - host-adapter qualification platform;
@@ -105,7 +127,7 @@ Not implemented/promoted in M4:
 ## Known limits
 
 - `repository_id` remains caller-supplied; M5 converges knowledge/projection ownership but does not define repository identity.
-- Direct Authority is file-backed only; M6 owns OpenSpec first-class integration.
+- Direct Authority remains file-backed; OpenSpec is a separate external authority provider behind the same Stable AuthorityRef envelope.
 - The local vertical slice trusts a configured local issuer set; provider-backed revocation is not implemented.
 - Stable AuthorizationGrant v1 supports only nondelegable grants.
 - Input bindings currently implement file-path digests only.

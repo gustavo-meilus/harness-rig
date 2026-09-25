@@ -2,7 +2,7 @@
 id: harness-rig-contracts-state-and-evidence
 title: Contracts, state, and evidence
 summary: M4 contract maturity, exact-state semantics, and the minimum shared trust values binding authority, authorization, verification, and acceptance.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.6
 updated: '2026-09-25'
 provenance:
 - TacticSwitch control-packets.md and protocol.md, accessed 2026-09-21
@@ -14,6 +14,7 @@ provenance:
 - Harness Rig M1 trust-protocol review, 2026-09-24
 - Harness Rig M3 experimental vertical slice and verification, 2026-09-25
 - Harness Rig M4 promotion and boundary verification, 2026-09-25
+- Harness Rig M6 OpenSpec SpecEngine implementation and verification, 2026-09-25
 ---
 # M4 status
 
@@ -25,7 +26,7 @@ AuthorizationGrant  Stable v1 bounded authorization value
 StateIdentity       Stable v1 exact Git-worktree identity
 EvidenceReceipt     Experimental shared
 AcceptanceVerdict   Experimental shared
-SpecEngine          Experimental / M6
+SpecEngine          Experimental shared interface; OpenSpecAdapter implemented in M6
 CapabilitySet       Experimental / M8
 ```
 
@@ -64,6 +65,15 @@ state_id     -> what implementation state was evaluated
 
 Stable `StateIdentity` retains separate revision, index, tracked/untracked content and submodule components. Material mutable
 non-repository inputs bind only at the receipt that consumes them; no universal environment identity is introduced.
+
+
+# M6 SpecEngine status
+
+`SpecEngine` remains Experimental because only the OpenSpec implementation has a real spec-driven consumer. M6 adds `DirectAuthorityProvider` vocabulary plus a bounded `OpenSpecAdapter` behind the Stable `AuthorityRef` envelope.
+
+The implemented OpenSpec compatibility profile is `1.13.2`. Authority fingerprinting binds behavior-bearing planning artifacts, effective context/rules, schema/artifact graph and resolved authority-bearing referenced specs, while excluding default task bookkeeping and incidental timestamps. Unsupported versions and unresolved authority references fail closed.
+
+Guarded archive reuses bounded authorization, exact `StateIdentity`, Experimental `EvidenceReceipt`, and Experimental `AcceptanceVerdict`; it does not create a parallel trust protocol.
 
 # Assurance / Topology boundary
 

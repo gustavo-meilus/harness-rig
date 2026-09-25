@@ -45,26 +45,26 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M6
-current_revision: r8.5
+current_milestone: M7
+current_revision: r8.6
 milestone_result: PASS
-last_completed_task: M5-V05
-next_task: M6-T01
+last_completed_task: M6-V06
+next_task: M7-T01
 blocking_issue: null
 verification_pending:
-  - M6-V01
-  - M6-V02
-  - M6-V03
-  - M6-V04
-  - M6-V05
-  - M6-V06
+  - M7-V01
+  - M7-V02
+  - M7-V03
+  - M7-V04
+  - M7-V05
 notes: >
-  M0 through M5 completed with PASS. M5 converged Context to one canonical KB owner for durable knowledge,
-  stable IDs, provenance/source freshness, reconciliation, manifest and integrity, plus one lifecycle owner for
-  root AGENTS.md/host projection freshness. Rename/split/merge/retirement, source freshness, conflict/gap,
-  unsupported-claim, deterministic manifest/audit and projection-drift fixtures pass. No vector/RAG subsystem exists.
-  EvidenceReceipt and AcceptanceVerdict remain Experimental shared. M6 has not begun.
-  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M6.
+  M0 through M6 completed with PASS. M6 implemented the bounded OpenSpec 1.13.2 external SpecEngine adapter,
+  behavior-bearing authority fingerprint profile, referenced-spec binding, effective health/config/rules checks,
+  and guarded spec archive transition evidence. Base Harness Rig remains operational without OpenSpec; required
+  OpenSpec workflows fail closed when unavailable/incompatible. Primary external Store archive is not qualified
+  because current StateIdentity observes the repository worktree; read-only referenced Stores may contribute authority.
+  EvidenceReceipt, AcceptanceVerdict and SpecEngine remain Experimental. M7 has not begun.
+  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M7.
 ```
 
 ### Milestone quick index
@@ -220,23 +220,23 @@ notes: >
 
 **Execution (`r8.6`):**
 
-- [ ] **M6-T01** — Implement/refine DirectAuthorityProvider and OpenSpecAdapter.
-- [ ] **M6-T02** — Refine the experimental `SpecEngine` interface from real consumers.
-- [ ] **M6-T03** — Define/test the default OpenSpec authority fingerprint profile.
-- [ ] **M6-T04** — Implement authority-bearing referenced-spec handling.
-- [ ] **M6-T05** — Implement effective OpenSpec health/config/rules checks.
-- [ ] **M6-T06** — Expose guarded `harness-rig spec archive` with transition evidence.
+- [x] **M6-T01** — Implement/refine DirectAuthorityProvider and OpenSpecAdapter.
+- [x] **M6-T02** — Refine the experimental `SpecEngine` interface from real consumers.
+- [x] **M6-T03** — Define/test the default OpenSpec authority fingerprint profile.
+- [x] **M6-T04** — Implement authority-bearing referenced-spec handling.
+- [x] **M6-T05** — Implement effective OpenSpec health/config/rules checks.
+- [x] **M6-T06** — Expose guarded `harness-rig spec archive` with transition evidence.
 
 **Verification:**
 
-- [ ] **M6-V01** — Base Harness Rig works when OpenSpec is absent.
-- [ ] **M6-V02** — OpenSpec-required workflows fail closed when OpenSpec is unavailable.
-- [ ] **M6-V03** — Authority fingerprint distinguishes tasks-only vs behavior-bearing changes.
-- [ ] **M6-V04** — Malformed config/rules and unresolved authority references fail appropriately.
-- [ ] **M6-V05** — Archive partial/postcondition failures return BLOCKED.
-- [ ] **M6-V06** — Post-archive acceptance is reevaluated against final authority/state.
+- [x] **M6-V01** — Base Harness Rig works when OpenSpec is absent.
+- [x] **M6-V02** — OpenSpec-required workflows fail closed when OpenSpec is unavailable.
+- [x] **M6-V03** — Authority fingerprint distinguishes tasks-only vs behavior-bearing changes.
+- [x] **M6-V04** — Malformed config/rules and unresolved authority references fail appropriately.
+- [x] **M6-V05** — Archive partial/postcondition failures return BLOCKED.
+- [x] **M6-V06** — Post-archive acceptance is reevaluated against final authority/state.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M7`
 
 #### M7 — Trusted repository enforcement
@@ -1309,23 +1309,23 @@ No vector/RAG/retrieval subsystem is introduced.
 
 **Execution tasks:**
 
-- [ ] **M6-T01** — Implement/refine DirectAuthorityProvider and OpenSpecAdapter.
-- [ ] **M6-T02** — Refine the experimental `SpecEngine` interface from real consumers.
-- [ ] **M6-T03** — Define/test the default OpenSpec authority fingerprint profile.
-- [ ] **M6-T04** — Implement authority-bearing referenced-spec handling.
-- [ ] **M6-T05** — Implement effective OpenSpec health/config/rules checks.
-- [ ] **M6-T06** — Expose guarded `harness-rig spec archive` with transition evidence.
+- [x] **M6-T01** — Implement/refine DirectAuthorityProvider and OpenSpecAdapter.
+- [x] **M6-T02** — Refine the experimental `SpecEngine` interface from real consumers.
+- [x] **M6-T03** — Define/test the default OpenSpec authority fingerprint profile.
+- [x] **M6-T04** — Implement authority-bearing referenced-spec handling.
+- [x] **M6-T05** — Implement effective OpenSpec health/config/rules checks.
+- [x] **M6-T06** — Expose guarded `harness-rig spec archive` with transition evidence.
 
 **Verification tasks:**
 
-- [ ] **M6-V01** — Base Harness Rig works when OpenSpec is absent.
-- [ ] **M6-V02** — OpenSpec-required workflows fail closed when OpenSpec is unavailable.
-- [ ] **M6-V03** — Authority fingerprint distinguishes tasks-only vs behavior-bearing changes.
-- [ ] **M6-V04** — Malformed config/rules and unresolved authority references fail appropriately.
-- [ ] **M6-V05** — Archive partial/postcondition failures return BLOCKED.
-- [ ] **M6-V06** — Post-archive acceptance is reevaluated against final authority/state.
+- [x] **M6-V01** — Base Harness Rig works when OpenSpec is absent.
+- [x] **M6-V02** — OpenSpec-required workflows fail closed when OpenSpec is unavailable.
+- [x] **M6-V03** — Authority fingerprint distinguishes tasks-only vs behavior-bearing changes.
+- [x] **M6-V04** — Malformed config/rules and unresolved authority references fail appropriately.
+- [x] **M6-V05** — Archive partial/postcondition failures return BLOCKED.
+- [x] **M6-V06** — Post-archive acceptance is reevaluated against final authority/state.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
 > Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
 
@@ -1432,6 +1432,22 @@ Ambiguous or partial mutation => `BLOCKED`.
 - archive partial mutation;
 - archive postcondition mismatch;
 - final post-archive acceptance reevaluated against A1/S1.
+
+## M6 execution result
+
+Implemented at `r8.6`:
+
+```text
+DirectAuthorityProvider
+OpenSpecAdapter (OpenSpec 1.13.2 compatibility profile)
+Experimental SpecEngine: available / health / authority / archive
+harness-rig/openspec-authority-profile/v1
+guarded harness-rig spec archive
+```
+
+Verification retained in the r8.6 package proves base operation without OpenSpec, fail-closed required workflows, tasks-vs-behavior authority identity, custom artifact graphs, `skip_specs`, authority-bearing references, malformed rules/strict-validation failures, partial/postcondition archive failures, semantic-review fail-closed behavior, bounded authorization, transition evidence, and final `(A1,S1)` stale-precondition reevaluation.
+
+Primary external Store archive remains deliberately unqualified until exact state identity can observe that mutation domain. This is a bounded M6 limitation, not an implicit Stable capability claim.
 
 ## Exit criteria
 

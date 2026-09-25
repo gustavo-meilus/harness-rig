@@ -26,6 +26,40 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.6 — 2026-09-25 — OpenSpec first-class external SpecEngine
+
+### Adapter and authority
+
+- Added `DirectAuthorityProvider` vocabulary without changing Stable direct-file authority semantics.
+- Added the minimum Experimental `SpecEngine` interface required by the first real spec-driven consumer.
+- Added `OpenSpecAdapter` against the rechecked OpenSpec 1.13.2 public JSON CLI/agent contract; OpenSpec remains external and optional.
+- Added `harness-rig/openspec-authority-profile/v1`: behavior-bearing planning artifacts, effective context/rules, custom non-task graph inputs and resolved referenced specs bind authority; default task bookkeeping, timestamps and engine version do not.
+- Unresolved authority-bearing references and unsupported/incompatible versions fail closed.
+
+### Health and archive
+
+- Effective health now checks version compatibility, doctor/root health, planning completeness, strict validation, current apply/archive inputs and config/rule shapes rather than trusting exit zero alone.
+- `skip_specs` is honored only as an OpenSpec planning state and does not waive Harness Rig verification or authorization.
+- Added guarded `harness-rig spec archive`: pre-state `(A0,S0)`, bounded `spec_archive` authorization, readiness receipt, native OpenSpec archive, postcondition checks, transition receipt for `(A1,S1)`, and explicit stale-precondition reevaluation.
+- Partial archive mutation, postcondition mismatch, missing authorization, required semantic-review failure and unreadable final affected specs return `BLOCKED`.
+- Primary external Store roots remain unqualified for archive because current Stable StateIdentity observes the repository worktree; read-only referenced stores may contribute authority.
+
+### Verified
+
+- M3 regression suite: 22/22 PASS.
+- M4 adversarial suite: 15/15 PASS.
+- M5 Context suite: 14/14 PASS.
+- M6 OpenSpec suite: 16/16 PASS.
+- Combined unittest discovery before package finalization: 67/67 PASS.
+- M6-V01 through M6-V06: PASS.
+
+### Complexity
+
+No OpenSpec source vendoring/parser, package dependency, registry, plugin SDK, general IAM system, central evidence database, vector/RAG subsystem, recurrence platform, generic telemetry platform, or new orchestration framework was added.
+
+---
+
+
 ## r8.5 — 2026-09-25 — Context convergence and canonical knowledge lifecycle
 
 ### Ownership convergence

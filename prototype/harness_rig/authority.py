@@ -105,3 +105,23 @@ class DirectAuthority:
             subject_ref=subject_ref,
             authority_id=digest(provider_material),
         )
+
+
+class DirectAuthorityProvider:
+    """Provider wrapper matching the M6 authority-provider vocabulary.
+
+    The underlying direct-file identity and Stable AuthorityRef are unchanged;
+    this class avoids changing the M3/M4 public surface while giving callers a
+    provider-shaped entry point alongside OpenSpecAdapter.
+    """
+
+    provider = DirectAuthority.provider
+
+    @classmethod
+    def resolve(
+        cls,
+        repo_root: Path,
+        relative_path: str,
+        subject_ref: str = "repository",
+    ) -> AuthorityRef:
+        return DirectAuthority.from_file(repo_root, relative_path, subject_ref)

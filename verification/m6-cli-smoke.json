@@ -1,0 +1,11 @@
+{
+  "schema": "harness-rig/m6-cli-smoke/v1",
+  "revision": "r8.6",
+  "result": "PASS",
+  "receipt_outcome": "PASS",
+  "receipt_schema": "harness-rig/evidence-receipt/experimental-v1",
+  "verdict_outcome": "ACCEPTED",
+  "verdict_schema": "harness-rig/acceptance-verdict/experimental-v1",
+  "decision_for": "merge",
+  "note": "Base direct path remains functional and independent of OpenSpec availability."
+}

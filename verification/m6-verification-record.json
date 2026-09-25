@@ -1,0 +1,70 @@
+{
+  "schema": "harness-rig/m6-verification-record/v1",
+  "date": "2026-09-25",
+  "revision": "r8.6",
+  "result": "PASS",
+  "tasks": {
+    "M6-T01": "DONE",
+    "M6-T02": "DONE",
+    "M6-T03": "DONE",
+    "M6-T04": "DONE",
+    "M6-T05": "DONE",
+    "M6-T06": "DONE"
+  },
+  "verification": {
+    "M6-V01": {
+      "result": "PASS",
+      "evidence": "base Direct Authority CLI regression remains PASS/ACCEPTED with no OpenSpec executable present"
+    },
+    "M6-V02": {
+      "result": "PASS",
+      "evidence": "OpenSpec-required absence, version-command failure/timeout, unsupported-version and health paths return BLOCKED"
+    },
+    "M6-V03": {
+      "result": "PASS",
+      "evidence": "default profile ignores default task/incidental metadata changes and changes identity for proposal/spec/design/context/rules/custom authority artifacts"
+    },
+    "M6-V04": {
+      "result": "PASS",
+      "evidence": "malformed effective rules, strict-validation failures and unresolved authority-bearing referenced specs fail closed"
+    },
+    "M6-V05": {
+      "result": "PASS",
+      "evidence": "archive command failure/partial mutation/postcondition mismatch return BLOCKED"
+    },
+    "M6-V06": {
+      "result": "PASS",
+      "evidence": "successful guarded transition captures A1/S1 and pre-archive receipt/grant do not remain accepted against final state"
+    }
+  },
+  "tests": {
+    "m3_regression": "22/22 PASS",
+    "m4_adversarial": "15/15 PASS",
+    "m5_context": "14/14 PASS",
+    "m6_openspec": "16/16 PASS",
+    "combined": "67/67 PASS"
+  },
+  "collection": {
+    "canonical_references": 40,
+    "manifest_rows": 40,
+    "manifest_regeneration": "BYTE_IDENTICAL",
+    "agents_projection": "FRESH",
+    "audit": "PASS"
+  },
+  "cli_smoke": "base command-gate PASS -> merge ACCEPTED",
+  "external_baseline": {
+    "openspec_version": "1.13.2",
+    "checked_date": "2026-09-25",
+    "public_machine_contract": "RECHECKED",
+    "local_openspec_executable": "NOT_PRESENT",
+    "live_native_runtime_qualification": "NOT_CLAIMED"
+  },
+  "code_boundary": {
+    "subprocess": "argv + shell=False",
+    "shell_true_code_occurrences": 0,
+    "openspec_package_dependency": "NONE",
+    "vendored_openspec_parser": "NONE",
+    "vector_rag_subsystem": "NONE_INTRODUCED"
+  },
+  "next_task": "M7-T01"
+}

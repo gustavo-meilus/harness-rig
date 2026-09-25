@@ -1,0 +1,11 @@
+{
+  "schema": "harness-rig/m6-kb-audit/v1",
+  "revision": "r8.6",
+  "result": "PASS",
+  "canonical_references": 40,
+  "manifest_rows": 40,
+  "manifest_regeneration": "BYTE_IDENTICAL",
+  "agents_projection": "FRESH",
+  "audit": "PASS",
+  "retrieval_subsystem": "NONE_INTRODUCED"
+}
