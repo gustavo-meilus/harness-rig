@@ -1,0 +1,88 @@
+{
+  "count": 20,
+  "result": "PASS",
+  "revision": "r8.9",
+  "schema": "harness-rig/m9-fixture-results/v1",
+  "tests": [
+    {
+      "result": "PASS",
+      "test": "test_architecture_gate_issues_state_bound_receipt"
+    },
+    {
+      "result": "PASS",
+      "test": "test_architecture_rule_with_no_sources_blocks_instead_of_silently_passing"
+    },
+    {
+      "result": "PASS",
+      "test": "test_m9_gate_oracles_are_governance_sensitive"
+    },
+    {
+      "result": "PASS",
+      "test": "test_mutation_gate_blocks_when_baseline_detector_is_not_green"
+    },
+    {
+      "result": "PASS",
+      "test": "test_playwright_provider_forbids_pass_with_no_tests_escape"
+    },
+    {
+      "result": "PASS",
+      "test": "test_playwright_provider_subprocess_emits_receipt_and_references_native_artifacts"
+    },
+    {
+      "result": "PASS",
+      "test": "test_t01_minimal_common_gate_claim_and_outcome_semantics"
+    },
+    {
+      "result": "PASS",
+      "test": "test_t02_actual_architecture_policy_passes_current_package"
+    },
+    {
+      "result": "PASS",
+      "test": "test_t03_required_playwright_scenario_passes_with_clean_runtime_observation"
+    },
+    {
+      "result": "PASS",
+      "test": "test_t04_mutation_gate_kills_mutant_when_detector_is_sensitive"
+    },
+    {
+      "result": "PASS",
+      "test": "test_t05_mutation_map_requires_unique_mutant_identity"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v01_required_playwright_no_test_cannot_pass"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v01_required_playwright_skip_cannot_pass"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v02_flaky_retry_remains_visible_and_is_strict_by_default"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v03_healer_oracle_mutation_reopens_authority_even_if_detector_stays_green"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v04_console_and_network_failures_are_explicit"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v04_shared_data_is_rejected"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v04_wrong_worktree_blocks_web_acceptance"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v05_deliberate_architecture_violation_is_detected"
+    },
+    {
+      "result": "PASS",
+      "test": "test_v06_mutation_green_survivor_proves_detector_gap"
+    }
+  ]
+}

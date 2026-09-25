@@ -1,0 +1,27 @@
+test_authority_change_invalidates_receipt (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_authority_change_invalidates_receipt) ... ok
+test_command_timeout_blocks (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_command_timeout_blocks) ... ok
+test_f01_commit_during_session_changes_state_even_when_clean (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f01_commit_during_session_changes_state_even_when_clean) ... ok
+test_f02_verifier_mutation_becomes_mutated_not_pass (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f02_verifier_mutation_becomes_mutated_not_pass) ... ok
+test_f03_identical_content_new_revision_keeps_content_id_but_changes_state (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f03_identical_content_new_revision_keeps_content_id_but_changes_state) ... ok
+test_f04_staged_only_edit_changes_index_identity (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f04_staged_only_edit_changes_index_identity) ... ok
+test_f05_dirty_consumed_submodule_changes_state (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f05_dirty_consumed_submodule_changes_state) ... ok
+test_f06_ignored_consumed_input_stales_receipt_without_source_state_change (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f06_ignored_consumed_input_stales_receipt_without_source_state_change) ... ok
+test_f07_expired_grant_blocks_acceptance (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f07_expired_grant_blocks_acceptance) ... ok
+test_f08_state_bound_grant_invalid_after_state_change (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f08_state_bound_grant_invalid_after_state_change) ... ok
+test_f09_nondelegable_grant_rejected_for_other_principal (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f09_nondelegable_grant_rejected_for_other_principal) ... ok
+test_f10_receipt_from_other_run_rejected (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f10_receipt_from_other_run_rejected) ... ok
+test_f11_outdated_gate_contract_rejected (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f11_outdated_gate_contract_rejected) ... ok
+test_f12_mutated_referenced_artifact_rejected (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f12_mutated_referenced_artifact_rejected) ... ok
+test_f13_merge_verdict_not_applicable_to_deploy (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f13_merge_verdict_not_applicable_to_deploy) ... ok
+test_f14_parent_traversal_rejected (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f14_parent_traversal_rejected) ... ok
+test_f15_symlink_escape_rejected (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f15_symlink_escape_rejected) ... ok
+test_f16_wrong_executable_from_path_blocks_gate (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_f16_wrong_executable_from_path_blocks_gate) ... ok
+test_missing_authorization_blocks (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_missing_authorization_blocks) ... ok
+test_not_run_gate_cannot_be_accepted (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_not_run_gate_cannot_be_accepted) ... ok
+test_source_state_change_invalidates_receipt (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_source_state_change_invalidates_receipt) ... ok
+test_vertical_slice_happy_path (prototype.tests.test_m3_vertical_slice.HarnessRigM3Tests.test_vertical_slice_happy_path) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 9.502s
+
+OK

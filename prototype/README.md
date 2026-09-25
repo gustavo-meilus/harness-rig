@@ -1,6 +1,6 @@
-# Harness Rig r8.8 prototype
+# Harness Rig r8.9 prototype
 
-This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, and the M8 native local-process host qualification.
+This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, the M8 native local-process host qualification, and the M9 bounded gate platform.
 
 ```text
 Direct Authority
@@ -151,3 +151,14 @@ Not implemented/promoted through M8:
 - Receipts/verdicts are returned as values/JSON; no persistence service exists.
 - StateIdentity v1 is the current Git-worktree contract, not a generalized recursive multi-repository state framework.
 - No receipt reuse policy is enabled; a different run ID is rejected.
+
+
+## M9 gate providers
+
+M9 adds Experimental common `GateClaim`/`GateOutcome` semantics plus bounded providers:
+
+- `ArchitectureGate`: AST dependency-boundary evaluation from `governance/architecture-policy.json`;
+- `PlaywrightGate`: strict required-scenario JSON/retry/runtime evaluation with provider-native artifacts;
+- mutation development gate: exact invariant -> mutant -> detector sensitivity checks in temporary copies.
+
+A missing/skipped required web scenario cannot PASS. Flaky retries remain visible and fail by default. M9 does not claim a native Node Playwright Test project run because `@playwright/test` was unavailable in the qualification runtime.

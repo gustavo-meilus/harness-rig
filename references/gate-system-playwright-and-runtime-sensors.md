@@ -3,7 +3,7 @@ id: harness-rig-gate-system-playwright-and-runtime-sensors
 title: Gate system, Playwright, and runtime sensors
 summary: Gate-provider model for deterministic evidence and a Playwright integration that treats browser automation as a sensor
   rather than the source of product truth.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.9
 updated: '2026-09-25'
 provenance:
 - Adaptive Engineering Harness verification ladder, accessed 2026-09-21
@@ -13,7 +13,15 @@ provenance:
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
+- Playwright Test 1.63.0 CLI, JSON reporter, and retry/flaky behavior rechecked 2026-09-25
+- Harness Rig M9 executable gate-platform implementation and adversarial fixtures, 2026-09-25
 ---
+# M9 realized boundary
+
+M9 implements the minimum shared `GateClaim`/`GateOutcome` vocabulary plus concrete architecture, Playwright, and mutation providers. These semantics are Experimental; provider-native evidence remains referenced rather than flattened. The authoritative M9 implementation record is [M9 gate platform, Playwright, architecture, and mutation verification](m9-gate-platform-playwright-architecture-mutation.md).
+
+The Playwright provider now requires explicit scenarios, preserves retry/flaky evidence, forbids `--pass-with-no-tests`, and uses a provider-native runtime sidecar for worktree/data/console/network observations. No local Node `@playwright/test` installation was available in the qualification environment, so fixture/subprocess protocol evidence is not presented as a live native project run.
+
 # Gate contract
 
 A gate consumes relevant authority/state/configuration and produces an `EvidenceReceipt`.

@@ -26,6 +26,35 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.9 — 2026-09-25 — Gate platform, Playwright, architecture, and mutation verification
+
+### Gate/provider boundary
+
+- Added Experimental `GateClaim`/`GateOutcome` common semantics without promoting the broader evidence envelope.
+- Added AST-based architecture fitness evaluation with fail-closed empty/malformed rule behavior and state-bound receipts.
+- Added strict Playwright Test JSON/runtime provider: explicit required scenarios, missing/skip/no-run rejection, retry/flaky visibility, wrong-worktree/shared-data/console/network failures, native attachment references, `shell=False` execution, and explicit rejection of `--pass-with-no-tests`.
+- Added bounded development mutation verification with baseline-green admission, exact text mutants, KILLED/SURVIVED sensitivity results, protected-oracle authority reopening, and retained invariant -> mutant -> detector mappings.
+- Added the M9 gate/oracle modules to repository-governance-sensitive CI paths.
+
+### Evidence boundary
+
+- Current upstream Playwright Test 1.63.0 public CLI/reporter/retry semantics were rechecked on 2026-09-25.
+- Local Node `@playwright/test` was unavailable; the local browser/Python Playwright CLI 1.57.0 is not treated as current Node Test qualification. Protocol/subprocess fixtures are retained without overclaiming a live project run.
+- The supplied RigYard source snapshot still records harness-mutation-verification as planned/unimplemented source-side; Harness Rig implements a bounded analogous development gate without rewriting source history.
+
+### Verified
+
+- M9 focused adversarial suite: 20/20 PASS.
+- M3-M9 regression is retained as clean-process-per-module evidence; final package verification records the aggregate.
+- M9-V01 through M9-V06: PASS.
+
+### Complexity
+
+No gate registry, browser farm, mutation platform, telemetry service, plugin SDK, vector/RAG subsystem, or new orchestration framework was introduced.
+
+---
+
+
 ## r8.8 — 2026-09-25 — Host capability and topology qualification
 
 ### First Stable host candidate

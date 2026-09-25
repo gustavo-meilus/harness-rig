@@ -3,7 +3,7 @@ id: harness-rig-source-register
 title: Source register
 summary: Primary repository sources and external references used to ground the Harness Rig architecture, governance, migration,
   and runtime-harness recommendations.
-version: planning-baseline-2026-09-25-r8.6
+version: planning-baseline-2026-09-25-r8.9
 updated: '2026-09-25'
 provenance:
 - Sources directly inspected or explicitly supplied during Harness Rig research through 2026-09-21
@@ -43,6 +43,8 @@ provenance:
 - 'Harness Rig remediation sequencing decision: CHANGELOG-backed M2 and deferred Git-history qualification in M11, 2026-09-25'
 - Harness Rig M3 experimental direct vertical-slice implementation and executable verification, 2026-09-25
 - 'Local runtime evidence: Python 3.13.5 and Git 2.47.3, 2026-09-25'
+- Playwright Test 1.63.0 release/package, CLI, JSON reporter, and retry documentation rechecked 2026-09-25
+- Local Node 22.16.0/npm 10.9.2; browser/Python Playwright CLI 1.57.0; Node @playwright/test unavailable, 2026-09-25
 ---
 # Current project sources
 
@@ -514,3 +516,14 @@ Checked 2026-09-25 in the r8.8 execution sandbox.
 Observed local runtime: Python 3.13.5 at `/opt/pyvenv/bin/python`; Git 2.47.3 at `/usr/bin/git`; `codex`, `claude`, and `copilot` executables unavailable. Harness Rig therefore qualifies only the direct `local-subprocess` adapter for clean process, launch, runtime identity observation, and crash reconciliation. External-agent adapters remain unqualified.
 
 Retained evidence: `verification/m8-runtime-baseline.json`, `verification/m8-host-qualification.json`, M8 adversarial tests. RigYard's explicit missing formal isolated-writer packet remains negative evidence and prevents Stable isolated-writer promotion.
+
+
+# Playwright Test — M9 compatibility profile
+
+- Release/package baseline: `@playwright/test` 1.63.0, checked 2026-09-25.
+- CLI: https://playwright.dev/docs/test-cli
+- Reporters: https://playwright.dev/docs/test-reporters
+- Retries/flaky semantics: https://playwright.dev/docs/test-retries
+- GitHub releases: https://github.com/microsoft/playwright/releases
+
+M9 consumes documented machine/report behavior rather than Playwright internals. The local runtime did not contain the Node test package, so no native current-project run is claimed.

@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "authority_reopened": true,
+      "detector_id": "blind-detector",
+      "expected_detector": "SURVIVED",
+      "expected_gate": "FAIL",
+      "invariant_id": "protected-oracle-authority",
+      "mutant_id": "healer-weakens-oracle"
+    },
+    {
+      "authority_reopened": false,
+      "detector_id": "value-detector",
+      "expected_detector": "KILLED",
+      "expected_gate": "PASS",
+      "invariant_id": "value-remains-safe",
+      "mutant_id": "safe-to-unsafe"
+    },
+    {
+      "authority_reopened": false,
+      "detector_id": "partial-detector",
+      "expected_detector": "SURVIVED",
+      "expected_gate": "FAIL",
+      "invariant_id": "uncovered-policy-remains-strict",
+      "mutant_id": "strict-to-permissive"
+    }
+  ],
+  "revision": "r8.9",
+  "schema": "harness-rig/mutation-map/experimental-v1"
+}

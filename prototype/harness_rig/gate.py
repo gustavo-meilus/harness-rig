@@ -14,6 +14,72 @@ from .evidence import ArtifactRef, EvidenceReceipt, InputBinding, artifact_path,
 from .state import capture_state
 
 
+GATE_CLAIM_SCHEMA = "harness-rig/gate-claim/experimental-v1"
+GATE_OUTCOME_SCHEMA = "harness-rig/gate-outcome/experimental-v1"
+GATE_OUTCOMES = frozenset({"PASS", "FAIL", "BLOCKED", "NOT_RUN", "MUTATED"})
+
+
+@dataclass(frozen=True)
+class GateClaim:
+    """Minimum provider-neutral claim identity used by gate adapters.
+
+    Provider-native diagnostics remain provider-owned. This value only states
+    what is being claimed and which gate contract is expected to decide it.
+    """
+
+    schema: str
+    claim_id: str
+    kind: str
+    gate_id: str
+    gate_contract_version: str
+    required: bool = True
+
+    @classmethod
+    def create(
+        cls, *, claim_id: str, kind: str, gate_id: str,
+        gate_contract_version: str = "experimental-v1", required: bool = True,
+    ) -> "GateClaim":
+        values = (claim_id, kind, gate_id, gate_contract_version)
+        if not all(isinstance(value, str) and value for value in values):
+            raise ValueError("invalid-gate-claim")
+        if not isinstance(required, bool):
+            raise ValueError("invalid-gate-claim-required")
+        return cls(
+            GATE_CLAIM_SCHEMA, claim_id, kind, gate_id,
+            gate_contract_version, required,
+        )
+
+
+@dataclass(frozen=True)
+class GateOutcome:
+    """Minimum common gate outcome. Provider details stay outside this shape."""
+
+    schema: str
+    outcome: str
+    reasons: tuple[str, ...] = ()
+    attempt_count: int = 0
+    flaky: bool = False
+
+    @classmethod
+    def create(
+        cls, outcome: str, *, reasons: tuple[str, ...] = (),
+        attempt_count: int = 0, flaky: bool = False,
+    ) -> "GateOutcome":
+        if outcome not in GATE_OUTCOMES:
+            raise ValueError("invalid-gate-outcome")
+        if not isinstance(attempt_count, int) or attempt_count < 0:
+            raise ValueError("invalid-gate-attempt-count")
+        if not isinstance(flaky, bool):
+            raise ValueError("invalid-gate-flaky")
+        if outcome == "PASS" and reasons:
+            raise ValueError("passing-gate-outcome-cannot-have-reasons")
+        if outcome != "PASS" and not reasons:
+            raise ValueError("nonpassing-gate-outcome-requires-reason")
+        if any(not isinstance(reason, str) or not reason for reason in reasons):
+            raise ValueError("invalid-gate-outcome-reason")
+        return cls(GATE_OUTCOME_SCHEMA, outcome, tuple(reasons), attempt_count, flaky)
+
+
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 

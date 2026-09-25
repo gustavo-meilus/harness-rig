@@ -1,0 +1,19 @@
+test_actual_r85_collection_audits_clean_and_has_no_retrieval_subsystem (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_actual_r85_collection_audits_clean_and_has_no_retrieval_subsystem) ... ok
+test_canonical_change_makes_agents_projection_stale (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_canonical_change_makes_agents_projection_stale) ... ok
+test_external_version_advance_marks_source_stale (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_external_version_advance_marks_source_stale) ... ok
+test_manifest_generation_is_deterministic_by_stable_id (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_manifest_generation_is_deterministic_by_stable_id) ... ok
+test_matching_source_identity_is_fresh_and_missing_identity_is_unknown (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_matching_source_identity_is_fresh_and_missing_identity_is_unknown) ... ok
+test_merge_retires_absorbed_id_and_retired_ids_cannot_be_reused (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_merge_retires_absorbed_id_and_retired_ids_cannot_be_reused) ... ok
+test_projection_only_change_does_not_change_canonical_fingerprint (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_projection_only_change_does_not_change_canonical_fingerprint) ... ok
+test_reconciliation_accepts_only_supported_conclusion_and_preserves_gaps (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_reconciliation_accepts_only_supported_conclusion_and_preserves_gaps) ... ok
+test_reconciliation_preserves_conflicting_source_values (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_reconciliation_preserves_conflicting_source_values) ... ok
+test_reconciliation_rejects_unsupported_conclusion (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_reconciliation_rejects_unsupported_conclusion) ... ok
+test_rename_or_move_preserves_stable_id (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_rename_or_move_preserves_stable_id) ... ok
+test_retired_id_non_reuse (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_retired_id_non_reuse) ... ok
+test_split_keeps_old_id_on_primary_and_requires_new_ids_for_other_topics (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_split_keeps_old_id_on_primary_and_requires_new_ids_for_other_topics) ... ok
+test_whole_collection_audit_detects_duplicate_id_broken_link_and_stale_manifest (prototype.tests.test_m5_context_lifecycle.HarnessRigM5ContextTests.test_whole_collection_audit_detects_duplicate_id_broken_link_and_stale_manifest) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.203s
+
+OK

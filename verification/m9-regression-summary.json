@@ -1,0 +1,26 @@
+{
+  "counts": {
+    "M3": 22,
+    "M4": 15,
+    "M5": 14,
+    "M6": 16,
+    "M7": 14,
+    "M8": 14,
+    "M9": 20,
+    "total": 115
+  },
+  "execution_model": "one clean Python process per milestone test module",
+  "note": "A single-process cross-milestone discovery run is not used as M9 completion evidence; clean-process module runs avoid cross-suite process/environment contamination and are independently attributable.",
+  "result": "PASS",
+  "retained_outputs": {
+    "M3": "verification/m9-m3-regression-output.txt",
+    "M4": "verification/m9-m4-regression-output.txt",
+    "M5": "verification/m9-m5-regression-output.txt",
+    "M6": "verification/m9-m6-regression-output.txt",
+    "M7": "verification/m9-m7-regression-output.txt",
+    "M8": "verification/m9-m8-regression-output.txt",
+    "M9": "verification/m9-m9-output.txt"
+  },
+  "revision": "r8.9",
+  "schema": "harness-rig/m9-regression-summary/v1"
+}

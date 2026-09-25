@@ -1,0 +1,23 @@
+{
+  "checked_files": [
+    "prototype/harness_rig/acceptance.py",
+    "prototype/harness_rig/authority.py",
+    "prototype/harness_rig/authorization.py",
+    "prototype/harness_rig/canonical.py",
+    "prototype/harness_rig/evidence.py",
+    "prototype/harness_rig/security.py",
+    "prototype/harness_rig/state.py"
+  ],
+  "outcome": {
+    "attempt_count": 0,
+    "flaky": false,
+    "outcome": "PASS",
+    "reasons": [],
+    "schema": "harness-rig/gate-outcome/experimental-v1"
+  },
+  "policy_digest": "sha256:d44167e52a92581a525ad55054c18c273b8a118d2906eeb5a9ffee8d82c7f201",
+  "policy_id": "harness-rig/core-external-tool-independence/r8.9-v1",
+  "report_digest": "sha256:f96ea68beb1efbe069bce736f7983a895241afa03124feb822f0d1a65f70e5e7",
+  "schema": "harness-rig/architecture-report/experimental-v1",
+  "violations": []
+}

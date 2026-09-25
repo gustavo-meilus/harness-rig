@@ -15,7 +15,7 @@ from .vertical import VerticalSliceRequest, run_vertical_slice
 
 
 def _direct_main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(description="Harness Rig r8.8 direct trust-path test surface")
+    ap = argparse.ArgumentParser(description="Harness Rig r8.9 direct trust-path test surface")
     ap.add_argument("--repo", required=True)
     ap.add_argument("--authority", required=True)
     ap.add_argument("--subject", default="repository")

@@ -3,7 +3,7 @@ id: harness-rig-current-system-baseline
 title: Current project baseline
 summary: Verified current responsibilities, strengths, overlaps, maturity gaps, and confirmed defects across AIBoarding, TacticSwitch,
   and Adaptive Engineering Harness.
-version: planning-baseline-2026-09-25-r8.8
+version: planning-baseline-2026-09-25-r8.9
 updated: '2026-09-25'
 provenance:
 - gustavo-meilus/aiboarding docs/LOOP-ENGINEERING.md, accessed 2026-09-21
@@ -19,6 +19,7 @@ provenance:
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig M7 trusted repository enforcement implementation and verification, 2026-09-25
 - Harness Rig M8 native host qualification and adversarial verification, 2026-09-25
+- Harness Rig M9 gate-platform, Playwright, architecture, and mutation verification, 2026-09-25
 ---
 # RigYard source snapshot boundary
 
@@ -37,6 +38,8 @@ claiming that the entire RigYard matrix was rerun in this environment.
 As of r8.7, Harness Rig also has a repository-local same-subject CI obligation model and a retained GitHub Actions `ci / required` workflow. This is executable package evidence, not proof that any external repository has installed the required ruleset/CODEOWNERS settings. See [M7 trusted repository enforcement](m7-trusted-repository-enforcement.md).
 
 As of r8.8, Harness Rig also has a native-qualified `local-subprocess` host adapter. Its Stable surface is deliberately limited to clean-process launch, process launch, runtime identity observation, and crash reconciliation. The current runtime has no Codex/Claude/Copilot executable, and no read-only/isolated/fresh-verifier/isolated-writer capability is claimed. See [M8 host capability and topology qualification](m8-host-capability-and-topology-qualification.md).
+
+As of r8.9, Harness Rig also has Experimental common gate claim/outcome semantics, an AST architecture fitness provider, a strict Playwright JSON/runtime evidence provider, and a bounded mutation-sensitivity development gate. The local runtime did not contain Node `@playwright/test`, so M9 does not claim live native current-project Playwright Test qualification. See [M9 gate platform, Playwright, architecture, and mutation verification](m9-gate-platform-playwright-architecture-mutation.md).
 
 # Current responsibilities
 

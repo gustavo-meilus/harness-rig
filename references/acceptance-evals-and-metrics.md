@@ -3,7 +3,7 @@ id: harness-rig-acceptance-evals-and-metrics
 title: Acceptance evaluations and metrics
 summary: Behavioral and adversarial tests that verify Harness Rig itself, plus metrics that separate control integrity from
   speed or model performance.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.9
 updated: '2026-09-25'
 provenance:
 - Google Developers Blog, The Anatomy of Harness Engineering, accessed 2026-09-21
@@ -25,6 +25,7 @@ provenance:
 - Node.js official child_process documentation rechecked 2026-09-24
 - Harness Rig M3 experimental direct vertical-slice implementation and executable verification, 2026-09-25
 - 'Local runtime evidence: Python 3.13.5 and Git 2.47.3, 2026-09-25'
+- Harness Rig M9 architecture/Playwright/mutation adversarial verification, 2026-09-25
 ---
 # Principle
 
@@ -81,3 +82,22 @@ See [M3 experimental direct vertical slice](m3-experimental-vertical-slice.md).
 
 The fixture result means the Experimental implementation detects/rejects the specified known-bad cases. It does not promote
 the contracts to Stable.
+
+
+# M9 adversarial gate fixtures
+
+M9 adds executable cases for the gate platform itself:
+
+```text
+required Playwright scenario skipped/missing -> FAIL
+flaky retry -> remains explicit; strict policy FAIL
+wrong worktree/shared data -> FAIL
+console error/unexpected network -> FAIL
+forbidden architecture import -> FAIL
+architecture policy source missing -> BLOCKED
+protected healer/oracle mutation -> authority identity changes
+mutation detector KILLED -> sensitivity demonstrated
+mutation detector SURVIVED -> detector gap exposed; gate FAIL
+```
+
+These cases measure control sensitivity, not model speed or browser coverage. The M9 mutation map is retained at `verification/m9-mutation-map.json`.

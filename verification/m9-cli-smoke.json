@@ -1,0 +1,11 @@
+{
+  "decision_for": "merge",
+  "note": "Base direct trust path remains functional after M9 gate-platform implementation.",
+  "receipt_outcome": "PASS",
+  "receipt_schema": "harness-rig/evidence-receipt/experimental-v1",
+  "result": "PASS",
+  "revision": "r8.9",
+  "schema": "harness-rig/m9-cli-smoke/v1",
+  "verdict_outcome": "ACCEPTED",
+  "verdict_schema": "harness-rig/acceptance-verdict/experimental-v1"
+}

@@ -45,26 +45,27 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M9
-current_revision: r8.8
+current_milestone: M10
+current_revision: r8.9
 milestone_result: PASS
-last_completed_task: M8-V05
-next_task: M9-T01
+last_completed_task: M9-V06
+next_task: M10-T01
 blocking_issue: null
 verification_pending:
-  - M9-V01
-  - M9-V02
-  - M9-V03
-  - M9-V04
-  - M9-V05
-  - M9-V06
+  - M10-V01
+  - M10-V02
+  - M10-V03
+  - M10-V04
+  - M10-V05
+  - M10-V06
 notes: >
-  M0 through M8 completed with PASS. M8 qualified the narrow local-subprocess adapter as Stable only for
-  clean-process launch, process launch, runtime identity observation and crash reconciliation. CapabilitySet and
-  RuntimeResolution remain Experimental/module-owned. Fresh verifier now requires real identity/context/non-ownership
-  and read-only predicates; unsupported isolation requirements fail closed. Codex/Claude/Copilot executables were not
-  available in the M8 runtime and are not promoted. Isolated-writer remains unsupported without formal native evidence.
-  Next task is M9-T01. Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M9.
+  M0 through M9 completed with PASS. M9 implemented the minimum Experimental common gate claim/outcome vocabulary,
+  an AST architecture fitness provider, a strict required-scenario Playwright JSON/runtime provider, and a bounded
+  mutation development gate with invariant-to-mutant-to-detector mappings. Required web scenarios cannot PASS when
+  missing/skipped/not-run; flaky retries remain visible; wrong worktree/shared data/console/network failures are explicit;
+  protected oracle mutation reopens authority; deliberate architecture violations and mutation detector gaps are detected.
+  No local Node @playwright/test package was available, so M9 does not claim a live native Playwright Test project run.
+  Next task is M10-T01. Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M10.
 ```
 
 ### Milestone quick index
@@ -286,22 +287,22 @@ notes: >
 
 **Execution (`r8.9`):**
 
-- [ ] **M9-T01** — Define minimal common gate claim/outcome semantics.
-- [ ] **M9-T02** — Implement/refine the architecture gate provider.
-- [ ] **M9-T03** — Implement/refine the Playwright provider with explicit required scenarios.
-- [ ] **M9-T04** — Reconcile RigYard harness-mutation-verification as a bounded development gate.
-- [ ] **M9-T05** — Map invariant → mutant → detector for mutation fixtures.
+- [x] **M9-T01** — Define minimal common gate claim/outcome semantics.
+- [x] **M9-T02** — Implement/refine the architecture gate provider.
+- [x] **M9-T03** — Implement/refine the Playwright provider with explicit required scenarios.
+- [x] **M9-T04** — Reconcile RigYard harness-mutation-verification as a bounded development gate.
+- [x] **M9-T05** — Map invariant → mutant → detector for mutation fixtures.
 
 **Verification:**
 
-- [ ] **M9-V01** — Required Playwright skip/no-test cannot PASS.
-- [ ] **M9-V02** — Flaky retries remain visible.
-- [ ] **M9-V03** — Healer oracle mutation reopens authority.
-- [ ] **M9-V04** — Wrong-worktree/shared-data/console-network failure fixtures behave correctly.
-- [ ] **M9-V05** — A deliberate architecture violation is detected.
-- [ ] **M9-V06** — At least one mutation red/green detector-gap example is proven.
+- [x] **M9-V01** — Required Playwright skip/no-test cannot PASS.
+- [x] **M9-V02** — Flaky retries remain visible.
+- [x] **M9-V03** — Healer oracle mutation reopens authority.
+- [x] **M9-V04** — Wrong-worktree/shared-data/console-network failure fixtures behave correctly.
+- [x] **M9-V05** — A deliberate architecture violation is detected.
+- [x] **M9-V06** — At least one mutation red/green detector-gap example is proven.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M10`
 
 #### M10 — Product CLI, migration completion, and release provenance
@@ -1667,22 +1668,22 @@ Other built-in adapters retain Experimental/Beta labels until their own evidence
 
 **Execution tasks:**
 
-- [ ] **M9-T01** — Define minimal common gate claim/outcome semantics.
-- [ ] **M9-T02** — Implement/refine the architecture gate provider.
-- [ ] **M9-T03** — Implement/refine the Playwright provider with explicit required scenarios.
-- [ ] **M9-T04** — Reconcile RigYard harness-mutation-verification as a bounded development gate.
-- [ ] **M9-T05** — Map invariant → mutant → detector for mutation fixtures.
+- [x] **M9-T01** — Define minimal common gate claim/outcome semantics.
+- [x] **M9-T02** — Implement/refine the architecture gate provider.
+- [x] **M9-T03** — Implement/refine the Playwright provider with explicit required scenarios.
+- [x] **M9-T04** — Reconcile RigYard harness-mutation-verification as a bounded development gate.
+- [x] **M9-T05** — Map invariant → mutant → detector for mutation fixtures.
 
 **Verification tasks:**
 
-- [ ] **M9-V01** — Required Playwright skip/no-test cannot PASS.
-- [ ] **M9-V02** — Flaky retries remain visible.
-- [ ] **M9-V03** — Healer oracle mutation reopens authority.
-- [ ] **M9-V04** — Wrong-worktree/shared-data/console-network failure fixtures behave correctly.
-- [ ] **M9-V05** — A deliberate architecture violation is detected.
-- [ ] **M9-V06** — At least one mutation red/green detector-gap example is proven.
+- [x] **M9-V01** — Required Playwright skip/no-test cannot PASS.
+- [x] **M9-V02** — Flaky retries remain visible.
+- [x] **M9-V03** — Healer oracle mutation reopens authority.
+- [x] **M9-V04** — Wrong-worktree/shared-data/console-network failure fixtures behave correctly.
+- [x] **M9-V05** — A deliberate architecture violation is detected.
+- [x] **M9-V06** — At least one mutation red/green detector-gap example is proven.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
 > Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
 

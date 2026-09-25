@@ -1,0 +1,21 @@
+{
+  "checked_date": "2026-09-25",
+  "claim_limit": "No live native @playwright/test project qualification is claimed; M9 provider execution is verified with deterministic JSON/subprocess fixtures and current public contract evidence.",
+  "local_runtime": {
+    "node": "22.16.0",
+    "node_playwright_test": "unavailable",
+    "npm": "10.9.2",
+    "playwright_cli": "1.57.0"
+  },
+  "playwright_test_upstream": {
+    "qualification": "public-current-contract-rechecked",
+    "sources": [
+      "https://github.com/microsoft/playwright/releases",
+      "https://playwright.dev/docs/test-cli",
+      "https://playwright.dev/docs/test-reporters",
+      "https://playwright.dev/docs/test-retries"
+    ],
+    "version": "1.63.0"
+  },
+  "schema": "harness-rig/m9-external-baseline/v1"
+}
