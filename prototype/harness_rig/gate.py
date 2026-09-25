@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 import shutil
-import subprocess
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -12,6 +11,7 @@ from .authority import AuthorityRef
 from .canonical import file_digest, sha256_bytes
 from .evidence import ArtifactRef, EvidenceReceipt, InputBinding, artifact_path, bind_path
 from .state import capture_state
+from .process import run_process
 
 
 GATE_CLAIM_SCHEMA = "harness-rig/gate-claim/experimental-v1"
@@ -190,19 +190,20 @@ class CommandGate:
             outcome = "BLOCKED"
             p = None
         else:
-            try:
-                p = subprocess.run(
-                    [resolved_exe, *req.argv[1:]],
-                    cwd=cwd,
-                    capture_output=True,
-                    text=False,
-                    shell=False,
-                    timeout=req.timeout_seconds,
-                )
-                outcome = "PASS" if p.returncode == 0 else "FAIL"
-            except subprocess.TimeoutExpired as exc:
+            pr = run_process(
+                [resolved_exe, *req.argv[1:]],
+                cwd=cwd,
+                timeout_seconds=req.timeout_seconds,
+            )
+            if pr.outcome == "TIMEOUT":
                 p = None
                 outcome = "BLOCKED"
+            elif pr.outcome == "BLOCKED":
+                p = None
+                outcome = "BLOCKED"
+            else:
+                p = pr
+                outcome = pr.outcome
 
         state_after = capture_state(repo, req.repository_id)
         if state_after.state_id != state_before.state_id:

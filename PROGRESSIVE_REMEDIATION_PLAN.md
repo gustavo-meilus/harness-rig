@@ -45,27 +45,27 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M10
-current_revision: r8.9
+current_milestone: M11
+current_revision: r8.10
 milestone_result: PASS
-last_completed_task: M9-V06
-next_task: M10-T01
+last_completed_task: M10-V06
+next_task: M11-T01
 blocking_issue: null
 verification_pending:
-  - M10-V01
-  - M10-V02
-  - M10-V03
-  - M10-V04
-  - M10-V05
-  - M10-V06
+  - M11-V01
+  - M11-V02
+  - M11-V03
+  - M11-V04
+  - M11-V05
+  - M11-V06
+  - M11-V07
+  - M11-V08
 notes: >
-  M0 through M9 completed with PASS. M9 implemented the minimum Experimental common gate claim/outcome vocabulary,
-  an AST architecture fitness provider, a strict required-scenario Playwright JSON/runtime provider, and a bounded
-  mutation development gate with invariant-to-mutant-to-detector mappings. Required web scenarios cannot PASS when
-  missing/skipped/not-run; flaky retries remain visible; wrong worktree/shared data/console/network failures are explicit;
-  protected oracle mutation reopens authority; deliberate architecture violations and mutation detector gaps are detected.
-  No local Node @playwright/test package was available, so M9 does not claim a live native Playwright Test project run.
-  Next task is M10-T01. Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M10.
+  M0 through M10 completed with PASS. M10 finalized the compact product CLI and versioned machine envelope,
+  fail-closed configuration precedence, verifier timeout/cancellation cleanup, atomic r8.9-to-r8.10 migration state
+  with explicit rollback, and deterministic release-record/checksum behavior. Runtime/schema migration can complete while
+  source-history qualification remains PENDING_M11; M10 does not fabricate the deferred real source history maps.
+  Release eligibility is BLOCKED when no accepted repository verdict is supplied. Next task is M11-T01.
 ```
 
 ### Milestone quick index
@@ -309,23 +309,23 @@ notes: >
 
 **Execution (`r8.10`):**
 
-- [ ] **M10-T01** — Finalize compact CLI including guarded `spec archive`.
-- [ ] **M10-T02** — Define versioned JSON and exit-code semantics.
-- [ ] **M10-T03** — Define config precedence and noninteractive behavior.
-- [ ] **M10-T04** — Define cancellation/timeout cleanup.
-- [ ] **M10-T05** — Finalize migration completion/rollback criteria.
-- [ ] **M10-T06** — Finalize minimum release provenance/checksum/attestation behavior.
+- [x] **M10-T01** — Finalize compact CLI including guarded `spec archive`.
+- [x] **M10-T02** — Define versioned JSON and exit-code semantics.
+- [x] **M10-T03** — Define config precedence and noninteractive behavior.
+- [x] **M10-T04** — Define cancellation/timeout cleanup.
+- [x] **M10-T05** — Finalize migration completion/rollback criteria.
+- [x] **M10-T06** — Finalize minimum release provenance/checksum/attestation behavior.
 
 **Verification:**
 
-- [ ] **M10-V01** — Noninteractive BLOCKED semantics pass.
-- [ ] **M10-V02** — Malformed/global-weakened config cases fail safely.
-- [ ] **M10-V03** — Cancellation/timeout cleanup is verified.
-- [ ] **M10-V04** — Interrupted migration and mixed old/new state fixtures pass.
-- [ ] **M10-V05** — Rollback/downgrade behavior is tested/documented.
-- [ ] **M10-V06** — Build→artifact provenance is consistent.
+- [x] **M10-V01** — Noninteractive BLOCKED semantics pass.
+- [x] **M10-V02** — Malformed/global-weakened config cases fail safely.
+- [x] **M10-V03** — Cancellation/timeout cleanup is verified.
+- [x] **M10-V04** — Interrupted migration and mixed old/new state fixtures pass.
+- [x] **M10-V05** — Rollback/downgrade behavior is tested/documented.
+- [x] **M10-V06** — Build→artifact provenance is consistent.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M11`
 
 #### M11 — RigYard disposition, Git-history qualification, and field hardening
@@ -1793,23 +1793,23 @@ Every first-class gate's PASS claim is narrower and more explicit than "tool exi
 
 **Execution tasks:**
 
-- [ ] **M10-T01** — Finalize compact CLI including guarded `spec archive`.
-- [ ] **M10-T02** — Define versioned JSON and exit-code semantics.
-- [ ] **M10-T03** — Define config precedence and noninteractive behavior.
-- [ ] **M10-T04** — Define cancellation/timeout cleanup.
-- [ ] **M10-T05** — Finalize migration completion/rollback criteria.
-- [ ] **M10-T06** — Finalize minimum release provenance/checksum/attestation behavior.
+- [x] **M10-T01** — Finalize compact CLI including guarded `spec archive`.
+- [x] **M10-T02** — Define versioned JSON and exit-code semantics.
+- [x] **M10-T03** — Define config precedence and noninteractive behavior.
+- [x] **M10-T04** — Define cancellation/timeout cleanup.
+- [x] **M10-T05** — Finalize migration completion/rollback criteria.
+- [x] **M10-T06** — Finalize minimum release provenance/checksum/attestation behavior.
 
 **Verification tasks:**
 
-- [ ] **M10-V01** — Noninteractive BLOCKED semantics pass.
-- [ ] **M10-V02** — Malformed/global-weakened config cases fail safely.
-- [ ] **M10-V03** — Cancellation/timeout cleanup is verified.
-- [ ] **M10-V04** — Interrupted migration and mixed old/new state fixtures pass.
-- [ ] **M10-V05** — Rollback/downgrade behavior is tested/documented.
-- [ ] **M10-V06** — Build→artifact provenance is consistent.
+- [x] **M10-V01** — Noninteractive BLOCKED semantics pass.
+- [x] **M10-V02** — Malformed/global-weakened config cases fail safely.
+- [x] **M10-V03** — Cancellation/timeout cleanup is verified.
+- [x] **M10-V04** — Interrupted migration and mixed old/new state fixtures pass.
+- [x] **M10-V05** — Rollback/downgrade behavior is tested/documented.
+- [x] **M10-V06** — Build→artifact provenance is consistent.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
 > Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
 
@@ -1849,18 +1849,21 @@ Repository policy may not be weakened by user-global configuration.
 
 ## Migration completion
 
-Define "complete" as:
+M10 separates **runtime/schema migration completion** from **1.0/source-history migration completion** so the earlier M11 deferral remains explicit rather than being silently bypassed.
+
+Runtime/schema migration is complete when:
 
 - every imported capability has a keep/adapt/replace/delete disposition;
-- history/commit/tag mappings preserved;
-- supported legacy state migrated or explicitly unsupported;
+- supported legacy state is migrated or explicitly unsupported;
 - install/runtime paths converge;
-- duplicate Context/state/evidence/routing ownership removed;
-- duplicate hooks removed;
+- duplicate Context/state/evidence/routing ownership is removed;
+- duplicate hooks are removed;
 - generated distributions have one source;
-- supported upgrade tested;
-- rollback/downgrade policy tested/documented;
-- legacy product transition status documented.
+- the supported upgrade is tested;
+- rollback/downgrade policy is tested/documented;
+- legacy product transition status is documented.
+
+1.0/source-history migration additionally requires M11 PASS, including preserved/reconciled source history and reproducible commit/tag mappings. M10 records that prerequisite as `PENDING_M11`; it does not fabricate real source-history maps.
 
 ## Release provenance
 
@@ -1894,6 +1897,21 @@ Do not introduce an additional signing platform without a consumer requirement.
 - schema migration rollback/downgrade;
 - old->new commit lookup;
 - rebuild/release provenance consistency.
+
+
+## M10 execution outcome
+
+Implemented at `r8.10`:
+
+- compact product command surface with versioned `harness-rig/cli-envelope/v1` machine output;
+- retained r8.9 raw JSON compatibility for direct verification, doctor, and guarded archive;
+- defaults < user-global < project < CLI configuration precedence, with repository policy unavailable to user-global override;
+- fail-closed noninteractive behavior and process-group cleanup for direct verifier timeout/cancellation;
+- atomic `harness-rig/migration-state/v1` with supported r8.9 -> r8.10 upgrade, explicit rollback, interrupted/mixed-state/duplicate-hook detection, and `PENDING_M11` history qualification;
+- deterministic `harness-rig/release-record/v1` artifact digests and immutable record verification, with missing accepted repository verdict represented as `BLOCKED`;
+- no signing platform, migration service, configuration server, or orchestration framework.
+
+M10 verification adds 18 adversarial/product tests. The clean-process M3-M10 regression is 133/133 PASS (22 + 15 + 14 + 16 + 14 + 14 + 20 + 18); the canonical KB audit is 44 references / 44 manifest rows with a FRESH root projection and byte-identical manifest regeneration. Final package evidence is retained under `verification/m10-*`. Real object-complete source histories and source->rewritten commit/tag maps remain M11 work and are not claimed by M10.
 
 ## Exit criteria
 

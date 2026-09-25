@@ -31,6 +31,7 @@ class VerticalSliceRequest:
     input_paths: tuple[str, ...] = ()
     artifact_paths: tuple[str, ...] = ()
     expected_executable: str | None = None
+    timeout_seconds: float = 30.0
 
 
 @dataclass(frozen=True)
@@ -64,6 +65,7 @@ def run_vertical_slice(req: VerticalSliceRequest) -> VerticalSliceResult:
         input_paths=req.input_paths,
         artifact_paths=req.artifact_paths,
         expected_executable=req.expected_executable,
+        timeout_seconds=req.timeout_seconds,
     ))
     current_state = capture_state(req.repo, req.repository_id)
     verdict = evaluate_acceptance(

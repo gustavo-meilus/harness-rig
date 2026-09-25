@@ -26,6 +26,42 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.10 — 2026-09-25 — Product CLI, migration completion, and release provenance
+
+### Product surface
+
+- Finalized the compact `init`, `doctor`, `spec status`, `spec archive`, `verify`, `status`, and `migrate` command surface.
+- Added versioned `harness-rig/cli-envelope/v1` machine output and explicit PASS/BLOCKED/FAIL/INVALID/ERROR/TIMEOUT/CANCELLED exit categories while retaining the already-tested r8.9 raw JSON compatibility shapes.
+- Added `harness-rig/config/v1` with defaults < user-global < project < CLI precedence. User-global config cannot define repository policy and malformed/unknown config fails before execution.
+- Added bounded process-group cleanup for direct verifier timeout/cancellation; no process supervisor or orchestration framework was introduced.
+
+### Migration
+
+- Added atomic `harness-rig/migration-state/v1` for the supported r8.9 -> r8.10 product metadata/runtime migration and explicit rollback.
+- Interrupted journals, mixed legacy/new state, duplicate hook ownership, unknown state schemas, and unsupported downgrade targets fail closed.
+- Added deterministic synthetic `harness-rig/history-map/v1` lookup semantics without claiming real source commit maps.
+- Full object-complete source-history qualification remains `PENDING_M11` and still blocks M12/1.0.
+
+### Release provenance
+
+- Added immutable `harness-rig/release-record/v1` binding source revision, accepted repository verdict, build workflow identity, artifact size/SHA-256, and optional attestation reference.
+- A missing accepted repository verdict produces a BLOCKED release candidate; local verification does not impersonate hosted `ci / required`.
+- Added `verification/release_provenance.py` for deterministic record/verify operations. No signing platform was added.
+
+### Verified
+
+- M10 focused adversarial suite: 18/18 PASS.
+- Clean-process M3-M10 regression: 133/133 PASS (22 + 15 + 14 + 16 + 14 + 14 + 20 + 18).
+- Canonical KB audit: 44 references / 44 manifest rows; root projection FRESH; manifest regeneration byte-identical.
+- M10-V01 through M10-V06: PASS; retained counts and evidence are recorded in `verification/m10-verification-record.json`.
+
+### Complexity
+
+No package manager, daemon, migration service, signing platform, release service, config server, workflow engine, or new orchestration framework was introduced.
+
+---
+
+
 ## r8.9 — 2026-09-25 — Gate platform, Playwright, architecture, and mutation verification
 
 ### Gate/provider boundary

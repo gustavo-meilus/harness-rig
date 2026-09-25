@@ -3,7 +3,7 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-25-r8.9
+version: planning-baseline-2026-09-25-r8.10
 updated: '2026-09-25'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
@@ -37,6 +37,7 @@ provenance:
 - Harness Rig M7 trusted repository enforcement implementation and verification, 2026-09-25
 - Harness Rig M8 local-process host qualification and topology-boundary verification, 2026-09-25
 - Harness Rig M9 gate-platform, Playwright, architecture, and mutation verification, 2026-09-25
+- Harness Rig M10 product CLI, migration, process cleanup, and release-provenance implementation and verification, 2026-09-25
 ---
 # Progressive remediation overlay
 
@@ -51,7 +52,8 @@ M6 / r8.6 PASS — OpenSpec first-class external SpecEngine and guarded archive
 M7 / r8.7 PASS — same-subject trusted repository enforcement
 M8 / r8.8 PASS — narrow local-process host capability and topology qualification
 M9 / r8.9 PASS — minimum gate platform, strict Playwright evidence, architecture fitness, mutation sensitivity
-next: M10 product CLI, migration completion, and release provenance
+M10 / r8.10 PASS — compact product CLI, machine contract, migration/rollback, cleanup, release provenance
+next: M11 RigYard disposition, source-history qualification, and field hardening
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.
@@ -131,7 +133,7 @@ Deliver OpenSpec, direct authority, command/test, knowledge integrity, architect
 
 # 0.8 — Productization
 
-Compact CLI, migration, distributions and release provenance.
+Implemented in M10/r8.10: compact CLI, versioned machine JSON/exit semantics, fail-closed config precedence, bounded migration/rollback state, timeout/cancellation cleanup, and deterministic release-record/checksum behavior. Full source-history qualification remains M11.
 
 # 0.9 — field hardening and source-history qualification
 

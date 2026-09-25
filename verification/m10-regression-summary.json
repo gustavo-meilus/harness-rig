@@ -1,0 +1,28 @@
+{
+  "counts": {
+    "M10": 18,
+    "M3": 22,
+    "M4": 15,
+    "M5": 14,
+    "M6": 16,
+    "M7": 14,
+    "M8": 14,
+    "M9": 20,
+    "total": 133
+  },
+  "execution_model": "one clean Python process per milestone test module",
+  "note": "Clean-process module runs are independently attributable and avoid cross-suite process/environment contamination.",
+  "result": "PASS",
+  "retained_outputs": {
+    "M10": "verification/m10-m10-regression-output.txt",
+    "M3": "verification/m10-m3-regression-output.txt",
+    "M4": "verification/m10-m4-regression-output.txt",
+    "M5": "verification/m10-m5-regression-output.txt",
+    "M6": "verification/m10-m6-regression-output.txt",
+    "M7": "verification/m10-m7-regression-output.txt",
+    "M8": "verification/m10-m8-regression-output.txt",
+    "M9": "verification/m10-m9-regression-output.txt"
+  },
+  "revision": "r8.10",
+  "schema": "harness-rig/m10-regression-summary/v1"
+}

@@ -1,0 +1,68 @@
+{
+  "cli_smoke": "verification/m10-cli-smoke.json",
+  "evidence_limits": [
+    "No live hosted ci / required verdict was available in this sandbox.",
+    "Object-complete source-history qualification and real source->rewritten maps remain M11 work.",
+    "No signing or attestation service was introduced."
+  ],
+  "fixture_results": "verification/m10-fixture-results.json",
+  "kb_audit": "verification/m10-kb-audit.json",
+  "machine_contract": {
+    "cli_envelope": "harness-rig/cli-envelope/v1",
+    "config": "harness-rig/config/v1",
+    "migration_state": "harness-rig/migration-state/v1",
+    "release_record": "harness-rig/release-record/v1"
+  },
+  "migration_status": {
+    "history_qualification": "PENDING_M11",
+    "rollback": "EXPLICIT",
+    "runtime_schema": "COMPLETE",
+    "supported_upgrade": "r8.9 -> r8.10"
+  },
+  "milestone": "M10",
+  "next_task": "M11-T01",
+  "regression_summary": "verification/m10-regression-summary.json",
+  "release_status": {
+    "candidate_without_repository_verdict": "BLOCKED",
+    "live_attestation_observed": false,
+    "live_hosted_repository_verdict_observed": false,
+    "mechanics": "VERIFIED"
+  },
+  "result": "PASS",
+  "revision": "r8.10",
+  "schema": "harness-rig/m10-verification-record/v1",
+  "source_checks": {
+    "canonical_pages": 44,
+    "manifest_regeneration": "BYTE_IDENTICAL",
+    "manifest_rows": 44,
+    "product_and_verification_shell_true_occurrences": 0,
+    "projection": "FRESH"
+  },
+  "tasks": {
+    "M10-T01": "PASS",
+    "M10-T02": "PASS",
+    "M10-T03": "PASS",
+    "M10-T04": "PASS",
+    "M10-T05": "PASS",
+    "M10-T06": "PASS"
+  },
+  "test_counts": {
+    "M10": 18,
+    "M3": 22,
+    "M4": 15,
+    "M5": 14,
+    "M6": 16,
+    "M7": 14,
+    "M8": 14,
+    "M9": 20,
+    "total": 133
+  },
+  "verification": {
+    "M10-V01": "PASS",
+    "M10-V02": "PASS",
+    "M10-V03": "PASS",
+    "M10-V04": "PASS",
+    "M10-V05": "PASS",
+    "M10-V06": "PASS"
+  }
+}

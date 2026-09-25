@@ -3,7 +3,7 @@ id: harness-rig-history-migration-and-monorepo-plan
 title: History migration and monorepo plan
 summary: History-preserving repository consolidation plan that separates source migration from architectural refactoring and
   runtime consolidation.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.10
 updated: '2026-09-25'
 provenance:
 - git-filter-repo documentation, accessed 2026-09-21
@@ -164,3 +164,10 @@ This separation preserves traceability without forcing historical Git mechanics 
 
 - [M2 source-surface inventory and capability dispositions](m2-source-surface-inventory-and-dispositions.md)
 - [Roadmap](roadmap.md)
+
+
+# M10 runtime/schema migration boundary
+
+M10 adds the product-local `harness-rig/migration-state/v1` journal and explicit r8.9 -> r8.10 rollback policy. This does not alter the two-phase source-history strategy above. Runtime/schema migration can be complete while `history_qualification` remains `PENDING_M11`.
+
+The synthetic `harness-rig/history-map/v1` lookup fixture tests map-consumption semantics only. It is not evidence that real AIBoarding, TacticSwitch, or Skill Kit source histories have been imported or mapped.

@@ -1,0 +1,57 @@
+{
+  "commands": {
+    "doctor": {
+      "command": "doctor",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "init": {
+      "command": "init",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "migrate": {
+      "command": "migrate",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "spec_status_unavailable": {
+      "command": "spec status",
+      "outcome": "BLOCKED",
+      "returncode": 2,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "status_after_migrate": {
+      "command": "status",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "status_before_migrate": {
+      "command": "status",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    },
+    "verify": {
+      "command": "verify",
+      "outcome": "PASS",
+      "returncode": 0,
+      "schema": "harness-rig/cli-envelope/v1"
+    }
+  },
+  "doctor_host": "local-subprocess",
+  "history_qualification": "PENDING_M11",
+  "migration_phase": "COMPLETE",
+  "result": "PASS",
+  "revision": "r8.10",
+  "schema": "harness-rig/m10-cli-smoke/v1",
+  "spec_unavailable_reasons": [
+    "openspec-unavailable"
+  ],
+  "verify_acceptance_outcome": "ACCEPTED",
+  "verify_gate_outcome": "PASS"
+}

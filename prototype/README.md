@@ -1,6 +1,6 @@
-# Harness Rig r8.9 prototype
+# Harness Rig r8.10 prototype
 
-This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, the M8 native local-process host qualification, and the M9 bounded gate platform.
+This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, the M8 native local-process host qualification, the M9 bounded gate platform, and the M10 compact product/migration/provenance surface.
 
 ```text
 Direct Authority
@@ -54,7 +54,7 @@ PYTHONPATH=prototype python -S -m harness_rig \
   -- python -S -c "print('ok')"
 ```
 
-The CLI remains a test surface. Product CLI design is a later milestone.
+The raw direct invocation remains an r8.9 compatibility surface. Product callers should use `harness-rig verify`, which emits the versioned M10 machine envelope.
 
 ## Stable M4 semantics
 
@@ -107,7 +107,7 @@ PYTHONPATH=prototype python -m harness_rig spec archive \
   --expires-at 2026-09-25T13:00:00Z
 ```
 
-The CLI is still an experimental test/product surface; M10 owns final CLI compatibility and exit-code/versioning policy.
+The guarded operation is unchanged; M10 adds `--json-v1` for the versioned machine envelope while retaining the r8.9 raw JSON compatibility shape.
 
 ## M7 repository enforcement
 
@@ -126,9 +126,9 @@ The CLI is still an experimental test/product surface; M10 owns final CLI compat
 - Read-only workers, isolated workers, worktree workers, permission enforcement, fresh verifier, and isolated writer are unsupported on `local-subprocess` and required requests return `BLOCKED` before launch.
 - Stable isolated-writer claims require explicit formal native evidence.
 
-## Explicit non-goals at r8.8
+## Explicit non-goals through r8.10
 
-Not implemented/promoted through M8:
+Not implemented/promoted through r8.10:
 
 - multi-agent orchestration;
 - recurrence platform;
@@ -162,3 +162,14 @@ M9 adds Experimental common `GateClaim`/`GateOutcome` semantics plus bounded pro
 - mutation development gate: exact invariant -> mutant -> detector sensitivity checks in temporary copies.
 
 A missing/skipped required web scenario cannot PASS. Flaky retries remain visible and fail by default. M9 does not claim a native Node Playwright Test project run because `@playwright/test` was unavailable in the qualification runtime.
+
+
+## M10 product CLI, migration, and release provenance
+
+- Product commands are `init`, `doctor`, `spec status`, `spec archive`, `verify`, `status`, and `migrate`.
+- `harness-rig/cli-envelope/v1` gives automation a versioned JSON envelope and explicit exit categories.
+- Config precedence is defaults < user-global < project < CLI; user-global configuration cannot define repository policy.
+- Direct verification uses process-group cleanup so timeout/cancellation cannot leave verifier descendants running.
+- `harness-rig/migration-state/v1` supports r8.9 -> r8.10 plus explicit rollback; real source-history qualification remains `PENDING_M11`.
+- `harness-rig/release-record/v1` binds accepted revision/verdict/workflow to artifact SHA-256 and fails release eligibility closed when the accepted repository verdict is unavailable.
+- No signing service or new attestation platform is introduced.

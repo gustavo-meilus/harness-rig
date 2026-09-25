@@ -1,4 +1,4 @@
-"""Harness Rig r8.9 prototype: trust identities plus bounded verification providers."""
+"""Harness Rig r8.10 prototype: trust identities plus bounded verification providers."""
 
 from .authority import AuthorityRef, DirectAuthority, DirectAuthorityProvider, load_authority_ref
 from .authorization import AuthorizationGrant, GrantValidation, load_authorization_grant
@@ -14,6 +14,9 @@ from .openspec import OpenSpecAdapter, OpenSpecAuthoritySnapshot, GuardedArchive
 from .architecture_gate import ArchitectureGate, ArchitecturePolicy, ArchitectureRule, evaluate_architecture
 from .playwright_gate import PlaywrightGate, RequiredScenario, RuntimeObservation, evaluate_playwright_report
 from .mutation_gate import MutationCase, MutationResult, run_mutation_case, validate_mutation_map
+from .product import CliEnvelope, ProductConfig, load_cli_envelope, load_effective_config
+from .migration import MigrationAssessment, MigrationState, assess_migration, apply_migration, rollback_migration
+from .release import ReleaseArtifact, ReleaseRecord, build_release_record, verify_release_record
 from .host import (
     CapabilityClaim, CapabilitySet, RuntimeFact, RuntimeResolution, HostQualification,
     FreshVerifierBoundary, FreshVerifierEligibility, LocalProcessHost, evaluate_fresh_verifier,
@@ -34,6 +37,9 @@ __all__ = [
     "ArchitectureGate", "ArchitecturePolicy", "ArchitectureRule", "evaluate_architecture",
     "PlaywrightGate", "RequiredScenario", "RuntimeObservation", "evaluate_playwright_report",
     "MutationCase", "MutationResult", "run_mutation_case", "validate_mutation_map",
+    "CliEnvelope", "ProductConfig", "load_cli_envelope", "load_effective_config",
+    "MigrationAssessment", "MigrationState", "assess_migration", "apply_migration", "rollback_migration",
+    "ReleaseArtifact", "ReleaseRecord", "build_release_record", "verify_release_record",
     "CapabilityClaim", "CapabilitySet", "RuntimeFact", "RuntimeResolution", "HostQualification",
     "FreshVerifierBoundary", "FreshVerifierEligibility", "LocalProcessHost", "evaluate_fresh_verifier",
 ]

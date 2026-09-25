@@ -2,51 +2,36 @@
 id: harness-rig-progressive-revision-record
 title: Harness Rig progressive revision record
 summary: Current progressive-remediation milestone status, verification result, evidence limits, and next permitted milestone.
-version: planning-baseline-2026-09-25-r8.9
+version: planning-baseline-2026-09-25-r8.10
 updated: '2026-09-25'
 provenance:
-- Harness Rig progressive remediation M0-M8 execution and verification, 2026-09-24 through 2026-09-25
-- Skill Kit more-with-less v1.0.2 minimum-sufficient engineering doctrine, applied 2026-09-25
-- Harness Rig M9 gate-platform/Playwright/architecture/mutation implementation and adversarial verification, 2026-09-25
-- Playwright Test 1.63.0 public CLI/reporter/retry contract rechecked 2026-09-25
+- Harness Rig progressive remediation M0-M9 execution and verification, 2026-09-24 through 2026-09-25
+- Harness Rig M10 product CLI, migration, process cleanup, and release-provenance implementation and verification, 2026-09-25
+- Skill Kit More With Less v1.0.2 minimum-sufficient engineering doctrine, applied 2026-09-25
 ---
 # Current revision
 
 ```text
-milestone: M9
-package revision: r8.9
+milestone: M10
+package revision: r8.10
 result: PASS
 date: 2026-09-25
-next allowed milestone: M10
-resume task: M10-T01
+next allowed milestone: M11
+resume task: M11-T01
 ```
 
-# M9 implemented boundary
+# M10 implemented boundary
 
-M9 adds Experimental common gate claim/outcome semantics, an AST architecture fitness provider, a strict required-scenario Playwright JSON/runtime provider, and a bounded mutation development gate. Provider-native reports/traces remain native artifacts; `EvidenceReceipt` and `AcceptanceVerdict` remain Experimental.
+M10 finalizes the compact product CLI and v1 machine envelope, small fail-closed configuration precedence, bounded process cleanup, atomic r8.9 -> r8.10 migration state with rollback, and deterministic release-record/checksum behavior.
 
-The Playwright provider fails required scenarios closed on missing/skipped/not-run results, preserves retry/flaky observations, rejects `--pass-with-no-tests`, and evaluates wrong-worktree/shared-data/console/network runtime observations. The architecture provider blocks empty/malformed policy surfaces and detects forbidden dependency direction. Mutation fixtures map invariant -> mutant -> detector and distinguish KILLED from SURVIVED detector gaps.
-
-No local Node `@playwright/test` package was available in the M9 runtime; native current-project Playwright Test qualification is not claimed.
+Real source-history qualification remains explicitly `PENDING_M11`; M10 does not create or claim the deferred AIBoarding/TacticSwitch/Skill Kit history maps. Release eligibility also remains fail-closed when no accepted hosted repository verdict exists.
 
 # Verification
 
-```text
-M3: 22/22 PASS
-M4: 15/15 PASS
-M5: 14/14 PASS
-M6: 16/16 PASS
-M7: 14/14 PASS
-M8: 14/14 PASS
-M9: 20/20 PASS
-process-isolated regression total: 115/115 PASS
-M9-V01 ... M9-V06: PASS
-```
-
-The process-isolated total is the M9 regression contract; each milestone test module is executed in a clean Python process and retained independently. Canonical KB/package integrity is recorded in M9 verification artifacts.
+Final retained evidence under `verification/m10-*` records 133/133 clean-process M3-M10 tests PASS, including 18/18 M10 tests; 44 canonical references / 44 manifest rows; root projection FRESH; byte-identical manifest regeneration; and the versioned CLI smoke with direct verification PASS -> ACCEPTED, migration COMPLETE, and history qualification still `PENDING_M11`. M10-V01 through M10-V06 are PASS.
 
 # Evidence limits
 
-- Current upstream Playwright Test 1.63.0 behavior was rechecked from public sources; the local browser/Python Playwright CLI is 1.57.0 and is not treated as a Node Playwright Test qualification.
-- RigYard harness-mutation-verification remains source-side planned/unimplemented in the supplied snapshot; M9 implements a bounded Harness Rig development gate without fabricating source history.
-- M10 and later productization/release behavior is not implemented by M9.
+- M10 tests release-provenance mechanics locally but does not claim a live hosted release or artifact attestation.
+- The package has no accepted remote `ci / required` verdict available in this sandbox; release-candidate provenance records therefore remain BLOCKED unless such a verdict is supplied.
+- Object-complete source histories and real source->rewritten commit/tag maps remain M11 work.

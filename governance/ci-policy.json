@@ -24,7 +24,8 @@
     "prototype/tests",
     "verification/ci_obligations.py",
     "verification/context_kb.py",
-    "verification/m1-known-bad-fixtures.json"
+    "verification/m1-known-bad-fixtures.json",
+    "verification/release_provenance.py"
   ],
   "obligations": [
     {
@@ -46,6 +47,6 @@
       "producer_id": "harness-rig/ci/governance-v1"
     }
   ],
-  "policy_id": "harness-rig/repository-ci/r8.9-v1",
+  "policy_id": "harness-rig/repository-ci/r8.10-v1",
   "schema": "harness-rig/repository-ci-policy/v1"
 }

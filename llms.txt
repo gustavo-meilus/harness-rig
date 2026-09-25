@@ -1,6 +1,6 @@
 # Harness Rig Knowledge Base
 
-Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M9 / r8.9 PASS. M9 adds Experimental common gate semantics, a fail-closed architecture fitness provider, strict required-scenario Playwright evidence with retry/runtime observations, and bounded mutation-sensitivity verification. `EvidenceReceipt`, `AcceptanceVerdict`, `CapabilitySet`, and `RuntimeResolution` remain Experimental/module-owned where previously specified. Resume at M10-T01 only when M10 is explicitly requested.
+Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M10 / r8.10 PASS. M10 finalizes the compact product CLI, versioned machine JSON/exit semantics, fail-closed configuration precedence, bounded timeout/cancellation cleanup, explicit runtime/schema migration and rollback state, and deterministic release-record/checksum provenance. M11 source-history qualification remains pending and blocks 1.0 qualification. `EvidenceReceipt`, `AcceptanceVerdict`, `CapabilitySet`, and `RuntimeResolution` remain Experimental/module-owned where previously specified. Resume at M11-T01 only when M11 is explicitly requested.
 
 ## Start here
 
@@ -21,14 +21,15 @@ Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-
 - [M7 trusted repository enforcement](references/m7-trusted-repository-enforcement.md) — same-subject CI obligations, strict required-verdict aggregation, merge-group/fork boundaries, and governance-sensitive path enforcement.
 - [M8 host capability and topology qualification](references/m8-host-capability-and-topology-qualification.md) — first narrow Stable local host, native capability evidence, fresh-verifier boundary, and isolated-writer evidence gate.
 - [M9 gate platform, Playwright, architecture, and mutation verification](references/m9-gate-platform-playwright-architecture-mutation.md) — Experimental common gate semantics, strict web evidence, architecture fitness, and detector-sensitivity evidence.
+- [M10 product CLI, migration, and release provenance](references/m10-product-cli-migration-release-provenance.md) — compact machine-facing CLI, config precedence, process cleanup, runtime/schema migration, rollback, and release-record semantics.
 - [Roadmap](references/roadmap.md)
 - [Repository governance and change model](references/repository-governance-and-change-model.md)
 
-## Executable trust path and verification platform — M3/M9
+## Executable trust path and product surface — M3/M10
 
 - [M3 experimental direct vertical slice](references/m3-experimental-vertical-slice.md) — historical executable Direct Authority → Assurance → Direct Topology → command gate → EvidenceReceipt → AcceptanceVerdict baseline.
-- [r8.9 prototype README](prototype/README.md) — current trust path through M9 gate-platform verification.
-- [Progressive revision record](references/revision-record.md) — current r8.9 PASS and resume pointer.
+- [r8.10 prototype README](prototype/README.md) — current trust path plus M10 product/migration/release surface.
+- [Progressive revision record](references/revision-record.md) — current r8.10 PASS and resume pointer.
 
 ## Trust contracts
 

@@ -1,8 +1,29 @@
 {
-  "schema": "harness-rig/architecture-policy/experimental-v1",
-  "policy_id": "harness-rig/core-external-tool-independence/r8.9-v1",
+  "policy_id": "harness-rig/core-external-tool-independence/r8.10-v1",
   "rules": [
     {
+      "forbidden_import_prefixes": [
+        ".architecture_gate",
+        ".host",
+        ".migration",
+        ".mutation_gate",
+        ".openspec",
+        ".playwright_gate",
+        ".product",
+        ".release",
+        ".repository_ci",
+        ".spec_engine",
+        "harness_rig.architecture_gate",
+        "harness_rig.host",
+        "harness_rig.migration",
+        "harness_rig.mutation_gate",
+        "harness_rig.openspec",
+        "harness_rig.playwright_gate",
+        "harness_rig.product",
+        "harness_rig.release",
+        "harness_rig.repository_ci",
+        "harness_rig.spec_engine"
+      ],
       "rule_id": "core-must-not-depend-on-adapters-or-development-gates",
       "source_globs": [
         "prototype/harness_rig/acceptance.py",
@@ -12,23 +33,8 @@
         "prototype/harness_rig/evidence.py",
         "prototype/harness_rig/security.py",
         "prototype/harness_rig/state.py"
-      ],
-      "forbidden_import_prefixes": [
-        ".architecture_gate",
-        ".host",
-        ".mutation_gate",
-        ".openspec",
-        ".playwright_gate",
-        ".repository_ci",
-        ".spec_engine",
-        "harness_rig.architecture_gate",
-        "harness_rig.host",
-        "harness_rig.mutation_gate",
-        "harness_rig.openspec",
-        "harness_rig.playwright_gate",
-        "harness_rig.repository_ci",
-        "harness_rig.spec_engine"
       ]
     }
-  ]
+  ],
+  "schema": "harness-rig/architecture-policy/experimental-v1"
 }

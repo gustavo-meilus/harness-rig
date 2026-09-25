@@ -2,7 +2,7 @@
 id: harness-rig-ci-review-and-release-governance
 title: CI, review, versioning, and release governance
 summary: Repository-wide CI aggregation, review roles, versioning, schema migrations, and provenance-aware release policy.
-version: planning-baseline-2026-09-25-r8.7
+version: planning-baseline-2026-09-25-r8.10
 updated: '2026-09-25'
 provenance:
 - GitHub Actions workflow syntax, accessed 2026-09-21
@@ -16,6 +16,7 @@ provenance:
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig M7 repository enforcement implementation and verification, 2026-09-25
+- Harness Rig M10 release-record/checksum implementation and verification, 2026-09-25
 - GitHub Actions workflow/merge_group/security documentation rechecked 2026-09-25
 ---
 # One canonical ordinary quality definition
@@ -150,3 +151,10 @@ immutable release
 - [Repository governance and change model](repository-governance-and-change-model.md)
 - [Host adapters and capability negotiation](host-adapters-and-capabilities.md)
 - [Acceptance evaluations and metrics](acceptance-evals-and-metrics.md)
+
+
+# M10 release-record implementation
+
+M10 implements `harness-rig/release-record/v1` plus `verification/release_provenance.py`. A record binds the accepted source revision, accepted repository verdict identity, build workflow identity, artifact size/SHA-256, creation time, and optional external attestation reference.
+
+A record is `BLOCKED` when no accepted repository verdict is supplied. Local M10 test success is not substituted for the hosted repository verdict. The record is immutable once written and artifact tampering invalidates verification. No signing or attestation service is added; an attestation is only a reference when an operational release workflow later supplies one.
