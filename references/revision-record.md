@@ -2,68 +2,73 @@
 id: harness-rig-progressive-revision-record
 title: Harness Rig progressive revision record
 summary: Current progressive-remediation milestone status, verification result, evidence limits, and next permitted milestone.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.5
 updated: '2026-09-25'
 provenance:
-- Harness Rig progressive remediation M0-M3 execution and verification, 2026-09-24 through 2026-09-25
+- Harness Rig progressive remediation M0-M4 execution and verification, 2026-09-24 through 2026-09-25
 - Skill Kit more-with-less v1.0.2 minimum-sufficient engineering doctrine, applied 2026-09-25
-- Harness Rig M4 core promotion implementation and adversarial verification, 2026-09-25
-- Local runtime evidence: Python 3.13.5 and Git 2.47.3, 2026-09-25
+- Harness Rig M5 Context convergence implementation and adversarial lifecycle verification, 2026-09-25
+- Local runtime evidence: Python 3.13.5, Git 2.47.3 and PyYAML 6.0.3, 2026-09-25
 ---
 # Current revision
 
 ```text
-milestone: M4
-package revision: r8.4
+milestone: M5
+package revision: r8.5
 result: PASS
 date: 2026-09-25
-next allowed milestone: M5
-resume task: M5-T01
+next allowed milestone: M6
+resume task: M6-T01
 ```
 
-# M4 contract dispositions
+# M5 Context ownership
 
 ```text
-AuthorityRef        SPLIT_STABLE_INVARIANT_FROM_EXPERIMENTAL_PROVIDER_FIELDS
-AuthorizationGrant  PROMOTE_STABLE
-StateIdentity       PROMOTE_STABLE
-EvidenceReceipt     KEEP_EXPERIMENTAL_SHARED
-AcceptanceVerdict   KEEP_EXPERIMENTAL_SHARED
+Canonical KB owns
+  durable project knowledge / stable IDs / provenance
+  source reconciliation / material conflicts and gaps
+  canonical-source freshness / llms.txt / manifest / structural integrity
+
+Context lifecycle owns
+  root AGENTS.md projection / host-facing projection
+  projection freshness / onboarding-install-compression lifecycle
 ```
 
-Stable schemas now implemented:
+There is no second factual knowledge store or duplicate source-freshness ledger.
 
-```text
-harness-rig/authority-ref/v1
-harness-rig/authorization-grant/v1
-harness-rig/state-identity/v1
-```
+# M5 lifecycle semantics
 
-`AssurancePlan`, direct `ExecutionPlan`/Topology shape, Context internals, `RuntimeResolution`, recurrence state and
-`ContextManifest` remain module/adapter-owned.
+- Rename/move preserves stable ID.
+- Split keeps the original ID on the primary successor; distinct topics receive new IDs.
+- Merge retains one surviving ID and retires absorbed IDs.
+- Retired IDs cannot be reused for unrelated knowledge.
+- Volatile source freshness compares source version/commit plus checked date; page `updated` is not freshness evidence.
+- Reconciliation preserves conflicts and gaps and rejects unsupported conclusions.
+- Root `AGENTS.md` is a rules/navigation projection stamped with the canonical-KB fingerprint.
+- `manifest.jsonl` remains deterministically derived from canonical references.
 
 # Runtime verification
 
 ```text
 M3 regression suite: 22/22 PASS
 M4 adversarial suite: 15/15 PASS
-total unittest cases: 37/37 PASS
-M1-F01 ... M1-F16 remain PASS
-M4-V01 ... M4-V05 PASS
-CLI smoke: gate PASS -> merge ACCEPTED
-canonical references / manifest rows: 38 / 38
-broken canonical/llms links: 0
+M5 Context suite: 14/14 PASS
+combined unittest cases: 51/51 PASS
+M1-F01 ... M1-F16 remain PASS through M3 regressions
+M5-V01 ... M5-V05 PASS
+canonical references / manifest rows: 39 / 39
+collection audit: PASS
+AGENTS projection freshness: FRESH
 manifest regeneration: byte-identical
 ```
 
 # Important boundary
 
-M4 does **not** make the complete vertical slice Stable. `EvidenceReceipt` and `AcceptanceVerdict` remain Experimental until
-real additional providers/lifecycle consumers earn a frozen shared shape.
+M5 does not design or implement the M6 OpenSpec `SpecEngine`. It does not promote Context internals into stable core and does not
+introduce vector search, embeddings, RAG, a semantic index, a database, or another orchestration layer.
 
-M4 also does not introduce OpenSpec implementation, host qualification, Context convergence, recurrence, generalized IAM,
-or new orchestration infrastructure.
+`EvidenceReceipt` and `AcceptanceVerdict` remain Experimental shared contracts from M4.
 
 # Next
 
-Resume at **M5-T01 - Finalize canonical-KB vs Context-lifecycle ownership**. M5 has not been executed.
+Resume at **M6-T01 - Implement/refine DirectAuthorityProvider and OpenSpecAdapter**. M6 has not been executed.

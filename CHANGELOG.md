@@ -26,6 +26,43 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.5 — 2026-09-25 — Context convergence and canonical knowledge lifecycle
+
+### Ownership convergence
+
+- Canonical KB is the sole owner of durable project knowledge, stable IDs, provenance/source observations, reconciliation, material conflicts/gaps, canonical-content freshness, `llms.txt`, `manifest.jsonl`, and whole-collection integrity.
+- Context lifecycle owns only root `AGENTS.md`/host projection behavior, projection freshness, onboarding/install behavior, and projection compression.
+- No second factual knowledge store or duplicate freshness ledger remains.
+
+### Stable IDs and provenance
+
+- Added deterministic rename/move, split, merge, retirement, and retired-ID non-reuse semantics.
+- Added optional lineage metadata only for non-obvious split/merge/retirement relationships.
+- Added structured optional `source_observations` convention with source, checked date, and version/commit when available.
+- Page `updated` remains canonical edit metadata and is not external-source freshness evidence.
+
+### Reconciliation and integrity
+
+- Added module-local source reconciliation that preserves conflicts/gaps and rejects unsupported conclusions.
+- Added retained `verification/context_kb.py` using `yaml.safe_load` for deterministic manifest generation, full collection audit, canonical fingerprinting, and root projection freshness.
+- Added a short generated/maintained root `AGENTS.md` projection; it is excluded from canonical manifest inventory.
+
+### Verified
+
+- M3 regression suite: 22/22 PASS.
+- M4 adversarial suite: 15/15 PASS.
+- M5 Context suite: 14/14 PASS.
+- Combined unittest discovery: 51/51 PASS.
+- M5-V01 through M5-V05: PASS.
+- Canonical KB audit: 39 references, 39 manifest rows, fresh AGENTS projection, byte-identical manifest regeneration.
+
+### Complexity
+
+No embeddings, vector database, RAG service, semantic index, second canonical store, database, plugin SDK, or orchestration framework was introduced. The M5 implementation is one small module-local semantics file plus one deterministic repository-integrity tool.
+
+---
+
+
 ## r8.4 — 2026-09-25 — Core promotion and module-boundary convergence
 
 ### M4 dispositions

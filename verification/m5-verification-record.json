@@ -1,0 +1,51 @@
+{
+  "schema": "harness-rig/m5-verification-record/v1",
+  "date": "2026-09-25",
+  "revision": "r8.5",
+  "result": "PASS",
+  "tasks": {
+    "M5-T01": "DONE",
+    "M5-T02": "DONE",
+    "M5-T03": "DONE",
+    "M5-T04": "DONE",
+    "M5-T05": "DONE",
+    "M5-T06": "DONE"
+  },
+  "verification": {
+    "M5-V01": {
+      "result": "PASS",
+      "evidence": "rename/move, split, merge, retirement and retired-ID non-reuse fixtures"
+    },
+    "M5-V02": {
+      "result": "PASS",
+      "evidence": "source version/commit comparison detects advance and preserves UNKNOWN when not comparable"
+    },
+    "M5-V03": {
+      "result": "PASS",
+      "evidence": "supported claims preserve gaps; material conflicts explicit; unsupported conclusions non-publishable"
+    },
+    "M5-V04": {
+      "result": "PASS",
+      "evidence": "canonical fingerprint stales AGENTS projection; projection-only edits leave canonical fingerprint unchanged"
+    },
+    "M5-V05": {
+      "result": "PASS",
+      "evidence": "no vector/RAG/embedding/semantic-index subsystem paths; Context implementation remains file/text based"
+    }
+  },
+  "tests": {
+    "m3_regression": "22/22 PASS",
+    "m4_adversarial": "15/15 PASS",
+    "m5_context": "14/14 PASS",
+    "combined": "51/51 PASS"
+  },
+  "collection": {
+    "canonical_references": 39,
+    "manifest_rows": 39,
+    "manifest_regeneration": "BYTE_IDENTICAL",
+    "agents_projection": "FRESH",
+    "audit": "PASS"
+  },
+  "cli_smoke": "command-gate PASS -> merge ACCEPTED",
+  "next_task": "M6-T01"
+}

@@ -13,7 +13,7 @@ from .vertical import VerticalSliceRequest, run_vertical_slice
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Harness Rig r8.4 direct trust-path test surface")
+    ap = argparse.ArgumentParser(description="Harness Rig r8.5 direct trust-path test surface")
     ap.add_argument("--repo", required=True)
     ap.add_argument("--authority", required=True)
     ap.add_argument("--subject", default="repository")

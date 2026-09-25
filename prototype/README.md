@@ -1,6 +1,6 @@
-# Harness Rig r8.4 prototype
+# Harness Rig r8.5 prototype
 
-This directory contains the executable direct Harness Rig trust path after M4 core-promotion review.
+This directory contains the executable direct Harness Rig trust path plus the M5 module-local Context lifecycle semantics.
 
 ```text
 Direct Authority
@@ -29,14 +29,17 @@ Experimental because their broader provider/lifecycle consumer shapes have not y
 
 ## Run the tests
 
-From the knowledge-base root:
+The M3/M4 trust path remains standard-library-only and may be run with `-S`:
 
 ```bash
-PYTHONPATH=prototype python -S -m unittest discover -s prototype/tests -v
+PYTHONPATH=prototype python -S -m unittest prototype.tests.test_m3_vertical_slice prototype.tests.test_m4_core_promotion -v
 ```
 
-The M3 regression suite remains in `test_m3_vertical_slice.py`; M4 promotion/boundary cases are in
-`test_m4_core_promotion.py`.
+M5 repository-integrity tests also load the retained standards-compliant YAML tooling and therefore use normal Python with PyYAML:
+
+```bash
+PYTHONPATH=prototype python -m unittest discover -s prototype/tests -v
+```
 
 ## Direct CLI smoke
 
@@ -75,7 +78,15 @@ The CLI remains a test surface. Product CLI design is a later milestone.
 - Action-qualified deterministic Experimental `AcceptanceVerdict`.
 - Protected-path traversal/symlink containment helper.
 
-## Explicit non-goals at r8.4
+## M5 Context lifecycle
+
+- `harness_rig.context` implements only stable-ID lifecycle, source freshness comparison, and fail-closed source reconciliation.
+- `verification/context_kb.py` owns deterministic YAML-backed manifest generation, whole-collection audit, canonical fingerprinting, and root `AGENTS.md` projection freshness.
+- Canonical KB owns durable facts; Context lifecycle owns only the host-facing/root projection.
+- Root `AGENTS.md` is not canonical knowledge and is excluded from `manifest.jsonl`.
+- No vector/RAG/embedding/semantic-index subsystem exists.
+
+## Explicit non-goals at r8.5
 
 Not implemented/promoted in M4:
 
@@ -93,7 +104,7 @@ Not implemented/promoted in M4:
 
 ## Known limits
 
-- `repository_id` is caller-supplied; M5 owns Context identity/lifecycle convergence.
+- `repository_id` remains caller-supplied; M5 converges knowledge/projection ownership but does not define repository identity.
 - Direct Authority is file-backed only; M6 owns OpenSpec first-class integration.
 - The local vertical slice trusts a configured local issuer set; provider-backed revocation is not implemented.
 - Stable AuthorizationGrant v1 supports only nondelegable grants.

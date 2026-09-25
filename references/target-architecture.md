@@ -2,7 +2,7 @@
 id: harness-rig-target-architecture
 title: Target architecture
 summary: Proposed modular monorepo architecture, dependency direction, module responsibilities, and extension boundaries.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.5
 updated: '2026-09-25'
 provenance:
 - Harness Rig architecture analysis, 2026-09-21
@@ -17,6 +17,7 @@ provenance:
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
+- Harness Rig M5 Context ownership convergence, 2026-09-25
 - User-supplied Harness Rig adversarial architecture review, 2026-09-24
 - RigYard acceptance evidence, durable worker evidence, result acceptance, attempt capability, workspace baseline source/tests
   inspected 2026-09-24
@@ -82,21 +83,23 @@ AIBoarding lifecycle/context behavior
 Skill Kit llm-knowledge-base-maintainer
 ```
 
-Context owns:
+Context is split internally by ownership:
 
 ```text
-root agent navigation
-canonical references
-stable IDs
-provenance
-source attachment
-reconciliation
-llms.txt
-manifest.jsonl
-freshness/drift
-whole-collection audit
-deterministic integrity
-progressive disclosure
+canonical knowledge owner
+  canonical references
+  stable IDs / lineage
+  provenance / source observations
+  reconciliation and conflicts/gaps
+  canonical freshness
+  llms.txt / manifest.jsonl
+  whole-collection audit / deterministic integrity
+
+lifecycle/projection owner
+  root AGENTS.md navigation projection
+  host-facing loading/projection
+  projection freshness
+  onboarding/install/compression lifecycle
 ```
 
 It does not duplicate OpenSpec behavioral specs.

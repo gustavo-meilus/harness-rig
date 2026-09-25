@@ -1,4 +1,4 @@
-"""Harness Rig r8.4 prototype: stable trust identities plus Experimental execution/evidence path."""
+"""Harness Rig r8.5 prototype: stable trust identities, Experimental evidence path, and module-local Context lifecycle."""
 
 from .authority import AuthorityRef, DirectAuthority, load_authority_ref
 from .authorization import AuthorizationGrant, GrantValidation, load_authorization_grant

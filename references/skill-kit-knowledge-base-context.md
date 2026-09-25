@@ -3,7 +3,7 @@ id: harness-rig-skill-kit-knowledge-base-context
 title: Skill Kit knowledge-base integration for the Harness Rig Context plane
 summary: 'First-class Context architecture based on Skill Kit''s LLM knowledge-base maintainer: canonical Markdown, stable
   IDs, provenance, reconciliation, llms.txt, manifest.jsonl, drift, and integrity.'
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.5
 updated: '2026-09-25'
 provenance:
 - Skill Kit llm-knowledge-base-maintainer v1.1.0, SKILL.md and DEFAULT_LAYOUT.md, inspected 2026-09-24
@@ -11,10 +11,11 @@ provenance:
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
+- Harness Rig M5 Context convergence implementation and fixtures, 2026-09-25
 ---
 # Status
 
-Harness Rig should deeply integrate the design of Skill Kit's `llm-knowledge-base-maintainer` into its **Context plane**.
+Harness Rig integrates the design of Skill Kit's `llm-knowledge-base-maintainer` into its **Context plane** with the M5 ownership split below.
 
 This is not a runtime dependency on Skill Kit. The relevant capability should be migrated/ported into Harness Rig so the project owns its Context integrity guarantees.
 
@@ -22,7 +23,7 @@ The current Skill Kit plugin is version `1.1.0`.
 
 # Harness Rig canonical metadata and index contract
 
-Canonical reference front matter is valid YAML and requires exactly these logical fields:
+Canonical reference front matter is valid YAML and requires these logical fields:
 
 ```yaml
 id: stable-logical-id
@@ -34,6 +35,8 @@ provenance:
   - attributable source statement
 ```
 
+M5 permits only two optional metadata extensions when evidence requires them: `lineage` for non-obvious split/merge/retirement history and `source_observations` for machine-comparable external source identity/check dates. They do not replace the required fields.
+
 Validation uses a standards-compliant YAML parser rather than a permissive line parser.
 
 `manifest.jsonl` is a **derived artifact** generated from the parsed canonical references. Its deterministic order is by
@@ -42,6 +45,28 @@ stable `id`; each row contains `id`, `title`, `summary`, `path`, `version`, `upd
 A second generation without canonical-reference changes must be byte-identical.
 
 `llms.txt` remains curated navigation and is not required to enumerate every canonical reference.
+
+# Final M5 ownership split
+
+```text
+Canonical KB owns
+  durable factual/project knowledge
+  stable IDs and optional lineage
+  provenance and external source observations
+  source reconciliation
+  material conflicts/gaps
+  canonical-content freshness
+  llms.txt and manifest.jsonl
+  whole-collection structural integrity
+
+Context lifecycle owns
+  root AGENTS.md/navigation projection
+  host-facing loading/projection
+  projection freshness
+  onboarding/install/compression lifecycle
+```
+
+There is exactly one durable knowledge owner and one projection owner. The lifecycle layer MUST NOT maintain a second factual knowledge corpus or duplicate source-freshness ledger.
 
 # Context knowledge model
 
@@ -141,6 +166,17 @@ filename changes
 heading changes
 directory reorganization
 ```
+
+# Stable-ID lifecycle
+
+```text
+rename/move -> preserve ID
+split -> primary successor keeps old ID; distinct successors get new IDs
+merge -> one survivor keeps its ID; absorbed IDs retire
+retirement -> retired IDs are never reused for unrelated knowledge
+```
+
+Optional lineage metadata is recorded only when the relationship is not otherwise clear and has future migration/audit value.
 
 # Knowledge ownership
 
@@ -250,7 +286,9 @@ validate the whole collection
 
 Similarity alone is not authority.
 
-# Provenance and uncertainty
+# Provenance, source freshness, and uncertainty
+
+For volatile external sources, record `source`, `checked`, and `version` and/or `commit` when available. Compare source version/commit to detect staleness. Page `updated` is the canonical page edit date and is never source-freshness proof. If no comparable source identity is available, freshness is `UNKNOWN`.
 
 Important knowledge should distinguish:
 
@@ -346,7 +384,8 @@ Do not hash or bind every page to every source indiscriminately. Freshness metad
 
 # Root agent guidance
 
-Keep root `AGENTS.md` or equivalent short.
+Keep root `AGENTS.md` or equivalent short. M5 treats it as a generated/maintained Context-lifecycle projection with a canonical-KB fingerprint. Canonical pages and `llms.txt` own durable knowledge; `AGENTS.md` owns only rules/navigation projection. A canonical change makes the projection stale until regenerated; a projection-only edit cannot change canonical knowledge.
+
 
 It should provide:
 

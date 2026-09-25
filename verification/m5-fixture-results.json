@@ -1,0 +1,63 @@
+{
+  "schema": "harness-rig/m5-fixture-results/v1",
+  "revision": "r8.5",
+  "result": "PASS",
+  "tests": [
+    {
+      "test": "test_actual_r85_collection_audits_clean_and_has_no_retrieval_subsystem",
+      "result": "PASS"
+    },
+    {
+      "test": "test_canonical_change_makes_agents_projection_stale",
+      "result": "PASS"
+    },
+    {
+      "test": "test_external_version_advance_marks_source_stale",
+      "result": "PASS"
+    },
+    {
+      "test": "test_manifest_generation_is_deterministic_by_stable_id",
+      "result": "PASS"
+    },
+    {
+      "test": "test_matching_source_identity_is_fresh_and_missing_identity_is_unknown",
+      "result": "PASS"
+    },
+    {
+      "test": "test_merge_retires_absorbed_id_and_retired_ids_cannot_be_reused",
+      "result": "PASS"
+    },
+    {
+      "test": "test_projection_only_change_does_not_change_canonical_fingerprint",
+      "result": "PASS"
+    },
+    {
+      "test": "test_reconciliation_accepts_only_supported_conclusion_and_preserves_gaps",
+      "result": "PASS"
+    },
+    {
+      "test": "test_reconciliation_preserves_conflicting_source_values",
+      "result": "PASS"
+    },
+    {
+      "test": "test_reconciliation_rejects_unsupported_conclusion",
+      "result": "PASS"
+    },
+    {
+      "test": "test_rename_or_move_preserves_stable_id",
+      "result": "PASS"
+    },
+    {
+      "test": "test_retired_id_non_reuse",
+      "result": "PASS"
+    },
+    {
+      "test": "test_split_keeps_old_id_on_primary_and_requires_new_ids_for_other_topics",
+      "result": "PASS"
+    },
+    {
+      "test": "test_whole_collection_audit_detects_duplicate_id_broken_link_and_stale_manifest",
+      "result": "PASS"
+    }
+  ]
+}

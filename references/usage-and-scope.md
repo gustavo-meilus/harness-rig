@@ -3,7 +3,7 @@ id: harness-rig-usage-and-scope
 title: Harness Rig knowledge-base usage and scope
 summary: How an LLM should use this collection without confusing current implementation, proposed architecture, evidence,
   and decisions.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.5
 updated: '2026-09-25'
 provenance:
 - LLM Knowledge Base Maintainer skill, gustavo-meilus/skill-kit, accessed 2026-09-21
@@ -26,6 +26,7 @@ provenance:
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
 - Harness Rig M4 core-promotion implementation and verification, 2026-09-25
+- Harness Rig M5 Context convergence implementation and verification, 2026-09-25
 ---
 # Purpose
 
@@ -45,14 +46,15 @@ minimum-sufficient in orchestration
 1. [North star and product boundary](north-star-and-product-boundary.md)
 2. [Expected Harness Rig feature set and RigYard reconciliation contract](expected-harness-rig-feature-set.md)
 3. [Skill Kit knowledge-base integration for the Harness Rig Context plane](skill-kit-knowledge-base-context.md)
-4. [RigYard current source and verification baseline](rigyard-current-source-and-verification-baseline.md)
-5. [RigYard premise and minimum-sufficient feature admission](rigyard-premise-and-feature-admission.md)
-6. [Core invariants and trust model](core-invariants-and-trust-model.md)
-7. [OpenSpec spec engine, authority, and brainstorming integration](openspec-spec-engine-and-authority.md)
-8. topic-specific page
-9. [Roadmap](roadmap.md)
-10. [Decision log](decision-log.md)
-11. [Source register](source-register.md)
+4. [M5 Context convergence and canonical knowledge lifecycle](m5-context-convergence-and-knowledge-lifecycle.md)
+5. [RigYard current source and verification baseline](rigyard-current-source-and-verification-baseline.md)
+6. [RigYard premise and minimum-sufficient feature admission](rigyard-premise-and-feature-admission.md)
+7. [Core invariants and trust model](core-invariants-and-trust-model.md)
+8. [OpenSpec spec engine, authority, and brainstorming integration](openspec-spec-engine-and-authority.md)
+9. topic-specific page
+10. [Roadmap](roadmap.md)
+11. [Decision log](decision-log.md)
+12. [Source register](source-register.md)
 
 # Knowledge-base contract
 
@@ -64,6 +66,7 @@ stable IDs
 provenance
 llms.txt
 manifest.jsonl
+root AGENTS.md rules/navigation projection
 whole-collection validation
 ```
 

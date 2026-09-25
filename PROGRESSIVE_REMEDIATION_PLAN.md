@@ -45,23 +45,26 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M5
-current_revision: r8.4
-milestone_result: NOT_RUN
-last_completed_task: M4-V05
-next_task: M5-T01
+current_milestone: M6
+current_revision: r8.5
+milestone_result: PASS
+last_completed_task: M5-V05
+next_task: M6-T01
 blocking_issue: null
 verification_pending:
-  - M5-V01
-  - M5-V02
-  - M5-V03
-  - M5-V04
-  - M5-V05
+  - M6-V01
+  - M6-V02
+  - M6-V03
+  - M6-V04
+  - M6-V05
+  - M6-V06
 notes: >
-  M0, M1, M2, M3 and M4 completed with PASS. M4 promoted only the provider-neutral AuthorityRef envelope,
-  AuthorizationGrant and StateIdentity to Stable v1. EvidenceReceipt and AcceptanceVerdict remain Experimental shared.
-  Assurance/Topology planning shapes and ContextManifest remain outside Stable core. M5 has not begun.
-  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M5.
+  M0 through M5 completed with PASS. M5 converged Context to one canonical KB owner for durable knowledge,
+  stable IDs, provenance/source freshness, reconciliation, manifest and integrity, plus one lifecycle owner for
+  root AGENTS.md/host projection freshness. Rename/split/merge/retirement, source freshness, conflict/gap,
+  unsupported-claim, deterministic manifest/audit and projection-drift fixtures pass. No vector/RAG subsystem exists.
+  EvidenceReceipt and AcceptanceVerdict remain Experimental shared. M6 has not begun.
+  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M6.
 ```
 
 ### Milestone quick index
@@ -195,22 +198,22 @@ notes: >
 
 **Execution (`r8.5`):**
 
-- [ ] **M5-T01** — Finalize canonical-KB vs Context-lifecycle ownership.
-- [ ] **M5-T02** — Define stable-ID rename/move/split/merge/retirement rules.
-- [ ] **M5-T03** — Define provenance and source-freshness conventions.
-- [ ] **M5-T04** — Implement source reconciliation and conflict/gap preservation.
-- [ ] **M5-T05** — Implement deterministic manifest generation and whole-collection audit.
-- [ ] **M5-T06** — Keep root `AGENTS.md` as rules/navigation, not duplicate canonical knowledge.
+- [x] **M5-T01** — Finalize canonical-KB vs Context-lifecycle ownership.
+- [x] **M5-T02** — Define stable-ID rename/move/split/merge/retirement rules.
+- [x] **M5-T03** — Define provenance and source-freshness conventions.
+- [x] **M5-T04** — Implement source reconciliation and conflict/gap preservation.
+- [x] **M5-T05** — Implement deterministic manifest generation and whole-collection audit.
+- [x] **M5-T06** — Keep root `AGENTS.md` as rules/navigation, not duplicate canonical knowledge.
 
 **Verification:**
 
-- [ ] **M5-V01** — Rename/split/merge/retirement fixtures pass.
-- [ ] **M5-V02** — External-source freshness changes are detected correctly.
-- [ ] **M5-V03** — Conflicts remain explicit and unsupported claims are rejected.
-- [ ] **M5-V04** — Canonical KB changes and AGENTS projection drift have exactly one owner each.
-- [ ] **M5-V05** — No vector/RAG subsystem is introduced.
+- [x] **M5-V01** — Rename/split/merge/retirement fixtures pass.
+- [x] **M5-V02** — External-source freshness changes are detected correctly.
+- [x] **M5-V03** — Conflicts remain explicit and unsupported claims are rejected.
+- [x] **M5-V04** — Canonical KB changes and AGENTS projection drift have exactly one owner each.
+- [x] **M5-V05** — No vector/RAG subsystem is introduced.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M6`
 
 #### M6 — OpenSpec as the first-class external SpecEngine
@@ -1189,24 +1192,24 @@ one unavoidable cross-cutting invariant cannot safely live elsewhere
 
 **Execution tasks:**
 
-- [ ] **M5-T01** — Finalize canonical-KB vs Context-lifecycle ownership.
-- [ ] **M5-T02** — Define stable-ID rename/move/split/merge/retirement rules.
-- [ ] **M5-T03** — Define provenance and source-freshness conventions.
-- [ ] **M5-T04** — Implement source reconciliation and conflict/gap preservation.
-- [ ] **M5-T05** — Implement deterministic manifest generation and whole-collection audit.
-- [ ] **M5-T06** — Keep root `AGENTS.md` as rules/navigation, not duplicate canonical knowledge.
+- [x] **M5-T01** — Finalize canonical-KB vs Context-lifecycle ownership.
+- [x] **M5-T02** — Define stable-ID rename/move/split/merge/retirement rules.
+- [x] **M5-T03** — Define provenance and source-freshness conventions.
+- [x] **M5-T04** — Implement source reconciliation and conflict/gap preservation.
+- [x] **M5-T05** — Implement deterministic manifest generation and whole-collection audit.
+- [x] **M5-T06** — Keep root `AGENTS.md` as rules/navigation, not duplicate canonical knowledge.
 
 **Verification tasks:**
 
-- [ ] **M5-V01** — Rename/split/merge/retirement fixtures pass.
-- [ ] **M5-V02** — External-source freshness changes are detected correctly.
-- [ ] **M5-V03** — Conflicts remain explicit and unsupported claims are rejected.
-- [ ] **M5-V04** — Canonical KB changes and AGENTS projection drift have exactly one owner each.
-- [ ] **M5-V05** — No vector/RAG subsystem is introduced.
+- [x] **M5-V01** — Rename/split/merge/retirement fixtures pass.
+- [x] **M5-V02** — External-source freshness changes are detected correctly.
+- [x] **M5-V03** — Conflicts remain explicit and unsupported claims are rejected.
+- [x] **M5-V04** — Canonical KB changes and AGENTS projection drift have exactly one owner each.
+- [x] **M5-V05** — No vector/RAG subsystem is introduced.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
-> Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
+> M5 completed with PASS on 2026-09-25. M6 is the next permitted milestone; no M6 execution is included in r8.5.
 
 **Progressive revision:** `r8.5`  
 **Purpose:** merge AIBoarding lifecycle behavior with Skill Kit canonical KB behavior without retaining two truth/freshness systems.
@@ -1274,6 +1277,21 @@ Do not use page `updated` as source-freshness proof.
 - projection-only change does not rewrite canonical KB;
 - deterministic manifest generation;
 - full collection structural audit.
+
+## Executed verification — r8.5
+
+```text
+M3 regression suite: 22/22 PASS
+M4 adversarial suite: 15/15 PASS
+M5 Context lifecycle suite: 14/14 PASS
+combined discovery: 51/51 PASS
+canonical references / manifest rows: 39 / 39
+manifest regeneration: byte-identical
+root AGENTS projection: FRESH
+whole-collection audit: PASS
+retrieval-subsystem surface scan: NONE
+CLI smoke: command-gate PASS -> merge ACCEPTED
+```
 
 ## Exit criteria
 

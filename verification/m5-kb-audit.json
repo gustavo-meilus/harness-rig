@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "canonical_pages": 39,
+  "manifest_rows": 39,
+  "projection": "FRESH",
+  "schema": "harness-rig/m5-kb-audit/v1",
+  "revision": "r8.5",
+  "manifest_regeneration": "BYTE_IDENTICAL",
+  "projection_status": "FRESH",
+  "yaml_parser": "PyYAML 6.0.3 yaml.safe_load",
+  "retrieval_subsystem_surface_scan": "NONE"
+}
