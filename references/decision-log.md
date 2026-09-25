@@ -124,7 +124,6 @@ No second independent consumer exists; Context internals remain owned by Context
 - canonical KB discovery/location convention;
 - Context freshness metadata strategy;
 - additional deterministic KB lint rules if justified;
-- first Stable host/spec adapter;
 - final RuntimeResolution vocabulary;
 - recurrence terminal model;
 - Final disposition of every active RigYard OpenSpec proposal under milestone M11.

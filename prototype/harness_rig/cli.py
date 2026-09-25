@@ -10,11 +10,12 @@ from .authority import DirectAuthority
 from .authorization import AuthorizationGrant
 from .openspec import OpenSpecAdapter, OpenSpecBlocked, guarded_archive
 from .state import capture_state
+from .host import LocalProcessHost, qualification_to_json
 from .vertical import VerticalSliceRequest, run_vertical_slice
 
 
 def _direct_main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(description="Harness Rig r8.6 direct trust-path test surface")
+    ap = argparse.ArgumentParser(description="Harness Rig r8.8 direct trust-path test surface")
     ap.add_argument("--repo", required=True)
     ap.add_argument("--authority", required=True)
     ap.add_argument("--subject", default="repository")
@@ -136,10 +137,21 @@ def _spec_main(argv: list[str]) -> int:
     return 2
 
 
+def _doctor_main(argv: list[str]) -> int:
+    ap = argparse.ArgumentParser(description="Run fresh native Harness Rig capability probes")
+    ap.add_argument("--host", default="local-subprocess", choices=("local-subprocess",))
+    ns = ap.parse_args(argv)
+    qualification = LocalProcessHost().qualify()
+    print(qualification_to_json(qualification), end="")
+    return 0 if qualification.outcome == "PASS" else 2
+
+
 def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if args and args[0] == "spec":
         return _spec_main(args[1:])
+    if args and args[0] == "doctor":
+        return _doctor_main(args[1:])
     return _direct_main(args)
 
 

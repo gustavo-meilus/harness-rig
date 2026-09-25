@@ -506,3 +506,11 @@ verification/m3-cli-smoke.json
 ```
 
 This is local direct-provider evidence. It is not evidence for OpenSpec, hosted CI, remote hosts, or Stable contract maturity.
+
+## Harness Rig M8 native host qualification
+
+Checked 2026-09-25 in the r8.8 execution sandbox.
+
+Observed local runtime: Python 3.13.5 at `/opt/pyvenv/bin/python`; Git 2.47.3 at `/usr/bin/git`; `codex`, `claude`, and `copilot` executables unavailable. Harness Rig therefore qualifies only the direct `local-subprocess` adapter for clean process, launch, runtime identity observation, and crash reconciliation. External-agent adapters remain unqualified.
+
+Retained evidence: `verification/m8-runtime-baseline.json`, `verification/m8-host-qualification.json`, M8 adversarial tests. RigYard's explicit missing formal isolated-writer packet remains negative evidence and prevents Stable isolated-writer promotion.

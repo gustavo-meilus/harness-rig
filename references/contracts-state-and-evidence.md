@@ -27,7 +27,7 @@ StateIdentity       Stable v1 exact Git-worktree identity
 EvidenceReceipt     Experimental shared
 AcceptanceVerdict   Experimental shared
 SpecEngine          Experimental shared interface; OpenSpecAdapter implemented in M6
-CapabilitySet       Experimental / M8
+CapabilitySet       Experimental/module-owned; M8 local-subprocess observations implemented
 ```
 
 See [M4 core promotion and module-boundary convergence](m4-core-promotion-and-module-boundary.md) for the consumer evidence,

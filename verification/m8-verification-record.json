@@ -1,0 +1,52 @@
+{
+  "evidence_limit": "Codex, Claude, and Copilot executables were unavailable; no external-agent adapter or isolated-writer capability is promoted.",
+  "experimental_contracts": [
+    "CapabilitySet",
+    "RuntimeResolution"
+  ],
+  "host_qualification": "verification/m8-host-qualification.json",
+  "milestone": "M8",
+  "next_task": "M9-T01",
+  "result": "PASS",
+  "revision": "r8.8",
+  "runtime_baseline": "verification/m8-runtime-baseline.json",
+  "schema": "harness-rig/m8-verification-record/v1",
+  "stable_capabilities": [
+    "clean_process",
+    "process_launch",
+    "runtime_identity_observation",
+    "crash_reconciliation"
+  ],
+  "stable_host": "local-subprocess",
+  "tasks": {
+    "M8-T01": "PASS",
+    "M8-T02": "PASS",
+    "M8-T03": "PASS",
+    "M8-T04": "PASS",
+    "M8-T05": "PASS"
+  },
+  "test_counts": {
+    "M3": 22,
+    "M4": 15,
+    "M5": 14,
+    "M6": 16,
+    "M7": 14,
+    "M8": 14,
+    "combined": 95
+  },
+  "unsupported_capabilities": [
+    "fresh_verifier",
+    "isolated_worker",
+    "isolated_writer",
+    "permission_enforcement",
+    "read_only_worker",
+    "worktree_worker"
+  ],
+  "verification": {
+    "M8-V01": "PASS",
+    "M8-V02": "PASS",
+    "M8-V03": "PASS",
+    "M8-V04": "PASS",
+    "M8-V05": "PASS"
+  }
+}

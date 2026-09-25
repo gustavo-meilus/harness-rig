@@ -1,6 +1,6 @@
 # Harness Rig Knowledge Base
 
-Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M7 / r8.7 PASS; repository-local CI now emits same-subject obligation artifacts and validates one final `ci / required` verdict across ordinary, KB-integrity, and governance obligations, including merge queues and untrusted-fork boundaries. OpenSpec 1.13.2 remains the first-class external Experimental SpecEngine behind Stable AuthorityRef. AuthorityRef, AuthorizationGrant, and StateIdentity remain Stable v1; EvidenceReceipt, AcceptanceVerdict, SpecEngine, and repository-CI evidence schemas remain Experimental. Resume at M8-T01 only when M8 is explicitly requested.
+Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M8 / r8.8 PASS; the native `local-subprocess` adapter is Stable only for clean-process launch, process launch, runtime identity observation, and crash reconciliation. Worker isolation/read-only/fresh-verifier/isolated-writer capabilities remain unsupported and fail closed when required. `CapabilitySet` and `RuntimeResolution` remain Experimental/module-owned. Resume at M9-T01 only when M9 is explicitly requested.
 
 ## Start here
 
@@ -19,14 +19,15 @@ Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-
 - [M5 Context convergence and canonical knowledge lifecycle](references/m5-context-convergence-and-knowledge-lifecycle.md) — canonical-vs-projection ownership, stable-ID lifecycle, freshness, reconciliation, deterministic audit, and AGENTS projection.
 - [M6 OpenSpec first-class SpecEngine implementation](references/m6-openspec-spec-engine.md) — bounded adapter, authority profile, referenced-spec handling, effective health and guarded archive evidence.
 - [M7 trusted repository enforcement](references/m7-trusted-repository-enforcement.md) — same-subject CI obligations, strict required-verdict aggregation, merge-group/fork boundaries, and governance-sensitive path enforcement.
+- [M8 host capability and topology qualification](references/m8-host-capability-and-topology-qualification.md) — first narrow Stable local host, native capability evidence, fresh-verifier boundary, and isolated-writer evidence gate.
 - [Roadmap](references/roadmap.md)
 - [Repository governance and change model](references/repository-governance-and-change-model.md)
 
-## Executable trust path, Context, OpenSpec, and repository enforcement — M3/M7
+## Executable trust path, Context, OpenSpec, repository enforcement, and host qualification — M3/M8
 
 - [M3 experimental direct vertical slice](references/m3-experimental-vertical-slice.md) — historical executable Direct Authority → Assurance → Direct Topology → command gate → EvidenceReceipt → AcceptanceVerdict baseline.
-- [r8.7 prototype README](prototype/README.md) — current trust path, Context lifecycle, M6 OpenSpec adapter/guarded archive, and M7 repository-enforcement surface.
-- [Progressive revision record](references/revision-record.md) — current r8.7 PASS and resume pointer.
+- [r8.8 prototype README](prototype/README.md) — current trust path through M8 native host qualification.
+- [Progressive revision record](references/revision-record.md) — current r8.8 PASS and resume pointer.
 
 ## Trust contracts
 

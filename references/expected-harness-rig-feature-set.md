@@ -4,7 +4,7 @@ title: Expected Harness Rig feature set and RigYard reconciliation contract
 summary: Consolidated expected mature Harness Rig features across spec/authority, context, assurance, topology, evidence,
   hosts, gates, CI, migration, recurrence, retrieval, and extensibility, with a formal reconciliation protocol for currently
   inaccessible RigYard proposals.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.8
 updated: '2026-09-25'
 provenance:
 - Harness Rig expected-feature synthesis, refreshed 2026-09-21
@@ -26,7 +26,7 @@ provenance:
 
 ## M4 trust-contract status
 
-`AuthorityRef`, `AuthorizationGrant`, and `StateIdentity` are Stable v1 after M4. `EvidenceReceipt` and `AcceptanceVerdict` remain **Experimental shared** until additional real providers/lifecycle consumers earn promotion. `AssurancePlan`, `ExecutionPlan`, `CapabilitySet`, `RuntimeResolution`, recurrence state, Context internals, and `ContextManifest` are not promoted for symmetry.
+`AuthorityRef`, `AuthorizationGrant`, and `StateIdentity` are Stable v1 after M4. `EvidenceReceipt` and `AcceptanceVerdict` remain **Experimental shared** until additional real providers/lifecycle consumers earn promotion. M8 qualifies the narrow `local-subprocess` host adapter as Stable for four observed native capabilities, while `AssurancePlan`, `ExecutionPlan`, `CapabilitySet`, `RuntimeResolution`, recurrence state, Context internals, and `ContextManifest` remain unpromoted/module-owned.
 
 
 This page is the canonical expected mature Harness Rig feature inventory.

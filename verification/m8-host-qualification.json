@@ -1,0 +1,119 @@
+{
+  "adapter_maturity": "STABLE",
+  "adapter_version": "1",
+  "capabilities": {
+    "adapter_maturity": "STABLE",
+    "claims": [
+      {
+        "capability": "clean_process",
+        "evidence": [
+          "m8-clean-process-native-probe",
+          "m8-subprocess-boundary-tests"
+        ],
+        "maturity": "STABLE",
+        "supported": true
+      },
+      {
+        "capability": "crash_reconciliation",
+        "evidence": [
+          "m8-crash-reconciliation-test"
+        ],
+        "maturity": "STABLE",
+        "supported": true
+      },
+      {
+        "capability": "fresh_verifier",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      },
+      {
+        "capability": "isolated_worker",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      },
+      {
+        "capability": "isolated_writer",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      },
+      {
+        "capability": "permission_enforcement",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      },
+      {
+        "capability": "process_launch",
+        "evidence": [
+          "m8-clean-process-native-probe",
+          "m8-subprocess-boundary-tests"
+        ],
+        "maturity": "STABLE",
+        "supported": true
+      },
+      {
+        "capability": "read_only_worker",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      },
+      {
+        "capability": "runtime_identity_observation",
+        "evidence": [
+          "m8-clean-process-native-probe",
+          "m8-subprocess-boundary-tests"
+        ],
+        "maturity": "STABLE",
+        "supported": true
+      },
+      {
+        "capability": "worktree_worker",
+        "evidence": [],
+        "maturity": "UNSUPPORTED",
+        "supported": false
+      }
+    ],
+    "host_id": "local-subprocess",
+    "schema": "harness-rig/capability-set/experimental-v1"
+  },
+  "clean_process": {
+    "adapter_version": "1",
+    "exit_code": 0,
+    "facts": [
+      {
+        "key": "executable",
+        "observed": "/opt/pyvenv/bin/python",
+        "requested": "/opt/pyvenv/bin/python",
+        "resolved": "/opt/pyvenv/bin/python",
+        "status": "OBSERVED"
+      },
+      {
+        "key": "cwd",
+        "observed": "/tmp/harness-rig-host-2fp3vylb",
+        "requested": "/tmp/harness-rig-host-2fp3vylb",
+        "resolved": "/tmp/harness-rig-host-2fp3vylb",
+        "status": "OBSERVED"
+      }
+    ],
+    "host_id": "local-subprocess",
+    "launch_id": "sha256:48dbbc607cc5facd335cb696c532495094469cd0267a303421b8a20d7d7eda7d",
+    "outcome": "PASS",
+    "reason": null,
+    "required_capabilities": [
+      "clean_process",
+      "process_launch",
+      "runtime_identity_observation"
+    ],
+    "schema": "harness-rig/runtime-resolution/experimental-v1",
+    "stderr_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_digest": "sha256:612726c32c48d134b9e01216ad27351f06734065d057fd517415986f9dc528d0"
+  },
+  "host_id": "local-subprocess",
+  "outcome": "PASS",
+  "qualification_id": "sha256:a8a01a1a401be51633a40cfc9349fac63073335435cf0d07a0b7a653660f4fcf",
+  "reasons": [],
+  "schema": "harness-rig/host-qualification/v1"
+}

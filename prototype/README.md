@@ -1,6 +1,6 @@
-# Harness Rig r8.7 prototype
+# Harness Rig r8.8 prototype
 
-This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, and M7 repository-CI obligation enforcement.
+This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, and the M8 native local-process host qualification.
 
 ```text
 Direct Authority
@@ -117,13 +117,21 @@ The CLI is still an experimental test/product surface; M10 owns final CLI compat
 - Fork PR execution uses `pull_request`, read-only contents permission, no secret references, and no privileged actions.
 - Remote ruleset/CODEOWNERS configuration remains an install-time repository control and is not claimed as live-qualified by this package.
 
-## Explicit non-goals at r8.7
+## M8 host capability qualification
 
-Not implemented/promoted through M6:
+- `harness_rig.host` keeps `CapabilitySet` and `RuntimeResolution` Experimental/module-owned while qualifying the narrow `local-subprocess` adapter as Stable for clean process, process launch, runtime identity observation, and crash reconciliation only.
+- `harness-rig doctor` executes a fresh `-I -S` subprocess probe rather than trusting installed files.
+- Requested/resolved/observed runtime facts remain distinct.
+- Fresh verifier eligibility requires different worker identity, different context, non-ownership of the batch, and real read-only enforcement when Assurance requires it.
+- Read-only workers, isolated workers, worktree workers, permission enforcement, fresh verifier, and isolated writer are unsupported on `local-subprocess` and required requests return `BLOCKED` before launch.
+- Stable isolated-writer claims require explicit formal native evidence.
+
+## Explicit non-goals at r8.8
+
+Not implemented/promoted through M8:
 
 - multi-agent orchestration;
 - recurrence platform;
-- host-adapter qualification platform;
 - central database/evidence service;
 - general IAM/revocation service;
 - universal environment identity;

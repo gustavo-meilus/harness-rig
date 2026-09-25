@@ -1,0 +1,18 @@
+{
+  "checked": "2026-09-25",
+  "external_agent_executables": {
+    "claude": null,
+    "codex": null,
+    "copilot": null
+  },
+  "git": {
+    "executable": "/usr/bin/git",
+    "version": "git version 2.47.3"
+  },
+  "python": {
+    "executable": "/opt/pyvenv/bin/python",
+    "version": "3.13.5"
+  },
+  "qualification_scope": "local-subprocess only; unavailable external-agent CLIs are not promoted",
+  "schema": "harness-rig/m8-runtime-baseline/v1"
+}

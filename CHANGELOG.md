@@ -26,6 +26,41 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.8 — 2026-09-25 — Host capability and topology qualification
+
+### First Stable host candidate
+
+- Added `harness_rig.host` with Experimental/module-owned `CapabilitySet` and `RuntimeResolution` plus a deliberately narrow Stable `local-subprocess` adapter.
+- Native-qualified Stable claims are limited to clean process, process launch, runtime identity observation, and crash reconciliation.
+- The execution environment had no `codex`, `claude`, or `copilot` executable; no external-agent adapter was promoted.
+- Added `harness-rig doctor` as a fresh `-I -S`, `shell=False` native conformance probe.
+
+### Topology and evidence boundaries
+
+- Requested/resolved/observed runtime facts are represented separately.
+- Fresh verifier eligibility requires distinct worker and context identities, non-ownership of the implementation batch, and enforced read-only access when Assurance requires it.
+- Required read-only/isolation/unknown capabilities return `BLOCKED` before launch when unsupported.
+- Stable isolated-writer claims require explicitly marked formal native evidence; retained RigYard implementation/local evidence remains insufficient because the formal packet is absent.
+- Technical host capability does not create or broaden `AuthorizationGrant`.
+
+### Verified
+
+- M3 regression suite: 22/22 PASS.
+- M4 adversarial suite: 15/15 PASS.
+- M5 Context suite: 14/14 PASS.
+- M6 OpenSpec suite: 16/16 PASS.
+- M7 repository-enforcement suite: 14/14 PASS.
+- M8 host-capability suite: 14/14 PASS.
+- Combined unittest discovery: 95/95 PASS.
+- M8-V01 through M8-V05: PASS.
+
+### Complexity
+
+No multi-host registry, worker scheduler, container sandbox, plugin SDK, model-routing layer, host telemetry service, or orchestration framework was added. Unsupported worker/isolation capabilities remain explicit non-claims.
+
+---
+
+
 ## r8.7 — 2026-09-25 — Trusted repository enforcement
 
 ### Same-subject CI obligations

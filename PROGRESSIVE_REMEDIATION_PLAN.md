@@ -45,25 +45,26 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M8
-current_revision: r8.7
+current_milestone: M9
+current_revision: r8.8
 milestone_result: PASS
-last_completed_task: M7-V05
-next_task: M8-T01
+last_completed_task: M8-V05
+next_task: M9-T01
 blocking_issue: null
 verification_pending:
-  - M8-V01
-  - M8-V02
-  - M8-V03
-  - M8-V04
-  - M8-V05
+  - M9-V01
+  - M9-V02
+  - M9-V03
+  - M9-V04
+  - M9-V05
+  - M9-V06
 notes: >
-  M0 through M7 completed with PASS. M7 implemented deterministic same-subject CI obligation artifacts,
-  a final ci / required validator that runs after prerequisite failure, merge_group coverage, untrusted-fork
-  privilege boundaries, and governance-sensitive CI/resolver/policy/oracle path classification. Local package
-  verification proves the enforcement semantics but does not claim a live remote GitHub ruleset or real CODEOWNERS
-  installation; those deployment requirements are recorded explicitly. Next task is M8-T01. Full Git-history
-  preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M8.
+  M0 through M8 completed with PASS. M8 qualified the narrow local-subprocess adapter as Stable only for
+  clean-process launch, process launch, runtime identity observation and crash reconciliation. CapabilitySet and
+  RuntimeResolution remain Experimental/module-owned. Fresh verifier now requires real identity/context/non-ownership
+  and read-only predicates; unsupported isolation requirements fail closed. Codex/Claude/Copilot executables were not
+  available in the M8 runtime and are not promoted. Isolated-writer remains unsupported without formal native evidence.
+  Next task is M9-T01. Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M9.
 ```
 
 ### Milestone quick index
@@ -264,21 +265,21 @@ notes: >
 
 **Execution (`r8.8`):**
 
-- [ ] **M8-T01** — Select and qualify the first Stable host candidate.
-- [ ] **M8-T02** — Reuse RigYard's implemented/local/native-qualified/Stable maturity distinction.
-- [ ] **M8-T03** — Refine `CapabilitySet` from observed native behavior.
-- [ ] **M8-T04** — Define fresh-verifier semantics as a real context/permission boundary.
-- [ ] **M8-T05** — Reconcile RigYard isolated-writer capability as optional and evidence-gated.
+- [x] **M8-T01** — Select and qualify the first Stable host candidate.
+- [x] **M8-T02** — Reuse RigYard's implemented/local/native-qualified/Stable maturity distinction.
+- [x] **M8-T03** — Refine `CapabilitySet` from observed native behavior.
+- [x] **M8-T04** — Define fresh-verifier semantics as a real context/permission boundary.
+- [x] **M8-T05** — Reconcile RigYard isolated-writer capability as optional and evidence-gated.
 
 **Verification:**
 
-- [ ] **M8-V01** — Clean-process discovery and launch pass.
-- [ ] **M8-V02** — Requested/resolved/observed facts are captured.
-- [ ] **M8-V03** — Read-only and isolation requirements are actually enforced or BLOCKED.
-- [ ] **M8-V04** — Crash/reconciliation and evidence attribution pass.
-- [ ] **M8-V05** — Isolated-writer Stable claim requires retained formal native evidence.
+- [x] **M8-V01** — Clean-process discovery and launch pass.
+- [x] **M8-V02** — Requested/resolved/observed facts are captured.
+- [x] **M8-V03** — Read-only and isolation requirements are actually enforced or BLOCKED.
+- [x] **M8-V04** — Crash/reconciliation and evidence attribution pass.
+- [x] **M8-V05** — Isolated-writer Stable claim requires retained formal native evidence.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M9`
 
 #### M9 — Gate platform, Playwright, architecture, and mutation verification

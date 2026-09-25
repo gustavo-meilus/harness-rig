@@ -1,4 +1,4 @@
-"""Harness Rig r8.7 prototype: trust identities, Context/OpenSpec, and repository enforcement."""
+"""Harness Rig r8.8 prototype: trust identities, Context/OpenSpec, repository enforcement, and host qualification."""
 
 from .authority import AuthorityRef, DirectAuthority, DirectAuthorityProvider, load_authority_ref
 from .authorization import AuthorizationGrant, GrantValidation, load_authorization_grant
@@ -11,6 +11,10 @@ from .acceptance import AcceptanceVerdict, evaluate_acceptance
 from .vertical import VerticalSliceRequest, VerticalSliceResult, run_vertical_slice
 from .spec_engine import SpecEngine, SpecEngineHealth, SpecArchiveMutation
 from .openspec import OpenSpecAdapter, OpenSpecAuthoritySnapshot, GuardedArchiveResult, guarded_archive
+from .host import (
+    CapabilityClaim, CapabilitySet, RuntimeFact, RuntimeResolution, HostQualification,
+    FreshVerifierBoundary, FreshVerifierEligibility, LocalProcessHost, evaluate_fresh_verifier,
+)
 
 __all__ = [
     "AuthorityRef", "DirectAuthority", "DirectAuthorityProvider", "load_authority_ref",
@@ -24,4 +28,6 @@ __all__ = [
     "VerticalSliceRequest", "VerticalSliceResult", "run_vertical_slice",
     "SpecEngine", "SpecEngineHealth", "SpecArchiveMutation",
     "OpenSpecAdapter", "OpenSpecAuthoritySnapshot", "GuardedArchiveResult", "guarded_archive",
+    "CapabilityClaim", "CapabilitySet", "RuntimeFact", "RuntimeResolution", "HostQualification",
+    "FreshVerifierBoundary", "FreshVerifierEligibility", "LocalProcessHost", "evaluate_fresh_verifier",
 ]

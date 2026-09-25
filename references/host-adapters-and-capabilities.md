@@ -3,7 +3,7 @@ id: harness-rig-host-adapters-and-capabilities
 title: Host adapters and capability negotiation
 summary: Capability-based integration model for Claude Code, Codex, Copilot, and future hosts without pretending their enforcement
   surfaces are identical.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.8
 updated: '2026-09-25'
 provenance:
 - TacticSwitch protocol, governance, and adapter evidence policy, accessed 2026-09-21
@@ -21,6 +21,15 @@ provenance:
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
 ---
+
+# M8 qualified baseline
+
+M8/r8.8 qualifies only the native `local-subprocess` adapter as Stable, and only for clean-process launch, process launch, runtime identity observation, and crash reconciliation. `CapabilitySet` and `RuntimeResolution` remain Experimental/module-owned.
+
+The current M8 environment has no `codex`, `claude`, or `copilot` executable, so those adapters remain unqualified. `local-subprocess` explicitly reports `fresh_verifier`, `read_only_worker`, `isolated_worker`, `worktree_worker`, `permission_enforcement`, and `isolated_writer` as unsupported. Required requests for those capabilities return `BLOCKED`.
+
+See [M8 host capability and topology qualification](m8-host-capability-and-topology-qualification.md) for the retained native evidence and executable maturity rules.
+
 # Principle
 
 "Seamless" should mean one coherent abstraction over heterogeneous hosts, not pretending those hosts provide identical guarantees.
