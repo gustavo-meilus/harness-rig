@@ -1,0 +1,9 @@
+{
+  "schema": "harness-rig/milestone-verification/v1",
+  "milestone": "M1",
+  "revision": "r8.1",
+  "result": "PASS",
+  "date": "2026-09-24",
+  "runtime_fixture_execution": "deferred-to-M3",
+  "next_allowed_milestone": "M2"
+}

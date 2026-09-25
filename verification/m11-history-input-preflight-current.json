@@ -1,0 +1,25 @@
+{
+  "schema": "harness-rig/m11-history-input-preflight/v2",
+  "base": "/mnt/data",
+  "sources": [
+    {
+      "source": "aiboarding",
+      "expected": "/mnt/data/aiboarding.bundle",
+      "ok": false,
+      "reason": "missing"
+    },
+    {
+      "source": "tacticswitch",
+      "expected": "/mnt/data/tacticswitch.bundle",
+      "ok": false,
+      "reason": "missing"
+    },
+    {
+      "source": "skill-kit",
+      "expected": "/mnt/data/skill-kit.bundle",
+      "ok": false,
+      "reason": "missing"
+    }
+  ],
+  "result": "BLOCKED"
+}

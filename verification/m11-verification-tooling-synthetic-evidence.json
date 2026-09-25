@@ -1,0 +1,41 @@
+{
+  "schema": "harness-rig/m11-verification-tooling-synthetic-evidence/v1",
+  "date": "2026-09-25",
+  "result": "PASS",
+  "scope": "verification-tooling only; real source histories still required",
+  "checks": [
+    {
+      "id": "V01-REPRODUCIBILITY",
+      "result": "PASS"
+    },
+    {
+      "id": "V02-LEGACY-CHECK-PASS",
+      "result": "PASS"
+    },
+    {
+      "id": "V02-MISSING-TOOL-BLOCKS",
+      "result": "PASS"
+    },
+    {
+      "id": "V03-IMPORT-ONLY-PASS",
+      "result": "PASS"
+    },
+    {
+      "id": "V03-OUTSIDE-PREFIX-REJECTED",
+      "result": "PASS"
+    },
+    {
+      "id": "V04-SURFACE-INVENTORY",
+      "result": "PASS",
+      "nonempty_categories": [
+        "licenses",
+        "state",
+        "hooks",
+        "tests_evals",
+        "ci",
+        "openspec",
+        "agent_roles"
+      ]
+    }
+  ]
+}

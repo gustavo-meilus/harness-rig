@@ -1,0 +1,35 @@
+{
+  "schema": "harness-rig/m11-synthetic-migration-tooling-evidence/v1",
+  "date": "2026-09-25",
+  "cases": [
+    {
+      "id": "SYNTH-FULL",
+      "result": "PASS",
+      "mapped_commits": 4,
+      "branches": 2,
+      "tags": 1,
+      "merge_topology_verified": true,
+      "namespaced_tag_created": true
+    },
+    {
+      "id": "SYNTH-FILTERED-SKILL-KIT",
+      "result": "PASS",
+      "mapped_commits": 3,
+      "one_to_one_chronology": true,
+      "unrelated_tree_content_excluded": true,
+      "included_paths": [
+        "plugins/llm-knowledge-base-maintainer",
+        "plugins/engineering-harness-adaptive",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "SYNTH-TAMPERED-MAP",
+      "result": "PASS",
+      "verifier_rejected_tampering": true,
+      "reported_errors": 3
+    }
+  ],
+  "overall": "PASS",
+  "scope": "migration-tooling-only; does not substitute for source-history imports"
+}

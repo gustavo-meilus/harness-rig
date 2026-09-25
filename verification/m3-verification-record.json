@@ -1,0 +1,47 @@
+{
+  "schema": "harness-rig/milestone-verification/v1",
+  "milestone": "M3",
+  "revision": "r8.3",
+  "date": "2026-09-25",
+  "result": "PASS",
+  "implementation": "prototype/harness_rig",
+  "test_count": 22,
+  "checks": {
+    "M3-V01": {
+      "result": "PASS",
+      "evidence": "All M1-F01..M1-F16 execute against M3 implementation components; direct vertical happy path also passes."
+    },
+    "M3-V02": {
+      "result": "PASS",
+      "evidence": "test_not_run_gate_cannot_be_accepted"
+    },
+    "M3-V03": {
+      "result": "PASS",
+      "evidence": [
+        "test_source_state_change_invalidates_receipt",
+        "test_authority_change_invalidates_receipt",
+        "test_f06_ignored_consumed_input_stales_receipt_without_source_state_change"
+      ]
+    },
+    "M3-V04": {
+      "result": "PASS",
+      "evidence": "test_f10_receipt_from_other_run_rejected"
+    },
+    "M3-V05": {
+      "result": "PASS",
+      "evidence": "test_missing_authorization_blocks"
+    }
+  },
+  "additional_runtime_checks": {
+    "vertical_happy_path": "PASS",
+    "command_timeout_blocks": "PASS",
+    "gate_contract_version_mismatch_blocks": "PASS",
+    "artifact_integrity_failure_rework": "PASS",
+    "action_qualified_verdict": "PASS",
+    "path_traversal_rejected": "PASS",
+    "symlink_escape_rejected": "PASS",
+    "unexpected_path_executable_blocked": "PASS",
+    "cli_smoke": "PASS"
+  },
+  "next_allowed_milestone": "M4"
+}

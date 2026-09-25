@@ -1,0 +1,23 @@
+{
+  "schema": "harness-rig/m11-history-qualification-status/v1",
+  "milestone": "M11",
+  "date": "2026-09-25",
+  "result": "NOT_RUN",
+  "progression_dependency": "required before M12",
+  "m2_dependency": false,
+  "traceability_baseline": "CHANGELOG.md",
+  "required_inputs": [
+    "aiboarding.bundle or equivalent object-complete repository",
+    "tacticswitch.bundle or equivalent object-complete repository",
+    "skill-kit.bundle or equivalent object-complete repository"
+  ],
+  "required_verification": [
+    "reproducible mappings",
+    "tree equivalence",
+    "legacy deterministic checks where available",
+    "import-only proof",
+    "license/state/hook/install reconciliation",
+    "CHANGELOG-to-history reconciliation",
+    "commit/tag signature fidelity disposition"
+  ]
+}

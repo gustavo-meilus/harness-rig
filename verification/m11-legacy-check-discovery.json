@@ -1,0 +1,47 @@
+{
+  "schema": "harness-rig/m11-legacy-check-discovery/v1",
+  "date": "2026-09-25",
+  "sources": {
+    "aiboarding": {
+      "status": "READY",
+      "source": "current public README",
+      "checks": [
+        {
+          "id": "aiboarding-offline-suite",
+          "cwd": "legacy/aiboarding",
+          "argv": [
+            "bash",
+            "tests/run.sh"
+          ],
+          "required": true
+        }
+      ]
+    },
+    "tacticswitch": {
+      "status": "PENDING_IMPORTED_SOURCE_DISCOVERY",
+      "known_commands": [
+        [
+          "python",
+          "scripts/install.py",
+          "--scope",
+          "project",
+          "--project",
+          "<fixture>"
+        ],
+        [
+          "python",
+          "scripts/verify_install.py",
+          "--scope",
+          "project",
+          "--project",
+          "<fixture>"
+        ]
+      ],
+      "note": "README confirms install/verify commands but does not expose the complete deterministic repository test command in the inspected source."
+    },
+    "skill-kit": {
+      "status": "PENDING_IMPORTED_SOURCE_DISCOVERY",
+      "note": "Public root confirms tests/ and scripts/ exist, but the inspected root page does not state one complete deterministic check command for the two filtered plugins."
+    }
+  }
+}

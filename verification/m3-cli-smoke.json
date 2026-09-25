@@ -1,0 +1,7 @@
+{
+  "schema": "harness-rig/m3-cli-smoke/v1",
+  "result": "PASS",
+  "receipt_outcome": "PASS",
+  "verdict_outcome": "ACCEPTED",
+  "decision_for": "merge"
+}

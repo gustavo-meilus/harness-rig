@@ -1,0 +1,62 @@
+# Harness Rig Knowledge Base
+
+Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M3 / r8.3 PASS; Experimental direct vertical slice verified, next milestone M4 core promotion evaluation.
+
+## Start here
+
+- [Usage and scope](references/usage-and-scope.md)
+- [North star and product boundary](references/north-star-and-product-boundary.md)
+- [Expected Harness Rig feature set and RigYard reconciliation contract](references/expected-harness-rig-feature-set.md)
+- [Skill Kit knowledge-base integration for the Harness Rig Context plane](references/skill-kit-knowledge-base-context.md)
+- [RigYard current source and verification baseline](references/rigyard-current-source-and-verification-baseline.md) — source, verification maturity, active changes, and historical-status classification.
+- [RigYard premise and minimum-sufficient feature admission](references/rigyard-premise-and-feature-admission.md)
+- [OpenSpec spec engine, authority, and brainstorming integration](references/openspec-spec-engine-and-authority.md)
+- [Current system baseline](references/current-system-baseline.md)
+- [Core invariants and trust model](references/core-invariants-and-trust-model.md)
+- [Target architecture](references/target-architecture.md)
+- [Contracts, state, and evidence](references/contracts-state-and-evidence.md)
+- [Roadmap](references/roadmap.md)
+- [Repository governance and change model](references/repository-governance-and-change-model.md)
+
+## Executable vertical slice — M3
+
+- [M3 experimental direct vertical slice](references/m3-experimental-vertical-slice.md) — executable Direct Authority → Assurance → Direct Topology → command gate → EvidenceReceipt → AcceptanceVerdict path and runtime evidence.
+- [M3 prototype README](prototype/README.md) — run commands, implementation boundary, and Experimental limitations.
+
+## Trust protocol — M1
+
+- [Contracts](references/contracts-state-and-evidence.md)
+- [StateIdentity ADR](references/adr-state-identity.md)
+- [AuthorizationGrant ADR](references/adr-authorization-grant.md)
+- [EvidenceReceipt ADR](references/adr-evidence-receipt.md)
+- [AcceptanceVerdict ADR](references/adr-acceptance-verdict.md)
+- [Security/trust boundaries](references/security-trust-and-execution-boundaries.md)
+- [M1 trust fixtures](references/trust-protocol-adversarial-fixtures.md)
+
+## Proposal disposition
+
+- [TacticSwitch loop and runtime-policy proposals disposition](references/tacticswitch-loop-proposals-disposition.md)
+- [TacticSwitch v3 extension disposition](references/tacticswitch-v3-extension-disposition.md)
+
+## Current migration blocker
+
+- [M11 Git-history qualification status](references/m11-git-history-qualification-status.md) — required Git histories, import procedure, provisional dispositions, and unblock inputs.
+- [M2 source-surface inventory and capability dispositions](references/m2-source-surface-inventory-and-dispositions.md) — completed source-side inventory and final KEEP/ADAPT/REPLACE/RETIRE classifications.
+- [M11 history rewrite and verification tooling](references/m11-history-rewrite-tooling.md) — native Git migration helper, independent verifier, synthetic PASS evidence, and fidelity limits.
+- [M11 source-history import orchestrator](references/m11-history-import-orchestrator.md) — strict preflight, one-command three-source pipeline, verified import bundles, and explicit target staging.
+- [M11 history qualification verification tooling](references/m11-history-verification-gate-tooling.md) — executable V01–V04 checks and adversarial synthetic evidence.
+
+## When implementing
+
+- [History migration and monorepo plan](references/history-migration-and-monorepo-plan.md)
+- [CI, review, versioning, and release governance](references/ci-review-and-release-governance.md)
+- [Host adapters and capability negotiation](references/host-adapters-and-capabilities.md)
+- [Gate system, Playwright, and runtime sensors](references/gate-system-playwright-and-runtime-sensors.md)
+- [Acceptance evaluations and metrics](references/acceptance-evals-and-metrics.md)
+
+## Constraints and provenance
+
+- [Risks, non-goals, and deferred work](references/risks-non-goals-and-deferred-work.md)
+- [Decision log](references/decision-log.md)
+- [Research foundations](references/research-foundations.md)
+- [Source register](references/source-register.md)

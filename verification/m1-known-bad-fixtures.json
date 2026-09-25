@@ -1,0 +1,151 @@
+{
+  "schema": "harness-rig/m1-trust-protocol-fixtures/v1",
+  "milestone": "M1",
+  "runtime_execution_status": "deferred-to-M3",
+  "fixtures": [
+    {
+      "id": "M1-F01",
+      "area": "state",
+      "scenario": "Commit during session",
+      "setup": "Modify tracked source, commit it so worktree becomes clean.",
+      "expected": "Current state still differs from the session baseline.",
+      "invariant": "Committed changes remain observable.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F02",
+      "area": "state",
+      "scenario": "Verifier mutates source",
+      "setup": "Run a zero-exit gate that changes relevant source.",
+      "expected": "MUTATED; post-mutation state is not certified.",
+      "invariant": "Verification mutation becomes implementation.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F03",
+      "area": "state",
+      "scenario": "Identical content on different revision",
+      "setup": "Recreate identical content at a different commit.",
+      "expected": "Revision changes; content may remain equal; reuse follows policy.",
+      "invariant": "Revision provenance is distinct.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F04",
+      "area": "state",
+      "scenario": "Staged-only edit",
+      "setup": "Stage content differing from HEAD.",
+      "expected": "Index identity changes independently.",
+      "invariant": "Logical index state is explicit.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F05",
+      "area": "state",
+      "scenario": "Dirty consumed submodule",
+      "setup": "Dirty an initialized submodule without changing superproject gitlink.",
+      "expected": "State/input changes or BLOCKED.",
+      "invariant": "Consumed submodule state cannot disappear.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F06",
+      "area": "evidence-input",
+      "scenario": "Ignored consumed input changes",
+      "setup": "Change ignored gate input while authority/repository state is otherwise constant.",
+      "expected": "Input binding changes; old receipt becomes inapplicable.",
+      "invariant": "Material non-source inputs are bound.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F07",
+      "area": "authorization",
+      "scenario": "Expired grant",
+      "setup": "Use deploy grant after expiry.",
+      "expected": "INVALID/BLOCKED.",
+      "invariant": "Authorization lifetime is enforced.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F08",
+      "area": "authorization",
+      "scenario": "State-bound grant after state change",
+      "setup": "Grant for S0, change to S1.",
+      "expected": "Old grant invalid for S1.",
+      "invariant": "Target binding is enforced.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F09",
+      "area": "authorization",
+      "scenario": "Nondelegable grant used by another principal",
+      "setup": "Grant P1, present from P2.",
+      "expected": "INVALID absent explicit delegation.",
+      "invariant": "Possession does not imply delegation.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F10",
+      "area": "evidence",
+      "scenario": "Forged/replayed receipt",
+      "setup": "Copy or hand-author valid-looking receipt from another run.",
+      "expected": "Reject absent explicit admissible producer/reuse policy.",
+      "invariant": "Evidence provenance is required.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F11",
+      "area": "evidence",
+      "scenario": "Outdated gate contract",
+      "setup": "Use v1 receipt when incompatible v2 semantics required.",
+      "expected": "Receipt inapplicable.",
+      "invariant": "PASS semantics are versioned.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F12",
+      "area": "evidence",
+      "scenario": "Artifact changed after receipt",
+      "setup": "Mutate referenced artifact after digest recorded.",
+      "expected": "Integrity failure.",
+      "invariant": "Artifacts are content-bound.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F13",
+      "area": "acceptance",
+      "scenario": "Merge verdict reused for deploy",
+      "setup": "Present merge ACCEPTED at deploy boundary.",
+      "expected": "Does not satisfy deploy decision/authorization.",
+      "invariant": "Acceptance is action-qualified.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F14",
+      "area": "security",
+      "scenario": "Path traversal",
+      "setup": "Use ../ to escape approved root.",
+      "expected": "Reject before mutation.",
+      "invariant": "Protected paths remain contained.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F15",
+      "area": "security",
+      "scenario": "Protected symlink escape",
+      "setup": "Symlink protected path outside root.",
+      "expected": "Reject/BLOCK.",
+      "invariant": "Symlinks cannot bypass containment.",
+      "implementation_milestone": "M3"
+    },
+    {
+      "id": "M1-F16",
+      "area": "security",
+      "scenario": "Malicious executable earlier on PATH",
+      "setup": "Place fake tool before expected tool.",
+      "expected": "Detect/reject or bind exact unexpected identity.",
+      "invariant": "Executable identity is evidence-backed.",
+      "implementation_milestone": "M3"
+    }
+  ]
+}

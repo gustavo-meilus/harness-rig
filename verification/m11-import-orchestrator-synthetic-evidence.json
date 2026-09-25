@@ -1,0 +1,37 @@
+{
+  "schema": "harness-rig/m11-import-orchestrator-synthetic-evidence/v1",
+  "date": "2026-09-25",
+  "result": "PASS",
+  "scope": "synthetic pipeline only; not real source import",
+  "checks": [
+    {
+      "id": "ORCH-PREFLIGHT",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-RUN",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-IMPORT-BUNDLES",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-TARGET-FETCH",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-MODES-SYMLINK",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-SKILL-FILTER",
+      "result": "PASS"
+    },
+    {
+      "id": "ORCH-TAG-LIMIT",
+      "result": "PASS",
+      "annotation_preserved": false
+    }
+  ]
+}

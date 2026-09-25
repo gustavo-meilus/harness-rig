@@ -1,0 +1,15 @@
+{
+  "schema": "harness-rig/m2-changelog-consolidation-verification/v1",
+  "milestone": "M2",
+  "revision": "r8.2",
+  "date": "2026-09-25",
+  "result": "PASS",
+  "checks": {
+    "M2-V01": "CHANGELOG contains all four mandatory source/capability baselines with target ownership and disposition",
+    "M2-V02": "source-specific verification/evidence is recorded where known; unknown commands/evidence are not invented",
+    "M2-V03": "CHANGELOG explicitly separates M2 semantic consolidation from deferred M11 Git-history qualification",
+    "M2-V04": "license/state/hook/install/generated/schema/test/CI/OpenSpec/agent-role migration surfaces are inventoried"
+  },
+  "git_history_requirement": "deferred-to-M11",
+  "next_allowed_milestone": "M3"
+}

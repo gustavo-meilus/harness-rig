@@ -1,0 +1,117 @@
+{
+  "schema": "harness-rig/m3-fixture-results/v1",
+  "milestone": "M3",
+  "result": "PASS",
+  "runtime": {
+    "python": "3.13.5",
+    "git": "2.47.3"
+  },
+  "fixture_results": [
+    {
+      "fixture_id": "M1-F01",
+      "test": "test_f01_commit_during_session_changes_state_even_when_clean",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F02",
+      "test": "test_f02_verifier_mutation_becomes_mutated_not_pass",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F03",
+      "test": "test_f03_identical_content_new_revision_keeps_content_id_but_changes_state",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F04",
+      "test": "test_f04_staged_only_edit_changes_index_identity",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F05",
+      "test": "test_f05_dirty_consumed_submodule_changes_state",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F06",
+      "test": "test_f06_ignored_consumed_input_stales_receipt_without_source_state_change",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F07",
+      "test": "test_f07_expired_grant_blocks_acceptance",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F08",
+      "test": "test_f08_state_bound_grant_invalid_after_state_change",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F09",
+      "test": "test_f09_nondelegable_grant_rejected_for_other_principal",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F10",
+      "test": "test_f10_receipt_from_other_run_rejected",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F11",
+      "test": "test_f11_outdated_gate_contract_rejected",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F12",
+      "test": "test_f12_mutated_referenced_artifact_rejected",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F13",
+      "test": "test_f13_merge_verdict_not_applicable_to_deploy",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F14",
+      "test": "test_f14_parent_traversal_rejected",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F15",
+      "test": "test_f15_symlink_escape_rejected",
+      "result": "PASS"
+    },
+    {
+      "fixture_id": "M1-F16",
+      "test": "test_f16_wrong_executable_from_path_blocks_gate",
+      "result": "PASS"
+    }
+  ],
+  "additional_tests": [
+    {
+      "test": "test_vertical_slice_happy_path",
+      "result": "PASS"
+    },
+    {
+      "test": "test_not_run_gate_cannot_be_accepted",
+      "result": "PASS"
+    },
+    {
+      "test": "test_source_state_change_invalidates_receipt",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authority_change_invalidates_receipt",
+      "result": "PASS"
+    },
+    {
+      "test": "test_missing_authorization_blocks",
+      "result": "PASS"
+    },
+    {
+      "test": "test_command_timeout_blocks",
+      "result": "PASS"
+    }
+  ]
+}
