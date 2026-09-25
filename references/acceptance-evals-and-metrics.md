@@ -3,7 +3,7 @@ id: harness-rig-acceptance-evals-and-metrics
 title: Acceptance evaluations and metrics
 summary: Behavioral and adversarial tests that verify Harness Rig itself, plus metrics that separate control integrity from
   speed or model performance.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Google Developers Blog, The Anatomy of Harness Engineering, accessed 2026-09-21

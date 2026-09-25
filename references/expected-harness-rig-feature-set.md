@@ -4,7 +4,7 @@ title: Expected Harness Rig feature set and RigYard reconciliation contract
 summary: Consolidated expected mature Harness Rig features across spec/authority, context, assurance, topology, evidence,
   hosts, gates, CI, migration, recurrence, retrieval, and extensibility, with a formal reconciliation protocol for currently
   inaccessible RigYard proposals.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig expected-feature synthesis, refreshed 2026-09-21
@@ -20,12 +20,13 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Status
 
-## M1 trust-protocol status
+## M4 trust-contract status
 
-StateIdentity, AuthorizationGrant, EvidenceReceipt and AcceptanceVerdict are accepted for **Experimental** implementation only. Stable promotion remains deferred to M4.
+`AuthorityRef`, `AuthorizationGrant`, and `StateIdentity` are Stable v1 after M4. `EvidenceReceipt` and `AcceptanceVerdict` remain **Experimental shared** until additional real providers/lifecycle consumers earn promotion. `AssurancePlan`, `ExecutionPlan`, `CapabilitySet`, `RuntimeResolution`, recurrence state, Context internals, and `ContextManifest` are not promoted for symmetry.
 
 
 This page is the canonical expected mature Harness Rig feature inventory.

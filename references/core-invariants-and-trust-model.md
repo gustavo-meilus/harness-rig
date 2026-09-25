@@ -3,7 +3,7 @@ id: harness-rig-core-invariants-and-trust-model
 title: Core invariants and trust model
 summary: Constitutional invariants defining authority, independence, evidence validity, module interaction, and fail-closed
   acceptance.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - TacticSwitch protocol and governance, accessed 2026-09-21

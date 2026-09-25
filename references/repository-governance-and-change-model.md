@@ -2,7 +2,7 @@
 id: harness-rig-repository-governance-and-change-model
 title: Repository governance and change model
 summary: Governance model for a modular monorepo that can add features without turning core contracts into a moving monolith.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - TacticSwitch docs/GOVERNANCE.md and CONTRIBUTING.md, accessed 2026-09-21

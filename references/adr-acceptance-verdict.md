@@ -3,7 +3,7 @@ id: harness-rig-adr-acceptance-verdict
 title: 'ADR: Experimental AcceptanceVerdict protocol'
 summary: Accepted M1 acceptance protocol qualified by subject, lifecycle decision, policy, evidence set, authority/state,
   and current authorization.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
@@ -14,10 +14,11 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Status
 
-**Accepted for Experimental implementation in M1. Stable promotion is forbidden before M4.**
+**M4 disposition: `KEEP_EXPERIMENTAL_SHARED`.** The action-qualified invariant remains required, but a second real consequential lifecycle/action consumer has not yet earned a Stable serialized shape.
 
 # Decision
 

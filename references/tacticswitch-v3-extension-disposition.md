@@ -3,7 +3,7 @@ id: harness-rig-tacticswitch-v3-extension-disposition
 title: TacticSwitch v3 extension disposition
 summary: How the minimum-sufficient runtime-execution, recurrence, and hosted-assurance proposals fit into Harness Rig without
   creating new control planes.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - User-supplied tacticswitch-openspec-proposals-v3.zip, README.md, REVIEW.md, and proposal/spec/design files, supplied 2026-09-21

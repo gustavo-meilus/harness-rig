@@ -40,5 +40,12 @@ def digest(value: Any) -> str:
     return sha256_bytes(canonical_json_bytes(value))
 
 
+def is_sha256_digest(value: Any) -> bool:
+    if not isinstance(value, str) or not value.startswith("sha256:"):
+        return False
+    hex_part = value[7:]
+    return len(hex_part) == 64 and all(ch in "0123456789abcdef" for ch in hex_part)
+
+
 def file_digest(path: Path) -> str:
     return sha256_bytes(path.read_bytes())

@@ -3,7 +3,7 @@ id: harness-rig-rigyard-premise-and-feature-admission
 title: RigYard premise and minimum-sufficient feature admission
 summary: 'More-With-Less product premise for Harness Rig: a small deterministic composition/evidence kernel, explicit feature
   inclusion tiers, and complexity retirement rules, with RigYard source-access limitations preserved.'
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig planning analysis, refreshed 2026-09-21

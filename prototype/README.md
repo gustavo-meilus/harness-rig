@@ -1,27 +1,31 @@
-# Harness Rig M3 experimental vertical slice
+# Harness Rig r8.4 prototype
 
-This directory contains the first executable Harness Rig trust path.
+This directory contains the executable direct Harness Rig trust path after M4 core-promotion review.
 
 ```text
 Direct Authority
     ↓
-AssurancePlan (one required claim)
+Stable AuthorityRef v1
     ↓
-DirectTopology (single process / one actor)
+Stable AuthorizationGrant v1
+    ↓
+AssurancePlan (module-owned, one required claim)
+    ↓
+DirectTopology (module-owned, single process / one actor)
     ↓
 CommandGate
     ↓
-EvidenceReceipt
+Experimental EvidenceReceipt
     ↓
-AcceptanceVerdict
+Experimental AcceptanceVerdict
 ```
 
 ## Runtime
 
-M3 is implemented in Python using only the standard library plus the local Git executable.
+The prototype uses Python standard library plus the local Git executable.
 
-The implementation is deliberately **Experimental**. It exists to prove the trust semantics before M4 evaluates promotion
-of any cross-cutting contracts.
+M4 promotes only `AuthorityRef`, `AuthorizationGrant`, and `StateIdentity`. The command-gate receipt and final verdict remain
+Experimental because their broader provider/lifecycle consumer shapes have not yet been proven.
 
 ## Run the tests
 
@@ -31,8 +35,8 @@ From the knowledge-base root:
 PYTHONPATH=prototype python -S -m unittest discover -s prototype/tests -v
 ```
 
-The `-S` on fixture Python commands avoids unrelated environment/site startup hooks in the verification environment; it is
-not a Harness Rig product requirement.
+The M3 regression suite remains in `test_m3_vertical_slice.py`; M4 promotion/boundary cases are in
+`test_m4_core_promotion.py`.
 
 ## Direct CLI smoke
 
@@ -47,51 +51,54 @@ PYTHONPATH=prototype python -S -m harness_rig \
   -- python -S -c "print('ok')"
 ```
 
-The M3 CLI is only a test surface. Product CLI design remains a later milestone.
+The CLI remains a test surface. Product CLI design is a later milestone.
 
-## Implemented semantics
+## Stable M4 semantics
 
-- Direct file-backed `AuthorityRef`.
-- Structured Git-backed `StateIdentity` with revision, logical index, tracked worktree, untracked nonignored files, and
-  explicit submodule state.
-- Bounded `AuthorizationGrant` validation for local issuer/principal/action/resource/authority/state/subject/time.
-- One direct `AssurancePlan` requirement.
-- One direct/single-process `DirectTopology`.
+- `AuthorityRef` is provider-neutral: schema/provider/subject/authority identity only. Direct-file path/content canonicalization
+  stays inside `DirectAuthority`.
+- `AuthorizationGrant` is bounded, nondelegable v1 authorization with integrity, lifetime and exact binding checks. It is not a
+  general IAM system.
+- `StateIdentity` is Stable v1 exact Git-worktree state with revision, index, tracked/untracked content and submodule identity.
+- Stable loaders reject unknown versions/fields/integrity failures and deterministically migrate the exact M3 serialized forms.
+- M3 Experimental `AuthorizationGrant.origin` is retired during migration because no trust decision consumed it.
+
+## Preserved direct-path semantics
+
+- One direct `AssurancePlan` requirement; Assurance has no worker/host/model selection surface.
+- One direct/single-process `DirectTopology`; topology cannot waive evidence or manufacture authorization.
 - One argv-based command/test gate using `shell=False` and a bounded timeout.
 - Gate mutation detection via exact state before/after.
 - Gate-specific ignored/external path input bindings.
-- Producer/run/gate-contract-bound `EvidenceReceipt`.
+- Producer/run/gate-contract-bound Experimental `EvidenceReceipt`.
 - Artifact digest verification.
-- Action-qualified deterministic `AcceptanceVerdict`.
+- Action-qualified deterministic Experimental `AcceptanceVerdict`.
 - Protected-path traversal/symlink containment helper.
 
-## Explicit M3 non-goals
+## Explicit non-goals at r8.4
 
-Not implemented or promoted in M3:
+Not implemented/promoted in M4:
 
-- OpenSpec provider;
-- generalized `SpecEngine`;
+- OpenSpec provider or finalized `SpecEngine`;
 - multi-agent orchestration;
-- recurrence;
-- host-adapter platform;
+- recurrence platform;
+- host-adapter qualification platform;
 - central database/evidence service;
-- general IAM or revocation service;
+- general IAM/revocation service;
 - universal environment identity;
 - cryptographic remote attestation;
 - public plugin SDK;
-- Stable contract schemas.
+- Stable `EvidenceReceipt` or `AcceptanceVerdict` schemas;
+- Stable `AssurancePlan`, `ExecutionPlan`, `CapabilitySet`, `RuntimeResolution`, or `ContextManifest`.
 
-## Known Experimental limitations
+## Known limits
 
-- `repository_id` is caller-supplied.
-- Direct Authority is file-backed only.
+- `repository_id` is caller-supplied; M5 owns Context identity/lifecycle convergence.
+- Direct Authority is file-backed only; M6 owns OpenSpec first-class integration.
 - The local vertical slice trusts a configured local issuer set; provider-backed revocation is not implemented.
+- Stable AuthorizationGrant v1 supports only nondelegable grants.
 - Input bindings currently implement file-path digests only.
-- Tool version discovery is not generalized.
+- Tool-version discovery is not generalized.
 - Receipts/verdicts are returned as values/JSON; no persistence service exists.
-- Submodule identity is sufficient for M3 dirty-state detection but is not a generalized recursive multi-repository state
-  model.
+- StateIdentity v1 is the current Git-worktree contract, not a generalized recursive multi-repository state framework.
 - No receipt reuse policy is enabled; a different run ID is rejected.
-- The prototype does not attempt to preserve evidence across policy/schema migrations.
-
-These limitations are inputs to M4 promotion decisions, not hidden future guarantees.

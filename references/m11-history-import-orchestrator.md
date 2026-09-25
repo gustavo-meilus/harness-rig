@@ -3,7 +3,7 @@ id: harness-rig-m2-import-orchestrator
 title: M11 source-history import orchestrator
 summary: Prepared source-aware M11 pipeline for source-history preflight, rewrite, independent verification, import bundles
   and target staging.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig M2 retry 4 import-orchestrator implementation and synthetic end-to-end verification, 2026-09-25

@@ -3,7 +3,7 @@ id: harness-rig-history-migration-and-monorepo-plan
 title: History migration and monorepo plan
 summary: History-preserving repository consolidation plan that separates source migration from architectural refactoring and
   runtime consolidation.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - git-filter-repo documentation, accessed 2026-09-21

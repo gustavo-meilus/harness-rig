@@ -3,7 +3,7 @@ id: harness-rig-research-foundations
 title: Research foundations for Harness Rig
 summary: Evidence-supported principles behind verification architecture, harness engineering, architectural boundaries, and
   browser-runtime sensors.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Alexander Hinojosa, The Tests Were Green. They Were Lying., 2026-09-09

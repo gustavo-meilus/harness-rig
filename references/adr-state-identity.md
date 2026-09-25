@@ -1,9 +1,8 @@
 ---
 id: harness-rig-adr-state-identity
-title: 'ADR: Experimental StateIdentity protocol'
-summary: Accepted M1 protocol separating revision provenance, index state, worktree content, untracked content, and submodule
-  state before Stable promotion.
-version: planning-baseline-2026-09-25-r8.3
+title: 'ADR: Stable StateIdentity v1 protocol'
+summary: Stable M4 StateIdentity v1 protocol separating revision provenance, index state, worktree content, untracked content, and submodule state.
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
@@ -14,10 +13,13 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Status
 
-**Accepted for Experimental implementation in M1. Stable promotion is forbidden before M4.**
+**M4 disposition: `PROMOTE_STABLE`. Schema: `harness-rig/state-identity/v1`.**
+
+The Git-worktree capture profile is the proven current implementation. This ADR does not claim a generalized non-Git or recursive multi-repository identity framework.
 
 # Decision
 
@@ -90,7 +92,7 @@ Failure to enumerate/read required state makes identity incomplete; incomplete i
 
 # Canonical serialization
 
-Experimental `canonical-json-v1`:
+Canonical encoding `canonical-json-v1`:
 
 ```text
 UTF-8 JSON
@@ -101,7 +103,7 @@ integers only
 digests lowercase sha256:<64 hex>
 ```
 
-Golden vectors are required before M4 Stable promotion.
+M4 Stable promotion includes an executable golden vector in `prototype/tests/test_m4_core_promotion.py`.
 
 # Mutation rule
 
@@ -112,6 +114,14 @@ S1 = exact_state()
 
 S1 != S0 -> MUTATED; the run does not certify S1
 ```
+
+# M4 compatibility and failure semantics
+
+- Exact Stable v1 serializations load only after strict field/digest/integrity validation.
+- Exact Experimental v1 serializations migrate deterministically after the old `state_id` is verified.
+- Migration preserves component/content identities and recomputes `state_id` under the Stable schema.
+- Unknown schemas, missing/extra fields, malformed digests, and integrity mismatch fail closed.
+- If required Git state cannot be captured, no `StateIdentity` exists and no acceptance PASS can be derived from it.
 
 # Minimum-sufficient boundary
 

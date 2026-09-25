@@ -3,7 +3,7 @@ id: harness-rig-tacticswitch-loop-proposals-disposition
 title: TacticSwitch loop and runtime-policy proposals disposition
 summary: Harness Rig disposition of the richer runtime-execution, bounded recurrence, hosted quality-gate, adversarial-assurance,
   and native-smoke proposals.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - User-supplied tacticswitch-openspec-loop-proposals.zip, supplied 2026-09-21

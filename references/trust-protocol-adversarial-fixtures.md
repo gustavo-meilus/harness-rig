@@ -3,7 +3,7 @@ id: harness-rig-m1-trust-protocol-adversarial-fixtures
 title: M1 trust-protocol adversarial fixtures
 summary: Sixteen stable known-bad state, authorization, evidence, acceptance, path, symlink, and executable scenarios defined
   before runtime implementation.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24

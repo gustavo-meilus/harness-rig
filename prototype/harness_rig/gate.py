@@ -38,7 +38,7 @@ class GateRequest:
 
 
 class CommandGate:
-    """One deterministic command/test gate for the M3 vertical slice."""
+    """One deterministic command/test gate for the direct trust path."""
 
     @staticmethod
     def run(req: GateRequest) -> EvidenceReceipt:

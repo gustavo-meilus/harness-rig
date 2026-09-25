@@ -3,7 +3,7 @@ id: harness-rig-gate-system-playwright-and-runtime-sensors
 title: Gate system, Playwright, and runtime sensors
 summary: Gate-provider model for deterministic evidence and a Playwright integration that treats browser automation as a sensor
   rather than the source of product truth.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Adaptive Engineering Harness verification ladder, accessed 2026-09-21

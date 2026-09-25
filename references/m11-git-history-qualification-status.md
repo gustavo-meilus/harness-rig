@@ -3,7 +3,7 @@ id: harness-rig-m2-history-import-execution-status
 title: M11 Git-history qualification status
 summary: Deferred late-stage source-history preservation and CHANGELOG reconciliation requirement, required before final 1.0
   qualification but no longer blocking M2–M10.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M2 execution attempt, 2026-09-24

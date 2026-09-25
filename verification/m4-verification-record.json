@@ -1,0 +1,87 @@
+{
+  "schema": "harness-rig/milestone-verification/v1",
+  "milestone": "M4",
+  "revision": "r8.4",
+  "date": "2026-09-25",
+  "result": "PASS",
+  "implementation": "prototype/harness_rig",
+  "test_count": 37,
+  "regression_test_count": 22,
+  "m4_test_count": 15,
+  "dispositions": {
+    "AuthorityRef": "SPLIT_STABLE_INVARIANT_FROM_EXPERIMENTAL_PROVIDER_FIELDS",
+    "AuthorizationGrant": "PROMOTE_STABLE",
+    "StateIdentity": "PROMOTE_STABLE",
+    "EvidenceReceipt": "KEEP_EXPERIMENTAL_SHARED",
+    "AcceptanceVerdict": "KEEP_EXPERIMENTAL_SHARED",
+    "AssurancePlan": "KEEP_MODULE_OWNED",
+    "ExecutionPlan": "KEEP_MODULE_OWNED",
+    "Context internals": "KEEP_MODULE_OWNED",
+    "RuntimeResolution": "KEEP_MODULE_OWNED",
+    "recurrence state": "KEEP_MODULE_OWNED",
+    "ContextManifest": "KEEP_MODULE_OWNED"
+  },
+  "promoted_schemas": [
+    "harness-rig/authority-ref/v1",
+    "harness-rig/authorization-grant/v1",
+    "harness-rig/state-identity/v1"
+  ],
+  "checks": {
+    "M4-V01": {
+      "result": "PASS",
+      "evidence": [
+        "AuthorityRef: DirectAuthority producer plus CommandGate and Acceptance consumers.",
+        "AuthorizationGrant: unavoidable authorization-vs-authority/technical-capability invariant enforced by Acceptance.",
+        "StateIdentity: CommandGate capture, receipt/grant binding, and Acceptance freshness consumption.",
+        "test_authority_ref_promoted_provider_neutral_shape_serves_gate_and_acceptance",
+        "test_authorization_grant_promoted_bounded_shape_and_integrity",
+        "test_state_identity_promoted_stable_round_trip"
+      ]
+    },
+    "M4-V02": {
+      "result": "PASS",
+      "evidence": [
+        "test_stable_core_has_no_provider_escape_bags",
+        "test_authority_ref_legacy_migration_drops_provider_local_fields_and_preserves_identity"
+      ]
+    },
+    "M4-V03": {
+      "result": "PASS",
+      "evidence": "test_assurance_plan_has_no_worker_or_host_selection_surface"
+    },
+    "M4-V04": {
+      "result": "PASS",
+      "evidence": [
+        "test_topology_cannot_waive_required_evidence",
+        "test_topology_cannot_broaden_authorization_and_technical_formation_is_not_authorization"
+      ]
+    },
+    "M4-V05": {
+      "result": "PASS",
+      "evidence": [
+        "test_authority_ref_unknown_version_and_tampered_legacy_fail_closed",
+        "test_authorization_grant_legacy_migration_is_deterministic",
+        "test_authorization_grant_unknown_version_tamper_and_unimplemented_delegation_fail_closed",
+        "test_state_identity_legacy_migration_rekeys_state_id_deterministically",
+        "test_state_identity_unknown_version_and_tamper_fail_closed",
+        "test_state_identity_stable_golden_vector"
+      ]
+    }
+  },
+  "additional_runtime_checks": {
+    "M3_regression_suite": "22/22 PASS",
+    "M1_F01_through_F16": "PASS",
+    "M4_adversarial_suite": "15/15 PASS",
+    "cli_smoke": "PASS",
+    "shell_true_occurrences": 0,
+    "kb_integrity": "PASS: 38 references / 38 manifest rows / 0 broken local links / byte-identical regeneration"
+  },
+  "evidence_files": [
+    "verification/m4-unittest-output.txt",
+    "verification/m4-fixture-results.json",
+    "verification/m4-cli-smoke.json",
+    "verification/m4-kb-integrity.json"
+  ],
+  "next_allowed_milestone": "M5",
+  "resume_task": "M5-T01"
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "harness-rig/m4-fixture-results/v1",
+  "milestone": "M4",
+  "result": "PASS",
+  "runtime": {
+    "python": "3.13.5",
+    "git": "2.47.3"
+  },
+  "regression": {
+    "M3": {
+      "result": "PASS",
+      "test_count": 22,
+      "tests": [
+        "test_authority_change_invalidates_receipt",
+        "test_command_timeout_blocks",
+        "test_f01_commit_during_session_changes_state_even_when_clean",
+        "test_f02_verifier_mutation_becomes_mutated_not_pass",
+        "test_f03_identical_content_new_revision_keeps_content_id_but_changes_state",
+        "test_f04_staged_only_edit_changes_index_identity",
+        "test_f05_dirty_consumed_submodule_changes_state",
+        "test_f06_ignored_consumed_input_stales_receipt_without_source_state_change",
+        "test_f07_expired_grant_blocks_acceptance",
+        "test_f08_state_bound_grant_invalid_after_state_change",
+        "test_f09_nondelegable_grant_rejected_for_other_principal",
+        "test_f10_receipt_from_other_run_rejected",
+        "test_f11_outdated_gate_contract_rejected",
+        "test_f12_mutated_referenced_artifact_rejected",
+        "test_f13_merge_verdict_not_applicable_to_deploy",
+        "test_f14_parent_traversal_rejected",
+        "test_f15_symlink_escape_rejected",
+        "test_f16_wrong_executable_from_path_blocks_gate",
+        "test_missing_authorization_blocks",
+        "test_not_run_gate_cannot_be_accepted",
+        "test_source_state_change_invalidates_receipt",
+        "test_vertical_slice_happy_path"
+      ]
+    }
+  },
+  "m4_test_count": 15,
+  "m4_tests": [
+    {
+      "test": "test_assurance_plan_has_no_worker_or_host_selection_surface",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authority_ref_legacy_migration_drops_provider_local_fields_and_preserves_identity",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authority_ref_promoted_provider_neutral_shape_serves_gate_and_acceptance",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authority_ref_unknown_version_and_tampered_legacy_fail_closed",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authorization_grant_legacy_migration_is_deterministic",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authorization_grant_promoted_bounded_shape_and_integrity",
+      "result": "PASS"
+    },
+    {
+      "test": "test_authorization_grant_unknown_version_tamper_and_unimplemented_delegation_fail_closed",
+      "result": "PASS"
+    },
+    {
+      "test": "test_receipt_and_verdict_remain_experimental_after_m4",
+      "result": "PASS"
+    },
+    {
+      "test": "test_stable_core_has_no_provider_escape_bags",
+      "result": "PASS"
+    },
+    {
+      "test": "test_state_identity_legacy_migration_rekeys_state_id_deterministically",
+      "result": "PASS"
+    },
+    {
+      "test": "test_state_identity_promoted_stable_round_trip",
+      "result": "PASS"
+    },
+    {
+      "test": "test_state_identity_stable_golden_vector",
+      "result": "PASS"
+    },
+    {
+      "test": "test_state_identity_unknown_version_and_tamper_fail_closed",
+      "result": "PASS"
+    },
+    {
+      "test": "test_topology_cannot_broaden_authorization_and_technical_formation_is_not_authorization",
+      "result": "PASS"
+    },
+    {
+      "test": "test_topology_cannot_waive_required_evidence",
+      "result": "PASS"
+    }
+  ]
+}

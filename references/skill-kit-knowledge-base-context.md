@@ -3,7 +3,7 @@ id: harness-rig-skill-kit-knowledge-base-context
 title: Skill Kit knowledge-base integration for the Harness Rig Context plane
 summary: 'First-class Context architecture based on Skill Kit''s LLM knowledge-base maintainer: canonical Markdown, stable
   IDs, provenance, reconciliation, llms.txt, manifest.jsonl, drift, and integrity.'
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Skill Kit llm-knowledge-base-maintainer v1.1.0, SKILL.md and DEFAULT_LAYOUT.md, inspected 2026-09-24

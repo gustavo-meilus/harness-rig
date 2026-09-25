@@ -3,7 +3,7 @@ id: harness-rig-source-register
 title: Source register
 summary: Primary repository sources and external references used to ground the Harness Rig architecture, governance, migration,
   and runtime-harness recommendations.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Sources directly inspected or explicitly supplied during Harness Rig research through 2026-09-21

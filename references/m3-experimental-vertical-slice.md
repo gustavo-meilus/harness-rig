@@ -3,7 +3,7 @@ id: harness-rig-m3-experimental-vertical-slice
 title: M3 experimental direct vertical slice
 summary: Executable Direct Authority to Assurance to direct Topology to command gate to EvidenceReceipt to action-qualified
   AcceptanceVerdict path, with all M1 fixtures and M3 verification checks passing while contracts remain Experimental.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig M3 experimental direct vertical-slice implementation and executable verification, 2026-09-25

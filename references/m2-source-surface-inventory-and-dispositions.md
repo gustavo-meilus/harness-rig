@@ -3,7 +3,7 @@ id: harness-rig-m2-source-surface-inventory
 title: M2 source-surface inventory and capability dispositions
 summary: Source-backed M2 inventory and KEEP/ADAPT/REPLACE/RETIRE decisions for AIBoarding, TacticSwitch, and the relevant
   Skill Kit plugins before Git-history import.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig M2 retry execution and source-surface inventory, 2026-09-25

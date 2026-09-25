@@ -1,9 +1,8 @@
 ---
 id: harness-rig-adr-authorization-grant
-title: 'ADR: Experimental AuthorizationGrant protocol'
-summary: Accepted M1 bounded authorization protocol covering issuer, principal, action, resource, expiry, delegation, revocation,
-  and optional authority/state binding.
-version: planning-baseline-2026-09-25-r8.3
+title: 'ADR: Stable AuthorizationGrant v1 protocol'
+summary: Stable M4 bounded authorization protocol covering issuer, principal, action, resource, lifetime, nondelegable semantics, and optional authority/state binding.
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
@@ -14,38 +13,37 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Status
 
-**Accepted for Experimental implementation in M1. Stable promotion is forbidden before M4.**
+**M4 disposition: `PROMOTE_STABLE`. Schema: `harness-rig/authorization-grant/v1`.**
 
 # Decision
 
 The former action-name-only authorization concept is replaced by bounded `AuthorizationGrant`.
 
 ```text
+schema = harness-rig/authorization-grant/v1
 grant_id
 issuer
 principal
-scope:
-  action
-  resource
-bindings:
-  authority_id?
-  state_id?
-  subject_ref?
+action
+resource
+authority_id?
+state_id?
+subject_ref?
 issued_at
 expires_at?
-delegation
-origin
-provider_ref
+delegation = none
 ```
 
 # Validity
 
-Grant validation checks trusted issuer, matching principal/action/resource, required authority/state/subject binding,
-issuance/lifetime and **expiry**, allowed delegation, and provider revocation/current status where that authoritative
-provider supports it.
+Shared grant validation checks trusted issuer, matching principal/action/resource, required authority/state/subject binding,
+issuance/lifetime and **expiry**, allowed delegation, schema, and integrity. When an external authorization provider has
+revocation/current-status semantics, the consequential action adapter must consult that provider at action time; the Stable
+grant does not claim to mirror provider status.
 
 A required grant that cannot be verified causes `BLOCKED`.
 
@@ -68,12 +66,11 @@ policy requires it. Merge/publish/deploy/destructive grants normally bind the co
 
 # Delegation
 
-Default is `none`. A fresh verifier/retry/recurrence actor does not inherit a grant merely because it can read the grant.
+Stable v1 supports only `delegation = none`. A fresh verifier/retry/recurrence actor does not inherit a grant merely because it can read the grant. Non-`none` delegation fails closed until a real consumer earns broader semantics.
 
-# Revocation
+# Provider/current-status boundary
 
-Harness Rig does not mirror authorization providers into a central revocation DB. Consequential action-time validation
-consults the authoritative provider when revocation/current-status semantics exist.
+Harness Rig does not mirror authorization providers into a central revocation DB and does not embed provider credentials/status in the Stable grant. Consequential action-time integrations consult the authoritative provider when revocation/current-status semantics exist.
 
 # Secrets
 
@@ -89,6 +86,14 @@ RigYard's one-use attempt capability is valuable for technical attribution and r
 AuthorizationGrant -> permission to act
 one-use attempt capability -> one expected technical attempt/result
 ```
+
+# M4 compatibility and failure semantics
+
+- Exact Stable v1 values load only after field, lifetime, digest and `grant_id` integrity checks.
+- Exact Experimental v1 values migrate deterministically after old `grant_id` verification.
+- Migration drops the unused Experimental `origin` field and recomputes `grant_id` under Stable v1.
+- Unknown schema/fields, tampering, malformed lifetime/time, and unsupported delegation fail closed.
+- A required missing grant is `UNVERIFIABLE`; invalid schema/integrity/binding/time is `INVALID`.
 
 # Minimum-sufficient boundary
 

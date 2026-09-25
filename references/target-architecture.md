@@ -2,7 +2,7 @@
 id: harness-rig-target-architecture
 title: Target architecture
 summary: Proposed modular monorepo architecture, dependency direction, module responsibilities, and extension boundaries.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig architecture analysis, 2026-09-21

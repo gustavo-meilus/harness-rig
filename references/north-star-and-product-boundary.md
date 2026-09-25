@@ -3,7 +3,7 @@ id: harness-rig-north-star-and-product-boundary
 title: Harness Rig north star and product boundary
 summary: The product thesis, defensible guarantee, merge decision, and boundaries that prevent Harness Rig from becoming an
   all-owning framework.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Current project baseline and prior Harness Rig architecture analysis, 2026-09-21

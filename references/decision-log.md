@@ -2,7 +2,7 @@
 id: harness-rig-decision-log
 title: Harness Rig decision log
 summary: Current accepted planning decisions, open decisions, and the rationale that should remain stable during migration.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Consolidated Harness Rig analysis through 2026-09-21
@@ -23,6 +23,7 @@ provenance:
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
 - 'Harness Rig remediation sequencing decision: CHANGELOG-backed M2 and deferred Git-history qualification in M11, 2026-09-25'
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Accepted planning decisions
 
@@ -88,7 +89,9 @@ A future reversal requires a new explicit architectural decision backed by demon
 
 ## D37 — Security/trust rules have one canonical knowledge owner, not a new subsystem
 
-## D38 — M1 trust contracts remain Experimental until M4 promotion criteria
+## D38 — M1 trust contracts remained Experimental until M4 promotion criteria
+
+Satisfied by M4; no M1 contract was promoted solely because M3 used it.
 
 ## D39 — M2 uses CHANGELOG-backed source consolidation
 
@@ -101,11 +104,21 @@ The history-import/rewrite/mapping/legacy-check requirements remain fail-closed,
 
 M11 must reconcile `CHANGELOG.md` against the actual source histories.
 
+## D41 — M4 promotes only AuthorityRef, AuthorizationGrant, and StateIdentity
+
+`AuthorityRef` is Stable only as a provider-neutral envelope; Direct-provider path/content fields remain local. `AuthorizationGrant` and `StateIdentity` are Stable v1. `EvidenceReceipt` and `AcceptanceVerdict` remain Experimental shared.
+
+## D42 — Assurance and Topology remain separate module authorities
+
+Assurance defines required evidence/independence/authorization predicates. Topology cannot select Assurance policy, waive evidence, or broaden/mint authorization. Technical formation/capability is not authorization.
+
+## D43 — ContextManifest remains outside Stable core in M4
+
+No second independent consumer exists; Context internals remain owned by Context and M5.
+
 # Open decisions
 
-- exact StateIdentity serialization;
-- authority canonicalization;
-- AuthorizationGrant implementation representation after M3 consumer evidence;
+- authority canonicalization profiles beyond the current Direct provider;
 - exact SpecEngine API;
 - OpenSpec compatibility;
 - canonical KB discovery/location convention;

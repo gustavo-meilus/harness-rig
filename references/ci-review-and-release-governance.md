@@ -2,7 +2,7 @@
 id: harness-rig-ci-review-and-release-governance
 title: CI, review, versioning, and release governance
 summary: Repository-wide CI aggregation, review roles, versioning, schema migrations, and provenance-aware release policy.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - GitHub Actions workflow syntax, accessed 2026-09-21

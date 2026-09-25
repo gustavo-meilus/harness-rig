@@ -3,7 +3,7 @@ id: harness-rig-m2-verification-gate-tooling
 title: M11 history qualification verification tooling
 summary: Prepared M11 verification tooling for reproducible mappings, legacy checks, import-only proof, surface inventory
   and CHANGELOG/history reconciliation.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig M2 retry 5 verification-gate tooling implementation and synthetic adversarial verification, 2026-09-25

@@ -26,6 +26,48 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.4 — 2026-09-25 — Core promotion and module-boundary convergence
+
+### M4 dispositions
+
+- `AuthorityRef`: `SPLIT_STABLE_INVARIANT_FROM_EXPERIMENTAL_PROVIDER_FIELDS`. Stable v1 now contains only schema, provider, subject and provider-computed authority identity; Direct file path/content canonicalization stays provider-local.
+- `AuthorizationGrant`: `PROMOTE_STABLE` as bounded `harness-rig/authorization-grant/v1`. The unused Experimental `origin` field was retired; Stable v1 remains nondelegable and does not embed provider credentials/revocation infrastructure.
+- `StateIdentity`: `PROMOTE_STABLE` as `harness-rig/state-identity/v1`, preserving exact revision/index/tracked/untracked/submodule identity and adding strict load/migration/integrity semantics plus an executable golden vector.
+- `EvidenceReceipt`: `KEEP_EXPERIMENTAL_SHARED`; one real Harness Rig gate provider is insufficient to freeze the common envelope ahead of M9.
+- `AcceptanceVerdict`: `KEEP_EXPERIMENTAL_SHARED`; the direct CLI is not a second independent consequential lifecycle consumer.
+- `AssurancePlan`, direct `ExecutionPlan`/Topology shape, Context internals, `RuntimeResolution`, recurrence state, `CapabilitySet`, and `ContextManifest` remain module/adapter-owned or Experimental.
+
+### Compatibility and failure behavior
+
+- Added deterministic migration from the exact M3 AuthorityRef direct-file shape, Experimental AuthorizationGrant v1 and Experimental StateIdentity v1.
+- Stable grant/state migrations re-key IDs when schema identity changes; AuthorityRef preserves the provider-computed authority ID while dropping provider-local source fields.
+- Unknown versions, extra/missing Stable fields, invalid digests, integrity mismatch, malformed grant lifetimes and unsupported delegation fail closed.
+- Provider-native evidence remains referenced rather than flattened.
+
+### Boundary verification
+
+- Assurance has no worker/host/model/principal selection field.
+- Missing required evidence remains `BLOCKED` regardless of topology.
+- An action-mismatched grant remains invalid regardless of topology.
+- Technical direct formation does not satisfy missing authorization.
+- Stable contracts expose no provider escape bags.
+
+### Verified
+
+- Re-ran all 22 M3 regression tests: PASS.
+- Added and ran 15 M4 adversarial/promotion tests: PASS.
+- Total unittest cases: 37/37 PASS.
+- M4-V01 through M4-V05: PASS.
+- Direct CLI smoke: command-gate `PASS` -> merge `ACCEPTED`.
+- Canonical KB integrity: 38 references, 38 deterministic manifest rows, 0 broken local/`llms.txt` links, byte-identical manifest regeneration.
+
+### Complexity
+
+No registry, dependency-injection framework, central contract/evidence service, IAM system, plugin SDK, recurrence platform, generic telemetry platform, vector/RAG infrastructure, or new orchestration framework was added.
+
+---
+
+
 ## r8.3 — 2026-09-25 — Experimental direct vertical slice
 
 ### Implemented

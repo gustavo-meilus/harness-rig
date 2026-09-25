@@ -3,7 +3,7 @@ id: harness-rig-usage-and-scope
 title: Harness Rig knowledge-base usage and scope
 summary: How an LLM should use this collection without confusing current implementation, proposed architecture, evidence,
   and decisions.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - LLM Knowledge Base Maintainer skill, gustavo-meilus/skill-kit, accessed 2026-09-21
@@ -25,6 +25,7 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Purpose
 
@@ -81,22 +82,16 @@ Code/tests/runtime remain authoritative for their respective evidence.
 - [Skill Kit knowledge-base integration for the Harness Rig Context plane](skill-kit-knowledge-base-context.md)
 - [Roadmap](roadmap.md)
 
-# M1 trust-protocol reading order
+# Trust-protocol reading order
 
-"
-    "1. [Contracts](contracts-state-and-evidence.md)
-"
-    "2. [StateIdentity ADR](adr-state-identity.md)
-"
-    "3. [AuthorizationGrant ADR](adr-authorization-grant.md)
-"
-    "4. [EvidenceReceipt ADR](adr-evidence-receipt.md)
-"
-    "5. [AcceptanceVerdict ADR](adr-acceptance-verdict.md)
-"
-    "6. [Security/trust boundaries](security-trust-and-execution-boundaries.md)
-"
-    "7. [Trust fixtures](trust-protocol-adversarial-fixtures.md)
+1. [Contracts](contracts-state-and-evidence.md)
+2. [StateIdentity ADR](adr-state-identity.md)
+3. [AuthorizationGrant ADR](adr-authorization-grant.md)
+4. [EvidenceReceipt ADR](adr-evidence-receipt.md)
+5. [AcceptanceVerdict ADR](adr-acceptance-verdict.md)
+6. [Security/trust boundaries](security-trust-and-execution-boundaries.md)
+7. [Trust fixtures](trust-protocol-adversarial-fixtures.md)
+8. [M4 core promotion and module boundary](m4-core-promotion-and-module-boundary.md)
 
-"
-    "These contracts are Experimental after M1.
+M1 introduced these contracts as Experimental. M4 promotes the provider-neutral `AuthorityRef` envelope,
+`AuthorizationGrant`, and `StateIdentity` to Stable v1; `EvidenceReceipt` and `AcceptanceVerdict` remain Experimental shared.

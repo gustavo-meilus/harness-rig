@@ -1,0 +1,15 @@
+{
+  "schema": "harness-rig/m4-kb-integrity/v1",
+  "revision": "r8.4",
+  "result": "PASS",
+  "reference_count": 38,
+  "manifest_row_count": 38,
+  "unique_id_count": 38,
+  "yaml_parse": "PASS",
+  "manifest_order": "stable-id",
+  "manifest_order_check": "PASS",
+  "manifest_regeneration_byte_identical": true,
+  "broken_local_links": [],
+  "manifest_sha256": "2f71894d543b80e01fd0937feb00b72af0ee9151fc8c1fad3aa2e5ddd87b861a",
+  "errors": []
+}

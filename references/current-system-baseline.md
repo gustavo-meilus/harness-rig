@@ -3,7 +3,7 @@ id: harness-rig-current-system-baseline
 title: Current project baseline
 summary: Verified current responsibilities, strengths, overlaps, maturity gaps, and confirmed defects across AIBoarding, TacticSwitch,
   and Adaptive Engineering Harness.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - gustavo-meilus/aiboarding docs/LOOP-ENGINEERING.md, accessed 2026-09-21

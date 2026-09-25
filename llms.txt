@@ -1,6 +1,6 @@
 # Harness Rig Knowledge Base
 
-Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M3 / r8.3 PASS; Experimental direct vertical slice verified, next milestone M4 core promotion evaluation.
+Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M4 / r8.4 PASS; AuthorityRef, AuthorizationGrant, and StateIdentity are Stable v1; EvidenceReceipt and AcceptanceVerdict remain Experimental shared. Resume at M5-T01 only when M5 is explicitly requested.
 
 ## Start here
 
@@ -15,15 +15,17 @@ Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-
 - [Core invariants and trust model](references/core-invariants-and-trust-model.md)
 - [Target architecture](references/target-architecture.md)
 - [Contracts, state, and evidence](references/contracts-state-and-evidence.md)
+- [M4 core promotion and module-boundary convergence](references/m4-core-promotion-and-module-boundary.md) — authoritative M4 dispositions, Stable v1 migration/failure semantics, and boundary evidence.
 - [Roadmap](references/roadmap.md)
 - [Repository governance and change model](references/repository-governance-and-change-model.md)
 
-## Executable vertical slice — M3
+## Executable trust path — M3/M4
 
-- [M3 experimental direct vertical slice](references/m3-experimental-vertical-slice.md) — executable Direct Authority → Assurance → Direct Topology → command gate → EvidenceReceipt → AcceptanceVerdict path and runtime evidence.
-- [M3 prototype README](prototype/README.md) — run commands, implementation boundary, and Experimental limitations.
+- [M3 experimental direct vertical slice](references/m3-experimental-vertical-slice.md) — historical executable Direct Authority → Assurance → Direct Topology → command gate → EvidenceReceipt → AcceptanceVerdict baseline.
+- [M4 prototype README](prototype/README.md) — current Stable/Experimental boundary, run commands, migration semantics, and limitations.
+- [Progressive revision record](references/revision-record.md) — current r8.4 PASS and resume pointer.
 
-## Trust protocol — M1
+## Trust contracts
 
 - [Contracts](references/contracts-state-and-evidence.md)
 - [StateIdentity ADR](references/adr-state-identity.md)

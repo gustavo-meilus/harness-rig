@@ -2,7 +2,7 @@
 id: harness-rig-risks-non-goals-and-deferred-work
 title: Risks, non-goals, and deferred work
 summary: Failure modes to actively avoid and features that should wait until the core control system is proven.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig architecture and governance analysis, 2026-09-21

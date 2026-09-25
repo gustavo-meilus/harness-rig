@@ -3,7 +3,7 @@ id: harness-rig-openspec-spec-engine-and-authority
 title: OpenSpec spec engine, authority, and brainstorming integration
 summary: 'OpenSpec-first spec-driven architecture for Harness Rig: default external SpecEngine, content-addressed authority,
   authorization separation, validation/archive guards, rigor tiers, and no hard dependency.'
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - User-supplied openspec_harness_engineering_analysis.md, research snapshot 2026-09-21

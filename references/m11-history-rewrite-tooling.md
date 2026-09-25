@@ -2,7 +2,7 @@
 id: harness-rig-m2-history-rewrite-tooling
 title: M11 history rewrite and verification tooling
 summary: Prepared native-Git migration-only rewrite and independent verification tooling retained for M11 source-history qualification.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig M2 retry 3 native-Git migration tooling implementation and synthetic verification, 2026-09-25

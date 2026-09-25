@@ -3,7 +3,7 @@ id: harness-rig-adr-evidence-receipt
 title: 'ADR: Experimental EvidenceReceipt protocol'
 summary: Accepted M1 claim-specific evidence envelope with state/authority binding, bounded material input bindings, producer
   admissibility, gate versions, artifact integrity, and replay rules.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
@@ -14,10 +14,11 @@ provenance:
 - Skill Kit more-with-less v1.0.2 canonical skill and playbook inspected 2026-09-24
 - Git official status/diff/submodule documentation rechecked 2026-09-24
 - Node.js official child_process documentation rechecked 2026-09-24
+- Harness Rig M4 core-promotion implementation and verification, 2026-09-25
 ---
 # Status
 
-**Accepted for Experimental implementation in M1. Stable promotion is forbidden before M4.**
+**M4 disposition: `KEEP_EXPERIMENTAL_SHARED`.** One actual Harness Rig gate provider exists; M9 must exercise materially different providers before Stable envelope promotion.
 
 # Reuse before invention
 

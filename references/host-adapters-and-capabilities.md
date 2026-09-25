@@ -3,7 +3,7 @@ id: harness-rig-host-adapters-and-capabilities
 title: Host adapters and capability negotiation
 summary: Capability-based integration model for Claude Code, Codex, Copilot, and future hosts without pretending their enforcement
   surfaces are identical.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - TacticSwitch protocol, governance, and adapter evidence policy, accessed 2026-09-21

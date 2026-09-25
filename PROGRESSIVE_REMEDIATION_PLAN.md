@@ -45,22 +45,23 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M4
+current_milestone: M5
 current_revision: r8.4
 milestone_result: NOT_RUN
-last_completed_task: M3-V05
-next_task: M4-T01
+last_completed_task: M4-V05
+next_task: M5-T01
 blocking_issue: null
 verification_pending:
-  - M4-V01
-  - M4-V02
-  - M4-V03
-  - M4-V04
-  - M4-V05
+  - M5-V01
+  - M5-V02
+  - M5-V03
+  - M5-V04
+  - M5-V05
 notes: >
-  M0, M1, M2 and M3 completed with PASS. M3 verified the complete Experimental direct trust path.
-  Full Git-history preservation/reconciliation moved to M11 and blocks M12/1.0, not M3.
-  Start from M4-T01 and do not infer completion from edited files; use milestone verification results.
+  M0, M1, M2, M3 and M4 completed with PASS. M4 promoted only the provider-neutral AuthorityRef envelope,
+  AuthorizationGrant and StateIdentity to Stable v1. EvidenceReceipt and AcceptanceVerdict remain Experimental shared.
+  Assurance/Topology planning shapes and ContextManifest remain outside Stable core. M5 has not begun.
+  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M5.
 ```
 
 ### Milestone quick index
@@ -171,23 +172,23 @@ notes: >
 
 **Execution (`r8.4`):**
 
-- [ ] **M4-T01** — Evaluate promotion of `AuthorityRef`.
-- [ ] **M4-T02** — Evaluate promotion of `AuthorizationGrant`.
-- [ ] **M4-T03** — Evaluate promotion of `StateIdentity`.
-- [ ] **M4-T04** — Evaluate promotion of `EvidenceReceipt`.
-- [ ] **M4-T05** — Evaluate promotion of `AcceptanceVerdict`.
-- [ ] **M4-T06** — Keep `AssurancePlan`, `ExecutionPlan`, Context internals, RuntimeResolution, and recurrence state module/adapter-owned unless proven cross-cutting.
-- [ ] **M4-T07** — Remove `ContextManifest` from initial stable core unless a second independent consumer proves need.
+- [x] **M4-T01** — Evaluate promotion of `AuthorityRef`.
+- [x] **M4-T02** — Evaluate promotion of `AuthorizationGrant`.
+- [x] **M4-T03** — Evaluate promotion of `StateIdentity`.
+- [x] **M4-T04** — Evaluate promotion of `EvidenceReceipt`.
+- [x] **M4-T05** — Evaluate promotion of `AcceptanceVerdict`.
+- [x] **M4-T06** — Keep `AssurancePlan`, `ExecutionPlan`, Context internals, RuntimeResolution, and recurrence state module/adapter-owned unless proven cross-cutting.
+- [x] **M4-T07** — Remove `ContextManifest` from initial stable core unless a second independent consumer proves need.
 
 **Verification:**
 
-- [ ] **M4-V01** — Each promoted core contract has two concrete consumers or one unavoidable cross-cutting invariant.
-- [ ] **M4-V02** — No provider-specific escape fields are needed.
-- [ ] **M4-V03** — Assurance cannot select workers.
-- [ ] **M4-V04** — Topology cannot waive evidence or broaden authorization.
-- [ ] **M4-V05** — Version/migration/failure semantics are explicit for promoted contracts.
+- [x] **M4-V01** — Each promoted core contract has two concrete consumers or one unavoidable cross-cutting invariant.
+- [x] **M4-V02** — No provider-specific escape fields are needed.
+- [x] **M4-V03** — Assurance cannot select workers.
+- [x] **M4-V04** — Topology cannot waive evidence or broaden authorization.
+- [x] **M4-V05** — Version/migration/failure semantics are explicit for promoted contracts.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M5`
 
 #### M5 — Context convergence and canonical knowledge lifecycle
@@ -1068,25 +1069,45 @@ M4 may now evaluate—not assume—promotion of the proven cross-cutting contrac
 
 **Execution tasks:**
 
-- [ ] **M4-T01** — Evaluate promotion of `AuthorityRef`.
-- [ ] **M4-T02** — Evaluate promotion of `AuthorizationGrant`.
-- [ ] **M4-T03** — Evaluate promotion of `StateIdentity`.
-- [ ] **M4-T04** — Evaluate promotion of `EvidenceReceipt`.
-- [ ] **M4-T05** — Evaluate promotion of `AcceptanceVerdict`.
-- [ ] **M4-T06** — Keep `AssurancePlan`, `ExecutionPlan`, Context internals, RuntimeResolution, and recurrence state module/adapter-owned unless proven cross-cutting.
-- [ ] **M4-T07** — Remove `ContextManifest` from initial stable core unless a second independent consumer proves need.
+- [x] **M4-T01** — Evaluate promotion of `AuthorityRef`.
+- [x] **M4-T02** — Evaluate promotion of `AuthorizationGrant`.
+- [x] **M4-T03** — Evaluate promotion of `StateIdentity`.
+- [x] **M4-T04** — Evaluate promotion of `EvidenceReceipt`.
+- [x] **M4-T05** — Evaluate promotion of `AcceptanceVerdict`.
+- [x] **M4-T06** — Keep `AssurancePlan`, `ExecutionPlan`, Context internals, RuntimeResolution, and recurrence state module/adapter-owned unless proven cross-cutting.
+- [x] **M4-T07** — Remove `ContextManifest` from initial stable core unless a second independent consumer proves need.
 
 **Verification tasks:**
 
-- [ ] **M4-V01** — Each promoted core contract has two concrete consumers or one unavoidable cross-cutting invariant.
-- [ ] **M4-V02** — No provider-specific escape fields are needed.
-- [ ] **M4-V03** — Assurance cannot select workers.
-- [ ] **M4-V04** — Topology cannot waive evidence or broaden authorization.
-- [ ] **M4-V05** — Version/migration/failure semantics are explicit for promoted contracts.
+- [x] **M4-V01** — Each promoted core contract has two concrete consumers or one unavoidable cross-cutting invariant.
+- [x] **M4-V02** — No provider-specific escape fields are needed.
+- [x] **M4-V03** — Assurance cannot select workers.
+- [x] **M4-V04** — Topology cannot waive evidence or broaden authorization.
+- [x] **M4-V05** — Version/migration/failure semantics are explicit for promoted contracts.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
 > Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
+
+**M4 completion record (2026-09-25):**
+
+```text
+AuthorityRef        SPLIT_STABLE_INVARIANT_FROM_EXPERIMENTAL_PROVIDER_FIELDS
+AuthorizationGrant PROMOTE_STABLE
+StateIdentity       PROMOTE_STABLE
+EvidenceReceipt     KEEP_EXPERIMENTAL_SHARED
+AcceptanceVerdict   KEEP_EXPERIMENTAL_SHARED
+```
+
+Stable v1 promotion is limited to the provider-neutral `AuthorityRef` envelope, bounded `AuthorizationGrant`, and exact
+`StateIdentity`. Direct-provider authority path/content fields remain provider-owned. `EvidenceReceipt` remains Experimental
+shared because only one Harness Rig gate provider exists; `AcceptanceVerdict` remains Experimental shared because there is
+not yet a second real consequential lifecycle consumer.
+
+Verification evidence: all 22 affected M3 regression tests and all 15 M4 adversarial/promotion tests pass; unknown/incompatible
+Stable contract versions fail closed; exact Experimental v1 grant/state forms migrate deterministically after old-integrity
+validation; the AuthorityRef legacy Direct form migrates without freezing provider fields; Assurance cannot select workers;
+and Topology cannot waive evidence or broaden/mint authorization.
 
 **Progressive revision:** `r8.4`  
 **Purpose:** stabilize only abstractions that real consumers have proven necessary.

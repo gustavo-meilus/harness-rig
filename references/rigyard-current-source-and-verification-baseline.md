@@ -3,7 +3,7 @@ id: harness-rig-rigyard-current-source-and-verification-baseline
 title: RigYard current source and verification baseline
 summary: Source-level classification of the supplied RigYard 0.1.1 snapshot, retained verification evidence, active OpenSpec
   changes, and historical status material.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24

@@ -3,7 +3,7 @@ id: harness-rig-security-trust-and-execution-boundaries
 title: Security, trust, and execution boundaries
 summary: Canonical M1 rules for untrusted inputs, command/executable boundaries, filesystem containment, symlinks, protected
   oracles, receipt trust, secrets, and privileged actions.
-version: planning-baseline-2026-09-25-r8.3
+version: planning-baseline-2026-09-25-r8.4
 updated: '2026-09-25'
 provenance:
 - Harness Rig progressive remediation M1 trust-protocol review, 2026-09-24
