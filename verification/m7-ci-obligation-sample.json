@@ -1,0 +1,41 @@
+{
+  "affected_modules": [
+    "prototype"
+  ],
+  "artifact_id": "sha256:32e523cbdeb46a94d1b75c6a16d83445147a6bd2fe438e2ff6806341471b44f3",
+  "changed_paths": [
+    "prototype/harness_rig/repository_ci.py"
+  ],
+  "evaluated_sha": "cccccccccccccccccccccccccccccccccccccccc",
+  "event_name": "merge_group",
+  "event_subject": "merge_group:gh-readonly-queue/main/pr-42",
+  "expected_results": [
+    {
+      "obligation_id": "governance",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/governance-v1",
+      "result_key": "sha256:a5ee203398163842e00b5089f0257b399b356ea0d90aea69539a8ef227ffda3c"
+    },
+    {
+      "obligation_id": "kb-integrity",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/kb-integrity-v1",
+      "result_key": "sha256:b96e3425f9627f9fe0c46ff10c21b9803b826d23e87fe8bff2bea3d5a85cd67b"
+    },
+    {
+      "obligation_id": "ordinary",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/ordinary-v1",
+      "result_key": "sha256:015044d436e65cef71ecd20fa89abd7c3cb78189ec99eaa3f1051d5ec77b9b75"
+    }
+  ],
+  "mandatory_obligations": [
+    "governance",
+    "kb-integrity",
+    "ordinary"
+  ],
+  "policy_digest": "sha256:b97bae7b40b272670283b1419fa268b9bcc714bf2f152ff8ae541458365fc343",
+  "policy_id": "harness-rig/repository-ci/r8.7-v1",
+  "schema": "harness-rig/ci-obligation-artifact/experimental-v1",
+  "trust_mode": "trusted"
+}

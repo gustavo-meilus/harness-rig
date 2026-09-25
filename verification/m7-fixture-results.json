@@ -1,0 +1,64 @@
+{
+  "count": 14,
+  "milestone": "M7",
+  "result": "PASS",
+  "schema": "harness-rig/m7-fixture-results/v1",
+  "tests": [
+    {
+      "id": "test_artifact_tamper_or_policy_change_fails_closed",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_cli_emits_and_validates_obligation_artifact",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_duplicate_and_unexpected_results_fail_closed",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_generated_kb_inputs_remain_covered_by_kb_integrity_obligation",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_repository_policy_marks_ci_policy_oracles_and_tests_governance_sensitive",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_t01_obligation_artifact_binds_revision_modules_and_expected_result_identities",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v01_prerequisite_failure_is_explicitly_blocked_not_hidden_by_aggregator",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v02_skipped_or_missing_mandatory_job_is_detected",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v03_merge_group_subject_is_first_class_and_same_sha_results_pass",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v04_untrusted_fork_cannot_satisfy_required_with_privileged_result",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v05_resolver_or_workflow_self_modification_requires_governance_result",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v05_wrong_producer_and_event_fail_closed",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_v05_wrong_sha_fails_closed",
+      "outcome": "PASS"
+    },
+    {
+      "id": "test_workflow_contract_runs_required_after_failures_supports_merge_queue_and_has_no_privileged_pr_target",
+      "outcome": "PASS"
+    }
+  ]
+}

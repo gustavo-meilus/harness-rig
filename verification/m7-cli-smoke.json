@@ -1,0 +1,11 @@
+{
+  "decision_for": "merge",
+  "note": "Base direct trust path remains functional after M7 repository-enforcement changes.",
+  "receipt_outcome": "PASS",
+  "receipt_schema": "harness-rig/evidence-receipt/experimental-v1",
+  "result": "PASS",
+  "revision": "r8.7",
+  "schema": "harness-rig/m7-cli-smoke/v1",
+  "verdict_outcome": "ACCEPTED",
+  "verdict_schema": "harness-rig/acceptance-verdict/experimental-v1"
+}

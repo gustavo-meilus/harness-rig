@@ -1,0 +1,36 @@
+{
+  "schema": "harness-rig/m7-external-baseline/v1",
+  "checked_date": "2026-09-25",
+  "sources": [
+    {
+      "id": "github-actions-needs",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+      "fact": "A job that needs a failed or skipped job is skipped unless a status condition such as always() causes it to continue."
+    },
+    {
+      "id": "github-merge-group",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#merge_group",
+      "fact": "Required GitHub Actions checks used with merge queues need the merge_group event; GITHUB_SHA is the merge-group SHA."
+    },
+    {
+      "id": "github-pull-request-target-security",
+      "url": "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+      "fact": "pull_request_target has elevated base-repository trust and must not execute untrusted PR code with secrets or a privileged token."
+    },
+    {
+      "id": "github-fork-permissions",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions",
+      "fact": "Fork pull_request workflows are normally reduced to read-only token permissions; explicit least-privilege workflow permissions remain required."
+    },
+    {
+      "id": "github-required-check-source",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks",
+      "fact": "Protected branches can require a status check from a specific expected GitHub App/source."
+    }
+  ],
+  "limitations": [
+    "No remote Harness Rig GitHub repository/ruleset was modified or inspected during M7 execution.",
+    "No real CODEOWNERS identity is defined by the package; deployment must use repository-specific owners.",
+    "Workflow behavior is verified locally through deterministic meta-tests and static workflow contract checks, not a hosted GitHub Actions run."
+  ]
+}

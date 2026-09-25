@@ -1,0 +1,14 @@
+{
+  "accepted_results": [
+    "sha256:1ac798893fac851a6da27932e31a000f125d33235c242bd5c6eec5a47363b39b",
+    "sha256:d38e511fe6401b886249f9f4a72848de02aa1c316f699f57eb9f7670794494bc",
+    "sha256:eb618844a7ac0aa42aeceaff16eeda2aee27b0f8504ab929b7629dafd10c7a51"
+  ],
+  "evaluated_sha": "cccccccccccccccccccccccccccccccccccccccc",
+  "event_name": "merge_group",
+  "event_subject": "merge_group:gh-readonly-queue/main/pr-42",
+  "outcome": "PASS",
+  "reasons": [],
+  "schema": "harness-rig/ci-required-verdict/experimental-v1",
+  "verdict_id": "sha256:ea6bf7acb049e0c5fa20e383b60c35754c66b00870115d6fb1a0490cbe8081c1"
+}

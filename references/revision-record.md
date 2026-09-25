@@ -2,76 +2,66 @@
 id: harness-rig-progressive-revision-record
 title: Harness Rig progressive revision record
 summary: Current progressive-remediation milestone status, verification result, evidence limits, and next permitted milestone.
-version: planning-baseline-2026-09-25-r8.6
+version: planning-baseline-2026-09-25-r8.7
 updated: '2026-09-25'
 provenance:
-- Harness Rig progressive remediation M0-M5 execution and verification, 2026-09-24 through 2026-09-25
+- Harness Rig progressive remediation M0-M6 execution and verification, 2026-09-24 through 2026-09-25
 - Skill Kit more-with-less v1.0.2 minimum-sufficient engineering doctrine, applied 2026-09-25
-- OpenSpec v1.13.2 public release/package/CLI/agent-contract surfaces rechecked 2026-09-25
-- Harness Rig M6 OpenSpec SpecEngine implementation and adversarial verification, 2026-09-25
+- GitHub Actions workflow, merge_group, fork-token, required-check and pull_request_target security documentation rechecked 2026-09-25
+- Harness Rig M7 trusted repository enforcement implementation and adversarial verification, 2026-09-25
 ---
 # Current revision
 
 ```text
-milestone: M6
-package revision: r8.6
+milestone: M7
+package revision: r8.7
 result: PASS
 date: 2026-09-25
-next allowed milestone: M7
-resume task: M7-T01
+next allowed milestone: M8
+resume task: M8-T01
 ```
 
-# M6 implemented boundary
+# M7 implemented boundary
+
+M7 adds one repository-local CI obligation resolver and one strict final required-verdict validator. These schemas remain Experimental application evidence and are not promoted into Stable core.
 
 ```text
-DirectAuthorityProvider -> Stable AuthorityRef v1
-OpenSpecAdapter         -> Stable AuthorityRef v1
-Experimental SpecEngine -> available / health / authority / archive
+event subject + evaluated SHA + changed paths
+  -> ci obligation artifact
+  -> ordinary / kb-integrity / conditional governance results
+  -> ci / required
 ```
 
-OpenSpec remains an optional external executable. Base Harness Rig still works when it is absent; an OpenSpec-required path fails closed when it is unavailable or incompatible.
+The final verdict recomputes mandatory obligations from the current checked policy and requires exactly one `PASS` result per mandatory obligation with matching SHA, event subject, producer and deterministic result identity.
 
-The current compatibility profile is exactly OpenSpec `1.13.2`. Version is a health/compatibility predicate, not part of the authority fingerprint.
+# GitHub workflow boundary
 
-# M6 authority and health semantics
+The retained workflow covers `pull_request`, main `push`, `workflow_dispatch`, and `merge_group` with `checks_requested`. `ci / required` declares `if: ${{ always() }}` and depends on resolver, ordinary, KB-integrity and governance jobs, so prerequisite failure cannot make the required aggregate disappear.
 
-- Default task bookkeeping does not alter OpenSpec authority identity.
-- Proposal/scope, behavioral deltas, constraining design, effective context/rules, custom non-task artifacts and authority-bearing referenced specs do alter authority identity.
-- Unknown custom planning artifacts are conservatively authority-bearing.
-- `skip_specs` is supported as an OpenSpec planning decision but never skips strict validation, Harness authorization, exact state or acceptance.
-- Unresolved authority-bearing references fail closed.
-- Root health, planning completeness, strict validation, current apply/archive instructions and effective config/rule shapes are checked explicitly.
-- Primary external Store roots are not archive-qualified in M6; read-only referenced Stores can contribute authority.
-- Strict OpenSpec validation is not semantic proof. A required semantic-coherence predicate that fails/unknown blocks before archive.
+Fork PR execution uses `pull_request`, read-only contents permission, no secret references and no privileged actions. `pull_request_target` is absent. The validator also rejects privileged result shapes on an `untrusted_fork` subject.
 
-# Archive transition
+# Governance-sensitive paths
 
-`harness-rig spec archive` evaluates `(A0,S0)`, requires bounded `spec_archive` authorization and readiness evidence, invokes only OpenSpec's public archive command, checks postconditions, records transition evidence for `(A1,S1)`, and explicitly rechecks the pre-archive receipt/grant against final authority/state. The old preconditions must not remain accepted.
+`governance/ci-policy.json` classifies workflow, policy, resolver, KB oracle, trust-oracle, known-bad fixture and test-oracle paths as governance-sensitive. A change to those paths adds the `governance` obligation; removing that obligation from the artifact is detected by recomputation.
 
-Partial mutation, command failure, missing archive target, active-change residue, or unreadable final affected specs produce `BLOCKED`.
-
-# Runtime verification
+# Verification
 
 ```text
-M3 regression suite: 22/22 PASS
-M4 adversarial suite: 15/15 PASS
-M5 Context suite: 14/14 PASS
-M6 OpenSpec suite: 16/16 PASS
-combined unittest cases: 67/67 PASS
-M1-F01 ... M1-F16 remain PASS through M3 regressions
-M6-V01 ... M6-V06 PASS
+M3: 22/22 PASS
+M4: 15/15 PASS
+M5: 14/14 PASS
+M6: 16/16 PASS
+M7: 14/14 PASS
+combined: 81/81 PASS
+M7-V01 ... M7-V05: PASS
 ```
 
-Final collection counts are recorded in `verification/m6-verification-record.json` after deterministic manifest/projection regeneration; exact packaged-byte rerun evidence is reported in the delivery handoff after package construction.
+M7 includes executable cases for prerequisite failure, skipped/missing mandatory jobs, merge queues, untrusted fork privilege, self-modifying workflow/resolver changes, wrong SHA/event/producer, policy/artifact tamper, duplicate/unexpected results and generated-KB coverage.
 
-# Important boundary
+# Evidence limit
 
-M6 does not implement M7 repository enforcement, M8 host qualification, M9 gate/Playwright platform work, M10 CLI finalization, or M11 Git-history qualification. It does not promote Experimental `SpecEngine`, `EvidenceReceipt`, or `AcceptanceVerdict` to Stable.
+No remote GitHub repository/ruleset was modified or observed in this execution. The package therefore does not claim that `ci / required` is already configured as a live protected-branch requirement or that real CODEOWNERS approval is installed. `governance/github-enforcement-requirements.json` records those deployment requirements without inventing repository owners.
 
-No OpenSpec parser/merge engine, npm dependency, vector/RAG subsystem, IAM system, evidence database, plugin SDK, recurrence platform, generic telemetry platform, or new orchestration framework was introduced.
+# Deferred
 
-The verification sandbox did not expose a local `openspec` executable, so M6 does not claim live native-runtime qualification. Adapter behavior is covered by deterministic 1.13.2 contract fixtures and subprocess-boundary verification; external public-contract facts were rechecked on 2026-09-25.
-
-# Next
-
-Resume at **M7-T01 - Emit a CI obligation artifact for the evaluated revision**. M7 has not been executed.
+M7 does not perform M8 host capability qualification, M9 gate/Playwright platform work, M10 product CLI/release provenance finalization, M11 history qualification or M12/1.0 qualification.

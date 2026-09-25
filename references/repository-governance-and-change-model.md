@@ -2,7 +2,7 @@
 id: harness-rig-repository-governance-and-change-model
 title: Repository governance and change model
 summary: Governance model for a modular monorepo that can add features without turning core contracts into a moving monolith.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.7
 updated: '2026-09-25'
 provenance:
 - TacticSwitch docs/GOVERNANCE.md and CONTRIBUTING.md, accessed 2026-09-21
@@ -13,6 +13,7 @@ provenance:
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
+- Harness Rig M7 repository enforcement implementation and verification, 2026-09-25
 ---
 # Governance objective
 
@@ -98,6 +99,12 @@ Distinguish:
 Use `.github/CODEOWNERS` for review routing.
 
 Do not rely on CODEOWNERS as the complete governance engine. Critical cross-module or constitutional requirements should be checked by Harness Rig's own governance CI because path ownership and required-review semantics do not express every required combination of approvals or evidence.
+
+# M7 governance-sensitive enforcement
+
+M7 makes CI/resolver/policy/trust-oracle changes machine-detectable C3-sensitive paths. Such changes require an explicit `governance` CI obligation in addition to ordinary and KB-integrity obligations. The exact current path policy is `governance/ci-policy.json`.
+
+This local mechanism complements, but cannot replace, protected-branch/ruleset review controls. A deployed repository should require `ci / required` and real code-owner or equivalent approval for those paths. r8.7 intentionally does not invent a CODEOWNERS identity.
 
 # Feature maturity
 

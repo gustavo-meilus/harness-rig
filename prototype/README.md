@@ -1,6 +1,6 @@
-# Harness Rig r8.6 prototype
+# Harness Rig r8.7 prototype
 
-This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, and the M6 bounded OpenSpec integration.
+This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, and M7 repository-CI obligation enforcement.
 
 ```text
 Direct Authority
@@ -109,7 +109,15 @@ PYTHONPATH=prototype python -m harness_rig spec archive \
 
 The CLI is still an experimental test/product surface; M10 owns final CLI compatibility and exit-code/versioning policy.
 
-## Explicit non-goals at r8.6
+## M7 repository enforcement
+
+- `harness_rig.repository_ci` implements deterministic application-level CI obligation resolution and final required-verdict validation.
+- `governance/ci-policy.json` declares always-required ordinary/KB obligations and conditional governance-sensitive paths.
+- `.github/workflows/ci-required.yml` covers pull requests, main pushes, manual dispatch, and merge-group checks; `ci / required` uses `always()` after all prerequisite jobs.
+- Fork PR execution uses `pull_request`, read-only contents permission, no secret references, and no privileged actions.
+- Remote ruleset/CODEOWNERS configuration remains an install-time repository control and is not claimed as live-qualified by this package.
+
+## Explicit non-goals at r8.7
 
 Not implemented/promoted through M6:
 

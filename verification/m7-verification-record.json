@@ -1,0 +1,53 @@
+{
+  "artifacts": [
+    "governance/ci-policy.json",
+    "governance/github-enforcement-requirements.json",
+    ".github/workflows/ci-required.yml",
+    "verification/ci_obligations.py",
+    "verification/m7-ci-obligation-sample.json",
+    "verification/m7-ci-required-sample.json"
+  ],
+  "checks": {
+    "direct_cli": "PASS->ACCEPTED",
+    "kb_audit": "PASS:41/41 projection FRESH",
+    "manifest_regeneration": "BYTE_IDENTICAL",
+    "product_shell_true_occurrences": 0,
+    "workflow_pull_request_target_occurrences": 0,
+    "workflow_secret_references": 0,
+    "workflow_yaml_parse": "PASS"
+  },
+  "date": "2026-09-25",
+  "limits": [
+    "No remote GitHub repository/ruleset was modified or observed.",
+    "No real CODEOWNERS identity is known; deployment must configure repository-specific owners.",
+    "Hosted GitHub Actions execution was not available; workflow behavior is covered by deterministic meta-tests and static contract checks."
+  ],
+  "milestone": "M7",
+  "next_task": "M8-T01",
+  "result": "PASS",
+  "revision": "r8.7",
+  "schema": "harness-rig/milestone-verification/v1",
+  "tasks": {
+    "M7-T01": "DONE",
+    "M7-T02": "DONE",
+    "M7-T03": "DONE",
+    "M7-T04": "DONE",
+    "M7-T05": "DONE",
+    "M7-T06": "DONE"
+  },
+  "test_counts": {
+    "M3": 22,
+    "M4": 15,
+    "M5": 14,
+    "M6": 16,
+    "M7": 14,
+    "combined": 81
+  },
+  "verification": {
+    "M7-V01": "PASS",
+    "M7-V02": "PASS",
+    "M7-V03": "PASS",
+    "M7-V04": "PASS",
+    "M7-V05": "PASS"
+  }
+}

@@ -26,6 +26,39 @@ source histories before final 1.0 qualification.
 ---
 
 
+## r8.7 — 2026-09-25 — Trusted repository enforcement
+
+### Same-subject CI obligations
+
+- Added `harness_rig.repository_ci` as application-level CI evidence, not a Stable core contract.
+- Added deterministic `harness-rig/ci-obligation-artifact/experimental-v1` binding policy digest, evaluated SHA, event subject, trust mode, changed paths, affected modules, mandatory obligations and expected result identities.
+- Added strict `ci / required` validation that recomputes mandatory obligations and rejects missing, skipped, failed, duplicate, wrong-SHA, wrong-event, wrong-subject, wrong-producer, wrong-identity or unexpected results.
+- Added `governance/ci-policy.json` with always-required ordinary and KB-integrity obligations plus conditional governance obligations for CI/resolver/policy/trust-oracle/test-oracle changes.
+
+### GitHub workflow and trust boundary
+
+- Added `.github/workflows/ci-required.yml` for `pull_request`, main `push`, `workflow_dispatch` and `merge_group` (`checks_requested`).
+- `ci / required` uses `if: ${{ always() }}` after every prerequisite job so prerequisite failure cannot silently skip the repository verdict.
+- Fork PR execution uses `pull_request`, `permissions: contents: read`, no secret references and no privileged action path; `pull_request_target` is not used.
+- Added `governance/github-enforcement-requirements.json` describing install-time required-check, merge-queue, fork and governance-review settings without fabricating a CODEOWNERS identity or claiming remote ruleset installation.
+
+### Verified
+
+- M3 regression suite: 22/22 PASS.
+- M4 adversarial suite: 15/15 PASS.
+- M5 Context suite: 14/14 PASS.
+- M6 OpenSpec suite: 16/16 PASS.
+- M7 repository-enforcement suite: 14/14 PASS.
+- Combined unittest discovery: 81/81 PASS.
+- M7-V01 through M7-V05: PASS.
+
+### Complexity
+
+No CI service, status database, plugin framework, remote attestation system, privileged fork workflow, general policy engine, vector/RAG subsystem, or new orchestration framework was added. Live GitHub branch/ruleset and real owner configuration remain deployment controls and are not claimed as observed by this package.
+
+---
+
+
 ## r8.6 — 2026-09-25 — OpenSpec first-class external SpecEngine
 
 ### Adapter and authority

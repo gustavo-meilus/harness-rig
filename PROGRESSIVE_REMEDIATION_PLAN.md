@@ -45,26 +45,25 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M7
-current_revision: r8.6
+current_milestone: M8
+current_revision: r8.7
 milestone_result: PASS
-last_completed_task: M6-V06
-next_task: M7-T01
+last_completed_task: M7-V05
+next_task: M8-T01
 blocking_issue: null
 verification_pending:
-  - M7-V01
-  - M7-V02
-  - M7-V03
-  - M7-V04
-  - M7-V05
+  - M8-V01
+  - M8-V02
+  - M8-V03
+  - M8-V04
+  - M8-V05
 notes: >
-  M0 through M6 completed with PASS. M6 implemented the bounded OpenSpec 1.13.2 external SpecEngine adapter,
-  behavior-bearing authority fingerprint profile, referenced-spec binding, effective health/config/rules checks,
-  and guarded spec archive transition evidence. Base Harness Rig remains operational without OpenSpec; required
-  OpenSpec workflows fail closed when unavailable/incompatible. Primary external Store archive is not qualified
-  because current StateIdentity observes the repository worktree; read-only referenced Stores may contribute authority.
-  EvidenceReceipt, AcceptanceVerdict and SpecEngine remain Experimental. M7 has not begun.
-  Full Git-history preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M7.
+  M0 through M7 completed with PASS. M7 implemented deterministic same-subject CI obligation artifacts,
+  a final ci / required validator that runs after prerequisite failure, merge_group coverage, untrusted-fork
+  privilege boundaries, and governance-sensitive CI/resolver/policy/oracle path classification. Local package
+  verification proves the enforcement semantics but does not claim a live remote GitHub ruleset or real CODEOWNERS
+  installation; those deployment requirements are recorded explicitly. Next task is M8-T01. Full Git-history
+  preservation/reconciliation remains deferred to M11 and blocks M12/1.0, not M8.
 ```
 
 ### Milestone quick index
@@ -243,22 +242,22 @@ notes: >
 
 **Execution (`r8.7`):**
 
-- [ ] **M7-T01** — Emit a CI obligation artifact for the evaluated revision.
-- [ ] **M7-T02** — Make `ci / required` execute even after prerequisite failures.
-- [ ] **M7-T03** — Validate every mandatory obligation/result explicitly.
-- [ ] **M7-T04** — Support merge queues via `merge_group` when enabled.
-- [ ] **M7-T05** — Define untrusted fork and privileged workflow boundaries.
-- [ ] **M7-T06** — Protect CI/resolver/policy/oracle paths as governance-sensitive surfaces.
+- [x] **M7-T01** — Emit a CI obligation artifact for the evaluated revision.
+- [x] **M7-T02** — Make `ci / required` execute even after prerequisite failures.
+- [x] **M7-T03** — Validate every mandatory obligation/result explicitly.
+- [x] **M7-T04** — Support merge queues via `merge_group` when enabled.
+- [x] **M7-T05** — Define untrusted fork and privileged workflow boundaries.
+- [x] **M7-T06** — Protect CI/resolver/policy/oracle paths as governance-sensitive surfaces.
 
 **Verification:**
 
-- [ ] **M7-V01** — Prerequisite-failure meta-test passes.
-- [ ] **M7-V02** — Skipped mandatory job is detected.
-- [ ] **M7-V03** — Merge-queue scenario is covered.
-- [ ] **M7-V04** — Fork PR cannot access privileged secrets/actions.
-- [ ] **M7-V05** — Self-modifying CI/resolver and wrong-SHA/wrong-producer cases fail closed.
+- [x] **M7-V01** — Prerequisite-failure meta-test passes.
+- [x] **M7-V02** — Skipped mandatory job is detected.
+- [x] **M7-V03** — Merge-queue scenario is covered.
+- [x] **M7-V04** — Fork PR cannot access privileged secrets/actions.
+- [x] **M7-V05** — Self-modifying CI/resolver and wrong-SHA/wrong-producer cases fail closed.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `PASS`  
 **Allowed next milestone:** `M8`
 
 #### M8 — Host capability and topology qualification
@@ -1463,24 +1462,26 @@ OpenSpec is the normal behavior-change engine but remains an external capability
 
 **Execution tasks:**
 
-- [ ] **M7-T01** — Emit a CI obligation artifact for the evaluated revision.
-- [ ] **M7-T02** — Make `ci / required` execute even after prerequisite failures.
-- [ ] **M7-T03** — Validate every mandatory obligation/result explicitly.
-- [ ] **M7-T04** — Support merge queues via `merge_group` when enabled.
-- [ ] **M7-T05** — Define untrusted fork and privileged workflow boundaries.
-- [ ] **M7-T06** — Protect CI/resolver/policy/oracle paths as governance-sensitive surfaces.
+- [x] **M7-T01** — Emit a CI obligation artifact for the evaluated revision.
+- [x] **M7-T02** — Make `ci / required` execute even after prerequisite failures.
+- [x] **M7-T03** — Validate every mandatory obligation/result explicitly.
+- [x] **M7-T04** — Support merge queues via `merge_group` when enabled.
+- [x] **M7-T05** — Define untrusted fork and privileged workflow boundaries.
+- [x] **M7-T06** — Protect CI/resolver/policy/oracle paths as governance-sensitive surfaces.
 
 **Verification tasks:**
 
-- [ ] **M7-V01** — Prerequisite-failure meta-test passes.
-- [ ] **M7-V02** — Skipped mandatory job is detected.
-- [ ] **M7-V03** — Merge-queue scenario is covered.
-- [ ] **M7-V04** — Fork PR cannot access privileged secrets/actions.
-- [ ] **M7-V05** — Self-modifying CI/resolver and wrong-SHA/wrong-producer cases fail closed.
+- [x] **M7-V01** — Prerequisite-failure meta-test passes.
+- [x] **M7-V02** — Skipped mandatory job is detected.
+- [x] **M7-V03** — Merge-queue scenario is covered.
+- [x] **M7-V04** — Fork PR cannot access privileged secrets/actions.
+- [x] **M7-V05** — Self-modifying CI/resolver and wrong-SHA/wrong-producer cases fail closed.
 
-**Result:** `NOT_RUN`
+**Result:** `PASS`
 
-> Do not advance from this milestone until every required verification task above is completed and the milestone result is recorded.
+**Verification evidence:** 14/14 M7 repository-enforcement tests PASS; combined M3-M7 discovery 81/81 PASS; package-local workflow/policy checks PASS. Remote GitHub ruleset/CODEOWNERS installation was not claimed or required as local executable evidence.
+
+**Allowed next milestone:** `M8`
 
 **Progressive revision:** `r8.7`  
 **Purpose:** make one repository-wide verdict actually mean all mandatory obligations ran for the intended revision.

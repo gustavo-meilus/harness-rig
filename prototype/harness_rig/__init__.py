@@ -1,4 +1,4 @@
-"""Harness Rig r8.6 prototype: Stable trust identities, Context lifecycle, and bounded OpenSpec integration."""
+"""Harness Rig r8.7 prototype: trust identities, Context/OpenSpec, and repository enforcement."""
 
 from .authority import AuthorityRef, DirectAuthority, DirectAuthorityProvider, load_authority_ref
 from .authorization import AuthorizationGrant, GrantValidation, load_authorization_grant

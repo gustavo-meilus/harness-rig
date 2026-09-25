@@ -2,7 +2,7 @@
 id: harness-rig-ci-review-and-release-governance
 title: CI, review, versioning, and release governance
 summary: Repository-wide CI aggregation, review roles, versioning, schema migrations, and provenance-aware release policy.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.7
 updated: '2026-09-25'
 provenance:
 - GitHub Actions workflow syntax, accessed 2026-09-21
@@ -15,6 +15,8 @@ provenance:
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
+- Harness Rig M7 repository enforcement implementation and verification, 2026-09-25
+- GitHub Actions workflow/merge_group/security documentation rechecked 2026-09-25
 ---
 # One canonical ordinary quality definition
 
@@ -37,6 +39,15 @@ ci / required
 ```
 
 Only the final aggregate needs universal branch/ruleset enforcement after unified Harness Rig CI exists.
+
+
+# M7 implemented repository verdict
+
+M7/r8.7 implements the repository-local form of this design. `governance/ci-policy.json` emits a same-subject obligation set, each job emits an obligation result, and `ci / required` recomputes/validates the complete set. The aggregate rejects missing/skipped/failed jobs and mismatched SHA, event subject, producer, result identity, or policy.
+
+The workflow includes `merge_group` and uses `if: ${{ always() }}` on the final job so failed prerequisites do not skip the repository verdict. Fork PR execution remains unprivileged (`pull_request`, `contents: read`, no secret references). See [M7 trusted repository enforcement](m7-trusted-repository-enforcement.md).
+
+Live branch/ruleset and real CODEOWNERS installation remain repository-configuration responsibilities; r8.7 does not claim they were remotely configured or observed.
 
 # OpenSpec CI posture
 

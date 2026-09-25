@@ -3,7 +3,7 @@ id: harness-rig-current-system-baseline
 title: Current project baseline
 summary: Verified current responsibilities, strengths, overlaps, maturity gaps, and confirmed defects across AIBoarding, TacticSwitch,
   and Adaptive Engineering Harness.
-version: planning-baseline-2026-09-25-r8.4
+version: planning-baseline-2026-09-25-r8.7
 updated: '2026-09-25'
 provenance:
 - gustavo-meilus/aiboarding docs/LOOP-ENGINEERING.md, accessed 2026-09-21
@@ -17,6 +17,7 @@ provenance:
 - Skill Kit more-with-less v1.0.2, plugins/more-with-less/skills/more-with-less/SKILL.md, inspected 2026-09-24
 - OpenSpec v1.13.2 release baseline rechecked 2026-09-24
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
+- Harness Rig M7 trusted repository enforcement implementation and verification, 2026-09-25
 ---
 # RigYard source snapshot boundary
 
@@ -29,6 +30,10 @@ Use [RigYard current source and verification baseline](rigyard-current-source-an
 current-vs-planned-vs-historical classification. Do not infer Git history or independently rerun verification from the
 archive alone: the ZIP contains no `.git/` metadata and this M0 revision records retained verification evidence rather than
 claiming that the entire RigYard matrix was rerun in this environment.
+
+# Current Harness Rig enforcement overlay
+
+As of r8.7, Harness Rig also has a repository-local same-subject CI obligation model and a retained GitHub Actions `ci / required` workflow. This is executable package evidence, not proof that any external repository has installed the required ruleset/CODEOWNERS settings. See [M7 trusted repository enforcement](m7-trusted-repository-enforcement.md).
 
 # Current responsibilities
 

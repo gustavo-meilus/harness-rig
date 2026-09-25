@@ -1,0 +1,48 @@
+{
+  "governance_sensitive_paths": [
+    ".github/workflows",
+    "governance",
+    "verification/ci_obligations.py",
+    "verification/context_kb.py",
+    "verification/m1-known-bad-fixtures.json",
+    "prototype/harness_rig/acceptance.py",
+    "prototype/harness_rig/assurance.py",
+    "prototype/harness_rig/authority.py",
+    "prototype/harness_rig/authorization.py",
+    "prototype/harness_rig/canonical.py",
+    "prototype/harness_rig/context.py",
+    "prototype/harness_rig/evidence.py",
+    "prototype/harness_rig/gate.py",
+    "prototype/harness_rig/gitutil.py",
+    "prototype/harness_rig/openspec.py",
+    "prototype/harness_rig/repository_ci.py",
+    "prototype/harness_rig/security.py",
+    "prototype/harness_rig/spec_engine.py",
+    "prototype/harness_rig/state.py",
+    "prototype/harness_rig/topology.py",
+    "prototype/harness_rig/vertical.py",
+    "prototype/tests"
+  ],
+  "obligations": [
+    {
+      "always_required": true,
+      "obligation_id": "ordinary",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/ordinary-v1"
+    },
+    {
+      "always_required": true,
+      "obligation_id": "kb-integrity",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/kb-integrity-v1"
+    },
+    {
+      "always_required": false,
+      "obligation_id": "governance",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/governance-v1"
+    }
+  ],
+  "policy_id": "harness-rig/repository-ci/r8.7-v1",
+  "schema": "harness-rig/repository-ci-policy/v1"
+}
