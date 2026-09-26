@@ -26,6 +26,7 @@ MODULES = [
     "prototype.tests.test_m8_host_capability",
     "prototype.tests.test_m9_gate_platform",
     "prototype.tests.test_m10_product_cli_migration_release",
+    "prototype.tests.test_m11_source_native",
 ]
 RAN_RE = re.compile(r"Ran (\d+) tests? in ")
 

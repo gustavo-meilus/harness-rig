@@ -1,0 +1,13 @@
+diff --git a/MANIFEST.sha256 b/MANIFEST.sha256
+index 6d74e22..7deaa85 100644
+--- a/MANIFEST.sha256
++++ b/MANIFEST.sha256
+@@ -34,7 +34,7 @@ a34e9c3ecb8e4f43235199c18e037859eece0dd44ac5c44fd89c4d61c8406b8c  benchmarks/rea
+ fa885122b21f62a3c634174dbb3c9c677933e31efa17aff4f924731e565861a8  benchmarks/read-heavy-investigation/questions.md
+ 701b42eda109f55e9d0d6519965875a30684970c0171dfedcbd6164a72125d97  benchmarks/read-heavy-investigation/README.md
+ a098cf39f81934ec2008baf5e885a2df397089d29feb3a71f32c58a3b469bc49  benchmarks/read-heavy-investigation/runtime.md
+-4eee67367a24cd68e62b46bd9a94b707ea76531447e7a816b69b4ff09113728f  benchmarks/results/adversarial-assurance.json
++952eb3b6f8bd0c91a130f16cdac9acc015ae4692f3512462dde24ddee81b21dc  benchmarks/results/adversarial-assurance.json
+ 349005fb4a92b71e4e13241b42dc4f8cb8c505398f59f343ec8bd4620501062e  benchmarks/results/codex-0.148.0-2026-08-20.json
+ d55ddd31b442973b7b44f33699aba74863459954a2b55e8ee3bcbe724bb428ca  benchmarks/results/codex-medium-clear-feature-normal-2026-08-23.json
+ 804896fd222a65b19085ffb53d076d81445b7151bdb80db3aff12153973f3b38  benchmarks/results/runs/20260824T212758Z-a167ec61/raw/8c22a31eab104720a98ece5c8679d35e.json

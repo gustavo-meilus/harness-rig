@@ -1,29 +1,45 @@
 {
-  "schema": "harness-rig/m11-imported-surface-dispositions/v1",
+  "schema": "harness-rig/m11-imported-surface-dispositions/v2",
   "date": "2026-09-26",
-  "result": "PARTIAL_IMPORTS_NOT_ACCEPTED",
-  "scope": "All staged branch/PR refs and mapped tag refs in the namespaced imports; each unique referenced Git tree is inventoried once, with ref-to-commit/tree mappings. The existing per-source tip inventories remain available. Original bundles are outside this worktree.",
+  "result": "SOURCE_SURFACES_INVENTORIED; IMPORT_ACCEPTANCE_BLOCKED",
+  "scope": "Each pinned source main tree plus all bundle refs/tags; prior rewritten-ref surface reports remain historical evidence only.",
   "inventories": {
     "aiboarding": {
       "path_count": 1379,
-      "evidence": "verification/m11-imported-surface-inventory/aiboarding.json",
       "category_counts": {
         "licenses": 1,
         "state": 121,
         "hooks": 40,
         "host_plugin_manifests": 4,
+        "install_update": 0,
         "generated_distribution": 17,
         "schemas_contracts": 2,
         "tests_evals": 1045,
         "ci": 3,
         "openspec": 108,
-        "agent_roles": 77,
-        "unclassified_paths": 40
-      }
+        "agent_roles": 77
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\aiboarding.json"
+    },
+    "skill-kit": {
+      "path_count": 176,
+      "category_counts": {
+        "licenses": 1,
+        "state": 0,
+        "hooks": 11,
+        "host_plugin_manifests": 27,
+        "install_update": 0,
+        "generated_distribution": 1,
+        "schemas_contracts": 1,
+        "tests_evals": 4,
+        "ci": 0,
+        "openspec": 32,
+        "agent_roles": 44
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\skill-kit.json"
     },
     "tacticswitch": {
       "path_count": 418,
-      "evidence": "verification/m11-imported-surface-inventory/tacticswitch.json",
       "category_counts": {
         "licenses": 1,
         "state": 30,
@@ -35,22 +51,9 @@
         "tests_evals": 145,
         "ci": 1,
         "openspec": 147,
-        "agent_roles": 56,
-        "unclassified_paths": 42
-      }
-    },
-    "skill-kit": {
-      "path_count": 55,
-      "evidence": "verification/m11-imported-surface-inventory/skill-kit.json",
-      "category_counts": {
-        "licenses": 1,
-        "hooks": 8,
-        "host_plugin_manifests": 6,
-        "generated_distribution": 1,
-        "tests_evals": 1,
-        "agent_roles": 7,
-        "unclassified_paths": 32
-      }
+        "agent_roles": 56
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\tacticswitch.json"
     }
   },
   "category_dispositions": {
@@ -59,97 +62,23 @@
     "hooks": "HISTORICAL_ONLY; do not install or register from the imported prefixes.",
     "host_plugin_manifests": "HISTORICAL_ONLY; do not load as active host configuration.",
     "install_update": "HISTORICAL_ONLY; do not execute imported installers or migration scripts.",
-    "generated_distribution": "HISTORICAL_ONLY; do not publish as Harness Rig output. The imported TacticSwitch main tip has a stale MANIFEST.sha256; recalculating it in a disposable copy made its unchanged 200-test gate pass, but the source ref remains unchanged.",
+    "generated_distribution": "HISTORICAL_ONLY; never publish from the imported prefix. The pinned TacticSwitch source has a stale MANIFEST.sha256; the separate one-file adapter passed 200/200 in a disposable copy without changing the pin.",
     "schemas_contracts": "HISTORICAL_ONLY; adopted semantics require their separate Harness Rig specifications and dispositions.",
     "tests_evals": "HISTORICAL_ONLY in the imported tree; only separately invoked legacy checks count as qualification evidence.",
     "ci": "HISTORICAL_ONLY; imported workflows do not become active Harness Rig CI.",
     "openspec": "HISTORICAL_ONLY; imported change archives do not become active Harness Rig authority.",
     "agent_roles": "HISTORICAL_ONLY; source skills and agent instructions are not installed by importing history.",
     "unclassified_paths": "HISTORICAL_ONLY pending per-surface admission; no unclassified path is activated by these staged refs.",
-    "tags_and_signatures": "Original source bundles remain available outside this worktree; all 21 mapped source tag objects (13 annotated, 8 lightweight) were confirmed against their source refs. None of the annotated tags has an embedded signature. Rewritten commit signatures and annotated tag objects are not preserved; local commit-signature verification was blocked by unavailable GPG keyring/public keys and missing SSH allowed-signers configuration. Keep final fidelity acceptance blocked; see verification/m11-object-fidelity-audit.json."
+    "tags_and_signatures": "Original source commit and tag objects are retained in full bundles and exact source submodule history. Retained upstream verification matched 25 signed commits to the exact bundled objects. Local GPG/SSH trust revalidation is unavailable; prior rewritten refs are superseded and are not accepted."
   },
+  "source_ref_inventory": "verification/m11-source-bundle-manifest.json",
+  "superseded_rewrite_ref_inventory": "verification/m11-imported-surface-ref-inventory.json",
   "acceptance_gaps": [
-    "The source refs remain staged in namespaces; no import-only commits were accepted. Import-only verification is explicitly NOT_RUN because no such commits exist; see verification/m11-import-only-status.json.",
-    "TacticSwitch legacy quality gate has one failing checksum test out of 200 on the unchanged source snapshot.",
-    "Source commit signatures and annotated tag objects are not preserved by the rewrite; preserve the selected fidelity hard gate until demonstrated."
+    "AIBoarding runtime-probe result conflict requires native resolution.",
+    "No aggregate one-parent import-only commit exists; proof remains NOT_RUN.",
+    "Codex CLI field pilot, Claude qualification, and V04 review remain incomplete."
   ],
   "milestone_M11": "BLOCKED",
   "m12_eligible": false,
-  "history_ref_inventory": {
-    "evidence": "verification/m11-imported-surface-ref-inventory.json",
-    "method": "Inventory all unique trees reachable from the staged branch/PR/tag refs using the existing M11 path classifier; retain ref mapping and classified/unclassified paths.",
-    "totals": {
-      "refs": 41,
-      "unique_commits": 34,
-      "unique_trees": 25,
-      "path_occurrences_across_unique_trees": 5640,
-      "unique_path_unions_per_source": 1943
-    },
-    "sources": {
-      "aiboarding": {
-        "ref_count": 27,
-        "unique_commit_count": 21,
-        "unique_tree_count": 16,
-        "path_occurrences_across_unique_trees": 3995,
-        "unique_path_union": 1399,
-        "category_occurrences_across_unique_trees": {
-          "licenses": 16,
-          "state": 439,
-          "hooks": 323,
-          "host_plugin_manifests": 47,
-          "install_update": 0,
-          "generated_distribution": 186,
-          "schemas_contracts": 12,
-          "tests_evals": 2241,
-          "ci": 23,
-          "openspec": 481,
-          "agent_roles": 509,
-          "unclassified_paths": 288
-        }
-      },
-      "tacticswitch": {
-        "ref_count": 6,
-        "unique_commit_count": 5,
-        "unique_tree_count": 5,
-        "path_occurrences_across_unique_trees": 1438,
-        "unique_path_union": 489,
-        "category_occurrences_across_unique_trees": {
-          "licenses": 5,
-          "state": 68,
-          "hooks": 17,
-          "host_plugin_manifests": 27,
-          "install_update": 30,
-          "generated_distribution": 131,
-          "schemas_contracts": 65,
-          "tests_evals": 396,
-          "ci": 3,
-          "openspec": 402,
-          "agent_roles": 253,
-          "unclassified_paths": 286
-        }
-      },
-      "skill-kit": {
-        "ref_count": 8,
-        "unique_commit_count": 8,
-        "unique_tree_count": 4,
-        "path_occurrences_across_unique_trees": 207,
-        "unique_path_union": 55,
-        "category_occurrences_across_unique_trees": {
-          "licenses": 4,
-          "state": 0,
-          "hooks": 31,
-          "host_plugin_manifests": 18,
-          "install_update": 0,
-          "generated_distribution": 4,
-          "schemas_contracts": 0,
-          "tests_evals": 3,
-          "ci": 0,
-          "openspec": 0,
-          "agent_roles": 22,
-          "unclassified_paths": 128
-        }
-      }
-    },
-    "coverage": "Every path in each inventoried tree is assigned to a classifier category or explicitly listed as unclassified."
-  }
+  "source_pin_verification": "verification/m11-source-pin-verification.json"
 }

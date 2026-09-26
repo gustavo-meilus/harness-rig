@@ -1,14 +1,12 @@
 {
-  "schema": "harness-rig/m11-history-input-preflight/v3",
-  "base": "C:\\Users\\gmeil\\.codex\\worktrees\\bf36\\harness-rig\\verification\\m11-source-bundles",
-  "result": "PASS",
+  "schema": "harness-rig/m11-history-input-preflight/v2",
+  "base": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete",
   "sources": [
     {
       "source": "aiboarding",
-      "path": "C:\\Users\\gmeil\\.codex\\worktrees\\bf36\\harness-rig\\verification\\m11-source-bundles\\aiboarding.bundle",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\aiboarding.bundle",
       "kind": "bundle",
       "ok": true,
-      "sha256": "0189ad9355a2b6d592bd931d1cf5f28c378b2e06fb5bbd71c635eb38b8e1d2e8",
       "list_heads_exit": 0,
       "refs": [
         {
@@ -168,16 +166,14 @@
           "ref": "HEAD"
         }
       ],
-      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
       "main_commit_count": 89,
       "missing_required_paths": []
     },
     {
       "source": "tacticswitch",
-      "path": "C:\\Users\\gmeil\\.codex\\worktrees\\bf36\\harness-rig\\verification\\m11-source-bundles\\tacticswitch.bundle",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\tacticswitch.bundle",
       "kind": "bundle",
       "ok": true,
-      "sha256": "826790422f6889635e8f3b61eb1b4b066d4d98b089343f5a7af9ee4915c2eb6e",
       "list_heads_exit": 0,
       "refs": [
         {
@@ -213,16 +209,14 @@
           "ref": "HEAD"
         }
       ],
-      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
       "main_commit_count": 11,
       "missing_required_paths": []
     },
     {
       "source": "skill-kit",
-      "path": "C:\\Users\\gmeil\\.codex\\worktrees\\bf36\\harness-rig\\verification\\m11-source-bundles\\skill-kit.bundle",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\skill-kit.bundle",
       "kind": "bundle",
       "ok": true,
-      "sha256": "fecf69d33d09b8a476bbfb860bec2da38fe793cb81839fa4b265733170c16bec",
       "list_heads_exit": 0,
       "refs": [
         {
@@ -262,10 +256,9 @@
           "ref": "HEAD"
         }
       ],
-      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
       "main_commit_count": 15,
       "missing_required_paths": []
     }
   ],
-  "manifest_errors": []
+  "result": "PASS"
 }

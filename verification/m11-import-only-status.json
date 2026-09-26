@@ -1,36 +1,44 @@
 {
-  "schema": "harness-rig/m11-import-only-status/v1",
+  "schema": "harness-rig/m11-import-only-status/v2",
   "date": "2026-09-26",
-  "result": "BLOCKED",
-  "target_repository_head": "ac4699cf995af918cb871206e6068a33d57601b3",
-  "import_only_commits": [],
-  "import_only_commit_count": 0,
+  "result": "PASS",
+  "target_repository_head": "e9ce36ffe47598cbe9367035230794ad5cf3bb5a",
+  "import_only_commits": ["e9ce36ffe47598cbe9367035230794ad5cf3bb5a"],
+  "import_only_commit_count": 1,
   "verification": {
-    "result": "NOT_RUN",
-    "command": "python verification/m11-verify-import-only.py",
-    "reason": "No import-only commits were created. The required legacy-check and signature/tag-fidelity gates remain unresolved, so there is no accepted import commit to verify."
+    "result": "PASS",
+    "command": "python verification/m11-verify-import-only.py --repo . --commit e9ce36ffe47598cbe9367035230794ad5cf3bb5a --json",
+    "evidence": "One parent; changed paths are exactly .gitmodules and the three approved gitlinks; every gitlink matches its bundle-pinned source main SHA."
   },
-  "legacy_checks": {
-    "evidence": "verification/m11-legacy-check-results.json",
-    "aiboarding": "PASS",
-    "tacticswitch": "FAIL",
-    "tacticswitch_failure": {
-      "test": "tests.test_release_surface.ReleaseSurfaceTests.test_release_checksums_are_current",
-      "detail": "FAIL: MANIFEST.sha256 is stale"
+  "source_pins": [
+    {
+      "id": "aiboarding",
+      "path": "legacy/aiboarding",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa"
     },
-    "skill-kit": "PASS",
-    "disposable_tacticswitch_regeneration": "PASS_AFTER_REGENERATING_DERIVED_MANIFEST; applies only to a temporary tree and does not change the source-ref result."
-  },
-  "blocking_gates": [
-    "TacticSwitch source snapshot fails 1/200 because MANIFEST.sha256 is stale; its original staged ref remains unchanged.",
-    "Source commit signatures and annotated-tag objects are not preserved by rewritten refs; final fidelity acceptance remains blocked under the retained M11 hard gate."
+    {
+      "id": "tacticswitch",
+      "path": "legacy/tacticswitch",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e"
+    },
+    {
+      "id": "skill-kit",
+      "path": "legacy/skill-kit",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a"
+    }
   ],
+  "legacy_checks": {
+    "aiboarding": "PASS_ADAPTER_ONLY: native patched suite passed; exact source pin remains unchanged",
+    "tacticswitch_raw": "FAIL: stale MANIFEST.sha256",
+    "tacticswitch_adapted_copy": "PASS: 200/200, only MANIFEST.sha256 changed",
+    "skill-kit": "PASS"
+  },
   "source_refs_modified": false,
   "namespaced_rewritten_refs_retained": true,
   "m12_eligible": false,
   "decision_gate": {
-    "current_contract": "Keep the source snapshot immutable, require rewritten tree equivalence, and retain signature/tag fidelity as a hard gate.",
-    "why_blocked": "A MANIFEST regeneration changes imported tree content; history rewriting changes commit IDs and does not preserve annotated-tag object IDs. Source commit signatures are not carried to rewritten commits. None can be accepted under the current contract without an approved design change or a source-native import strategy.",
-    "user_direction_needed": "Choose whether to keep M11 blocked under the current contract or revise the import design to preserve original Git objects and treat any TacticSwitch manifest repair as a separate, explicitly reviewed adaptation."
+    "current_contract": "Preserve original source objects and exact source pins; report raw/adapted checks separately.",
+    "why_blocked": "Codex CLI and Claude field qualification and the V04 simplification review remain incomplete.",
+    "next_action": "Complete the authorized Codex Desktop/CLI field pilot, then qualify Claude and perform V04 review."
   }
 }

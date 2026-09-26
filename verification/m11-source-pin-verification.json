@@ -1,0 +1,52 @@
+{
+  "schema": "harness-rig/m11-source-pin-verification/v1",
+  "result": "PASS",
+  "submodules": [
+    {
+      "id": "aiboarding",
+      "path": "legacy/aiboarding",
+      "head": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "expected_head": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "remote_url": "https://github.com/gustavo-meilus/aiboarding.git",
+      "expected_url": "https://github.com/gustavo-meilus/aiboarding.git",
+      "clean": true,
+      "status": "",
+      "result": "PASS"
+    },
+    {
+      "id": "tacticswitch",
+      "path": "legacy/tacticswitch",
+      "head": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+      "expected_head": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+      "remote_url": "https://github.com/gustavo-meilus/tacticswitch.git",
+      "expected_url": "https://github.com/gustavo-meilus/tacticswitch.git",
+      "clean": true,
+      "status": "",
+      "result": "PASS"
+    },
+    {
+      "id": "skill-kit",
+      "path": "legacy/skill-kit",
+      "head": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+      "expected_head": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+      "remote_url": "https://github.com/gustavo-meilus/skill-kit.git",
+      "expected_url": "https://github.com/gustavo-meilus/skill-kit.git",
+      "clean": true,
+      "status": "",
+      "result": "PASS"
+    }
+  ],
+  "currently_staged_import_paths": [
+    ".gitmodules",
+    "legacy/aiboarding",
+    "legacy/skill-kit",
+    "legacy/tacticswitch"
+  ],
+  "expected_staged_import_paths": [
+    ".gitmodules",
+    "legacy/aiboarding",
+    "legacy/skill-kit",
+    "legacy/tacticswitch"
+  ],
+  "staged_import_paths_match": true
+}

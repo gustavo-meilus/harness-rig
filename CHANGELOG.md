@@ -4,28 +4,33 @@ This file is the append-only progressive change and source-consolidation ledger 
 
 ## M11 source-history crosswalk — 2026-09-26
 
-The r8.2 source ledger below records source-level dispositions. M11 links those
-entries to the preserved source-history maps; the per-commit maps remain the
-authoritative old-to-new identity record.
+The source-native imports retain each complete repository at its audited main
+commit. Exact pins and repository URLs are recorded in
+`verification/m11-history-import-spec.json`; byte-for-byte bundle digests and
+full ref/object inventories are recorded in
+`verification/m11-source-bundle-manifest.json`.
 
-- AIBoarding: 90 commits, 17 branch/PR refs and 10 tags; ledger entry:
-  AIBoarding → Context; maps: `verification/m11-history-maps/aiboarding/`.
-- TacticSwitch: 17 commits, 2 branch/PR refs and 4 tags; ledger entry:
-  TacticSwitch → Topology; maps: `verification/m11-history-maps/tacticswitch/`.
-- Skill Kit: 15 commits, 1 branch/PR ref and 7 tags; ledger entries cover the
-  KB maintainer → Context and Adaptive Engineering Harness → Assurance;
-  maps: `verification/m11-history-maps/skill-kit/`.
+- AIBoarding → Context: `legacy/aiboarding`, source commit
+  `5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa`.
+- TacticSwitch → Topology: `legacy/tacticswitch`, source commit
+  `f95e3797c800b7ecc5f35dc95b25e53906df6b1e`.
+- Skill Kit KB maintainer → Context and Adaptive Engineering Harness →
+  Assurance: `legacy/skill-kit`, source commit
+  `f4e9840d012d3961c1cc2b0aff7dec071da8078a`.
 
-All three rewrite verifiers pass for 122 mapped commits. Maps cover every
-inventoried branch/ref and tag; pull-request-head aliases use the corresponding
-`upstream-pull` refs. The coverage and discrepancy record is
-`verification/m11-changelog-reconciliation.json`.
+The original full refs and Git objects remain available in the three tracked
+bundles; the source checkouts themselves are unchanged. The earlier rewritten
+history maps and reports are retained as superseded experiments and are not the
+accepted import. `verification/m11-changelog-reconciliation.json` records the
+source-native crosswalk and remaining differences.
 
-M11 remains blocked. Rewritten commits do not preserve source signatures, and
-rewritten tags do not preserve annotated tag objects. The unchanged TacticSwitch
-source snapshot has a stale checksum manifest; regenerating that derived file
-in a disposable tree made its 200-test gate pass, but did not change the source
-ref. These discrepancies are recorded; import-only commits remain withheld.
+M11 remains blocked. The TacticSwitch source fails its raw 200-test gate because
+`MANIFEST.sha256` is stale; a separately reviewed one-file patch makes a
+disposable copy pass 200/200 without changing the source pin. AIBoarding passed
+in the retained source checkout, but a later sandbox rerun could not complete
+two Windows runtime probes, so that result requires resolution. Required Codex
+CLI and Claude host qualification is also incomplete. No import-only commit is
+accepted until these gates and the signature/tag checks pass.
 
 ## Role of this file
 

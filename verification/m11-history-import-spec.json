@@ -1,56 +1,48 @@
 {
-  "schema": "harness-rig/m11-history-import-spec/v1",
+  "schema": "harness-rig/m11-history-import-spec/v2",
   "milestone": "M11",
-  "status": "staged-in-namespaced-refs; import-only commits blocked pending legacy-check and fidelity disposition",
+  "status": "source-native; imports gated on exact pins, fidelity, and legacy checks",
+  "bundle_directory": "verification/m11-source-bundles",
   "sources": [
     {
       "id": "aiboarding",
       "repository": "https://github.com/gustavo-meilus/aiboarding.git",
-      "required_input": "aiboarding.bundle",
-      "source_scope": [
-        "**"
-      ],
+      "bundle": "aiboarding.bundle",
+      "source_ref": "refs/heads/main",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
       "target_prefix": "legacy/aiboarding",
-      "tag_namespace": "aiboarding/",
-      "task": "M11-T01"
+      "required_paths": []
     },
     {
       "id": "tacticswitch",
       "repository": "https://github.com/gustavo-meilus/tacticswitch.git",
-      "required_input": "tacticswitch.bundle",
-      "source_scope": [
-        "**"
-      ],
+      "bundle": "tacticswitch.bundle",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
       "target_prefix": "legacy/tacticswitch",
-      "tag_namespace": "tacticswitch/",
-      "task": "M11-T02"
+      "required_paths": []
     },
     {
       "id": "skill-kit",
       "repository": "https://github.com/gustavo-meilus/skill-kit.git",
-      "required_input": "skill-kit.bundle",
-      "source_scope": [
-        "plugins/llm-knowledge-base-maintainer/**",
-        "plugins/engineering-harness-adaptive/**",
-        "LICENSE"
-      ],
+      "bundle": "skill-kit.bundle",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
       "target_prefix": "legacy/skill-kit",
-      "tag_namespace": "skill-kit/",
-      "tasks": [
-        "M11-T03",
-        "M11-T04"
-      ],
-      "filter_note": "Filter both relevant plugin paths in one source history so a commit touching both is not duplicated."
+      "required_paths": [
+        "plugins/llm-knowledge-base-maintainer",
+        "plugins/engineering-harness-adaptive",
+        "LICENSE"
+      ]
     }
   ],
   "required_post_import_evidence": [
-    "bundle-or-source-git-fsck",
-    "source-ref-inventory",
-    "old-to-new-commit-map",
-    "tag-map",
-    "tree-equivalence",
-    "legacy-deterministic-checks-where-tooling-is-available",
-    "import-only-commit-proof",
+    "full-bundle-ref-inventory-and-object-integrity",
+    "exact-source-main-gitlink-pins",
+    "original-commit-signature-verification",
+    "exact-source-tag-object-identity",
+    "legacy-checks-with-raw-and-adapted-tacticswitch-results",
+    "one-parent-import-only-commit-proof",
     "license-state-hook-install-surface-inventory"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "schema": "harness-rig/m11-legacy-check-spec/v1",
+  "checks": [
+    {
+      "id": "aiboarding-offline-suite",
+      "cwd": ".",
+      "argv": ["bash", "tests/run.sh"],
+      "required": true
+    }
+  ]
+}

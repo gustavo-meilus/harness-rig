@@ -7,8 +7,9 @@ M11 is the remaining qualification milestone before M12. The roadmap defers fina
 - Record one evidence-backed Harness Rig disposition for each active RigYard proposal and explicit triggers for deferred work.
 - Keep Codex Desktop/CLI as the primary operational target; establish and retain its native capability evidence before evaluating Claude as secondary.
 - Run representative field pilots and simplify or remove mechanisms that show no distinct value.
-- Validate object-complete histories, preserve them under isolated legacy prefixes, produce reproducible commit/tag maps, verify tree and topology equivalence, run available deterministic checks, and prove import-only commits.
-- Reconcile imported history with CHANGELOG.md, licenses, state, hooks, installation surfaces, and signed commit/tag fidelity requirements.
+- Preserve each source repository's original Git objects in a pinned submodule under its isolated legacy prefix; retain and verify the complete source-ref bundles.
+- Reconcile the pinned source refs with CHANGELOG.md, licenses, state, hooks, installation surfaces, and original commit/tag signature evidence; prove the aggregate import commit changes only the three approved gitlinks and `.gitmodules` entries.
+- Keep the TacticSwitch source snapshot unchanged; qualify a separately reviewed, one-file `MANIFEST.sha256` adapter on a disposable copy.
 - If any required source history is unavailable or unverifiable, retain the evidence, mark M11 BLOCKED, and do not advance to M12.
 
 ## Capabilities
@@ -23,4 +24,4 @@ None. No OpenSpec product capability specifications exist to modify, and the mil
 
 ## Impact
 
-Affected records include the root roadmap, progressive remediation plan, CHANGELOG.md, canonical references, manifest and navigation projections, M11 verification evidence, and the existing history preflight/import tooling. History inputs are the local or bundled AIBoarding, TacticSwitch, and Skill Kit repositories. Imports are limited to the prefixes and filtered Skill Kit paths defined by verification/m11-history-import-spec.json. Codex and Claude host claims remain evidence-gated.
+Affected records include the root roadmap, progressive remediation plan, CHANGELOG.md, canonical references, manifest and navigation projections, M11 verification evidence, and the existing history preflight/import tooling. Inputs are the complete AIBoarding, TacticSwitch, and Skill Kit bundles. Each complete source repository is retained as a submodule under the approved legacy prefix; no history rewrite or path filtering is used. Codex and Claude host claims remain evidence-gated.

@@ -1,74 +1,76 @@
 {
-  "schema": "harness-rig/m11-changelog-reconciliation/v1",
+  "schema": "harness-rig/m11-changelog-reconciliation/v2",
   "date": "2026-09-26",
-  "result": "PASS_WITH_RECORDED_DISCREPANCIES",
+  "result": "PASS_WITH_RECORDED_OPEN_GATES",
   "changelog": "CHANGELOG.md",
   "crosswalk_section": "M11 source-history crosswalk",
-  "coverage": {
-    "source_commits": 122,
-    "branch_and_pull_request_refs": 20,
-    "tags": 21,
-    "rewrite_reports": "PASS for all three histories"
-  },
+  "representation": "source-native submodules pinned to audited main commits; previous rewrite reports are superseded experiments",
+  "bundle_manifest": "verification/m11-source-bundle-manifest.json",
+  "bundle_preflight": "verification/m11-history-input-preflight-current.json",
   "sources": [
     {
       "id": "aiboarding",
-      "commits": 90,
-      "branch_and_pull_request_refs": 17,
-      "tags": 10,
-      "changelog_ledger_entries": ["AIBoarding -> Context"],
-      "evidence": "verification/m11-history-maps/aiboarding/"
+      "repository": "https://github.com/gustavo-meilus/aiboarding.git",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "target_prefix": "legacy/aiboarding",
+      "bundle": "aiboarding.bundle",
+      "bundle_sha256": "0189ad9355a2b6d592bd931d1cf5f28c378b2e06fb5bbd71c635eb38b8e1d2e8",
+      "ref_count": 39,
+      "inventory_paths_at_main": 1379,
+      "inventory": "verification/m11-source-repository-inventory/aiboarding.json"
     },
     {
       "id": "tacticswitch",
-      "commits": 17,
-      "branch_and_pull_request_refs": 2,
-      "tags": 4,
-      "changelog_ledger_entries": ["TacticSwitch -> Topology"],
-      "evidence": "verification/m11-history-maps/tacticswitch/"
+      "repository": "https://github.com/gustavo-meilus/tacticswitch.git",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+      "target_prefix": "legacy/tacticswitch",
+      "bundle": "tacticswitch.bundle",
+      "bundle_sha256": "826790422f6889635e8f3b61eb1b4b066d4d98b089343f5a7af9ee4915c2eb6e",
+      "ref_count": 8,
+      "inventory_paths_at_main": 418,
+      "inventory": "verification/m11-source-repository-inventory/tacticswitch.json"
     },
     {
       "id": "skill-kit",
-      "commits": 15,
-      "branch_and_pull_request_refs": 1,
-      "tags": 7,
-      "changelog_ledger_entries": [
-        "Skill Kit KB maintainer -> Context canonical knowledge",
-        "Adaptive Engineering Harness -> Assurance"
-      ],
-      "evidence": "verification/m11-history-maps/skill-kit/"
+      "repository": "https://github.com/gustavo-meilus/skill-kit.git",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+      "target_prefix": "legacy/skill-kit",
+      "bundle": "skill-kit.bundle",
+      "bundle_sha256": "fecf69d33d09b8a476bbfb860bec2da38fe793cb81839fa4b265733170c16bec",
+      "ref_count": 9,
+      "inventory_paths_at_main": 176,
+      "inventory": "verification/m11-source-repository-inventory/skill-kit.json"
     }
   ],
-  "discrepancies": [
+  "dispositions": [
     {
-      "id": "source-commit-signatures-not-preserved",
-      "status": "OPEN_BLOCKER",
-      "detail": "The rewrite changes commit IDs and does not preserve source commit signatures. Upstream signature verification is retained separately."
+      "id": "historical-rewrite-maps",
+      "status": "SUPERSEDED_EVIDENCE",
+      "evidence": "verification/m11-history-maps/",
+      "detail": "Retained for audit; not the accepted import."
     },
     {
-      "id": "annotated-tag-objects-not-preserved",
-      "status": "OPEN_BLOCKER",
-      "detail": "The rewritten tag refs resolve to mapped commits, but annotated tag objects and their annotations are not preserved."
+      "id": "tacticswitch-derived-manifest",
+      "status": "ADAPTED_COPY_VERIFIED",
+      "evidence": "verification/m11-tacticswitch-adapter-verification.json",
+      "detail": "Raw source remains unchanged and fails only the stale MANIFEST.sha256 test; a separate one-file patch passes 200/200 in a disposable copy."
     },
     {
-      "id": "tacticswitch-legacy-quality-gate",
-      "status": "OPEN_BLOCKER",
-      "detail": "The unchanged TacticSwitch source snapshot fails one of 200 tests because MANIFEST.sha256 is stale. Regenerating that derived manifest in a disposable tree makes all 200 tests pass, but the source ref remains unchanged; see verification/m11-legacy-check-results.json."
+      "id": "aiboarding-runtime-probes",
+      "status": "OPEN_ENVIRONMENT_DISCREPANCY",
+      "evidence": "verification/m11-source-native-qualification-evidence.json",
+      "detail": "A retained source-checkout run passed; later sandbox rerun failed two Windows runtime probes."
     },
     {
-      "id": "changelog-granularity",
-      "status": "DISPOSITIONED",
-      "detail": "CHANGELOG.md remains a source-level consolidation ledger. Exact per-commit and per-tag identities are retained in the maps rather than duplicated into changelog prose."
-    },
-    {
-      "id": "input-bundles-not-present-in-this-worktree",
-      "status": "LIMITATION_RECORDED",
-      "detail": "The original bundles are not available in this worktree. This crosswalk relies on the retained commit/ref/tag maps and passing rewrite reports; bundle preflight evidence remains in its separate report."
+      "id": "signature-and-tags",
+      "status": "PASS_WITH_LOCAL_REVALIDATION_LIMIT",
+      "evidence": "verification/m11-source-signature-verification.json",
+      "detail": "Retained upstream verification matched exact signed commit objects in bundles; all source tag objects are inventoried. Local keyring revalidation unavailable."
     }
   ],
   "acceptance": {
     "M11-T12": "PASS",
-    "M11-V07": "PASS",
+    "M11-V07": "PASS_WITH_OPEN_GATES",
     "milestone_M11": "BLOCKED",
     "m12_eligible": false
   }

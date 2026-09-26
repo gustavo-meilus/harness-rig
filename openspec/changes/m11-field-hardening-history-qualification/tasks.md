@@ -13,19 +13,39 @@
 
 ## 2. Source-history qualification and import
 
-- [x] 2.1 M11-T10: Snapshot AIBoarding, TacticSwitch, and Skill Kit as full Git bundles from read-only source clones; retain source origin, HEAD, shallow status, ref inventory, fsck result, bundle digest, and upstream-ref comparison where accessible; run python verification/m11-history-input-preflight.py --dir <inputs-dir> --json and require PASS for each source before import. Evidence: verification/m11-history-input-preflight-current.json; complete bundles include all public branches, tags, and advertised pull-request heads.
-- [x] 2.2 M11-T11: Run python verification/m11-run-history-imports.py --inputs-dir <inputs-dir> --work-dir <work-dir> --output-dir <output-dir>; retain each commit/ref/tag map and independent rewrite report, and verify rewritten trees and parent topology with verification/m11-verify-rewrite.py. Evidence and maps: verification/m11-history-maps/. Rewritten bundles are staged only in namespaced refs; import-only commits remain gated.
-- [x] 2.3 M11-T12: Reconcile source-to-rewritten commit and tag maps with CHANGELOG.md; retain a discrepancy report and verify every source ref/tag is mapped or explicitly dispositioned. Evidence: CHANGELOG.md M11 crosswalk and verification/m11-changelog-reconciliation.json; all 122 commits, 20 branch/PR refs, and 21 tags are mapped, with fidelity and TacticSwitch gate discrepancies recorded as blockers.
-- [x] 2.4 M11-T13: Run python verification/m11-verify-reproducibility.py --inputs-dir <inputs-dir> --json and relevant discovered legacy checks; verify two rewrite runs produce equivalent maps and reports, and report unavailable checks as BLOCKED. Reproducibility passed; AIBoarding and Skill Kit checks passed; TacticSwitch failed 1/200 because MANIFEST.sha256 is stale. See verification/m11-legacy-check-results.json. The checks were executed and the failure is recorded; this does not pass the import gate.
-- [ ] 2.5 M11-T13: Stage verified output bundles with python verification/m11-fetch-import-bundles.py --target-repo . --imports-dir <output-dir>; create separately reviewable import-only commits under approved legacy prefixes and verify each with verification/m11-verify-import-only.py.
-- [ ] 2.6 M11-T14: Inventory imported licenses, state, hooks, install/update
+- [x] 2.1 M11-T10: Copy the three complete, read-only source bundles into `verification/m11-source-bundles/`; verify origin, main SHA, all advertised refs, bundle digest, and full fsck using `verification/m11-history-input-preflight.py`. Preserve the previous external-bundle report as provenance and generate a repository-relative current report. Evidence: `verification/m11-source-bundle-manifest.json` and `verification/m11-history-input-preflight-current.json`.
+- [x] 2.2 M11-T11: Add full AIBoarding, TacticSwitch, and Skill Kit source submodules at their approved legacy prefixes, pinned to the audited source main SHAs. Verify all original histories/tags remain unchanged and preserve old rewrite reports only as superseded experiments. Evidence: `.gitmodules`, `verification/m11-history-import-spec.json`, and bundle preflight.
+- [x] 2.3 M11-T12: Replace the rewritten-SHA crosswalk in `CHANGELOG.md` with source repository, full-ref inventory, exact gitlink pin, and bundle evidence. Resolve or explicitly disposition every source ref/tag and changelog discrepancy. Evidence: `verification/m11-changelog-reconciliation.json`.
+- [x] 2.4 M11-T13: Run legacy checks against source-native checkouts. Preserve
+  TacticSwitch's raw failure and verify its one-file manifest patch on a
+  disposable copy. Keep AIBoarding's five-file test-portability patch separate
+  from source history. The user-provided native PowerShell run passed the full
+  suite with the patch, which applies to the pinned bundle checkout. Evidence:
+  `verification/m11-legacy-check-results.json`,
+  `verification/m11-tacticswitch-adapter-verification.json`, and
+  `verification/m11-aiboarding-test-adapter-verification.json`.
+- [x] 2.5 M11-T13: Create the one-parent aggregate import-only commit with only
+  `.gitmodules` and the three gitlinks; verify each pin against the bundle.
+  Commit `e9ce36ffe47598cbe9367035230794ad5cf3bb5a` passed verification.
+- [x] 2.6 M11-T14: Inventory imported licenses, state, hooks, install/update
   surfaces, generated files, schemas, tests, CI, OpenSpec, host manifests,
   tags, and signatures; verify every surfaced category has an explicit
-  retain, adapt, replace, or historical-only disposition. Evidence: `verification/m11-imported-surface-ref-inventory.json` maps all 41 staged refs across 34 commits and 25 unique trees; every path is assigned to one or more classifier categories or explicitly listed as unclassified. `verification/m11-imported-surface-dispositions.json` records each category disposition. All 21 source tag objects were confirmed in the bundles; local signature verification is blocked by host trust configuration, and rewritten signature/tag fidelity remains unresolved. See `verification/m11-object-fidelity-audit.json`.
-- [x] 2.7 M11-V05: Retain reproducibility, tree-equivalence, parent-topology, and source-ref mapping reports; require all verifiers to pass before accepting imports.
-- [x] 2.8 M11-V06: Retain legacy-check and import-only reports; mark M11 BLOCKED if any required check fails or cannot run. Evidence: `verification/m11-import-only-status.json` records import-only verification as NOT_RUN because no import-only commits were created; M11 remains BLOCKED.
-- [x] 2.9 M11-V07: Reconcile CHANGELOG.md against source histories and retained maps; verify every discrepancy is resolved or explicitly recorded. Evidence: verification/m11-changelog-reconciliation.json; signature, tag-object, and TacticSwitch gate gaps remain explicitly open.
-- [x] 2.10 M11-V08: Retain license, state, hook, install, tag, annotation, and signature provenance; explicitly block if required fidelity cannot be demonstrated. Evidence: `verification/m11-imported-surface-dispositions.json` and `verification/m11-object-fidelity-audit.json`; fidelity remains explicitly BLOCKED.
+  retain, adapt, replace, or historical-only disposition. The three pinned
+  source-main inventories and category dispositions are in
+  `verification/m11-source-repository-inventory/` and
+  `verification/m11-imported-surface-dispositions.json`. All 21 source tag
+  objects and the retained upstream verification for 25 signed commits match
+  the tracked bundles; local trust revalidation remains unavailable. Prior
+  rewrite inventories are superseded evidence.
+- [x] 2.7 M11-V05: Verify the one-parent import commit changes only
+  `.gitmodules` and the expected gitlinks, each pinned to the exact source main
+  object. The import-only verifier passed; full bundle inventory is separate.
+- [x] 2.8 M11-V06: Retain source and adapted legacy-check reports plus the
+  import-only verification. Keep M11 BLOCKED while required gates remain
+  unavailable; field qualification status is in
+  `verification/m11-history-qualification-status.json`.
+- [x] 2.9 M11-V07: Reconcile `CHANGELOG.md` against exact source refs, gitlink pins, and bundle evidence; resolve or explicitly record every discrepancy. Evidence: `verification/m11-changelog-reconciliation.json`.
+- [x] 2.10 M11-V08: Verify retained upstream signature results against the exact signature-bearing commit objects in the bundles, verify all tag object IDs, and reconcile license, state, hook, install, and host surfaces. Record local trust limitations; block if authoritative signature evidence or source-object matching fails. Evidence: `verification/m11-source-signature-verification.json` and `verification/m11-imported-surface-dispositions.json`.
 
 ## 3. M11 qualification decision
 
