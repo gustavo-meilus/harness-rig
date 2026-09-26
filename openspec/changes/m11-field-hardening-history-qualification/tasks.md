@@ -21,12 +21,7 @@
 - [ ] 2.6 M11-T14: Inventory imported licenses, state, hooks, install/update
   surfaces, generated files, schemas, tests, CI, OpenSpec, host manifests,
   tags, and signatures; verify every surfaced category has an explicit
-  retain, adapt, replace, or historical-only disposition. Partial evidence:
-  `verification/m11-imported-surface-dispositions.json` inventories staged
-  main-tip trees and dispositions each category; all 21 source tag objects were
-  confirmed in the available bundles, but local commit-signature verification
-  is blocked by host trust configuration and rewritten signature/tag fidelity
-  remains blocked. See `verification/m11-object-fidelity-audit.json`.
+  retain, adapt, replace, or historical-only disposition. Evidence: `verification/m11-imported-surface-ref-inventory.json` maps all 41 staged refs across 34 commits and 25 unique trees; every path is assigned to one or more classifier categories or explicitly listed as unclassified. `verification/m11-imported-surface-dispositions.json` records each category disposition. All 21 source tag objects were confirmed in the bundles; local signature verification is blocked by host trust configuration, and rewritten signature/tag fidelity remains unresolved. See `verification/m11-object-fidelity-audit.json`.
 - [x] 2.7 M11-V05: Retain reproducibility, tree-equivalence, parent-topology, and source-ref mapping reports; require all verifiers to pass before accepting imports.
 - [x] 2.8 M11-V06: Retain legacy-check and import-only reports; mark M11 BLOCKED if any required check fails or cannot run. Evidence: `verification/m11-import-only-status.json` records import-only verification as NOT_RUN because no import-only commits were created; M11 remains BLOCKED.
 - [x] 2.9 M11-V07: Reconcile CHANGELOG.md against source histories and retained maps; verify every discrepancy is resolved or explicitly recorded. Evidence: verification/m11-changelog-reconciliation.json; signature, tag-object, and TacticSwitch gate gaps remain explicitly open.

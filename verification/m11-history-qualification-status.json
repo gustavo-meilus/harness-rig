@@ -72,7 +72,8 @@
       "Rewritten histories do not preserve source commit signatures or annotated-tag objects. GitHub reports verified 25 of 25 signed source commits; mapped source signatures remain in the original bundles, but acceptance/fidelity disposition is unresolved.",
       "Import-only commits and proof were withheld after the required TacticSwitch legacy gate failed.",
       "Codex field observation lacks independently retained Desktop/model identity and token cost; the Codex CLI-agent pilot was blocked by Windows socket error 10013 and unreachable HTTPS fallback, and native Claude qualification was not run.",
-      "Original source tag objects are present in the external bundles, but rewritten annotation objects and commit signatures are not preserved. Local independent verification of signed commits could not use GPG keys/keyring or SSH allowed-signers configuration; retain the fidelity gate."
+      "Original source tag objects are present in the external bundles, but rewritten annotation objects and commit signatures are not preserved. Local independent verification of signed commits could not use GPG keys/keyring or SSH allowed-signers configuration; retain the fidelity gate.",
+      "The approved import design requires source checkouts remain untouched, rewritten trees match the source under their prefixes, and cryptographic fidelity remain a gate. Regenerating TacticSwitch MANIFEST.sha256 in the imported tree would change the required tree; rewriting changes commit IDs and does not preserve annotated-tag object IDs. Clearing these gates requires a revised import design or another source-native strategy."
     ],
     "scope_notes": [
       "Input bundles cover refs advertised by public upstream, including pull-request heads. Local AIBoarding uncommitted edits and local-only branches, and untracked Skill Kit caches, were not included; those source checkouts were left untouched."

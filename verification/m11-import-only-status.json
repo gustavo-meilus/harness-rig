@@ -2,7 +2,7 @@
   "schema": "harness-rig/m11-import-only-status/v1",
   "date": "2026-09-26",
   "result": "BLOCKED",
-  "target_repository_head": "636acb923c00c413eb8cd48d61cb1a65a50f9a06",
+  "target_repository_head": "ac4699cf995af918cb871206e6068a33d57601b3",
   "import_only_commits": [],
   "import_only_commit_count": 0,
   "verification": {
@@ -27,5 +27,10 @@
   ],
   "source_refs_modified": false,
   "namespaced_rewritten_refs_retained": true,
-  "m12_eligible": false
+  "m12_eligible": false,
+  "decision_gate": {
+    "current_contract": "Keep the source snapshot immutable, require rewritten tree equivalence, and retain signature/tag fidelity as a hard gate.",
+    "why_blocked": "A MANIFEST regeneration changes imported tree content; history rewriting changes commit IDs and does not preserve annotated-tag object IDs. Source commit signatures are not carried to rewritten commits. None can be accepted under the current contract without an approved design change or a source-native import strategy.",
+    "user_direction_needed": "Choose whether to keep M11 blocked under the current contract or revise the import design to preserve original Git objects and treat any TacticSwitch manifest repair as a separate, explicitly reviewed adaptation."
+  }
 }
