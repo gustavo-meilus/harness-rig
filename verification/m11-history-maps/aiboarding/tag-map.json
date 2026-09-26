@@ -1,0 +1,82 @@
+[
+  {
+    "source_ref": "refs/tags/v0.1.0",
+    "source_object": "9e8bb090519aed91179a56c9bb2d3da0d9602a49",
+    "source_commit": "9e33396760d343042483a5845d2818a241e9f6e8",
+    "import_ref": "refs/tags/aiboarding/v0.1.0",
+    "import_commit": "23bb0d1ba40d611a8600a9da8d8b5cbde6b95bcc",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.1.1",
+    "source_object": "757cb3809e9f2c2eda1937ec81f488b8f9b668fe",
+    "source_commit": "9be77ea38d1d418feb34f360d7421c42267064b3",
+    "import_ref": "refs/tags/aiboarding/v0.1.1",
+    "import_commit": "d0d4de7821503d0d91cd9e8e76cd272a70c5349f",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.1.2",
+    "source_object": "78fa48db6d150ef4e2d53d610a9e5c45d36b83ef",
+    "source_commit": "e6ad8169470ceeb01b5e37e5e11efca31718afb8",
+    "import_ref": "refs/tags/aiboarding/v0.1.2",
+    "import_commit": "37c56e76fdd33c77c744c352e320bbe05d6e57f6",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.1.3",
+    "source_object": "1c4bd6d256a9fb05f914b57a67e977268288ad22",
+    "source_commit": "f7fef2d38ea224f3f4fc762ce2c0550b2601c528",
+    "import_ref": "refs/tags/aiboarding/v0.1.3",
+    "import_commit": "408d614905e7f484ade992eee28af1d76fc5b7cd",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.2.0",
+    "source_object": "966f394d69332842ad416d5f2711c81f4a1e111c",
+    "source_commit": "966f394d69332842ad416d5f2711c81f4a1e111c",
+    "import_ref": "refs/tags/aiboarding/v0.2.0",
+    "import_commit": "453aee6e9bd025c8bf6270b7ef9b41437c79961c",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.5.0",
+    "source_object": "79835c06c78fcd89f38db67634625a06a8a9f94e",
+    "source_commit": "79835c06c78fcd89f38db67634625a06a8a9f94e",
+    "import_ref": "refs/tags/aiboarding/v0.5.0",
+    "import_commit": "5f94070b49bb1476ab7c08c61be28c3a66a302cd",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v0.6.0",
+    "source_object": "c7fdb2baae7b80093a48aee448efce532a6185d1",
+    "source_commit": "c7fdb2baae7b80093a48aee448efce532a6185d1",
+    "import_ref": "refs/tags/aiboarding/v0.6.0",
+    "import_commit": "6d109614f4676b80416d67254918ef320c15085c",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v1.0.0",
+    "source_object": "92adc9d6eb44c4dc9d11bc4e3fc524556526be47",
+    "source_commit": "92adc9d6eb44c4dc9d11bc4e3fc524556526be47",
+    "import_ref": "refs/tags/aiboarding/v1.0.0",
+    "import_commit": "6ed4f999ac256a9c898d2077fdde057762739d3f",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v1.0.1",
+    "source_object": "9d172fdf0c2a00257d81a0cb5c8da78a87f60d30",
+    "source_commit": "9d172fdf0c2a00257d81a0cb5c8da78a87f60d30",
+    "import_ref": "refs/tags/aiboarding/v1.0.1",
+    "import_commit": "ae8c77f095f0408b4c001b2e38910bf69a902cb4",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v1.0.2",
+    "source_object": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "import_ref": "refs/tags/aiboarding/v1.0.2",
+    "import_commit": "efc392135de8b2eb41cf39785bca2f85106dc6dd",
+    "annotation_preserved": false
+  }
+]

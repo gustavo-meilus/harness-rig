@@ -1,0 +1,58 @@
+[
+  {
+    "source_ref": "refs/tags/engineering-harness-adaptive-v1.0.1",
+    "source_object": "2f72bdfb3eab997bfa2052f6555e0c2adef93364",
+    "source_commit": "7f1e473e72d94cc41b2115be7ecde254e2212713",
+    "import_ref": "refs/tags/skill-kit/engineering-harness-adaptive-v1.0.1",
+    "import_commit": "c01108e23518a3d7e477612c24d0f98f9e5f61d3",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/llm-knowledge-base-maintainer-v1.0.0",
+    "source_object": "e51dbe913af0218f699dfdfb6e5a9b915a7c96d7",
+    "source_commit": "ef1dd1eea439bca64c0bdac0cbf71acf0e596e27",
+    "import_ref": "refs/tags/skill-kit/llm-knowledge-base-maintainer-v1.0.0",
+    "import_commit": "324a935d74a19dbc514de1a99c6c89c1a53b4474",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/llm-knowledge-base-maintainer-v1.1.0",
+    "source_object": "da4b356dc62d44c9d481cfa549c958606253a87c",
+    "source_commit": "b601cbb13fb7ddf0a1ff5df1cdd09de123e83634",
+    "import_ref": "refs/tags/skill-kit/llm-knowledge-base-maintainer-v1.1.0",
+    "import_commit": "cf844d6a6746d2c286f8f2cf1ceb7c2799bcb881",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/relentless-web-researcher-v1.0.0",
+    "source_object": "5a41d75123f1a4c364b42d517304f4674c8d2662",
+    "source_commit": "8d804b5cf3f401ab0439538daa34cdede7c47725",
+    "import_ref": "refs/tags/skill-kit/relentless-web-researcher-v1.0.0",
+    "import_commit": "ff2d03eb8e0f13072d6a1d69e3f89d776615a9ff",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/relentless-web-researcher-v1.0.1",
+    "source_object": "12f8daca733193e9c4932fb7714c712e7406c4a4",
+    "source_commit": "3cc39563a2bd03f8dd66a4b593651bb4c54d8ad7",
+    "import_ref": "refs/tags/skill-kit/relentless-web-researcher-v1.0.1",
+    "import_commit": "6612033ec779d55f624cb22362b0566171c20beb",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/s-kit-v1.0.1",
+    "source_object": "07fb6a2ca54d0b6fc06fbb75d88929f67a8bc34a",
+    "source_commit": "d050435891f1a73cd566637e3177abe981aba35a",
+    "import_ref": "refs/tags/skill-kit/s-kit-v1.0.1",
+    "import_commit": "6b58a29d541c8495ec81ff9c01a5358a9d63c6ac",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/s-kit-v1.0.2",
+    "source_object": "500069c77e2e472975423366bc19be09caa2cce9",
+    "source_commit": "bd5570a6bf7f2973b9604176516df4b6f4ff62b1",
+    "import_ref": "refs/tags/skill-kit/s-kit-v1.0.2",
+    "import_commit": "28cc22f781d23acb983fe20a3f583d1072220c63",
+    "annotation_preserved": false
+  }
+]

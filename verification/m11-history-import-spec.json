@@ -1,7 +1,7 @@
 {
   "schema": "harness-rig/m11-history-import-spec/v1",
   "milestone": "M11",
-  "status": "prepared-blocked-on-git-objects",
+  "status": "staged-in-namespaced-refs; import-only commits blocked pending legacy-check and fidelity disposition",
   "sources": [
     {
       "id": "aiboarding",

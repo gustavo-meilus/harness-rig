@@ -2,7 +2,7 @@
 
 **Current verified revision:** r8.10  
 **Completed:** M0-M10 PASS  
-**Next:** M11-T01  
+**Next:** M11-T09 (Codex Desktop/CLI field pilot)
 **Final planned qualification:** M12 / 1.0
 
 This root file is the Git/Codex execution projection requested for the repository handoff. The detailed milestone source of truth remains `PROGRESSIVE_REMEDIATION_PLAN.md`; durable architecture knowledge remains under `references/` and is indexed by `llms.txt`.
@@ -151,20 +151,20 @@ Completed:
 
 Verified 133/133 tests through M10. Full source-history qualification remains `PENDING_M11`.
 
-## M11 / r8.11 - RigYard disposition, source-history qualification, field hardening - NEXT
+## M11 / r8.11 - RigYard disposition, source-history qualification, field hardening - BLOCKED
 
 Execute in this exact milestone only:
 
-- [ ] **M11-T01** Disposition v0.3 isolated writers.
-- [ ] **M11-T02** Disposition harness mutation verification.
-- [ ] **M11-T03** Disposition v0.4 approved revision/traceability requirements.
-- [ ] **M11-T04** Disposition v0.5 static composition.
-- [ ] **M11-T05** Disposition v0.6 richer topology families.
-- [ ] **M11-T06** Disposition v0.7 distributed execution.
-- [ ] **M11-T07** Disposition v0.8 observability/effects.
+- [x] **M11-T01** Disposition v0.3 isolated writers.
+- [x] **M11-T02** Disposition harness mutation verification.
+- [x] **M11-T03** Disposition v0.4 approved revision/traceability requirements.
+- [x] **M11-T04** Disposition v0.5 static composition.
+- [x] **M11-T05** Disposition v0.6 richer topology families.
+- [x] **M11-T06** Disposition v0.7 distributed execution.
+- [x] **M11-T07** Disposition v0.8 observability/effects.
 - [ ] **M11-T08** Qualify Claude natively as the secondary host target. Codex is primary and must be operational first.
 - [ ] **M11-T09** Run representative field pilots and simplification review, prioritizing Codex Desktop/CLI as the primary real-host path.
-- [ ] **M11-T10** Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
+- [x] **M11-T10** Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
 - [ ] **M11-T11** Execute history-preserving rewrite/import into isolated legacy prefixes where required.
 - [ ] **M11-T12** Produce reproducible source -> rewritten commit/tag maps and reconcile them against `CHANGELOG.md`.
 - [ ] **M11-T13** Run relevant legacy deterministic checks and verify import-only commits/tree equivalence.
@@ -172,11 +172,11 @@ Execute in this exact milestone only:
 
 Required verification:
 
-- [ ] **M11-V01** Every active RigYard proposal has exactly one Harness Rig disposition.
-- [ ] **M11-V02** Deferred features have explicit evidence triggers.
+- [x] **M11-V01** Every active RigYard proposal has exactly one Harness Rig disposition.
+- [x] **M11-V02** Deferred features have explicit evidence triggers.
 - [ ] **M11-V03** Field pilots measure trust outcomes and harness cost.
 - [ ] **M11-V04** Mechanisms with no distinct value are deleted/downgraded.
-- [ ] **M11-V05** History mappings are reproducible and mapped trees/topology match source histories.
+- [x] **M11-V05** History mappings are reproducible and mapped trees/topology match source histories.
 - [ ] **M11-V06** Relevant legacy checks and import-only verification pass or produce explicit BLOCKED evidence.
 - [ ] **M11-V07** `CHANGELOG.md` reconciles with actual source history; discrepancies are resolved or explicit.
 - [ ] **M11-V08** License/state/hook/install/tag/signature provenance is retained or explicitly dispositioned.

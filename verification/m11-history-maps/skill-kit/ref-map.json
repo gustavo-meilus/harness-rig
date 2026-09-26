@@ -1,0 +1,8 @@
+[
+  {
+    "source_ref": "refs/heads/main",
+    "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+    "import_ref": "refs/heads/harness-rig-import/main",
+    "import_commit": "b778806a73a24d531f4663d5e9772302caadc8bd"
+  }
+]

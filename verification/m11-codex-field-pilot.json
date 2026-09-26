@@ -1,0 +1,38 @@
+{
+  "schema": "harness-rig/m11-field-pilot/v1",
+  "id": "M11-P01",
+  "result": "BLOCKED",
+  "environment": {
+    "host": "Codex Desktop task context on Windows",
+    "application_version": "NOT_RECORDED",
+    "model_runtime_identity": "NOT_INDEPENDENTLY_RECORDED"
+  },
+  "authorization": "User-authorized execution of CODEX_BOOTSTRAP_PROMPT.md and follow-up M11 work.",
+  "task": "Execute Harness Rig bootstrap/M11 history qualification and fix the Windows link-escape test setup without weakening its assertion.",
+  "observations": {
+    "trust_outcomes": [
+      "Canonical path-escape assertion passed using a Windows junction when symlink creation returned WinError 1314.",
+      "Canonical Harness Rig verifier passed 133 tests across eight milestone modules; Context audit passed with 44 pages/rows and projection FRESH.",
+      "Original AIBoarding, TacticSwitch, and Skill Kit source checkouts were not modified.",
+      "Rewritten source refs were staged only in namespaces; no import-only commits or merges were made.",
+      "TacticSwitch quality gate failure was retained as BLOCKED rather than repaired in the source snapshot."
+    ],
+    "harness_cost": {
+      "full_verifier_tests": 133,
+      "elapsed_seconds_approx": 59,
+      "measurement": "Approximate elapsed time from tool-call wait durations; not a billing or token-cost measure.",
+      "agent_delegation_count": 0,
+      "token_or_cost_accounting": "UNAVAILABLE"
+    },
+    "limits": [
+      "This is one retrospective Codex Desktop task, not a planned comparative pilot.",
+      "Native host version/runtime identity and isolation/permission capability matrix were not independently captured.",
+      "No separate Codex CLI or Claude pilot was run."
+    ]
+  },
+  "evidence": [
+    "verification/m11-history-qualification-status.json",
+    "verification/m11-rigyard-dispositions.json"
+  ],
+  "completion": "Insufficient for M11-T09/M11-V03; retain as partial observation only."
+}

@@ -1,0 +1,183 @@
+{
+  "schema": "harness-rig/m11-upstream-signature-verification/v1",
+  "result": "PASS",
+  "checked": 25,
+  "failed": 0,
+  "commits": [
+    {
+      "source": "aiboarding",
+      "sha": "be3ebb730d299a54ed84cd478a74d54be7400a87",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-06-01T15:05:25Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "b72fe2bf3eaeaa9467b3e88b18f4255036deed2a",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-06-09T14:09:31Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "897275475e2bc496f646d9bc509c4046c149b3d4",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "10644c2bae19959ce9e1eb822a3fdbda6bdcfcaa",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "003b04d8e335b42f6650ee96e5b3c7d1eb2b1bde",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "f5c892a1417bf53c022f06c2d5df2e2cdf29e125",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "741ac02c51aebd92e3b32c3acac72c87b5a747a0",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "3bc4221f7b59c2e2d1dc8f7f0e6c4c9726aa9ed3",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "69b0fc1e10b9a5aa7b5dba289fcbcde498333060",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "67e130209f17af4bd8d2fe10c24bf19b0a82d769",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "18fdfba35f7916768b63dbd3e3d7e55c44ebdf79",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "16058971a5ebd34aea525a7185e8e5ca2eb04ad6",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "1487498a759ac9695ced18fde6a933fe71c00ae6",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T11:47:43Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "79835c06c78fcd89f38db67634625a06a8a9f94e",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-02T12:58:54Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "e16d9bc96965eb79ae40e567be95fad9755de273",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-07-03T15:33:34Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "53537b716115f99950cdb1c378885a5beb4a9941",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-23T18:58:29Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "6c449f8e2a8a3d06d70af5b5a2b95b1abcb0868d",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-23T19:04:41Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "c7fdb2baae7b80093a48aee448efce532a6185d1",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-24T21:23:30Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "145d2737f0c875cbc1243fcdb272a12117d20d73",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-24T21:31:07Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "2f8178e3941a33f872340dd0c3c02749e07ca931",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-24T21:47:30Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "92adc9d6eb44c4dc9d11bc4e3fc524556526be47",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-25T12:20:01Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "9d172fdf0c2a00257d81a0cb5c8da78a87f60d30",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-25T22:36:01Z"
+    },
+    {
+      "source": "aiboarding",
+      "sha": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-28T03:37:25Z"
+    },
+    {
+      "source": "tacticswitch",
+      "sha": "3153fc5b0e48860742dcbba6bf325ca12cf86f2a",
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-08-21T19:58:59Z"
+    }
+  ]
+}

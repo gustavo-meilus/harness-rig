@@ -1,0 +1,104 @@
+[
+  {
+    "source_ref": "refs/heads/claude/aiboarding-agents-md-modernize-uxpo18",
+    "source_commit": "7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+    "import_ref": "refs/heads/harness-rig-import/claude/aiboarding-agents-md-modernize-uxpo18",
+    "import_commit": "fa010552bbd4f3eba032b12cac09f0511dbc9cba"
+  },
+  {
+    "source_ref": "refs/heads/gate-executable-verification",
+    "source_commit": "9a339b36741d571c766552763069042e3dd8245b",
+    "import_ref": "refs/heads/harness-rig-import/gate-executable-verification",
+    "import_commit": "dd74164a05bd6fd62f3318d59630a29bbd059d8b"
+  },
+  {
+    "source_ref": "refs/heads/main",
+    "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "import_ref": "refs/heads/harness-rig-import/main",
+    "import_commit": "efc392135de8b2eb41cf39785bca2f85106dc6dd"
+  },
+  {
+    "source_ref": "refs/heads/release/v0.6.0",
+    "source_commit": "2f7fb91e329f8a00d3af3f372c739f0150fff811",
+    "import_ref": "refs/heads/harness-rig-import/release/v0.6.0",
+    "import_commit": "09ab7508202430ac14cb420b8ae3d6b48aa433c6"
+  },
+  {
+    "source_ref": "refs/heads/release/v1.0.2",
+    "source_commit": "9b646e006e042fdb70489b6a0d718eb372601245",
+    "import_ref": "refs/heads/harness-rig-import/release/v1.0.2",
+    "import_commit": "96783f0fb0222cb71a4f465c75edd9e8d0c36b98"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/10",
+    "source_commit": "3d06d7fb53bd20623c399a0bcc9be1846adec908",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/10",
+    "import_commit": "f1cc8c117ccaea5dd741c216749fce31de9a5fc3"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/11",
+    "source_commit": "f88846210be73dd0cc4329b51bd2235a0942aa6f",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/11",
+    "import_commit": "41e955bde81bfb8d01d7620d573c64ff43135855"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/12",
+    "source_commit": "9b646e006e042fdb70489b6a0d718eb372601245",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/12",
+    "import_commit": "96783f0fb0222cb71a4f465c75edd9e8d0c36b98"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/2",
+    "source_commit": "2b20719d12a6d373bc3a842704051b089eda10f7",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/2",
+    "import_commit": "f8d273b26f35b1d5535677d2ec0a94c6b8dd3b78"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/3",
+    "source_commit": "7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/3",
+    "import_commit": "fa010552bbd4f3eba032b12cac09f0511dbc9cba"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/4",
+    "source_commit": "559d110fdc1dfce87fe83b02f390d70508b366bf",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/4",
+    "import_commit": "e2ed445281930be642cc8ba4e232bd2149b11972"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/5",
+    "source_commit": "9a339b36741d571c766552763069042e3dd8245b",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/5",
+    "import_commit": "dd74164a05bd6fd62f3318d59630a29bbd059d8b"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/6",
+    "source_commit": "9734c279af034e9be60e90bd57f35e57a90ee946",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/6",
+    "import_commit": "d6659774a7b748baea8f73d9f58cc1b85313b90c"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/7",
+    "source_commit": "2f7fb91e329f8a00d3af3f372c739f0150fff811",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/7",
+    "import_commit": "09ab7508202430ac14cb420b8ae3d6b48aa433c6"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/8",
+    "source_commit": "c8b6707c014e610281542bfef352f834b261d43e",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/8",
+    "import_commit": "b5cb4c351f3a286f657fb75afdaa8389f61b67be"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/9",
+    "source_commit": "2010bddef7e81df5e55b8965a6bdd386d76e389e",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/9",
+    "import_commit": "2b227f8af16d590cd7ff810736fe57038eaea103"
+  },
+  {
+    "source_ref": "refs/heads/verify-ruleset-block",
+    "source_commit": "9734c279af034e9be60e90bd57f35e57a90ee946",
+    "import_ref": "refs/heads/harness-rig-import/verify-ruleset-block",
+    "import_commit": "d6659774a7b748baea8f73d9f58cc1b85313b90c"
+  }
+]

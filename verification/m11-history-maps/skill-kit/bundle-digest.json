@@ -1,0 +1,5 @@
+{
+  "bundle": ".bootstrap/m11/rewrite-output-complete/skill-kit/skill-kit-import.bundle",
+  "sha256": "2f6bc8f5930b908c1d4f31ab1ee8df0613b65d7cbd0037e2e43c12260ad6cbe1",
+  "retention": "ignored .bootstrap evidence; do not commit bundle payload"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "harness-rig/m11-legacy-check-results/v1",
+  "results": [
+    {
+      "source": "aiboarding",
+      "result": "PASS",
+      "command": "bash tests/run.sh",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/aiboarding",
+      "evidence": "Completed with final PASS."
+    },
+    {
+      "source": "tacticswitch",
+      "result": "FAIL",
+      "command": "python scripts/quality_gate.py",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/tacticswitch",
+      "tests_run": 200,
+      "failures": 1,
+      "failure": {
+        "test": "tests.test_release_surface.ReleaseSurfaceTests.test_release_checksums_are_current",
+        "detail": "FAIL: MANIFEST.sha256 is stale"
+      },
+      "log": ".bootstrap/m11/legacy-check-workdirs/tacticswitch-quality-gate.log"
+    },
+    {
+      "source": "skill-kit",
+      "result": "PASS",
+      "command": "python scripts/check.py",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/skill-kit",
+      "python_tests": 18,
+      "openspec_specs": 4,
+      "openspec_failures": 0
+    }
+  ],
+  "source_checkouts_modified": false
+}

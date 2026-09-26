@@ -1,0 +1,14 @@
+{
+  "schema": "harness-rig/m11-history-rewrite-report/v1",
+  "prefix": "legacy/tacticswitch",
+  "includes": [],
+  "source_commit_count": 17,
+  "branch_count": 2,
+  "tag_count": 4,
+  "signed_source_commits": [
+    "3153fc5b0e48860742dcbba6bf325ca12cf86f2a"
+  ],
+  "signed_commit_signatures_preserved": false,
+  "tag_annotations_preserved": false,
+  "note": "Rewritten commit IDs intentionally differ; commit-map.json is authoritative."
+}

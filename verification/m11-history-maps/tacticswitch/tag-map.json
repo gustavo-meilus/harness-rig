@@ -1,0 +1,34 @@
+[
+  {
+    "source_ref": "refs/tags/v2.0.0",
+    "source_object": "abdce5b5b8f1e13981b1eb57d301dae3d772d441",
+    "source_commit": "abdce5b5b8f1e13981b1eb57d301dae3d772d441",
+    "import_ref": "refs/tags/tacticswitch/v2.0.0",
+    "import_commit": "a53a71442874d172f82dd6e712ff8219b1e47229",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v2.1.0",
+    "source_object": "38384170170410dd160de506a794db82e650526a",
+    "source_commit": "38384170170410dd160de506a794db82e650526a",
+    "import_ref": "refs/tags/tacticswitch/v2.1.0",
+    "import_commit": "b01340765e19bc2ebaabcf88e2edcf6cc1e2d995",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v2.2.0",
+    "source_object": "188e5038e02690e3f0e76810cc1d68bdaf3ff4d5",
+    "source_commit": "30c22681357030a39df0125fc906230c5728c671",
+    "import_ref": "refs/tags/tacticswitch/v2.2.0",
+    "import_commit": "07955b303268e727e5b157f910be8aa314b60f0a",
+    "annotation_preserved": false
+  },
+  {
+    "source_ref": "refs/tags/v2.2.1",
+    "source_object": "a534e5d2c8385db447c97b8cfd0b156bd3789255",
+    "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+    "import_ref": "refs/tags/tacticswitch/v2.2.1",
+    "import_commit": "18d5d2a13285578d2a7c460c14e8c856b1dbbc97",
+    "annotation_preserved": false
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "schema": "harness-rig/m11-target-fetch/v1",
+  "result": "PASS",
+  "active_head_unchanged": "ece79e901ab1a304b97f0f749be0aedacddaf167",
+  "staged_namespaces": {
+    "aiboarding": {
+      "remote_refs": 17,
+      "tags": 10
+    },
+    "tacticswitch": {
+      "remote_refs": 2,
+      "tags": 4
+    },
+    "skill-kit": {
+      "remote_refs": 1,
+      "tags": 7
+    }
+  },
+  "merge_performed": false,
+  "import_only_commits_created": false
+}
