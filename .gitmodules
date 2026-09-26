@@ -1,0 +1,9 @@
+[submodule "aiboarding"]
+	path = legacy/aiboarding
+	url = https://github.com/gustavo-meilus/aiboarding.git
+[submodule "tacticswitch"]
+	path = legacy/tacticswitch
+	url = https://github.com/gustavo-meilus/tacticswitch.git
+[submodule "skill-kit"]
+	path = legacy/skill-kit
+	url = https://github.com/gustavo-meilus/skill-kit.git
