@@ -66,7 +66,7 @@
     "openspec": "HISTORICAL_ONLY; imported change archives do not become active Harness Rig authority.",
     "agent_roles": "HISTORICAL_ONLY; source skills and agent instructions are not installed by importing history.",
     "unclassified_paths": "HISTORICAL_ONLY pending per-surface admission; no unclassified path is activated by these staged refs.",
-    "tags_and_signatures": "SOURCE PROVENANCE RETAINED IN MAPS; rewritten commit signatures and annotated tag objects are not preserved, so final fidelity acceptance remains blocked."
+    "tags_and_signatures": "Original source bundles remain available outside this worktree; all 21 mapped source tag objects (13 annotated, 8 lightweight) were confirmed against their source refs. None of the annotated tags has an embedded signature. Rewritten commit signatures and annotated tag objects are not preserved; local commit-signature verification was blocked by unavailable GPG keyring/public keys and missing SSH allowed-signers configuration. Keep final fidelity acceptance blocked; see verification/m11-object-fidelity-audit.json."
   },
   "acceptance_gaps": [
     "The source refs remain staged in namespaces; no import-only commits were accepted.",

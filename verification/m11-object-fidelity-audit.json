@@ -1,0 +1,46 @@
+{
+  "schema": "harness-rig/m11-object-fidelity-audit/v1",
+  "date": "2026-09-26",
+  "source_bundles": {
+    "location": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete",
+    "tracked_by_this_worktree": false,
+    "preflight": "PASS",
+    "sources": {
+      "aiboarding": {"main_commits": 89, "bundle_fsck": "PASS"},
+      "tacticswitch": {"main_commits": 11, "bundle_fsck": "PASS"},
+      "skill-kit": {"main_commits": 15, "bundle_fsck": "PASS"}
+    }
+  },
+  "mapped_source_tag_objects": {
+    "checked": 21,
+    "retained_and_matching_source_refs": 21,
+    "missing_or_mismatched": 0,
+    "annotated_tags": 13,
+    "lightweight_tags": 8,
+    "embedded_signed_tags": 0,
+    "rewritten_annotation_preserved": false,
+    "method": "Cloned each original bundle to a temporary mirror; checked each mapped source_object with git cat-file and compared git rev-parse(source_ref) to the exact mapped object ID. Inspected all annotated tag objects for PGP/SSH signature blocks; none were present."
+  },
+  "local_commit_signature_verification": {
+    "checked": 25,
+    "verified": 0,
+    "result": "BLOCKED_LOCAL_TRUST_CONFIGURATION",
+    "gpg_signatures": {
+      "checked": 13,
+      "reason": "Git could not access the user's GPG keyring and reported no public key."
+    },
+    "ssh_signatures": {
+      "checked": 12,
+      "reason": "gpg.ssh.allowedSignersFile is not configured in this environment."
+    },
+    "interpretation": "These local verification failures do not establish invalid signatures. The retained upstream verification report records 25/25 source commits as verified; independent local verification remains unavailable."
+  },
+  "rewritten_history_disposition": "Source tag objects remain available in original bundles and map to rewritten refs. Rewritten tag annotation objects and commit signatures are not preserved by the history rewrite. Keep import acceptance blocked under the selected fidelity policy.",
+  "evidence": [
+    "verification/m11-history-input-preflight-current.json",
+    "verification/m11-upstream-signature-verification.json",
+    "verification/m11-history-maps/aiboarding/tag-map.json",
+    "verification/m11-history-maps/tacticswitch/tag-map.json",
+    "verification/m11-history-maps/skill-kit/tag-map.json"
+  ]
+}

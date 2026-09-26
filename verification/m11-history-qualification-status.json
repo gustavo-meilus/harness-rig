@@ -39,6 +39,7 @@
       "target_fetch": "verification/m11-target-fetch-evidence.json",
       "legacy_checks": "verification/m11-legacy-check-results.json",
       "signature_verification": "verification/m11-upstream-signature-verification.json",
+      "object_fidelity_audit": "verification/m11-object-fidelity-audit.json",
       "source_inventory": "verification/m11-source-repository-inventory.json",
       "rigyard_dispositions": "verification/m11-rigyard-dispositions.json",
       "changelog_reconciliation": "verification/m11-changelog-reconciliation.json",
@@ -52,10 +53,10 @@
       "M11-V05: source-to-rewritten maps, tree/topology verification, and two-run reproducibility passed."
     ],
     "partial": [
-      "M11-T09 / M11-V03: one Codex Desktop task retained as a partial field observation; a 133-test verifier run took 42.34 seconds. A read-only Codex CLI-agent pilot initialized on codex-cli 0.157.0 but could not reach the response service and was stopped after retries; Desktop/model identity and token cost remain unavailable. Evidence: verification/m11-codex-field-pilot.json.",
+      "M11-T09 / M11-V03: one Codex Desktop task retained as a partial field observation; a 133-test verifier run took 42.34 seconds. A bounded read-only Codex CLI-agent pilot initialized on codex-cli 0.157.0 but failed with Windows socket error 10013 and could not reach HTTPS fallback; Desktop/model identity and token cost remain unavailable. Evidence: verification/m11-codex-field-pilot.json.",
       "M11-T11: rewritten refs staged only in namespaced refs; import-only commits await passing legacy checks and fidelity disposition.",
       "M11-T13: reproducibility passed; unchanged TacticSwitch snapshot failed 1/200 on stale MANIFEST.sha256. Regenerating that derived file in a disposable Git tree made the full 200-test gate pass; no source checkout or staged ref changed. Import-only verification remains unrun.",
-      "M11-T14: staged main-tip trees contain 1,852 inventoried paths; each surface category has a disposition. Final signature/tag fidelity and import acceptance remain blocked; evidence: verification/m11-imported-surface-dispositions.json."
+      "M11-T14: staged main-tip trees contain 1,852 inventoried paths; each surface category has a disposition. Original bundles are available outside this worktree and pass preflight; all 21 mapped source tag objects (13 annotated, 8 lightweight) were confirmed, and none of the annotated tags contains a signature. Local verification of 25 signed commits is blocked by GPG/SSH trust configuration, while the retained upstream report records 25/25 verified. Rewritten signature/tag fidelity and import acceptance remain blocked; evidence: verification/m11-imported-surface-dispositions.json and verification/m11-object-fidelity-audit.json."
     ],
     "not_run": [
       "M11-T08: native Claude qualification; Codex primary operational evidence must come first.",
@@ -65,7 +66,8 @@
       "TacticSwitch unchanged source tree has a stale MANIFEST.sha256 and fails 1 of 200 tests. A disposable regenerated-manifest tree passes 200/200, but the original source ref remains unchanged and the correction is not yet an admitted import adaptation.",
       "Rewritten histories do not preserve source commit signatures or annotated-tag objects. GitHub reports verified 25 of 25 signed source commits; mapped source signatures remain in the original bundles, but acceptance/fidelity disposition is unresolved.",
       "Import-only commits and proof were withheld after the required TacticSwitch legacy gate failed.",
-      "Codex field observation lacks independently retained Desktop/model identity and token cost; the Codex CLI-agent pilot was blocked by response-service connection failures, and native Claude qualification was not run."
+      "Codex field observation lacks independently retained Desktop/model identity and token cost; the Codex CLI-agent pilot was blocked by Windows socket error 10013 and unreachable HTTPS fallback, and native Claude qualification was not run.",
+      "Original source tag objects are present in the external bundles, but rewritten annotation objects and commit signatures are not preserved. Local independent verification of signed commits could not use GPG keys/keyring or SSH allowed-signers configuration; retain the fidelity gate."
     ],
     "scope_notes": [
       "Input bundles cover refs advertised by public upstream, including pull-request heads. Local AIBoarding uncommitted edits and local-only branches, and untracked Skill Kit caches, were not included; those source checkouts were left untouched."

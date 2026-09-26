@@ -1,9 +1,10 @@
 {
   "schema": "harness-rig/m11-history-input-preflight/v2",
-  "base": ".bootstrap/m11/inputs-complete",
+  "base": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete",
   "sources": [
     {
       "source": "aiboarding",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\aiboarding.bundle",
       "kind": "bundle",
       "ok": true,
       "list_heads_exit": 0,
@@ -166,12 +167,11 @@
         }
       ],
       "main_commit_count": 89,
-      "missing_required_paths": [],
-      "bundle": ".bootstrap/m11/inputs-complete/aiboarding.bundle",
-      "sha256": "0189ad9355a2b6d592bd931d1cf5f28c378b2e06fb5bbd71c635eb38b8e1d2e8"
+      "missing_required_paths": []
     },
     {
       "source": "tacticswitch",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\tacticswitch.bundle",
       "kind": "bundle",
       "ok": true,
       "list_heads_exit": 0,
@@ -210,12 +210,11 @@
         }
       ],
       "main_commit_count": 11,
-      "missing_required_paths": [],
-      "bundle": ".bootstrap/m11/inputs-complete/tacticswitch.bundle",
-      "sha256": "826790422f6889635e8f3b61eb1b4b066d4d98b089343f5a7af9ee4915c2eb6e"
+      "missing_required_paths": []
     },
     {
       "source": "skill-kit",
+      "path": "C:\\Disk\\github\\harness-rig\\.bootstrap\\m11\\inputs-complete\\skill-kit.bundle",
       "kind": "bundle",
       "ok": true,
       "list_heads_exit": 0,
@@ -258,9 +257,7 @@
         }
       ],
       "main_commit_count": 15,
-      "missing_required_paths": [],
-      "bundle": ".bootstrap/m11/inputs-complete/skill-kit.bundle",
-      "sha256": "fecf69d33d09b8a476bbfb860bec2da38fe793cb81839fa4b265733170c16bec"
+      "missing_required_paths": []
     }
   ],
   "result": "PASS"

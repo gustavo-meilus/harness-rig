@@ -35,7 +35,8 @@
     "codex_cli_agent_attempt": {
       "task": "Read-only inspection of M11 history qualification evidence in an ephemeral Codex CLI task.",
       "result": "BLOCKED_NETWORK",
-      "observation": "The CLI initialized and observed codex-cli 0.157.0, but repeated response-service connection attempts failed (including websocket and HTTP fallback retries). The attempt was stopped after retries; no task result was produced.",
+      "observed_at": "2026-09-26",
+      "observation": "The CLI initialized and observed codex-cli 0.157.0, but repeated websocket requests to api.openai.com failed with Windows socket error 10013; curated-plugin sync also could not reach GitHub. The HTTPS fallback also failed to connect. The attempt was stopped after the bounded retry sequence; no task result was produced.",
       "source_or_worktree_changes": "NONE",
       "token_or_cost_accounting": "UNAVAILABLE"
     },
