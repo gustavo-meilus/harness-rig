@@ -361,10 +361,24 @@ class HarnessRigM3Tests(unittest.TestCase):
             resolve_protected_path(self.repo, "../escape.txt")
 
     # M1-F15
-    def test_f15_symlink_escape_rejected(self):
+    def test_f15_link_escape_rejected(self):
         outside = self.base/"outside"
         outside.mkdir()
-        os.symlink(outside, self.repo/"protected-link")
+        link = self.repo/"protected-link"
+        try:
+            os.symlink(outside, link, target_is_directory=True)
+        except OSError as exc:
+            if os.name != "nt" or getattr(exc, "winerror", None) != 1314:
+                raise
+            result = subprocess.run(
+                ["cmd", "/d", "/c", "mklink", "/J", str(link), str(outside)],
+                encoding="utf-8",
+                errors="replace",
+                capture_output=True,
+            )
+            self.assertEqual(
+                result.returncode, 0, (result.stdout or "") + (result.stderr or "")
+            )
         with self.assertRaises(PathBoundaryError):
             resolve_protected_path(self.repo, "protected-link/secret.txt")
 

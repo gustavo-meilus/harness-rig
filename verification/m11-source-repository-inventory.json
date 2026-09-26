@@ -1,0 +1,123 @@
+[
+  {
+    "source": "aiboarding",
+    "origin": "https://github.com/gustavo-meilus/aiboarding.git",
+    "mirror_head": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "shallow": "false",
+    "mirror_ref_count": 38,
+    "local_origin": "git@github.com:gustavo-meilus/aiboarding.git",
+    "local_branch": "release/v1.0.2",
+    "local_dirty_lines": 1,
+    "local_dirty": [
+      " M docs/VERIFICATION.md"
+    ],
+    "advertised_refs": [
+      "refs/heads/claude/aiboarding-agents-md-modernize-uxpo18 7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+      "refs/heads/gate-executable-verification 9a339b36741d571c766552763069042e3dd8245b",
+      "refs/heads/main 5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "refs/heads/release/v0.6.0 2f7fb91e329f8a00d3af3f372c739f0150fff811",
+      "refs/heads/release/v1.0.2 9b646e006e042fdb70489b6a0d718eb372601245",
+      "refs/heads/upstream-pull/10 3d06d7fb53bd20623c399a0bcc9be1846adec908",
+      "refs/heads/upstream-pull/11 f88846210be73dd0cc4329b51bd2235a0942aa6f",
+      "refs/heads/upstream-pull/12 9b646e006e042fdb70489b6a0d718eb372601245",
+      "refs/heads/upstream-pull/2 2b20719d12a6d373bc3a842704051b089eda10f7",
+      "refs/heads/upstream-pull/3 7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+      "refs/heads/upstream-pull/4 559d110fdc1dfce87fe83b02f390d70508b366bf",
+      "refs/heads/upstream-pull/5 9a339b36741d571c766552763069042e3dd8245b",
+      "refs/heads/upstream-pull/6 9734c279af034e9be60e90bd57f35e57a90ee946",
+      "refs/heads/upstream-pull/7 2f7fb91e329f8a00d3af3f372c739f0150fff811",
+      "refs/heads/upstream-pull/8 c8b6707c014e610281542bfef352f834b261d43e",
+      "refs/heads/upstream-pull/9 2010bddef7e81df5e55b8965a6bdd386d76e389e",
+      "refs/heads/verify-ruleset-block 9734c279af034e9be60e90bd57f35e57a90ee946",
+      "refs/pull/10/head 3d06d7fb53bd20623c399a0bcc9be1846adec908",
+      "refs/pull/11/head f88846210be73dd0cc4329b51bd2235a0942aa6f",
+      "refs/pull/12/head 9b646e006e042fdb70489b6a0d718eb372601245",
+      "refs/pull/2/head 2b20719d12a6d373bc3a842704051b089eda10f7",
+      "refs/pull/3/head 7d0202a90992f4fdbde2ccf6969e8c26a31fb388",
+      "refs/pull/4/head 559d110fdc1dfce87fe83b02f390d70508b366bf",
+      "refs/pull/5/head 9a339b36741d571c766552763069042e3dd8245b",
+      "refs/pull/6/head 9734c279af034e9be60e90bd57f35e57a90ee946",
+      "refs/pull/7/head 2f7fb91e329f8a00d3af3f372c739f0150fff811",
+      "refs/pull/8/head c8b6707c014e610281542bfef352f834b261d43e",
+      "refs/pull/9/head 2010bddef7e81df5e55b8965a6bdd386d76e389e",
+      "refs/tags/v0.1.0 9e8bb090519aed91179a56c9bb2d3da0d9602a49",
+      "refs/tags/v0.1.1 757cb3809e9f2c2eda1937ec81f488b8f9b668fe",
+      "refs/tags/v0.1.2 78fa48db6d150ef4e2d53d610a9e5c45d36b83ef",
+      "refs/tags/v0.1.3 1c4bd6d256a9fb05f914b57a67e977268288ad22",
+      "refs/tags/v0.2.0 966f394d69332842ad416d5f2711c81f4a1e111c",
+      "refs/tags/v0.5.0 79835c06c78fcd89f38db67634625a06a8a9f94e",
+      "refs/tags/v0.6.0 c7fdb2baae7b80093a48aee448efce532a6185d1",
+      "refs/tags/v1.0.0 92adc9d6eb44c4dc9d11bc4e3fc524556526be47",
+      "refs/tags/v1.0.1 9d172fdf0c2a00257d81a0cb5c8da78a87f60d30",
+      "refs/tags/v1.0.2 5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa"
+    ],
+    "upstream_comparison": {
+      "method": "git ls-remote --refs",
+      "result": "PASS",
+      "advertised_ref_count": 27,
+      "missing_or_changed": {},
+      "queried_at": "2026-09-25"
+    }
+  },
+  {
+    "source": "tacticswitch",
+    "origin": "https://github.com/gustavo-meilus/tacticswitch.git",
+    "mirror_head": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+    "shallow": "false",
+    "mirror_ref_count": 7,
+    "local_origin": "https://github.com/gustavo-meilus/tacticswitch.git",
+    "local_branch": "main",
+    "local_dirty_lines": 0,
+    "local_dirty": [],
+    "advertised_refs": [
+      "refs/heads/main f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+      "refs/heads/upstream-pull/1 2709ad5566e985047307ba63c0cb8f3c9acbaf04",
+      "refs/pull/1/head 2709ad5566e985047307ba63c0cb8f3c9acbaf04",
+      "refs/tags/v2.0.0 abdce5b5b8f1e13981b1eb57d301dae3d772d441",
+      "refs/tags/v2.1.0 38384170170410dd160de506a794db82e650526a",
+      "refs/tags/v2.2.0 188e5038e02690e3f0e76810cc1d68bdaf3ff4d5",
+      "refs/tags/v2.2.1 a534e5d2c8385db447c97b8cfd0b156bd3789255"
+    ],
+    "upstream_comparison": {
+      "method": "git ls-remote --refs",
+      "result": "PASS",
+      "advertised_ref_count": 6,
+      "missing_or_changed": {},
+      "queried_at": "2026-09-25"
+    }
+  },
+  {
+    "source": "skill-kit",
+    "origin": "https://github.com/gustavo-meilus/skill-kit.git",
+    "mirror_head": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+    "shallow": "false",
+    "mirror_ref_count": 8,
+    "local_origin": "git@github.com:gustavo-meilus/skill-kit.git",
+    "local_branch": "main",
+    "local_dirty_lines": 5,
+    "local_dirty": [
+      "?? plugins/engineering-harness-adaptive/hooks/__pycache__/",
+      "?? plugins/engineering-harness-adaptive/tests/__pycache__/",
+      "?? plugins/more-with-less/hooks/__pycache__/",
+      "?? plugins/more-with-less/tests/__pycache__/",
+      "?? tests/__pycache__/"
+    ],
+    "advertised_refs": [
+      "refs/heads/main f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+      "refs/tags/engineering-harness-adaptive-v1.0.1 2f72bdfb3eab997bfa2052f6555e0c2adef93364",
+      "refs/tags/llm-knowledge-base-maintainer-v1.0.0 e51dbe913af0218f699dfdfb6e5a9b915a7c96d7",
+      "refs/tags/llm-knowledge-base-maintainer-v1.1.0 da4b356dc62d44c9d481cfa549c958606253a87c",
+      "refs/tags/relentless-web-researcher-v1.0.0 5a41d75123f1a4c364b42d517304f4674c8d2662",
+      "refs/tags/relentless-web-researcher-v1.0.1 12f8daca733193e9c4932fb7714c712e7406c4a4",
+      "refs/tags/s-kit-v1.0.1 07fb6a2ca54d0b6fc06fbb75d88929f67a8bc34a",
+      "refs/tags/s-kit-v1.0.2 500069c77e2e472975423366bc19be09caa2cce9"
+    ],
+    "upstream_comparison": {
+      "method": "git ls-remote --refs",
+      "result": "PASS",
+      "advertised_ref_count": 8,
+      "missing_or_changed": {},
+      "queried_at": "2026-09-25"
+    }
+  }
+]

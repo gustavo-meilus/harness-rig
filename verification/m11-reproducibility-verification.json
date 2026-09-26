@@ -1,0 +1,6 @@
+{
+  "schema": "harness-rig/m11-reproducibility-verification/v1",
+  "result": "PASS",
+  "inputs": ".bootstrap/m11/inputs-complete",
+  "errors": []
+}

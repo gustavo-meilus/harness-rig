@@ -2,6 +2,31 @@
 
 This file is the append-only progressive change and source-consolidation ledger for Harness Rig.
 
+## M11 source-history crosswalk — 2026-09-26
+
+The r8.2 source ledger below records source-level dispositions. M11 links those
+entries to the preserved source-history maps; the per-commit maps remain the
+authoritative old-to-new identity record.
+
+- AIBoarding: 90 commits, 17 branch/PR refs and 10 tags; ledger entry:
+  AIBoarding → Context; maps: `verification/m11-history-maps/aiboarding/`.
+- TacticSwitch: 17 commits, 2 branch/PR refs and 4 tags; ledger entry:
+  TacticSwitch → Topology; maps: `verification/m11-history-maps/tacticswitch/`.
+- Skill Kit: 15 commits, 1 branch/PR ref and 7 tags; ledger entries cover the
+  KB maintainer → Context and Adaptive Engineering Harness → Assurance;
+  maps: `verification/m11-history-maps/skill-kit/`.
+
+All three rewrite verifiers pass for 122 mapped commits. Maps cover every
+inventoried branch/ref and tag; pull-request-head aliases use the corresponding
+`upstream-pull` refs. The coverage and discrepancy record is
+`verification/m11-changelog-reconciliation.json`.
+
+M11 remains blocked. Rewritten commits do not preserve source signatures, and
+rewritten tags do not preserve annotated tag objects. The unchanged TacticSwitch
+source snapshot has a stale checksum manifest; regenerating that derived file
+in a disposable tree made its 200-test gate pass, but did not change the source
+ref. These discrepancies are recorded; import-only commits remain withheld.
+
 ## Role of this file
 
 Until milestone **M11**, `CHANGELOG.md` is the required migration/provenance trace for source-derived Harness Rig changes.

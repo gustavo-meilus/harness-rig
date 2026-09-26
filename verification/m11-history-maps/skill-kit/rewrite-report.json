@@ -1,0 +1,16 @@
+{
+  "schema": "harness-rig/m11-history-rewrite-report/v1",
+  "prefix": "legacy/skill-kit",
+  "includes": [
+    "plugins/llm-knowledge-base-maintainer",
+    "plugins/engineering-harness-adaptive",
+    "LICENSE"
+  ],
+  "source_commit_count": 15,
+  "branch_count": 1,
+  "tag_count": 7,
+  "signed_source_commits": [],
+  "signed_commit_signatures_preserved": false,
+  "tag_annotations_preserved": false,
+  "note": "Rewritten commit IDs intentionally differ; commit-map.json is authoritative."
+}

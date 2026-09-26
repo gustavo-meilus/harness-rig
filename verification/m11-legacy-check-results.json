@@ -1,0 +1,48 @@
+{
+  "schema": "harness-rig/m11-legacy-check-results/v1",
+  "results": [
+    {
+      "source": "aiboarding",
+      "result": "PASS",
+      "command": "bash tests/run.sh",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/aiboarding",
+      "evidence": "Completed with final PASS."
+    },
+    {
+      "source": "tacticswitch",
+      "result": "FAIL",
+      "command": "python scripts/quality_gate.py",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/tacticswitch",
+      "tests_run": 200,
+      "failures": 1,
+      "failure": {
+        "test": "tests.test_release_surface.ReleaseSurfaceTests.test_release_checksums_are_current",
+        "detail": "FAIL: MANIFEST.sha256 is stale"
+      },
+      "log": ".bootstrap/m11/legacy-check-workdirs/tacticswitch-quality-gate.log",
+      "disposable_revalidation": {
+        "result": "PASS_AFTER_REGENERATING_DERIVED_MANIFEST",
+        "tree_source": "refs/remotes/m11-import/tacticswitch/main",
+        "temporary_tree": "C:\\Users\\gmeil\\AppData\\Local\\Temp\\hr-m11-tacticswitch-0bb475688b274d6dace3cd111336eb1b",
+        "initial_manifest_check": "FAIL: MANIFEST.sha256 is stale",
+        "adjustment": "python scripts/checksums.py --write in the disposable tree only",
+        "git_test_context": "Initialized a local disposable Git repository because lifecycle tests require rev-parse HEAD.",
+        "focused_lifecycle_tests": "5/5 PASS",
+        "quality_gate_tests": "200/200 PASS",
+        "quality_gate_seconds": 38.934,
+        "source_checkout_or_staged_ref_modified": false,
+        "disposition": "The unchanged source snapshot still has a stale generated manifest. Gate PASS applies only to the temporary tree after deterministic regeneration; retain the original baseline discrepancy until its correction is admitted separately."
+      }
+    },
+    {
+      "source": "skill-kit",
+      "result": "PASS",
+      "command": "python scripts/check.py",
+      "checkout": ".bootstrap/m11/legacy-check-workdirs/skill-kit",
+      "python_tests": 18,
+      "openspec_specs": 4,
+      "openspec_failures": 0
+    }
+  ],
+  "source_checkouts_modified": false
+}

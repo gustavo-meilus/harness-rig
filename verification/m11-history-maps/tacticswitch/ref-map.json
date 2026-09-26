@@ -1,0 +1,14 @@
+[
+  {
+    "source_ref": "refs/heads/main",
+    "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+    "import_ref": "refs/heads/harness-rig-import/main",
+    "import_commit": "18d5d2a13285578d2a7c460c14e8c856b1dbbc97"
+  },
+  {
+    "source_ref": "refs/heads/upstream-pull/1",
+    "source_commit": "2709ad5566e985047307ba63c0cb8f3c9acbaf04",
+    "import_ref": "refs/heads/harness-rig-import/upstream-pull/1",
+    "import_commit": "df24d665ac80daf5c35bce2a34a5a4a22e96976f"
+  }
+]

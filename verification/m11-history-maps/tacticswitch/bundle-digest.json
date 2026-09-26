@@ -1,0 +1,5 @@
+{
+  "bundle": ".bootstrap/m11/rewrite-output-complete/tacticswitch/tacticswitch-import.bundle",
+  "sha256": "771b47596b2ce9c3d2e5c3fe5c4f225f274076d99943c9a71ac494da26eb8c5b",
+  "retention": "ignored .bootstrap evidence; do not commit bundle payload"
+}

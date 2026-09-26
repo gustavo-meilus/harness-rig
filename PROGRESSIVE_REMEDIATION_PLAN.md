@@ -47,25 +47,21 @@ Update this block whenever execution stops so a fresh context can resume without
 plan: harness-rig-progressive-remediation-r8
 current_milestone: M11
 current_revision: r8.10
-milestone_result: PASS
-last_completed_task: M10-V06
-next_task: M11-T01
-blocking_issue: null
+milestone_result: BLOCKED
+last_completed_task: M11-T12 / M11-V07
+next_task: M11-T09
+blocking_issue: TacticSwitch legacy quality gate fails because MANIFEST.sha256 is stale; M11 import-only gate remains closed
 verification_pending:
-  - M11-V01
-  - M11-V02
   - M11-V03
   - M11-V04
-  - M11-V05
   - M11-V06
-  - M11-V07
   - M11-V08
 notes: >
   M0 through M10 completed with PASS. M10 finalized the compact product CLI and versioned machine envelope,
   fail-closed configuration precedence, verifier timeout/cancellation cleanup, atomic r8.9-to-r8.10 migration state
   with explicit rollback, and deterministic release-record/checksum behavior. Runtime/schema migration can complete while
   source-history qualification remains PENDING_M11; M10 does not fabricate the deferred real source history maps.
-  Release eligibility is BLOCKED when no accepted repository verdict is supplied. Next task is M11-T01.
+  Release eligibility is BLOCKED when no accepted repository verdict is supplied. M11-T12/V07 has a verified changelog crosswalk; the next task is to complete Codex Desktop/CLI pilot evidence. M11 and M12 remain blocked by the recorded source fidelity and legacy-check gaps.
 ```
 
 ### Milestone quick index
@@ -332,34 +328,36 @@ notes: >
 
 **Execution (`r8.11`):**
 
-- [ ] **M11-T01** — Disposition v0.3 isolated writers.
-- [ ] **M11-T02** — Disposition harness mutation verification.
-- [ ] **M11-T03** — Disposition v0.4 approved revision/traceability requirements.
-- [ ] **M11-T04** — Disposition v0.5 static composition.
-- [ ] **M11-T05** — Disposition v0.6 richer topology families.
-- [ ] **M11-T06** — Disposition v0.7 distributed execution.
-- [ ] **M11-T07** — Disposition v0.8 observability/effects.
+- [x] **M11-T01** — Disposition v0.3 isolated writers.
+- [x] **M11-T02** — Disposition harness mutation verification.
+- [x] **M11-T03** — Disposition v0.4 approved revision/traceability requirements.
+- [x] **M11-T04** — Disposition v0.5 static composition.
+- [x] **M11-T05** — Disposition v0.6 richer topology families.
+- [x] **M11-T06** — Disposition v0.7 distributed execution.
+- [x] **M11-T07** — Disposition v0.8 observability/effects.
 - [ ] **M11-T08** — Disposition Claude native qualification.
 - [ ] **M11-T09** — Run representative field pilots and simplification review.
 - [ ] **M11-T10** — Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
 - [ ] **M11-T11** — Execute history-preserving rewrite/import into isolated legacy prefixes where required.
-- [ ] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`.
+- [x] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`. Evidence: `verification/m11-changelog-reconciliation.json`.
 - [ ] **M11-T13** — Run relevant legacy deterministic checks and verify import-only commits/tree equivalence.
 - [ ] **M11-T14** — Reconcile licenses/state/hooks/install surfaces and resolve signed commit/tag fidelity requirements.
 
 **Verification:**
 
-- [ ] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
-- [ ] **M11-V02** — Deferred features have explicit evidence triggers.
+- [x] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
+- [x] **M11-V02** — Deferred features have explicit evidence triggers.
 - [ ] **M11-V03** — Field pilots measure trust outcomes and harness cost.
 - [ ] **M11-V04** — Mechanisms with no distinct value are deleted/downgraded.
-- [ ] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
+- [x] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
 - [ ] **M11-V06** — Relevant legacy checks and import-only verification pass or produce explicit BLOCKED evidence.
-- [ ] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded.
+- [x] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded. Evidence: `verification/m11-changelog-reconciliation.json`.
 - [ ] **M11-V08** — License/state/hook/install/tag/signature provenance is retained or has an explicit disposition.
 
-**Milestone result:** `NOT_RUN`  
-**Allowed next milestone:** `M12`
+**Milestone result:** `BLOCKED`
+**Allowed next milestone:** none; M12 is ineligible until M11 gates pass.
+
+Dispositions: `verification/m11-rigyard-dispositions.json` (8/8 active proposals). Next action: M11-T09 Codex Desktop/CLI field pilot. Full blockers: `verification/m11-history-qualification-status.json`.
 
 #### M12 — 1.0 qualification and final simplification
 
@@ -1927,39 +1925,41 @@ A CI system and a human can both operate Harness Rig without interpreting prose 
 
 **Execution tasks:**
 
-- [ ] **M11-T01** — Disposition v0.3 isolated writers.
-- [ ] **M11-T02** — Disposition harness mutation verification.
-- [ ] **M11-T03** — Disposition v0.4 approved revision/traceability requirements.
-- [ ] **M11-T04** — Disposition v0.5 static composition.
-- [ ] **M11-T05** — Disposition v0.6 richer topology families.
-- [ ] **M11-T06** — Disposition v0.7 distributed execution.
-- [ ] **M11-T07** — Disposition v0.8 observability/effects.
+- [x] **M11-T01** — Disposition v0.3 isolated writers.
+- [x] **M11-T02** — Disposition harness mutation verification.
+- [x] **M11-T03** — Disposition v0.4 approved revision/traceability requirements.
+- [x] **M11-T04** — Disposition v0.5 static composition.
+- [x] **M11-T05** — Disposition v0.6 richer topology families.
+- [x] **M11-T06** — Disposition v0.7 distributed execution.
+- [x] **M11-T07** — Disposition v0.8 observability/effects.
 - [ ] **M11-T08** — Disposition Claude native qualification.
 - [ ] **M11-T09** — Run representative field pilots and simplification review.
 - [ ] **M11-T10** — Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
 - [ ] **M11-T11** — Execute history-preserving rewrite/import into isolated legacy prefixes where required.
-- [ ] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`.
+- [x] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`. Evidence: `verification/m11-changelog-reconciliation.json`.
 - [ ] **M11-T13** — Run relevant legacy deterministic checks and verify import-only commits/tree equivalence.
 - [ ] **M11-T14** — Reconcile licenses/state/hooks/install surfaces and resolve signed commit/tag fidelity requirements.
 
 **Verification tasks:**
 
-- [ ] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
-- [ ] **M11-V02** — Deferred features have explicit evidence triggers.
+- [x] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
+- [x] **M11-V02** — Deferred features have explicit evidence triggers.
 - [ ] **M11-V03** — Field pilots measure trust outcomes and harness cost.
 - [ ] **M11-V04** — Mechanisms with no distinct value are deleted/downgraded.
-- [ ] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
+- [x] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
 - [ ] **M11-V06** — Relevant legacy checks and import-only verification pass or produce explicit BLOCKED evidence.
-- [ ] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded.
+- [x] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded. Evidence: `verification/m11-changelog-reconciliation.json`.
 - [ ] **M11-V08** — License/state/hook/install/tag/signature provenance is retained or has an explicit disposition.
 
-**Result:** `NOT_RUN`
+**Result:** `BLOCKED`
 
 > M11 is the late provenance/history gate. Unavailable required source history blocks M12/1.0, not M3–M10.
 
 **Progressive revision:** `r8.11`
 
 **Purpose:** explicitly reconcile remaining RigYard proposals, field-harden the system, and qualify full source history before final 1.0 acceptance.
+
+Current status: M11-T01–T07 and M11-V01–V02 are complete from the retained 8/8 disposition report; M11-V05 is complete. M11 remains BLOCKED by history, pilot, and fidelity gates. See `verification/m11-history-qualification-status.json`.
 
 ## 16.1 v0.3 isolated parallel writers
 

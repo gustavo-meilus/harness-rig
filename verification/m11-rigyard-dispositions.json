@@ -1,0 +1,95 @@
+{
+  "schema": "harness-rig/m11-rigyard-dispositions/v1",
+  "source_inventory": "references/rigyard-current-source-and-verification-baseline.md",
+  "source_snapshot_date": "2026-09-24",
+  "active_proposal_count": 8,
+  "disposition_count": 8,
+  "result": "PASS",
+  "dispositions": [
+    {
+      "change_id": "add-v0-3-isolated-parallel-writers",
+      "disposition": "ADAPT",
+      "decision": "Retain isolated writers as an optional, fail-closed Topology capability; do not make it the default or claim Stable without formal native evidence.",
+      "evidence": [
+        "references/rigyard-current-source-and-verification-baseline.md",
+        "references/m8-host-capability-and-topology-qualification.md"
+      ],
+      "trigger": "Revisit Stable promotion only after a retained native host packet proves isolated writes, unauthorized-write denial, independent result acceptance, and recovery on the claimed platform."
+    },
+    {
+      "change_id": "add-harness-mutation-verification",
+      "disposition": "KEEP",
+      "decision": "Keep mutation verification as a bounded development/field-hardening gate; do not make it a general runtime subsystem.",
+      "evidence": [
+        "references/m9-gate-platform-playwright-architecture-mutation.md"
+      ],
+      "trigger": "Reassess if field evidence shows it catches no distinct detector gap or duplicates another required gate."
+    },
+    {
+      "change_id": "add-v0-4-approved-pipeline-evolution",
+      "disposition": "DEFER",
+      "decision": "Do not add a universal persisted pipeline/revision subsystem; retain current AuthorityRef, StateIdentity, and OpenSpec boundaries.",
+      "evidence": [
+        "references/rigyard-premise-and-feature-admission.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Reopen when Harness Rig has persistent approved execution plans and a real workflow requires plan revision pinning or requirement-to-verification traceability."
+    },
+    {
+      "change_id": "add-v0-5-static-composition",
+      "disposition": "DEFER",
+      "decision": "Do not add a second authoring language without repeated measured duplication in stable plan artifacts.",
+      "evidence": [
+        "references/rigyard-premise-and-feature-admission.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Reopen after repeated authoring duplication is observed in stable artifacts and a compile-away design can keep composition out of approval/runtime."
+    },
+    {
+      "change_id": "add-v0-6-richer-topology",
+      "disposition": "DEFER",
+      "decision": "Keep the current minimum topology family; do not admit conditional branches, loops, fan-out, map/reduce, or compensation speculatively.",
+      "evidence": [
+        "references/expected-harness-rig-feature-set.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Reopen one topology family at a time when a recurring authorized workflow cannot be expressed safely with current direct/worker formations and evidence demonstrates distinct value."
+    },
+    {
+      "change_id": "add-v0-7-cross-host-distributed-execution",
+      "disposition": "DEFER",
+      "decision": "Do not add remote execution, shared storage, leases, or partition/recovery machinery without a real cross-host product workflow.",
+      "evidence": [
+        "references/rigyard-premise-and-feature-admission.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Reopen when an approved customer workflow requires cross-host execution and identity, transport, shared durability, lease, partition, replay, and recovery requirements are evidenced."
+    },
+    {
+      "change_id": "add-v0-8-operational-observability-and-effects",
+      "disposition": "ADAPT",
+      "decision": "Keep only minimal diagnostics/audit for routing, gate failures, freshness, host degradation, and migration; defer generic telemetry and external-effect workflow infrastructure.",
+      "evidence": [
+        "references/expected-harness-rig-feature-set.md",
+        "references/m9-gate-platform-playwright-architecture-mutation.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Reopen diagnostics on an observed decision-relevant evidence gap; reopen external effects only if Harness Rig is explicitly authorized to execute such effects."
+    },
+    {
+      "change_id": "qualify-claude-code-native-execution",
+      "disposition": "ADAPT",
+      "decision": "Keep Claude as a secondary, host-specific experimental qualification target; do not infer support or make it a 1.0 blocker after Codex is genuinely Stable.",
+      "evidence": [
+        "references/rigyard-current-source-and-verification-baseline.md",
+        "references/m8-host-capability-and-topology-qualification.md",
+        "ROADMAP.md"
+      ],
+      "trigger": "Run native Claude qualification after the Codex primary baseline is retained and an authorized Claude environment is available; promote only from recorded discovery/invocation/runtime evidence."
+    }
+  ],
+  "verification": {
+    "V01": "PASS: eight active changes, each listed once",
+    "V02": "PASS: deferred and conditional scope has observable reopening triggers"
+  }
+}

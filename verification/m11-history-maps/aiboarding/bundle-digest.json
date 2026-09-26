@@ -1,0 +1,5 @@
+{
+  "bundle": ".bootstrap/m11/rewrite-output-complete/aiboarding/aiboarding-import.bundle",
+  "sha256": "669fa2307372a9ed732350c13ebc8add6329f12a6f297cb983f3d9626e1bd0fc",
+  "retention": "ignored .bootstrap evidence; do not commit bundle payload"
+}

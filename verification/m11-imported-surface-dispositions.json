@@ -1,0 +1,79 @@
+{
+  "schema": "harness-rig/m11-imported-surface-dispositions/v1",
+  "date": "2026-09-26",
+  "result": "PARTIAL_IMPORTS_NOT_ACCEPTED",
+  "scope": "Current main-tip trees at the staged namespaced refs; branch/tag identities are separately mapped. Original bundles are not present in this worktree.",
+  "inventories": {
+    "aiboarding": {
+      "path_count": 1379,
+      "evidence": "verification/m11-imported-surface-inventory/aiboarding.json",
+      "category_counts": {
+        "licenses": 1,
+        "state": 121,
+        "hooks": 40,
+        "host_plugin_manifests": 4,
+        "generated_distribution": 17,
+        "schemas_contracts": 2,
+        "tests_evals": 1045,
+        "ci": 3,
+        "openspec": 108,
+        "agent_roles": 77,
+        "unclassified_paths": 40
+      }
+    },
+    "tacticswitch": {
+      "path_count": 418,
+      "evidence": "verification/m11-imported-surface-inventory/tacticswitch.json",
+      "category_counts": {
+        "licenses": 1,
+        "state": 30,
+        "hooks": 8,
+        "host_plugin_manifests": 5,
+        "install_update": 6,
+        "generated_distribution": 27,
+        "schemas_contracts": 17,
+        "tests_evals": 145,
+        "ci": 1,
+        "openspec": 147,
+        "agent_roles": 56,
+        "unclassified_paths": 42
+      }
+    },
+    "skill-kit": {
+      "path_count": 55,
+      "evidence": "verification/m11-imported-surface-inventory/skill-kit.json",
+      "category_counts": {
+        "licenses": 1,
+        "hooks": 8,
+        "host_plugin_manifests": 6,
+        "generated_distribution": 1,
+        "tests_evals": 1,
+        "agent_roles": 7,
+        "unclassified_paths": 32
+      }
+    }
+  },
+  "category_dispositions": {
+    "licenses": "RETAIN under each source's legacy prefix as source notices; do not infer a new combined license grant.",
+    "state": "HISTORICAL_ONLY; do not activate or merge into Harness Rig runtime state.",
+    "hooks": "HISTORICAL_ONLY; do not install or register from the imported prefixes.",
+    "host_plugin_manifests": "HISTORICAL_ONLY; do not load as active host configuration.",
+    "install_update": "HISTORICAL_ONLY; do not execute imported installers or migration scripts.",
+    "generated_distribution": "HISTORICAL_ONLY; do not publish as Harness Rig output. The imported TacticSwitch main tip has a stale MANIFEST.sha256; recalculating it in a disposable copy made its unchanged 200-test gate pass, but the source ref remains unchanged.",
+    "schemas_contracts": "HISTORICAL_ONLY; adopted semantics require their separate Harness Rig specifications and dispositions.",
+    "tests_evals": "HISTORICAL_ONLY in the imported tree; only separately invoked legacy checks count as qualification evidence.",
+    "ci": "HISTORICAL_ONLY; imported workflows do not become active Harness Rig CI.",
+    "openspec": "HISTORICAL_ONLY; imported change archives do not become active Harness Rig authority.",
+    "agent_roles": "HISTORICAL_ONLY; source skills and agent instructions are not installed by importing history.",
+    "unclassified_paths": "HISTORICAL_ONLY pending per-surface admission; no unclassified path is activated by these staged refs.",
+    "tags_and_signatures": "SOURCE PROVENANCE RETAINED IN MAPS; rewritten commit signatures and annotated tag objects are not preserved, so final fidelity acceptance remains blocked."
+  },
+  "acceptance_gaps": [
+    "The source refs remain staged in namespaces; no import-only commits were accepted.",
+    "TacticSwitch legacy quality gate has one failing checksum test out of 200.",
+    "Source commit signatures and annotated tag objects are not preserved by the rewrite.",
+    "Inventories cover source main-tip trees; per-ref historical snapshots are not separately expanded into path inventories."
+  ],
+  "milestone_M11": "BLOCKED",
+  "m12_eligible": false
+}

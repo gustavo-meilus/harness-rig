@@ -1,8 +1,8 @@
 {
   "schema": "harness-rig/m11-history-qualification-status/v1",
   "milestone": "M11",
-  "date": "2026-09-25",
-  "result": "NOT_RUN",
+  "date": "2026-09-26",
+  "result": "BLOCKED",
   "progression_dependency": "required before M12",
   "m2_dependency": false,
   "traceability_baseline": "CHANGELOG.md",
@@ -19,5 +19,58 @@
     "license/state/hook/install reconciliation",
     "CHANGELOG-to-history reconciliation",
     "commit/tag signature fidelity disposition"
-  ]
+  ],
+  "evidence": {
+    "repository_verification": {
+      "result": "PASS",
+      "source": "Codex-executed canonical verifier in the active Windows worktree",
+      "command": "python scripts/check.py",
+      "tests": "133/133 across 8 milestone modules",
+      "elapsed_seconds": 42.34,
+      "context_audit": "PASS: 44 canonical pages and 44 manifest rows",
+      "projection": "FRESH",
+      "git_diff_check": "PASS",
+      "f15": "Passed using a Windows directory junction fallback after symlink creation returned WinError 1314; junction subprocess output decoding now replaces invalid UTF-8."
+    },
+    "history": {
+      "preflight": "verification/m11-history-input-preflight-current.json",
+      "maps": "verification/m11-history-maps/",
+      "reproducibility": "verification/m11-reproducibility-verification.json",
+      "target_fetch": "verification/m11-target-fetch-evidence.json",
+      "legacy_checks": "verification/m11-legacy-check-results.json",
+      "signature_verification": "verification/m11-upstream-signature-verification.json",
+      "source_inventory": "verification/m11-source-repository-inventory.json",
+      "rigyard_dispositions": "verification/m11-rigyard-dispositions.json",
+      "changelog_reconciliation": "verification/m11-changelog-reconciliation.json",
+      "imported_surface_dispositions": "verification/m11-imported-surface-dispositions.json"
+    },
+    "completed": [
+      "M11-T01 through M11-T07: one evidence-backed disposition and reopening trigger recorded for each of the seven proposals.",
+      "M11-T10: public upstream refs/tags/PR heads bundled, fsck and preflight passed.",
+      "M11-T12 / M11-V07: CHANGELOG crosswalk retained; all 122 source commits, 20 branch/PR refs and 21 tags mapped, with unresolved discrepancies explicitly recorded.",
+      "M11-V01 / M11-V02: all eight active RigYard proposals have exactly one disposition; reopening triggers are recorded.",
+      "M11-V05: source-to-rewritten maps, tree/topology verification, and two-run reproducibility passed."
+    ],
+    "partial": [
+      "M11-T09 / M11-V03: one Codex Desktop task retained as a partial field observation; a 133-test verifier run took 42.34 seconds. A read-only Codex CLI-agent pilot initialized on codex-cli 0.157.0 but could not reach the response service and was stopped after retries; Desktop/model identity and token cost remain unavailable. Evidence: verification/m11-codex-field-pilot.json.",
+      "M11-T11: rewritten refs staged only in namespaced refs; import-only commits await passing legacy checks and fidelity disposition.",
+      "M11-T13: reproducibility passed; unchanged TacticSwitch snapshot failed 1/200 on stale MANIFEST.sha256. Regenerating that derived file in a disposable Git tree made the full 200-test gate pass; no source checkout or staged ref changed. Import-only verification remains unrun.",
+      "M11-T14: staged main-tip trees contain 1,852 inventoried paths; each surface category has a disposition. Final signature/tag fidelity and import acceptance remain blocked; evidence: verification/m11-imported-surface-dispositions.json."
+    ],
+    "not_run": [
+      "M11-T08: native Claude qualification; Codex primary operational evidence must come first.",
+      "M11-V04: simplification review based on completed field-pilot evidence."
+    ],
+    "blockers": [
+      "TacticSwitch unchanged source tree has a stale MANIFEST.sha256 and fails 1 of 200 tests. A disposable regenerated-manifest tree passes 200/200, but the original source ref remains unchanged and the correction is not yet an admitted import adaptation.",
+      "Rewritten histories do not preserve source commit signatures or annotated-tag objects. GitHub reports verified 25 of 25 signed source commits; mapped source signatures remain in the original bundles, but acceptance/fidelity disposition is unresolved.",
+      "Import-only commits and proof were withheld after the required TacticSwitch legacy gate failed.",
+      "Codex field observation lacks independently retained Desktop/model identity and token cost; the Codex CLI-agent pilot was blocked by response-service connection failures, and native Claude qualification was not run."
+    ],
+    "scope_notes": [
+      "Input bundles cover refs advertised by public upstream, including pull-request heads. Local AIBoarding uncommitted edits and local-only branches, and untracked Skill Kit caches, were not included; those source checkouts were left untouched."
+    ],
+    "m12_eligible": false,
+    "field_pilot": "verification/m11-codex-field-pilot.json"
+  }
 }
