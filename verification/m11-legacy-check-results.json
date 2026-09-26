@@ -1,35 +1,85 @@
 {
-  "schema": "harness-rig/m11-legacy-check-results/v1",
+  "schema": "harness-rig/m11-legacy-check-results/v2",
+  "date": "2026-09-26",
+  "result": "BLOCKED",
+  "source_checkouts_modified": false,
   "results": [
     {
       "source": "aiboarding",
-      "result": "PASS",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
       "command": "bash tests/run.sh",
-      "checkout": ".bootstrap/m11/legacy-check-workdirs/aiboarding",
-      "evidence": "Completed with final PASS."
+      "attempts": [
+        {
+          "result": "PASS",
+          "provenance": "retained earlier source-checkout result at the same audited source HEAD",
+          "evidence": "verification\\m11-legacy-check-results-pre-source-native.json"
+        },
+        {
+          "result": "FAIL_ENVIRONMENT_PROBE",
+          "environment": "Codex Windows sandbox",
+          "passed_checks": 33,
+          "failed_checks": [
+            {
+              "test": "test-lifecycle-collector.sh",
+              "detail": "Windows wrapper did not record case-session"
+            },
+            {
+              "test": "test-live-runtime.sh",
+              "detail": "runtime records missing"
+            }
+          ]
+        },
+        {
+          "result": "PASS_ADAPTER_ONLY",
+          "environment": "User-provided Windows PowerShell run using Git Bash",
+          "passed_checks": "Every test script shown in the supplied output",
+          "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
+          "note": "The five-file test-portability patch was applied in the checkout during this run."
+        }
+      ],
+      "adapter": {
+        "path": "verification/m11-adaptations/aiboarding-test-portability.patch",
+        "sha256": "d2561362ff5cfa2ab6825c0a2548937ceccd920fefb0e4e49945a6cd4505112f",
+        "changed_paths": [
+          "tests/benchmarks/test-agent-outcomes-contracts.sh",
+          "tests/plugin/test-manifests.sh",
+          "tests/release/test-verify-release-sha.sh",
+          "tests/run.sh",
+          "tests/self-host/test-managed-repo.sh"
+        ],
+        "apply_check": "PASS with git apply --unidiff-zero against the exact pinned bundle commit"
+      },
+      "acceptance": "PASS_ADAPTER_ONLY: source remains pinned and unchanged; native run passed with the recorded test-portability patch."
     },
     {
       "source": "tacticswitch",
-      "result": "FAIL",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
       "command": "python scripts/quality_gate.py",
-      "checkout": ".bootstrap/m11/legacy-check-workdirs/tacticswitch",
-      "tests_run": 200,
-      "failures": 1,
-      "failure": {
-        "test": "tests.test_release_surface.ReleaseSurfaceTests.test_release_checksums_are_current",
-        "detail": "FAIL: MANIFEST.sha256 is stale"
+      "raw_source": {
+        "result": "FAIL",
+        "tests_run": 200,
+        "failures": 1,
+        "failure": "MANIFEST.sha256 is stale"
       },
-      "log": ".bootstrap/m11/legacy-check-workdirs/tacticswitch-quality-gate.log"
+      "adapted_copy": {
+        "result": "PASS",
+        "tests_run": 200,
+        "adapter": "verification/m11-adaptations/tacticswitch-manifest.patch",
+        "changed_paths": [
+          "MANIFEST.sha256"
+        ],
+        "evidence": "verification/m11-tacticswitch-adapter-verification.json"
+      }
     },
     {
       "source": "skill-kit",
-      "result": "PASS",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
       "command": "python scripts/check.py",
-      "checkout": ".bootstrap/m11/legacy-check-workdirs/skill-kit",
+      "result": "PASS",
       "python_tests": 18,
       "openspec_specs": 4,
-      "openspec_failures": 0
+      "openspec_failures": 0,
+      "evidence": "current source-native invocation through verification/m11-run-legacy-checks.py"
     }
-  ],
-  "source_checkouts_modified": false
+  ]
 }

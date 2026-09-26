@@ -1,0 +1,11 @@
+{
+  "schema": "harness-rig/m11-legacy-check-spec/v1",
+  "checks": [
+    {
+      "id": "skill-kit-check",
+      "cwd": ".",
+      "argv": ["python", "scripts/check.py"],
+      "required": true
+    }
+  ]
+}

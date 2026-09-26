@@ -1,0 +1,67 @@
+diff --git a/tests/benchmarks/test-agent-outcomes-contracts.sh b/tests/benchmarks/test-agent-outcomes-contracts.sh
+index d8e2026..c8735c6 100644
+--- a/tests/benchmarks/test-agent-outcomes-contracts.sh
++++ b/tests/benchmarks/test-agent-outcomes-contracts.sh
+@@ -58,2 +58,2 @@ done
+-artifact="$ROOT/benchmarks/agent-outcomes/tasks/command-discovery/task.json"
+-cp "$artifact" "$tmp/task.json"
++cp -R "$ROOT/benchmarks/agent-outcomes" "$tmp/agent-outcomes"
++artifact="$tmp/agent-outcomes/tasks/command-discovery/task.json"
+@@ -61,2 +61,4 @@ printf '\n' >> "$artifact"
+-reject "$smoke"
+-mv "$tmp/task.json" "$artifact"
++if python3 "$tmp/agent-outcomes/benchmark.py" "$tmp/agent-outcomes/experiments/codex-maintained-outcomes-v8-canary.json" >/dev/null 2>&1; then
++  printf 'FAIL: mutated task artifact accepted\n'
++  exit 1
++fi
+diff --git a/tests/plugin/test-manifests.sh b/tests/plugin/test-manifests.sh
+index 11ee507..a443ff5 100644
+--- a/tests/plugin/test-manifests.sh
++++ b/tests/plugin/test-manifests.sh
+@@ -7 +7 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+-# --- JSON well-formedness (python3 when available; balance sanity otherwise) --
++# --- JSON well-formedness ------------------------------------------------------
+@@ -19,9 +19,2 @@ while IFS= read -r f; do
+-  if command -v python3 >/dev/null 2>&1; then
+-    if ! python3 -m json.tool "$f" >/dev/null 2>&1; then
+-      printf 'FAIL: invalid JSON in %s\n' "$f"; exit 1
+-    fi
+-  else
+-    # Fallback sanity: equal counts of braces and brackets.
+-    content="$(cat "$f")"
+-    open="${content//[^\{]/}"; close="${content//[^\}]/}"
+-    assert_eq "${#open}" "${#close}" "balanced braces in $f" || exit 1
++  if ! python3 -m json.tool "$f" >/dev/null 2>&1; then
++    printf 'FAIL: invalid JSON in %s\n' "$f"; exit 1
+diff --git a/tests/release/test-verify-release-sha.sh b/tests/release/test-verify-release-sha.sh
+index 45a90a5..9edd255 100644
+--- a/tests/release/test-verify-release-sha.sh
++++ b/tests/release/test-verify-release-sha.sh
+@@ -9,0 +10,8 @@ cat > "$tmp/gh" <<'EOF'
++if [[ "$#" -ne 16 ]] || [[ "$1" != run || "$2" != list || "$3" != --workflow || "$5" != --branch || "$6" != main || "$7" != --commit || "$8" != target || "$9" != --event || "${10}" != push || "${11}" != --limit || "${12}" != 1 || "${13}" != --json || "${14}" != headSha,status,conclusion || "${15}" != --jq ]] || [[ "${16}" != "if length == 1 then .[0] | [.headSha, .status, .conclusion] | @tsv else empty end" ]]; then
++  printf 'FAIL: unexpected gh arguments: %s\n' "$*" >&2
++  exit 90
++fi
++case "$4" in
++  executable-verification.yml|hol-plugin-scanner.yml) ;;
++  *) printf 'FAIL: unexpected workflow: %s\n' "$4" >&2; exit 90 ;;
++esac
+@@ -23 +31 @@ for case_name in different missing pending cancelled failed; do
+-  if PATH="$tmp:$PATH" TEST_CASE="$case_name" bash "$VERIFIER" target; then
++  if PATH="$tmp:$PATH" TEST_CASE="$case_name" bash "$VERIFIER" target >/dev/null 2>&1; then
+diff --git a/tests/run.sh b/tests/run.sh
+index 827cc4b..e796d33 100644
+--- a/tests/run.sh
++++ b/tests/run.sh
+@@ -3,0 +4,4 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
++if ! command -v python3 >/dev/null 2>&1 || ! python3 -c 'import json' >/dev/null 2>&1; then
++  printf 'ERROR: tests require a working Python 3 interpreter available as python3 (Git Bash on Windows).\n' >&2
++  exit 2
++fi
+diff --git a/tests/self-host/test-managed-repo.sh b/tests/self-host/test-managed-repo.sh
+index 199cb70..68f4598 100644
+--- a/tests/self-host/test-managed-repo.sh
++++ b/tests/self-host/test-managed-repo.sh
+@@ -22 +22 @@ More With Less engineering policy'
+-actual_sections="$(sed -n 's/^## //p' "$agents")"
++actual_sections="$(sed -n 's/^## //p' "$agents" | tr -d '\r')"

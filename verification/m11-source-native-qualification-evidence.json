@@ -1,0 +1,68 @@
+{
+  "schema": "harness-rig/m11-source-native-qualification-evidence/v1",
+  "date": "2026-09-26",
+  "result": "BLOCKED",
+  "sources": [
+    {
+      "id": "aiboarding",
+      "repository": "https://github.com/gustavo-meilus/aiboarding.git",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "target_prefix": "legacy/aiboarding",
+      "bundle": "aiboarding.bundle",
+      "bundle_sha256": "0189ad9355a2b6d592bd931d1cf5f28c378b2e06fb5bbd71c635eb38b8e1d2e8",
+      "ref_count": 39,
+      "inventory_paths_at_main": 1379,
+      "inventory": "verification/m11-source-repository-inventory/aiboarding.json"
+    },
+    {
+      "id": "tacticswitch",
+      "repository": "https://github.com/gustavo-meilus/tacticswitch.git",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e",
+      "target_prefix": "legacy/tacticswitch",
+      "bundle": "tacticswitch.bundle",
+      "bundle_sha256": "826790422f6889635e8f3b61eb1b4b066d4d98b089343f5a7af9ee4915c2eb6e",
+      "ref_count": 8,
+      "inventory_paths_at_main": 418,
+      "inventory": "verification/m11-source-repository-inventory/tacticswitch.json"
+    },
+    {
+      "id": "skill-kit",
+      "repository": "https://github.com/gustavo-meilus/skill-kit.git",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+      "target_prefix": "legacy/skill-kit",
+      "bundle": "skill-kit.bundle",
+      "bundle_sha256": "fecf69d33d09b8a476bbfb860bec2da38fe793cb81839fa4b265733170c16bec",
+      "ref_count": 9,
+      "inventory_paths_at_main": 176,
+      "inventory": "verification/m11-source-repository-inventory/skill-kit.json"
+    }
+  ],
+  "checks": {
+    "bundle_preflight": "PASS",
+    "source_main_inventories": "PASS",
+    "signature_and_tag_match": "PASS_WITH_LOCAL_TRUST_LIMIT (25 verified signed commits; 21 tag objects inventoried)",
+    "tacticswitch_raw": "FAIL_EXPECTED_RAW_SOURCE (1/200: MANIFEST.sha256 stale)",
+    "tacticswitch_separate_adapter": "PASS (200/200; only MANIFEST.sha256 changed)",
+    "aiboarding": {
+      "result": "PASS_ADAPTER_ONLY",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "adapter": "verification/m11-adaptations/aiboarding-test-portability.patch",
+      "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
+      "native_run": "User-provided Windows PowerShell/Git Bash run passed every test invoked by bash tests/run.sh.",
+      "sandbox_limit": "Two Windows runtime probes could not write under the user profile in the restricted Codex sandbox."
+    },
+    "skill-kit": "PASS (python scripts/check.py at exact pinned source commit)",
+    "import_only_commit": "PASS: e9ce36ffe47598cbe9367035230794ad5cf3bb5a; exact source gitlinks verified",
+    "field_qualification": {
+      "result": "BLOCKED",
+      "open": [
+        "Codex CLI pilot: Windows socket error 10013",
+        "native Claude qualification not run",
+        "V04 simplification review pending"
+      ]
+    },
+    "canonical_repository_check": "PASS: 139 tests across 9 modules; Context audit 44 pages/44 rows; projection FRESH"
+  },
+  "m12_eligible": false,
+  "source_pin_verification": "verification/m11-source-pin-verification.json"
+}

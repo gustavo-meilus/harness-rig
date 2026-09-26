@@ -1,41 +1,38 @@
 ## Context
 
-See proposal.md for the M11 motivation and milestone scope. Existing M11 tooling covers bundle preflight, source-history rewrite, independent tree and topology verification, import-bundle generation, target-ref staging, and import-only checks. The checked-in preflight report points to absent /mnt/data bundles, while local source repositories have previously been found. Synthetic tooling results do not qualify real source histories.
-
-The target repository contains a reconstructed Git timeline through M10. Source repositories must remain untouched. Imports, if qualified, go under the prefixes and tag namespaces in verification/m11-history-import-spec.json. Rewriting changes commit IDs, and current tooling does not preserve commit signatures or annotated-tag object identity.
+See proposal.md for M11 scope. Existing M11 reports describe a history-rewrite experiment; retain them as historical evidence, not as the accepted import. Rewriting changed commit IDs, did not carry commit signatures, and changed annotated-tag object identity. Complete source bundles already exist and passed preflight. Source repositories must remain untouched.
 
 ## Goals / Non-Goals
 
 **Goals:**
-- Qualify actual source histories and preserve source refs, object integrity, and immutable input evidence before importing.
-- Reuse the existing rewriter and independent verifier; stage imported refs without silently merging or changing active product files.
-- Reconcile every M11 task and verification item with retained evidence or a precise BLOCKED disposition.
+- Preserve exact source commits and tags in full source submodules pinned under `legacy/aiboarding`, `legacy/tacticswitch`, and `legacy/skill-kit`.
+- Track the complete source bundles as verification evidence so all advertised refs and objects remain available beyond the single gitlink pin.
+- Prove source pins, bundle integrity, signature evidence, import-only superproject commits, legacy checks, and surfaced operational content.
+- Keep the TacticSwitch checksum repair isolated in a separately reviewed adapter applied only to a disposable worktree.
 
 **Non-Goals:**
-- Change Harness Rig product behavior or rewrite existing M0-M10 history.
-- Treat synthetic evidence, a local clone's existence, or a passing verifier as proof of complete upstream ref coverage.
-- Claim field-host qualification, pilot outcomes, signature fidelity, or legacy checks without evidence.
+- Change Harness Rig product behavior, rewrite source history, or amend source commits/tags.
+- Treat submodule pins as proof of complete ref coverage without bundle/ref verification.
+- Claim field-host qualification or signature validity without retained evidence.
 
 ## Decisions
 
-1. **Snapshot, then qualify.** Build source bundles from read-only local clones in an ignored temporary input directory. Record each clone's origin, HEAD, shallow status, refs, object-integrity result, bundle digest, and bundle verification. Compare the local ref inventory with authoritative upstream refs when accessible. If completeness cannot be established, stop that source's import and record BLOCKED.
-   - Alternative: import directly from mutable working repositories. Rejected because runs would not be anchored to immutable inputs.
-
-2. **Reuse prepared migration tooling.** Run the existing preflight, import orchestrator, independent rewrite and reproducibility verifiers, and target staging helper in isolated temporary locations. Preserve source-to-rewritten commit and tag maps and tree/topology reports.
-   - Alternative: add a migration dependency or reimplement history rewriting. Rejected because existing tooling covers the flow and has synthetic evidence.
-
-3. **Stage before merge.** Fetch verified bundles only into namespaced remote refs and tags. Review imported surfaces, legacy checks, import-only proof, licenses, hooks, installation surfaces, and changelog reconciliation before any merge. Keep merges limited to import-only content under approved legacy prefixes.
-   - Alternative: let import automation merge. Rejected because that would obscure whether commits only import history.
-
-4. **Treat fidelity and unavailable evidence as gates.** Inspect signed commits, signed or annotated tags, and release provenance before accepting rewritten identity changes. If required cryptographic fidelity cannot be preserved or independently proven, retain original bundles/maps and mark the affected criterion BLOCKED.
-   - Alternative: assume signatures are irrelevant. Rejected because the proposal and import spec require an explicit fidelity disposition.
-
-5. **No behavior delta spec.** Keep skip_specs true; M11 is evidence qualification and history migration only. Any discovered product behavior change requires a separate reviewed spec before implementation.
+1. **Use native source history.** Add one complete source repository per approved legacy prefix, each pinned to the audited `refs/heads/main` commit. Keep complete source bundles in `verification/m11-source-bundles/`; verify bundle object integrity and retain the complete advertised ref inventory. The Skill Kit submodule contains the full repository because path filtering would require rewriting its history.
+2. **Use one aggregate one-parent import commit.** Add the three gitlinks and `.gitmodules` entries together in one reviewable commit. The verifier confirms the changed paths are exactly `.gitmodules` and the three approved gitlink paths, every gitlink mode is `160000`, each object ID equals the audited source main, and no other path changes. No synthetic imported-history parent or old-to-new commit map is required.
+3. **Verify original objects.** Require the retained upstream GitHub signature report to show `verified: true` and `reason: valid` for every signed commit, and confirm each exact commit object and signature header exists in its tracked source bundle. Verify every tag ref resolves to the exact bundle object; no signed tag objects were found. Local `git verify-commit` is supplementary and may remain blocked by missing local keys; never change global signing configuration. Block if upstream verification is absent, invalid, or does not match the bundled object IDs.
+4. **Keep verification adaptations separate from source history.** Preserve
+   every source gitlink at its audited upstream commit. Store the TacticSwitch
+   one-file `MANIFEST.sha256` regeneration and AIBoarding's five-file
+   test-portability fix under `verification/m11-adaptations/`. Apply each only
+   to a disposable copy, verify its changed-path set, and report raw and
+   adapted outcomes separately. The AIBoarding patch changes test tooling only.
+5. **Retain field gates.** Use `codex doctor` and endpoint-specific network diagnostics before retrying the Codex CLI pilot. Do not bypass network policy. Complete the required Codex pilot, Claude qualification, and V04 review; unavailable pilots remain blockers.
+6. **No behavior delta spec.** Keep `skip_specs: true`; this is repository history and qualification evidence, not a product behavior change.
 
 ## Risks / Trade-offs
 
-- [Local clones may omit upstream refs or objects] -> Compare against upstream ref inventory where accessible; otherwise scope evidence to captured refs and do not claim full-history qualification.
-- [Rewriting changes commit IDs and drops signatures or annotated-tag object identity] -> Preserve original bundles and maps; block acceptance where required provenance cannot be reconstructed.
-- [Legacy checks may need unavailable dependencies or host capabilities] -> Record the exact command, environment, and failure; do not convert unavailable checks to PASS.
-- [An import may contain behavior or unrelated files] -> Verify filtered trees and import-only commits before merging; stop on unexpected paths or content.
-- [Field pilots and native host evidence may need user-operated hosts] -> Record only evidence actually collected; keep required criteria BLOCKED when observations are unavailable.
+- [Submodules are not populated by ordinary clone] -> Document `git clone --recurse-submodules` or `git submodule update --init`; bundles remain available for offline object/ref verification.
+- [A gitlink pins only one commit] -> Retain and verify the full source bundle and complete advertised refs separately.
+- [Local signer trust may not be available] -> Use per-run trust files only; block if exact original signatures cannot be independently verified.
+- [The TacticSwitch source check remains red] -> Report raw-source failure and adapter result separately; do not mutate the pinned source.
+- [Field pilots may require network/native hosts] -> Record only observed results and leave M11 blocked until required pilots complete.

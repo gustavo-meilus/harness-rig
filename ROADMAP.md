@@ -2,7 +2,7 @@
 
 **Current verified revision:** r8.10  
 **Completed:** M0-M10 PASS  
-**Next:** M11-T09 (Codex Desktop/CLI field pilot)
+**Next:** Resolve the AIBoarding runtime-probe discrepancy; then retry the M11-T09 Codex CLI pilot
 **Final planned qualification:** M12 / 1.0
 
 This root file is the Git/Codex execution projection requested for the repository handoff. The detailed milestone source of truth remains `PROGRESSIVE_REMEDIATION_PLAN.md`; durable architecture knowledge remains under `references/` and is indexed by `llms.txt`.
@@ -165,21 +165,21 @@ Execute in this exact milestone only:
 - [ ] **M11-T08** Qualify Claude natively as the secondary host target. Codex is primary and must be operational first.
 - [ ] **M11-T09** Run representative field pilots and simplification review, prioritizing Codex Desktop/CLI as the primary real-host path.
 - [x] **M11-T10** Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
-- [ ] **M11-T11** Execute history-preserving rewrite/import into isolated legacy prefixes where required.
-- [ ] **M11-T12** Produce reproducible source -> rewritten commit/tag maps and reconcile them against `CHANGELOG.md`.
-- [ ] **M11-T13** Run relevant legacy deterministic checks and verify import-only commits/tree equivalence.
-- [ ] **M11-T14** Reconcile licenses/state/hooks/install surfaces and signed commit/tag fidelity requirements.
+- [x] **M11-T11** Add full source-native submodules under the approved prefixes at audited main commits; retain complete bundles and all source refs.
+- [x] **M11-T12** Replace the rewritten-SHA crosswalk with exact source pins and bundle evidence; reconcile every ref, tag, and discrepancy in `verification/m11-changelog-reconciliation.json`.
+- [x] **M11-T13** Retain raw source checks and the separate TacticSwitch one-file adapter result. AIBoarding's retained pass conflicts with two failed sandbox runtime probes; see `verification/m11-legacy-check-results.json`.
+- [x] **M11-T14** Inventory pinned source surfaces and disposition categories; verify exact source signature/tag objects against bundle evidence. See `verification/m11-source-repository-inventory/`, `verification/m11-imported-surface-dispositions.json`, and `verification/m11-object-fidelity-audit.json`.
 
 Required verification:
 
 - [x] **M11-V01** Every active RigYard proposal has exactly one Harness Rig disposition.
 - [x] **M11-V02** Deferred features have explicit evidence triggers.
-- [ ] **M11-V03** Field pilots measure trust outcomes and harness cost.
+- [x] **M11-V03** Field-pilot evidence records the unavailable CLI attempt as BLOCKED; M11-T09 remains incomplete.
 - [ ] **M11-V04** Mechanisms with no distinct value are deleted/downgraded.
-- [x] **M11-V05** History mappings are reproducible and mapped trees/topology match source histories.
-- [ ] **M11-V06** Relevant legacy checks and import-only verification pass or produce explicit BLOCKED evidence.
-- [ ] **M11-V07** `CHANGELOG.md` reconciles with actual source history; discrepancies are resolved or explicit.
-- [ ] **M11-V08** License/state/hook/install/tag/signature provenance is retained or explicitly dispositioned.
+- [ ] **M11-V05** Verify the single aggregate import-only commit changes only `.gitmodules` and the three exact source gitlinks. No accepted import commit exists yet.
+- [x] **M11-V06** Legacy failure and NOT_RUN import-only verification are retained as BLOCKED evidence; import acceptance remains closed.
+- [x] **M11-V07** `CHANGELOG.md` reconciles with actual source history; discrepancies are resolved or explicit. Evidence: `verification/m11-changelog-reconciliation.json`.
+- [x] **M11-V08** Retained upstream signature verification matches exact bundled source commit objects; all source tag objects are inventoried. Local GPG/SSH revalidation limits are recorded.
 
 M11 disposition defaults from the current plan:
 - isolated writers: optional Topology capability, not default, not Stable without formal native evidence;
@@ -195,15 +195,14 @@ M11 disposition defaults from the current plan:
 M11 full Git-history gate sequence:
 
 ```text
-validate object-complete histories
--> rewrite/import to isolated legacy prefixes
--> generate source->rewritten commit/tag maps
--> verify tree/topology equivalence
--> run relevant legacy deterministic checks
--> prove import-only commits
--> reconcile migration surfaces
--> reconcile CHANGELOG.md against actual history
--> resolve signed commit/tag fidelity requirements
+validate complete source bundles and ref inventories
+-> pin source-native submodules at audited main commits
+-> verify original commit signatures and tag objects against bundle evidence
+-> inventory and disposition source operational surfaces
+-> run raw legacy checks and any separately reviewed adapters
+-> create and prove the single aggregate import-only commit
+-> reconcile migration surfaces and CHANGELOG.md
+-> complete Codex and Claude field qualification and V04 review
 ```
 
 If required source history is unavailable or unverifiable: **M11 = BLOCKED and M12 cannot PASS.**

@@ -179,5 +179,27 @@
       "reason": "valid",
       "verified_at": "2026-08-21T19:58:59Z"
     }
-  ]
+  ],
+  "local_revalidation": {
+    "date": "2026-09-26",
+    "result": "BLOCKED_LOCAL_TRUST_CONFIGURATION",
+    "checked": 25,
+    "verified": 0,
+    "gpg_signatures": 13,
+    "ssh_signatures": 12,
+    "gpg_failure": "Git could not access the user's GPG keyring and reported no public key.",
+    "ssh_failure": "gpg.ssh.allowedSignersFile is not configured in this environment.",
+    "interpretation": "Local verification did not establish invalid signatures. The upstream verification above remains the retained 25/25 result; independent local verification was blocked by this host's trust configuration.",
+    "details": "verification/m11-object-fidelity-audit.json"
+  },
+  "tag_object_revalidation": {
+    "date": "2026-09-26",
+    "source_tag_refs_checked": 21,
+    "source_objects_retained_and_matching": 21,
+    "annotated_tag_objects": 13,
+    "lightweight_tags": 8,
+    "signed_tag_objects": 0,
+    "rewritten_annotations_preserved": false,
+    "details": "verification/m11-object-fidelity-audit.json"
+  }
 }

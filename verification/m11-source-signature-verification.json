@@ -1,0 +1,18 @@
+{
+  "schema": "harness-rig/m11-source-signature-verification/v1",
+  "result": "PASS",
+  "authority": "retained upstream GitHub commit-verification result matched to exact bundled commit IDs and signature headers",
+  "upstream_verified_commits": 25,
+  "signature_types": {
+    "pgp": 13,
+    "ssh": 12
+  },
+  "local_revalidation": "BLOCKED_LOCAL_TRUST_CONFIGURATION; local GPG keyring and SSH allowed-signers file are unavailable",
+  "source_tag_objects": {
+    "total": 21,
+    "annotated": 13,
+    "lightweight": 8,
+    "signed": 0
+  },
+  "errors": []
+}

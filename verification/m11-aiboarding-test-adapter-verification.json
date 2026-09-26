@@ -1,0 +1,34 @@
+{
+  "schema": "harness-rig/m11-aiboarding-test-adapter-verification/v1",
+  "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+  "adapter": "verification/m11-adaptations/aiboarding-test-portability.patch",
+  "adapter_sha256": "d2561362ff5cfa2ab6825c0a2548937ceccd920fefb0e4e49945a6cd4505112f",
+  "result": "PASS_ADAPTER_ONLY",
+  "patch_verification": {
+    "apply_check": "PASS with git apply --unidiff-zero",
+    "apply": "PASS with git apply --unidiff-zero",
+    "changed_paths": [
+      "tests/benchmarks/test-agent-outcomes-contracts.sh",
+      "tests/plugin/test-manifests.sh",
+      "tests/release/test-verify-release-sha.sh",
+      "tests/run.sh",
+      "tests/self-host/test-managed-repo.sh"
+    ],
+    "source_head_unchanged": true
+  },
+  "native_run": {
+    "result": "PASS",
+    "command": "bash tests/run.sh",
+    "host": "User-provided Windows PowerShell run using Git Bash",
+    "provenance": "Complete output supplied in the task conversation on 2026-09-26; every invoked test script reported PASS."
+  },
+  "sandbox_run": {
+    "result": "FAIL_ENVIRONMENT",
+    "probes": [
+      "test-lifecycle-collector.sh could not write under C:\\Users\\gmeil",
+      "test-live-runtime.sh could not create lifecycle evidence under the user profile"
+    ],
+    "interpretation": "The sandbox denied Windows profile writes; this does not contradict the user-provided native run."
+  },
+  "source_checkout_modified": false
+}

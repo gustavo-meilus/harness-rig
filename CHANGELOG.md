@@ -2,6 +2,36 @@
 
 This file is the append-only progressive change and source-consolidation ledger for Harness Rig.
 
+## M11 source-history crosswalk — 2026-09-26
+
+The source-native imports retain each complete repository at its audited main
+commit. Exact pins and repository URLs are recorded in
+`verification/m11-history-import-spec.json`; byte-for-byte bundle digests and
+full ref/object inventories are recorded in
+`verification/m11-source-bundle-manifest.json`.
+
+- AIBoarding → Context: `legacy/aiboarding`, source commit
+  `5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa`.
+- TacticSwitch → Topology: `legacy/tacticswitch`, source commit
+  `f95e3797c800b7ecc5f35dc95b25e53906df6b1e`.
+- Skill Kit KB maintainer → Context and Adaptive Engineering Harness →
+  Assurance: `legacy/skill-kit`, source commit
+  `f4e9840d012d3961c1cc2b0aff7dec071da8078a`.
+
+The original full refs and Git objects remain available in the three tracked
+bundles; the source checkouts themselves are unchanged. The earlier rewritten
+history maps and reports are retained as superseded experiments and are not the
+accepted import. `verification/m11-changelog-reconciliation.json` records the
+source-native crosswalk and remaining differences.
+
+M11 remains blocked. The TacticSwitch source fails its raw 200-test gate because
+`MANIFEST.sha256` is stale; a separately reviewed one-file patch makes a
+disposable copy pass 200/200 without changing the source pin. AIBoarding passed
+in the retained source checkout, but a later sandbox rerun could not complete
+two Windows runtime probes, so that result requires resolution. Required Codex
+CLI and Claude host qualification is also incomplete. No import-only commit is
+accepted until these gates and the signature/tag checks pass.
+
 ## Role of this file
 
 Until milestone **M11**, `CHANGELOG.md` is the required migration/provenance trace for source-derived Harness Rig changes.

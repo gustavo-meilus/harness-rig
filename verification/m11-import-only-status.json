@@ -1,0 +1,44 @@
+{
+  "schema": "harness-rig/m11-import-only-status/v2",
+  "date": "2026-09-26",
+  "result": "PASS",
+  "target_repository_head": "e9ce36ffe47598cbe9367035230794ad5cf3bb5a",
+  "import_only_commits": ["e9ce36ffe47598cbe9367035230794ad5cf3bb5a"],
+  "import_only_commit_count": 1,
+  "verification": {
+    "result": "PASS",
+    "command": "python verification/m11-verify-import-only.py --repo . --commit e9ce36ffe47598cbe9367035230794ad5cf3bb5a --json",
+    "evidence": "One parent; changed paths are exactly .gitmodules and the three approved gitlinks; every gitlink matches its bundle-pinned source main SHA."
+  },
+  "source_pins": [
+    {
+      "id": "aiboarding",
+      "path": "legacy/aiboarding",
+      "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa"
+    },
+    {
+      "id": "tacticswitch",
+      "path": "legacy/tacticswitch",
+      "source_commit": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e"
+    },
+    {
+      "id": "skill-kit",
+      "path": "legacy/skill-kit",
+      "source_commit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a"
+    }
+  ],
+  "legacy_checks": {
+    "aiboarding": "PASS_ADAPTER_ONLY: native patched suite passed; exact source pin remains unchanged",
+    "tacticswitch_raw": "FAIL: stale MANIFEST.sha256",
+    "tacticswitch_adapted_copy": "PASS: 200/200, only MANIFEST.sha256 changed",
+    "skill-kit": "PASS"
+  },
+  "source_refs_modified": false,
+  "namespaced_rewritten_refs_retained": true,
+  "m12_eligible": false,
+  "decision_gate": {
+    "current_contract": "Preserve original source objects and exact source pins; report raw/adapted checks separately.",
+    "why_blocked": "Codex CLI and Claude field qualification and the V04 simplification review remain incomplete.",
+    "next_action": "Complete the authorized Codex Desktop/CLI field pilot, then qualify Claude and perform V04 review."
+  }
+}

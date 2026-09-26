@@ -1,0 +1,84 @@
+{
+  "schema": "harness-rig/m11-imported-surface-dispositions/v2",
+  "date": "2026-09-26",
+  "result": "SOURCE_SURFACES_INVENTORIED; IMPORT_ACCEPTANCE_BLOCKED",
+  "scope": "Each pinned source main tree plus all bundle refs/tags; prior rewritten-ref surface reports remain historical evidence only.",
+  "inventories": {
+    "aiboarding": {
+      "path_count": 1379,
+      "category_counts": {
+        "licenses": 1,
+        "state": 121,
+        "hooks": 40,
+        "host_plugin_manifests": 4,
+        "install_update": 0,
+        "generated_distribution": 17,
+        "schemas_contracts": 2,
+        "tests_evals": 1045,
+        "ci": 3,
+        "openspec": 108,
+        "agent_roles": 77
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\aiboarding.json"
+    },
+    "skill-kit": {
+      "path_count": 176,
+      "category_counts": {
+        "licenses": 1,
+        "state": 0,
+        "hooks": 11,
+        "host_plugin_manifests": 27,
+        "install_update": 0,
+        "generated_distribution": 1,
+        "schemas_contracts": 1,
+        "tests_evals": 4,
+        "ci": 0,
+        "openspec": 32,
+        "agent_roles": 44
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\skill-kit.json"
+    },
+    "tacticswitch": {
+      "path_count": 418,
+      "category_counts": {
+        "licenses": 1,
+        "state": 30,
+        "hooks": 8,
+        "host_plugin_manifests": 5,
+        "install_update": 6,
+        "generated_distribution": 27,
+        "schemas_contracts": 17,
+        "tests_evals": 145,
+        "ci": 1,
+        "openspec": 147,
+        "agent_roles": 56
+      },
+      "evidence": "verification\\m11-source-repository-inventory\\tacticswitch.json"
+    }
+  },
+  "category_dispositions": {
+    "licenses": "RETAIN under each source's legacy prefix as source notices; do not infer a new combined license grant.",
+    "state": "HISTORICAL_ONLY; do not activate or merge into Harness Rig runtime state.",
+    "hooks": "HISTORICAL_ONLY; do not install or register from the imported prefixes.",
+    "host_plugin_manifests": "HISTORICAL_ONLY; do not load as active host configuration.",
+    "install_update": "HISTORICAL_ONLY; do not execute imported installers or migration scripts.",
+    "generated_distribution": "HISTORICAL_ONLY; never publish from the imported prefix. The pinned TacticSwitch source has a stale MANIFEST.sha256; the separate one-file adapter passed 200/200 in a disposable copy without changing the pin.",
+    "schemas_contracts": "HISTORICAL_ONLY; adopted semantics require their separate Harness Rig specifications and dispositions.",
+    "tests_evals": "HISTORICAL_ONLY in the imported tree; only separately invoked legacy checks count as qualification evidence.",
+    "ci": "HISTORICAL_ONLY; imported workflows do not become active Harness Rig CI.",
+    "openspec": "HISTORICAL_ONLY; imported change archives do not become active Harness Rig authority.",
+    "agent_roles": "HISTORICAL_ONLY; source skills and agent instructions are not installed by importing history.",
+    "unclassified_paths": "HISTORICAL_ONLY pending per-surface admission; no unclassified path is activated by these staged refs.",
+    "tags_and_signatures": "Original source commit and tag objects are retained in full bundles and exact source submodule history. Retained upstream verification matched 25 signed commits to the exact bundled objects. Local GPG/SSH trust revalidation is unavailable; prior rewritten refs are superseded and are not accepted."
+  },
+  "source_ref_inventory": "verification/m11-source-bundle-manifest.json",
+  "superseded_rewrite_ref_inventory": "verification/m11-imported-surface-ref-inventory.json",
+  "acceptance_gaps": [
+    "AIBoarding runtime-probe result conflict requires native resolution.",
+    "No aggregate one-parent import-only commit exists; proof remains NOT_RUN.",
+    "Codex CLI field pilot, Claude qualification, and V04 review remain incomplete."
+  ],
+  "milestone_M11": "BLOCKED",
+  "m12_eligible": false,
+  "source_pin_verification": "verification/m11-source-pin-verification.json"
+}

@@ -1,0 +1,10 @@
+{
+  "aiboarding": {
+    "repo": "legacy/aiboarding",
+    "checks": "m11-legacy-checks-aiboarding.json"
+  },
+  "skill-kit": {
+    "repo": "legacy/skill-kit",
+    "checks": "m11-legacy-checks-skill-kit.json"
+  }
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import argparse,json,pathlib,shutil,subprocess,time
+import os,sys,tempfile
 
 def main():
     ap=argparse.ArgumentParser()
@@ -10,6 +11,18 @@ def main():
     ns=ap.parse_args()
     repo=pathlib.Path(ns.repo).resolve()
     spec=json.loads(pathlib.Path(ns.checks).read_text())
+    env=os.environ.copy()
+    python_shim=None
+    if os.name == "nt":
+        python_shim=tempfile.TemporaryDirectory(prefix="hr-m11-python3-")
+        shutil.copy2(sys.executable,pathlib.Path(python_shim.name)/"python3.exe")
+        env["PATH"] = os.pathsep.join([
+            python_shim.name,
+            r"C:\Program Files\Git\bin",
+            r"C:\Program Files\Git\usr\bin",
+            r"C:\Program Files\Git\mingw64\libexec\git-core",
+            env.get("PATH", ""),
+        ])
     results=[]
     overall="PASS"
     for check in spec.get("checks",[]):
@@ -18,21 +31,24 @@ def main():
         if repo not in [cwd,*cwd.parents]:
             results.append({"id":check["id"],"outcome":"BLOCKED","reason":"cwd-outside-repo"})
             overall="BLOCKED"; continue
-        exe=shutil.which(argv[0])
+        exe=shutil.which(argv[0],path=env.get("PATH"))
         if exe is None:
             outcome="BLOCKED" if check.get("required",True) else "NOT_RUN"
             results.append({"id":check["id"],"outcome":outcome,"reason":"executable-unavailable","argv":argv})
             if outcome=="BLOCKED": overall="BLOCKED"
             continue
         start=time.time()
-        p=subprocess.run(argv,cwd=cwd,text=True,capture_output=True)
+        resolved_argv=[exe,*argv[1:]]
+        p=subprocess.run(resolved_argv,cwd=cwd,env=env,text=True,capture_output=True)
         outcome="PASS" if p.returncode==0 else "FAIL"
         results.append({"id":check["id"],"outcome":outcome,"exit_code":p.returncode,
-                        "argv":argv,"cwd":str(cwd.relative_to(repo)),
+                        "argv":resolved_argv,"cwd":str(cwd.relative_to(repo)),
                         "stdout":p.stdout[-8000:],"stderr":p.stderr[-8000:],
                         "duration_ms":round((time.time()-start)*1000)})
         if outcome=="FAIL" and overall!="BLOCKED": overall="FAIL"
     report={"schema":"harness-rig/m11-legacy-check-results/v1","result":overall,"results":results}
     print(json.dumps(report,indent=2) if ns.json else overall)
+    if python_shim is not None:
+        python_shim.cleanup()
     return 0 if overall=="PASS" else (2 if overall=="BLOCKED" else 1)
 if __name__=="__main__": raise SystemExit(main())

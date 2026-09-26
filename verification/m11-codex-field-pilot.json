@@ -3,7 +3,8 @@
   "id": "M11-P01",
   "result": "BLOCKED",
   "environment": {
-    "host": "Codex Desktop task context on Windows",
+    "host": "Codex Desktop task context with PowerShell execution in a Windows worktree",
+    "codex_cli_version_observed": "codex-cli 0.157.0",
     "application_version": "NOT_RECORDED",
     "model_runtime_identity": "NOT_INDEPENDENTLY_RECORDED"
   },
@@ -17,17 +18,39 @@
       "Rewritten source refs were staged only in namespaces; no import-only commits or merges were made.",
       "TacticSwitch quality gate failure was retained as BLOCKED rather than repaired in the source snapshot."
     ],
+    "current_codex_desktop_run": {
+      "task": "Run the canonical Harness Rig verifier after regenerating the stale manifest and AGENTS projection from canonical references.",
+      "command": "python scripts/check.py",
+      "result": "PASS",
+      "tests": "133/133 across 8 milestone modules",
+      "context_audit": "PASS: 44 canonical pages and 44 manifest rows; projection FRESH",
+      "elapsed_seconds": 42.34,
+      "git_diff_check": "PASS",
+      "evidence": [
+        "verification/m11-history-qualification-status.json",
+        "AGENTS.md",
+        "manifest.jsonl"
+      ]
+    },
+    "codex_cli_agent_attempt": {
+      "task": "Read-only inspection of M11 history qualification evidence in an ephemeral Codex CLI task.",
+      "result": "BLOCKED_NETWORK",
+      "observed_at": "2026-09-26",
+      "observation": "The CLI initialized and observed codex-cli 0.157.0, but repeated websocket requests to api.openai.com failed with Windows socket error 10013; curated-plugin sync also could not reach GitHub. The HTTPS fallback also failed to connect. The attempt was stopped after the bounded retry sequence; no task result was produced.",
+      "source_or_worktree_changes": "NONE",
+      "token_or_cost_accounting": "UNAVAILABLE"
+    },
     "harness_cost": {
       "full_verifier_tests": 133,
-      "elapsed_seconds_approx": 59,
-      "measurement": "Approximate elapsed time from tool-call wait durations; not a billing or token-cost measure.",
+      "elapsed_seconds_approx": 42.34,
+      "measurement": "Measured with PowerShell Measure-Command around python scripts/check.py; not a billing or token-cost measure.",
       "agent_delegation_count": 0,
       "token_or_cost_accounting": "UNAVAILABLE"
     },
     "limits": [
-      "This is one retrospective Codex Desktop task, not a planned comparative pilot.",
+      "This remains one Codex Desktop task, not a planned comparative pilot; codex-cli version was observed but no CLI-agent task was run.",
       "Native host version/runtime identity and isolation/permission capability matrix were not independently captured.",
-      "No separate Codex CLI or Claude pilot was run."
+      "The attempted Codex CLI-agent pilot could not complete because the response service was unreachable; no separate Claude pilot was run."
     ]
   },
   "evidence": [

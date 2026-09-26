@@ -1,0 +1,31 @@
+{
+  "schema": "harness-rig/m11-object-fidelity-audit/v2",
+  "date": "2026-09-26",
+  "representation": "source-native submodules and full tracked source bundles",
+  "bundle_preflight": "verification/m11-history-input-preflight-current.json",
+  "signature_verification": "verification/m11-source-signature-verification.json",
+  "source_tags": {
+    "total": 21,
+    "annotated": 13,
+    "lightweight": 8,
+    "signed": 0,
+    "all_original_tag_objects_retained_in_bundles": true
+  },
+  "source_commit_signatures": {
+    "upstream_verified": 25,
+    "matched_to_exact_bundled_commit_objects": true,
+    "signature_types": {
+      "pgp": 13,
+      "ssh": 12
+    },
+    "local_revalidation": "BLOCKED_LOCAL_TRUST_CONFIGURATION",
+    "acceptance": "PASS against retained upstream verification and exact source-object match; local trust setup is unavailable and unchanged."
+  },
+  "superseded_rewrite_experiment": {
+    "evidence": "verification/m11-history-maps/",
+    "commit_signatures_preserved": false,
+    "annotated_tag_objects_preserved": false,
+    "accepted_import": false
+  },
+  "result": "PASS_WITH_LOCAL_REVALIDATION_LIMIT"
+}
