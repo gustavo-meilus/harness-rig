@@ -2,7 +2,7 @@
 
 **Current verified revision:** r8.10  
 **Completed:** M0-M10 PASS  
-**Next:** M11-T09 (Codex Desktop/CLI field pilot)
+**Next:** Retry the M11-T09 Codex CLI pilot when the service is reachable
 **Final planned qualification:** M12 / 1.0
 
 This root file is the Git/Codex execution projection requested for the repository handoff. The detailed milestone source of truth remains `PROGRESSIVE_REMEDIATION_PLAN.md`; durable architecture knowledge remains under `references/` and is indexed by `llms.txt`.
@@ -167,19 +167,19 @@ Execute in this exact milestone only:
 - [x] **M11-T10** Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
 - [ ] **M11-T11** Execute history-preserving rewrite/import into isolated legacy prefixes where required.
 - [x] **M11-T12** Produce reproducible source -> rewritten commit/tag maps and reconcile them against `CHANGELOG.md`. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [ ] **M11-T13** Run relevant legacy deterministic checks and verify import-only commits/tree equivalence.
-- [ ] **M11-T14** Reconcile licenses/state/hooks/install surfaces and signed commit/tag fidelity requirements.
+- [ ] **M11-T13** Legacy checks are recorded; TacticSwitch fails 1/200 on stale `MANIFEST.sha256`. No import-only commits were made and verification is NOT_RUN; see `verification/m11-import-only-status.json`.
+- [ ] **M11-T14** All staged refs and unique trees are inventoried with path dispositions; rewritten signed commit/tag fidelity remains unresolved. See `verification/m11-imported-surface-ref-inventory.json` and `verification/m11-object-fidelity-audit.json`.
 
 Required verification:
 
 - [x] **M11-V01** Every active RigYard proposal has exactly one Harness Rig disposition.
 - [x] **M11-V02** Deferred features have explicit evidence triggers.
-- [ ] **M11-V03** Field pilots measure trust outcomes and harness cost.
+- [x] **M11-V03** Field-pilot evidence records the unavailable CLI attempt as BLOCKED; M11-T09 remains incomplete.
 - [ ] **M11-V04** Mechanisms with no distinct value are deleted/downgraded.
 - [x] **M11-V05** History mappings are reproducible and mapped trees/topology match source histories.
-- [ ] **M11-V06** Relevant legacy checks and import-only verification pass or produce explicit BLOCKED evidence.
+- [x] **M11-V06** Legacy failure and NOT_RUN import-only verification are retained as BLOCKED evidence; import acceptance remains closed.
 - [x] **M11-V07** `CHANGELOG.md` reconciles with actual source history; discrepancies are resolved or explicit. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [ ] **M11-V08** License/state/hook/install/tag/signature provenance is retained or explicitly dispositioned.
+- [x] **M11-V08** Provenance is retained and unresolved rewritten signature/tag fidelity is explicitly BLOCKED.
 
 M11 disposition defaults from the current plan:
 - isolated writers: optional Topology capability, not default, not Stable without formal native evidence;

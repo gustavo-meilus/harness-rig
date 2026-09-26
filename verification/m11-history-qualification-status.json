@@ -43,20 +43,25 @@
       "source_inventory": "verification/m11-source-repository-inventory.json",
       "rigyard_dispositions": "verification/m11-rigyard-dispositions.json",
       "changelog_reconciliation": "verification/m11-changelog-reconciliation.json",
-      "imported_surface_dispositions": "verification/m11-imported-surface-dispositions.json"
+      "imported_surface_dispositions": "verification/m11-imported-surface-dispositions.json",
+      "imported_surface_ref_inventory": "verification/m11-imported-surface-ref-inventory.json",
+      "import_only_status": "verification/m11-import-only-status.json"
     },
     "completed": [
       "M11-T01 through M11-T07: one evidence-backed disposition and reopening trigger recorded for each of the seven proposals.",
       "M11-T10: public upstream refs/tags/PR heads bundled, fsck and preflight passed.",
       "M11-T12 / M11-V07: CHANGELOG crosswalk retained; all 122 source commits, 20 branch/PR refs and 21 tags mapped, with unresolved discrepancies explicitly recorded.",
       "M11-V01 / M11-V02: all eight active RigYard proposals have exactly one disposition; reopening triggers are recorded.",
-      "M11-V05: source-to-rewritten maps, tree/topology verification, and two-run reproducibility passed."
+      "M11-V05: source-to-rewritten maps, tree/topology verification, and two-run reproducibility passed.",
+      "M11-V03: the retained field-pilot record satisfies the explicit BLOCKED-evidence branch; it does not count as a completed pilot or complete M11-T09.",
+      "M11-V06: legacy-check outcomes and the NOT_RUN import-only status are retained; the explicit BLOCKED-evidence criterion is met, while import acceptance remains closed.",
+      "M11-V08: source surface and tag/signature provenance has explicit dispositions; unresolved rewritten fidelity is explicitly blocked, not accepted."
     ],
     "partial": [
-      "M11-T09 / M11-V03: one Codex Desktop task retained as a partial field observation; a 133-test verifier run took 42.34 seconds. A bounded read-only Codex CLI-agent pilot initialized on codex-cli 0.157.0 but failed with Windows socket error 10013 and could not reach HTTPS fallback; Desktop/model identity and token cost remain unavailable. Evidence: verification/m11-codex-field-pilot.json.",
-      "M11-T11: rewritten refs staged only in namespaced refs; import-only commits await passing legacy checks and fidelity disposition.",
-      "M11-T13: reproducibility passed; unchanged TacticSwitch snapshot failed 1/200 on stale MANIFEST.sha256. Regenerating that derived file in a disposable Git tree made the full 200-test gate pass; no source checkout or staged ref changed. Import-only verification remains unrun.",
-      "M11-T14: staged main-tip trees contain 1,852 inventoried paths; each surface category has a disposition. Original bundles are available outside this worktree and pass preflight; all 21 mapped source tag objects (13 annotated, 8 lightweight) were confirmed, and none of the annotated tags contains a signature. Local verification of 25 signed commits is blocked by GPG/SSH trust configuration, while the retained upstream report records 25/25 verified. Rewritten signature/tag fidelity and import acceptance remain blocked; evidence: verification/m11-imported-surface-dispositions.json and verification/m11-object-fidelity-audit.json."
+      "M11-T09: one Desktop task and one bounded CLI-agent attempt are retained; CLI was blocked by Windows socket error 10013 and unreachable HTTPS fallback. Model identity and token cost remain unavailable; V04 simplification review remains pending.",
+      "M11-T11: rewritten refs staged only in namespaced refs; no import-only commits were accepted.",
+      "M11-T13: reproducibility and legacy checks were run; AIBoarding and Skill Kit pass, TacticSwitch fails 1/200 on stale MANIFEST.sha256. Temporary regeneration passed 200/200 but did not change the source ref. Import-only verification is NOT_RUN; see verification/m11-import-only-status.json.",
+      "M11-T14: every staged branch/PR/tag ref and unique tree is inventoried with explicit classified/unclassified path dispositions; source tag objects were confirmed. Rewritten signature/tag fidelity remains unresolved under the retained hard gate; see verification/m11-imported-surface-ref-inventory.json and verification/m11-object-fidelity-audit.json."
     ],
     "not_run": [
       "M11-T08: native Claude qualification; Codex primary operational evidence must come first.",
