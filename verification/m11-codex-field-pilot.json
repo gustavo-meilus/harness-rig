@@ -38,7 +38,18 @@
       "observed_at": "2026-09-26",
       "observation": "The CLI initialized and observed codex-cli 0.157.0, but repeated websocket requests to api.openai.com failed with Windows socket error 10013; curated-plugin sync also could not reach GitHub. The HTTPS fallback also failed to connect. The attempt was stopped after the bounded retry sequence; no task result was produced.",
       "source_or_worktree_changes": "NONE",
-      "token_or_cost_accounting": "UNAVAILABLE"
+      "token_or_cost_accounting": "UNAVAILABLE",
+      "follow_up_diagnostics": {
+        "observed_at": "2026-09-26",
+        "environment": "Restricted Codex Desktop task execution environment; this is a diagnostic follow-up, not a separate field pilot.",
+        "codex_doctor_version": "0.157.1",
+        "authentication": "MISSING",
+        "websocket": "FAILED: Windows socket error 10013",
+        "https_reachability": "FAILED: required provider endpoint unreachable; TCP connection to api.openai.com:443 failed.",
+        "dns_resolution": "PASS: api.openai.com resolved to IPv4 and IPv6 addresses.",
+        "task_execution": "NOT_RUN",
+        "result": "BLOCKED_ENVIRONMENT"
+      }
     },
     "harness_cost": {
       "full_verifier_tests": 133,
