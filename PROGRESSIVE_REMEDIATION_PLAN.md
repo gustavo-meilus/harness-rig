@@ -46,19 +46,27 @@ Update this block whenever execution stops so a fresh context can resume without
 ```yaml
 plan: harness-rig-progressive-remediation-r8
 current_milestone: M11
-current_revision: r8.10
-milestone_result: BLOCKED
-last_completed_task: M11-V03 / M11-V06 / M11-V08 (BLOCKED evidence recorded)
-next_task: M11-T09
-blocking_issue: TacticSwitch legacy quality gate fails because MANIFEST.sha256 is stale; M11 import-only gate remains closed
+current_revision: r8.11
+milestone_result: PASS
+last_completed_task: M11-T09 / M11-V03 / M11-V06
+next_task: M12-T01 full deterministic repository suite
+blocking_issue: none
 verification_pending:
-  - M11-V04
+  - M12-T01
 notes: >
   M0 through M10 completed with PASS. M10 finalized the compact product CLI and versioned machine envelope,
   fail-closed configuration precedence, verifier timeout/cancellation cleanup, atomic r8.9-to-r8.10 migration state
   with explicit rollback, and deterministic release-record/checksum behavior. Runtime/schema migration can complete while
   source-history qualification remains PENDING_M11; M10 does not fabricate the deferred real source history maps.
-  Release eligibility is BLOCKED when no accepted repository verdict is supplied. M11-T12/V07 has a verified changelog crosswalk. M11-V03/V06/V08 now have explicit BLOCKED evidence; this satisfies their evidence-recording branches only. Retry the Codex CLI pilot when the service is reachable, then complete V04. M11 and M12 remain blocked by the stale TacticSwitch source manifest and unresolved signature/tag fidelity.
+  Release eligibility is BLOCKED when no accepted repository verdict is
+  supplied. The exact source-native pins, bundles, and one-parent import commit
+  are verified; the raw TacticSwitch manifest failure and separate passing
+  adapter are retained. The authorized read-only Codex CLI assessment and V04
+  review are recorded. Codex Desktop and CLI field pilots now cover the real
+  adapter/check path, synthetic implementation and fresh verification, and
+  observed Windows workspace boundaries in elevated and unelevated modes.
+  M11 passed with recorded limits; M12 is eligible. Claude native qualification
+  is out of scope for now and is not an acceptance gate.
 ```
 
 ### Milestone quick index
@@ -332,29 +340,39 @@ notes: >
 - [x] **M11-T05** — Disposition v0.6 richer topology families.
 - [x] **M11-T06** — Disposition v0.7 distributed execution.
 - [x] **M11-T07** — Disposition v0.8 observability/effects.
-- [ ] **M11-T08** — Disposition Claude native qualification.
-- [ ] **M11-T09** — Run representative field pilots and simplification review.
-- [ ] **M11-T10** — Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
-- [ ] **M11-T11** — Execute history-preserving rewrite/import into isolated legacy prefixes where required.
-- [x] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [ ] **M11-T13** — Legacy checks are recorded; TacticSwitch fails 1/200 on stale `MANIFEST.sha256`. No import-only commits were made and verification is NOT_RUN; see `verification/m11-import-only-status.json`.
-- [ ] **M11-T14** — All staged refs and unique trees are inventoried with path dispositions; rewritten signed commit/tag fidelity remains unresolved. See `verification/m11-imported-surface-ref-inventory.json` and `verification/m11-object-fidelity-audit.json`.
+- [x] **M11-T08** — Claude native qualification is out of scope for now per
+  user direction; not an M11 acceptance gate.
+- [x] **M11-T09** — Complete representative Codex Desktop/CLI implementation
+  and native capability qualification with recorded limits. Evidence:
+  `verification/m11-codex-field-pilot.json`.
+- [x] **M11-T10** — Validate object-complete AIBoarding, TacticSwitch, and Skill Kit bundles and refs.
+- [x] **M11-T11** — Retain full source histories as submodules at audited pins; do not rewrite upstream history.
+- [x] **M11-T12** — Reconcile source pins, refs, bundles, and `CHANGELOG.md`; see `verification/m11-changelog-reconciliation.json`.
+- [x] **M11-T13** — Retain raw legacy failures and separate passing adapter results; see `verification/m11-import-only-status.json` and `verification/m11-legacy-check-results.json`.
+- [x] **M11-T14** — Inventory source refs, surfaces, signatures, and tag objects; see `verification/m11-source-repository-inventory/` and `verification/m11-object-fidelity-audit.json`.
 
 **Verification:**
 
 - [x] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
 - [x] **M11-V02** — Deferred features have explicit evidence triggers.
-- [x] **M11-V03** — Field-pilot evidence records the unavailable CLI pilot as BLOCKED; M11-T09 remains incomplete.
-- [ ] **M11-V04** — Mechanisms with no distinct value are deleted/downgraded.
-- [x] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
-- [x] **M11-V06** — Legacy failure and NOT_RUN import-only verification are retained as BLOCKED evidence; import acceptance remains closed.
+- [x] **M11-V03** — Field-pilot evidence records authorized read-only and
+  implementation pilots, outcomes, costs, and limits.
+- [x] **M11-V04** — In-scope proposals with no distinct value are deferred or
+  kept optional. Bounded mutation verification remains for its distinct
+  detector-gap evidence. See `verification/m11-rigyard-dispositions.json`.
+- [x] **M11-V05** — The one-parent import commit contains only the approved gitlinks and `.gitmodules`; see `verification/m11-import-only-status.json`.
+- [x] **M11-V06** — Retain legacy failures and passing import-only evidence;
+  all M11 acceptance criteria now have evidence.
 - [x] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [x] **M11-V08** — Provenance is retained and unresolved rewritten signature/tag fidelity is explicitly BLOCKED.
+- [x] **M11-V08** — Exact upstream signature-bearing commits and tag objects are retained and matched to bundles; local trust revalidation limits are recorded.
 
-**Milestone result:** `BLOCKED`
-**Allowed next milestone:** none; M12 is ineligible until M11 gates pass.
+**Milestone result:** `PASS`
+**Allowed next milestone:** `M12`; M11 gates pass with recorded limitations.
 
-Dispositions: `verification/m11-rigyard-dispositions.json` (8/8 active proposals). Next action: retry the Codex CLI field pilot when the service is reachable, then complete M11-V04 simplification review. Full blockers: `verification/m11-history-qualification-status.json`.
+Dispositions: `verification/m11-rigyard-dispositions.json` (8/8 active
+proposals). Claude native qualification is out of scope. V04 passed. Codex
+field evidence and limitations: `verification/m11-codex-field-pilot.json`;
+overall gate: `verification/m11-history-qualification-status.json`.
 
 #### M12 — 1.0 qualification and final simplification
 
@@ -529,7 +547,7 @@ Important current evidence maturity:
 | v0.6 richer topology | planned |
 | v0.7 distributed execution | planned |
 | v0.8 observability/effects | planned |
-| Claude native qualification | active proposal, still gated |
+| Claude native qualification | out of scope for now; not an M11 or M12 gate |
 
 RigYard also already implements useful evidence concepts that must be reused before inventing generalized replacements, including core acceptance evidence and durable worker-result evidence.
 
@@ -1929,26 +1947,33 @@ A CI system and a human can both operate Harness Rig without interpreting prose 
 - [x] **M11-T05** — Disposition v0.6 richer topology families.
 - [x] **M11-T06** — Disposition v0.7 distributed execution.
 - [x] **M11-T07** — Disposition v0.8 observability/effects.
-- [ ] **M11-T08** — Disposition Claude native qualification.
-- [ ] **M11-T09** — Run representative field pilots and simplification review.
-- [ ] **M11-T10** — Obtain and validate object-complete AIBoarding, TacticSwitch, and Skill Kit histories.
-- [ ] **M11-T11** — Execute history-preserving rewrite/import into isolated legacy prefixes where required.
-- [x] **M11-T12** — Produce reproducible source→rewritten commit/tag maps and reconcile them against `CHANGELOG.md`. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [ ] **M11-T13** — Legacy checks are recorded; TacticSwitch fails 1/200 on stale `MANIFEST.sha256`. No import-only commits were made and verification is NOT_RUN; see `verification/m11-import-only-status.json`.
-- [ ] **M11-T14** — All staged refs and unique trees are inventoried with path dispositions; rewritten signed commit/tag fidelity remains unresolved. See `verification/m11-imported-surface-ref-inventory.json` and `verification/m11-object-fidelity-audit.json`.
+- [x] **M11-T08** — Claude native qualification is out of scope for now per
+  user direction; not an M11 acceptance gate.
+- [x] **M11-T09** — Complete representative Codex Desktop/CLI implementation
+  and native capability qualification with recorded limits. Evidence:
+  `verification/m11-codex-field-pilot.json`.
+- [x] **M11-T10** — Validate object-complete AIBoarding, TacticSwitch, and Skill Kit bundles and refs.
+- [x] **M11-T11** — Retain full source histories as submodules at audited pins; do not rewrite upstream history.
+- [x] **M11-T12** — Reconcile source pins, refs, bundles, and `CHANGELOG.md`; see `verification/m11-changelog-reconciliation.json`.
+- [x] **M11-T13** — Retain raw legacy failures and separate passing adapter results; see `verification/m11-import-only-status.json` and `verification/m11-legacy-check-results.json`.
+- [x] **M11-T14** — Inventory source refs, surfaces, signatures, and tag objects; see `verification/m11-source-repository-inventory/` and `verification/m11-object-fidelity-audit.json`.
 
 **Verification tasks:**
 
 - [x] **M11-V01** — Every active RigYard proposal has exactly one Harness Rig disposition.
 - [x] **M11-V02** — Deferred features have explicit evidence triggers.
-- [x] **M11-V03** — Field-pilot evidence records the unavailable CLI pilot as BLOCKED; M11-T09 remains incomplete.
-- [ ] **M11-V04** — Mechanisms with no distinct value are deleted/downgraded.
-- [x] **M11-V05** — History mappings are reproducible and mapped trees/topology match the source histories.
-- [x] **M11-V06** — Legacy failure and NOT_RUN import-only verification are retained as BLOCKED evidence; import acceptance remains closed.
+- [x] **M11-V03** — Field-pilot evidence records authorized read-only and
+  implementation pilots, outcomes, costs, and limits.
+- [x] **M11-V04** — In-scope proposals with no distinct value are deferred or
+  kept optional. Bounded mutation verification remains for its distinct
+  detector-gap evidence. See `verification/m11-rigyard-dispositions.json`.
+- [x] **M11-V05** — The one-parent import commit contains only the approved gitlinks and `.gitmodules`; see `verification/m11-import-only-status.json`.
+- [x] **M11-V06** — Retain legacy failures and passing import-only evidence;
+  all M11 acceptance criteria now have evidence.
 - [x] **M11-V07** — `CHANGELOG.md` reconciles with actual source history; material discrepancies are resolved or explicitly recorded. Evidence: `verification/m11-changelog-reconciliation.json`.
-- [x] **M11-V08** — Provenance is retained and unresolved rewritten signature/tag fidelity is explicitly BLOCKED.
+- [x] **M11-V08** — Exact upstream signature-bearing commits and tag objects are retained and matched to bundles; local trust revalidation limits are recorded.
 
-**Result:** `BLOCKED`
+**Result:** `PASS`
 
 > M11 is the late provenance/history gate. Unavailable required source history blocks M12/1.0, not M3–M10.
 
@@ -1956,7 +1981,12 @@ A CI system and a human can both operate Harness Rig without interpreting prose 
 
 **Purpose:** explicitly reconcile remaining RigYard proposals, field-harden the system, and qualify full source history before final 1.0 acceptance.
 
-Current status: M11-T01–T07 and M11-V01–V02 are complete from the retained 8/8 disposition report; M11-V05 is complete. M11 remains BLOCKED by history, pilot, and fidelity gates. See `verification/m11-history-qualification-status.json`.
+Current status: M11-T01–T14 and M11-V01–V08 are complete. Codex Desktop and
+CLI field pilots cover the real adapter/check path, synthetic implementation
+and fresh verification, and observed Windows workspace boundaries in elevated
+and unelevated modes. M11 passed with recorded limits; M12 is eligible. See
+`verification/m11-history-qualification-status.json` and
+`verification/m11-codex-field-pilot.json`.
 
 ## 16.1 v0.3 isolated parallel writers
 
@@ -2084,13 +2114,10 @@ durable receipt
 ambiguous-effect BLOCKED behavior
 ```
 
-## 16.8 Claude native qualification
+## 16.8 Claude native qualification (OUT OF SCOPE)
 
-Continue as host-specific qualification work.
-
-It must not block Harness Rig 1.0 if Codex or another host is genuinely Stable.
-
-Preserve fail-closed unsupported claims.
+Do not run Claude native qualification for M11 or M12. Reopen only after an
+explicit scope decision. This work is not an acceptance gate.
 
 ## Field pilot
 

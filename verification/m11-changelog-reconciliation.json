@@ -1,7 +1,7 @@
 {
   "schema": "harness-rig/m11-changelog-reconciliation/v2",
-  "date": "2026-09-26",
-  "result": "PASS_WITH_RECORDED_OPEN_GATES",
+  "date": "2026-09-27",
+  "result": "PASS",
   "changelog": "CHANGELOG.md",
   "crosswalk_section": "M11 source-history crosswalk",
   "representation": "source-native submodules pinned to audited main commits; previous rewrite reports are superseded experiments",
@@ -57,9 +57,9 @@
     },
     {
       "id": "aiboarding-runtime-probes",
-      "status": "OPEN_ENVIRONMENT_DISCREPANCY",
+      "status": "PASS_WITH_ROOT_ADAPTER",
       "evidence": "verification/m11-source-native-qualification-evidence.json",
-      "detail": "A retained source-checkout run passed; later sandbox rerun failed two Windows runtime probes."
+      "detail": "Workspace-local TMPDIR runner resolves the restricted temp-path failures; focused probes and full suite pass. Windows JSON cwd parser correction is retained only in the root adapter and passes the native launcher regression."
     },
     {
       "id": "signature-and-tags",
@@ -70,8 +70,8 @@
   ],
   "acceptance": {
     "M11-T12": "PASS",
-    "M11-V07": "PASS_WITH_OPEN_GATES",
-    "milestone_M11": "BLOCKED",
-    "m12_eligible": false
+    "M11-V07": "PASS",
+    "milestone_M11": "PASS",
+    "m12_eligible": true
   }
 }

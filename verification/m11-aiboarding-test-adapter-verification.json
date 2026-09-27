@@ -2,7 +2,7 @@
   "schema": "harness-rig/m11-aiboarding-test-adapter-verification/v1",
   "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
   "adapter": "verification/m11-adaptations/aiboarding-test-portability.patch",
-  "adapter_sha256": "d2561362ff5cfa2ab6825c0a2548937ceccd920fefb0e4e49945a6cd4505112f",
+  "adapter_sha256": "1e408cb3a12d3aced703a141f898f04d722e55afaa5402f042def8d20ab9959c",
   "result": "PASS_ADAPTER_ONLY",
   "patch_verification": {
     "apply_check": "PASS with git apply --unidiff-zero",
@@ -12,7 +12,9 @@
       "tests/plugin/test-manifests.sh",
       "tests/release/test-verify-release-sha.sh",
       "tests/run.sh",
-      "tests/self-host/test-managed-repo.sh"
+      "tests/self-host/test-managed-repo.sh",
+      "hooks/codex-lifecycle",
+      "tests/codex/test-codex-lifecycle.sh"
     ],
     "source_head_unchanged": true
   },
@@ -23,12 +25,44 @@
     "provenance": "Complete output supplied in the task conversation on 2026-09-26; every invoked test script reported PASS."
   },
   "sandbox_run": {
-    "result": "FAIL_ENVIRONMENT",
-    "probes": [
-      "test-lifecycle-collector.sh could not write under C:\\Users\\gmeil",
-      "test-live-runtime.sh could not create lifecycle evidence under the user profile"
+    "result": "RESOLVED_WITH_WORKSPACE_TEMP",
+    "previous_failures": [
+      "test-lifecycle-collector.sh could not create its temporary collector output under the default user-profile temp path",
+      "test-live-runtime.sh could not create lifecycle evidence under the default user-profile temp path"
     ],
-    "interpretation": "The sandbox denied Windows profile writes; this does not contradict the user-provided native run."
+    "cause": "Git Bash mktemp inherited a user-profile temporary path blocked by the restricted execution environment.",
+    "root_adapter": "verification/m11-run-legacy-checks.py now sets TMPDIR to a temporary directory under the source checkout parent on Windows; that directory is outside the submodule and inside the writable workspace.",
+    "focused_probes": {
+      "result": "PASS",
+      "runner": "verification/m11-run-legacy-checks.py",
+      "checkout": "Disposable clone of the local AIBoarding bundle at 5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+      "tests": [
+        "test-lifecycle-collector.sh",
+        "test-live-runtime.sh"
+      ],
+      "execution_limit": "The normal command launcher failed to start, so execution used the reviewed shell fallback; the independent sandbox denial path was not re-exercised."
+    }
   },
-  "source_checkout_modified": false
+  "source_checkout_modified": false,
+  "adapter_line_endings": "LF, enforced by .gitattributes for Windows checkouts",
+  "full_suite_rerun": {
+    "result": "PASS",
+    "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "command": "bash tests/run.sh",
+    "checkout": "Disposable clone of the local AIBoarding bundle",
+    "adapter": "Root-held seven-path adapter patch: five test-portability paths plus the Windows JSON cwd parser and regression test.",
+    "temporary_files": "TMPDIR pointed to a temporary directory under verification/ within the writable workspace.",
+    "source_checkout_modified": false,
+    "execution_limit": "The normal command launcher failed to start; this run used the reviewed shell fallback and does not independently demonstrate sandbox enforcement.",
+    "commandWindows_json_cwd_test": "PASS in tests/codex/test-codex-lifecycle.sh under native Git Bash"
+  },
+  "windows_json_cwd_probe": {
+    "result": "PASS",
+    "test": "tests/codex/test-codex-lifecycle.sh under native Git Bash; commandWindows launcher received a SubagentStart payload whose cwd was a JSON-escaped native Windows path",
+    "assertion": "Pointer context included read AGENTS.md",
+    "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "checkout": "Disposable clone of the verified local AIBoarding bundle with the root adapter patch applied",
+    "source_checkout_modified": false,
+    "limitation": "Synthetic launcher regression only; does not prove Codex Desktop invoked the hook or native capability enforcement."
+  }
 }

@@ -1,7 +1,7 @@
 {
   "schema": "harness-rig/m11-imported-surface-dispositions/v2",
-  "date": "2026-09-26",
-  "result": "SOURCE_SURFACES_INVENTORIED; IMPORT_ACCEPTANCE_BLOCKED",
+  "date": "2026-09-27",
+  "result": "SOURCE_SURFACES_INVENTORIED; PASS_WITH_RECORDED_LIMITS",
   "scope": "Each pinned source main tree plus all bundle refs/tags; prior rewritten-ref surface reports remain historical evidence only.",
   "inventories": {
     "aiboarding": {
@@ -59,7 +59,7 @@
   "category_dispositions": {
     "licenses": "RETAIN under each source's legacy prefix as source notices; do not infer a new combined license grant.",
     "state": "HISTORICAL_ONLY; do not activate or merge into Harness Rig runtime state.",
-    "hooks": "HISTORICAL_ONLY; do not install or register from the imported prefixes.",
+    "hooks": "HISTORICAL_ONLY in imported prefixes; the narrowly scoped AIBoarding Windows cwd correction exists only in the root-held adapter applied to disposable verification copies, not in source history or active installation.",
     "host_plugin_manifests": "HISTORICAL_ONLY; do not load as active host configuration.",
     "install_update": "HISTORICAL_ONLY; do not execute imported installers or migration scripts.",
     "generated_distribution": "HISTORICAL_ONLY; never publish from the imported prefix. The pinned TacticSwitch source has a stale MANIFEST.sha256; the separate one-file adapter passed 200/200 in a disposable copy without changing the pin.",
@@ -73,12 +73,8 @@
   },
   "source_ref_inventory": "verification/m11-source-bundle-manifest.json",
   "superseded_rewrite_ref_inventory": "verification/m11-imported-surface-ref-inventory.json",
-  "acceptance_gaps": [
-    "AIBoarding runtime-probe result conflict requires native resolution.",
-    "No aggregate one-parent import-only commit exists; proof remains NOT_RUN.",
-    "Codex CLI field pilot, Claude qualification, and V04 review remain incomplete."
-  ],
-  "milestone_M11": "BLOCKED",
-  "m12_eligible": false,
+  "acceptance_gaps": [],
+  "milestone_M11": "PASS",
+  "m12_eligible": true,
   "source_pin_verification": "verification/m11-source-pin-verification.json"
 }

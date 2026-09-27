@@ -113,7 +113,7 @@ Run the repository verification checks again if OpenSpec modified tracked projec
 chore(openspec): initialize Codex workflow for M11
 ```
 
-Do **not** configure Claude in the same commit. Claude is the secondary platform and receives its own native qualification under M11-T08 after the Codex-first path is operational and evidenced.
+Do **not** configure Claude in this scope. Claude native qualification is out of scope for now and is not an M11 acceptance gate.
 
 ## Phase E - start M11 through OpenSpec
 
@@ -143,8 +143,7 @@ Harness Rig must become fully operational on Codex Desktop/CLI before Claude is 
 - Establish real Codex discovery/invocation/runtime identity and whatever isolation/permission behavior the active Codex environment can actually prove.
 - Use Codex for the first representative real-host field pilot and retain evidence.
 - Fail closed on unsupported or ambiguous Codex capabilities; do not infer capabilities from configuration files alone.
-- Only after the Codex operational baseline is retained should M11-T08 perform Claude native qualification as the secondary platform.
-- Claude failure must not weaken a genuinely qualified Codex 1.0 path unless a product requirement explicitly makes Claude mandatory.
+- Claude native qualification is out of scope for now; do not treat its availability or evidence as an M11/M12 requirement.
 
 ### M11 sequence
 

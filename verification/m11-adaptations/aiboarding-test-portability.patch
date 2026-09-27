@@ -65,3 +65,20 @@ index 199cb70..68f4598 100644
 @@ -22 +22 @@ More With Less engineering policy'
 -actual_sections="$(sed -n 's/^## //p' "$agents")"
 +actual_sections="$(sed -n 's/^## //p' "$agents" | tr -d '\r')"
+diff --git a/hooks/codex-lifecycle b/hooks/codex-lifecycle
+index b667772..db83111 100644
+--- a/hooks/codex-lifecycle
++++ b/hooks/codex-lifecycle
+@@ -18 +18 @@ json_field() {
+-  printf '%s' "$input" | sed -n "s/.*\\\"${key}\\\"[[:space:]]*:[[:space:]]*\\\"\\([^\\\"]*\\)\\\".*/\\1/p" | head -n 1
++  printf '%s' "$input" | sed -n "s/.*\\\"${key}\\\"[[:space:]]*:[[:space:]]*\\\"\\([^\"]*\\)\\\".*/\\1/p" | head -n 1
+diff --git a/tests/codex/test-codex-lifecycle.sh b/tests/codex/test-codex-lifecycle.sh
+index 8467485..76a4f6d 100644
+--- a/tests/codex/test-codex-lifecycle.sh
++++ b/tests/codex/test-codex-lifecycle.sh
+@@ -21 +21 @@ repo() {
+-payload() { printf '{"hook_event_name":"%s","cwd":"%s"%s}' "$1" "$2" "${3:-}"; }
++payload() { local cwd="$2"; cwd="${cwd//\\/\\\\}"; printf '{"hook_event_name":"%s","cwd":"%s"%s}' "$1" "$cwd" "${3:-}"; }
+@@ -70,0 +71,2 @@ if [ "${OS:-}" = Windows_NT ] && command -v cmd.exe >/dev/null 2>&1; then
++  out="$(payload SubagentStart "$(cygpath -w "$tmp")" | run_windows)"
++  assert_contains "$out" 'read AGENTS.md' "native commandWindows launcher parses JSON-escaped backslashes" || exit 1

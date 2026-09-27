@@ -1,10 +1,11 @@
 {
   "schema": "harness-rig/m11-field-pilot/v1",
   "id": "M11-P01",
-  "result": "BLOCKED",
+  "result": "PASS_WITH_LIMITATIONS",
   "environment": {
     "host": "Codex Desktop task context with PowerShell execution in a Windows worktree",
     "codex_cli_version_observed": "codex-cli 0.157.0",
+    "current_codex_cli_version": "codex-cli 0.157.1",
     "application_version": "NOT_RECORDED",
     "model_runtime_identity": "NOT_INDEPENDENTLY_RECORDED"
   },
@@ -51,6 +52,65 @@
         "result": "BLOCKED_ENVIRONMENT"
       }
     },
+    "current_qualification_follow_up": {
+      "observed_at": "2026-09-27",
+      "codex_doctor": {
+        "version": "0.157.1",
+        "authentication_mode": "ChatGPT",
+        "websocket": "PASS: HTTP 101 to chatgpt.com backend",
+        "provider_reachability": "PASS: active provider endpoint reachable; ChatGPT inference endpoint returned HTTP 405 to reachability probe"
+      },
+      "pre_authorization_cli_attempt": {
+        "planned_mode": "ephemeral, read-only, scoped to M11 evidence files",
+        "task_execution": "NOT_RUN",
+        "result": "BLOCKED_AUTOMATIC_REVIEW (superseded by authorized pilot below)",
+        "reason": "Automatic review rejected transmitting internal M11 evidence contents to the Codex provider because explicit export authorization was not present.",
+        "workaround_attempted": false,
+        "source_or_worktree_changes": "NONE"
+      },
+      "claude_code": {
+        "version": "2.1.237",
+        "installed": true,
+        "authentication": "NOT_LOGGED_IN (authMethod none)",
+        "task_execution": "NOT_RUN",
+        "scope_disposition": "OUT_OF_SCOPE per user direction; not an M11 acceptance gate"
+      },
+      "token_or_cost_accounting": "UNAVAILABLE"
+    },
+    "authorized_cli_pilot": {
+      "observed_at": "2026-09-27",
+      "host": "Codex CLI 0.157.1 on Windows; ephemeral session; read-only sandbox; temporary non-repository working directory",
+      "task": "Independently assess current M11 status from only the two user-authorized evidence files.",
+      "read_paths": [
+        "verification/m11-codex-field-pilot.json",
+        "verification/m11-history-qualification-status.json"
+      ],
+      "read_method": "One PowerShell Get-Content -Raw command against exactly the two authorized paths; no other project paths read.",
+      "result": "PASS_READ_ONLY_ASSESSMENT",
+      "task_exit_code": 0,
+      "elapsed_seconds_approx": 28.3,
+      "trust_outcomes": [
+        "Returned an independent summary that kept M11 BLOCKED and M12 ineligible.",
+        "Correctly distinguished recorded 139-test and Context-audit results from independent validation; it did not rerun them.",
+        "No repository files or source submodules were modified."
+      ],
+      "token_usage": {
+        "input_tokens": 73558,
+        "cached_input_tokens": 54528,
+        "output_tokens": 1686,
+        "reasoning_output_tokens": 900,
+        "monetary_cost": "UNAVAILABLE"
+      },
+      "limits": [
+        "This was a bounded read-only evidence-review task; it did not test code changes, repository mutation controls, or host capability enforcement.",
+        "The agent relied on the authorized records and did not independently validate their underlying source/history checks.",
+        "Model/runtime identity beyond the CLI version and monetary cost were not independently available."
+      ],
+      "evidence": [
+        "verification/m11-codex-field-pilot.json",
+        "verification/m11-history-qualification-status.json"
+      ]
+    },
     "harness_cost": {
       "full_verifier_tests": 133,
       "elapsed_seconds_approx": 42.34,
@@ -59,14 +119,137 @@
       "token_or_cost_accounting": "UNAVAILABLE"
     },
     "limits": [
-      "This remains one Codex Desktop task, not a planned comparative pilot; codex-cli version was observed but no CLI-agent task was run.",
-      "Native host version/runtime identity and isolation/permission capability matrix were not independently captured.",
-      "The attempted Codex CLI-agent pilot could not complete because the response service was unreachable; no separate Claude pilot was run."
-    ]
+      "M11-P01 was a bounded read-only evidence assessment; M11-P02 exercised the actual M11 Desktop implementation path; M11-P03 exercised CLI implementation, fresh verification, and native Windows write boundaries on a synthetic fixture.",
+      "Native Windows sandbox mode was recorded as elevated from local config; unelevated was tested only as a per-invocation override. The internal ACL/token mechanism was not independently inspected.",
+      "PowerShell shell snapshots were unsupported, and one remote plugin catalog refresh failed, while the required CLI tasks completed.",
+      "Monetary cost, application version for Desktop, and model/runtime identities remain unavailable. Claude native qualification is out of scope and is not an M11 gate."
+    ],
+    "codex_desktop_implementation_pilot": {
+      "id": "M11-P02",
+      "observed_at": "2026-09-27",
+      "result": "PASS_WITH_LIMITATIONS",
+      "environment": {
+        "host": "Codex Desktop task context on Windows 11, PowerShell worktree",
+        "codex_cli_version": "0.157.1",
+        "application_version": "NOT_INDEPENDENTLY_RECORDED",
+        "task": "Fix AIBoarding Windows cwd JSON parsing in the root adapter, add a regression, resolve TMPDIR failures, and qualify source history without changing upstream pins.",
+        "authorization": "User-directed M11 implementation and blocker-remediation work."
+      },
+      "trust_outcomes": [
+        "Root adapter and regression were applied to a disposable clone at audited AIBoarding commit 5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa.",
+        "The focused native commandWindows lifecycle test and full AIBoarding suite passed.",
+        "Canonical python scripts/check.py passed 139 tests across nine modules; Context audit passed 44/44 and the AGENTS projection was FRESH.",
+        "Audited AIBoarding, TacticSwitch, and Skill Kit gitlink pins and upstream history were unchanged."
+      ],
+      "harness_cost": {
+        "canonical_verifier_tests": 139,
+        "elapsed_seconds": "NOT_CAPTURED_FOR_THIS_IMPLEMENTATION_TURN",
+        "monetary_cost": "UNAVAILABLE"
+      },
+      "evidence": [
+        "verification/m11-aiboarding-test-adapter-verification.json",
+        "verification/m11-legacy-check-results.json",
+        "verification/m11-history-qualification-status.json"
+      ],
+      "limits": [
+        "This is a Codex Desktop worktree task; the app/model runtime identity was not independently captured."
+      ]
+    },
+    "codex_cli_implementation_capability_pilot": {
+      "id": "M11-P03",
+      "observed_at": "2026-09-27",
+      "result": "PASS_WITH_LIMITATIONS",
+      "authorization": "User request to focus on the M11 blockers; all pilot source files and sentinel contents were synthetic.",
+      "environment": {
+        "host": "Native Codex CLI on Windows 11 Home Single Language, build 26200, launched from PowerShell",
+        "codex_cli_version": "0.157.1",
+        "authentication_mode": "ChatGPT",
+        "global_windows_sandbox_config": "elevated",
+        "invocation_sandbox": "workspace-write",
+        "sessions": "Ephemeral CLI sessions in a nested synthetic Git repository under .orchestration/codex-probe-work; no Harness Rig source or evidence paths were read by the pilot commands."
+      },
+      "task": "Implement a one-line greeting behavior in a synthetic Python module, run its unit test, obtain a fresh read-only verifier result, then test a single write to a sibling sentinel outside the nested repository under both the configured elevated mode and a per-invocation unelevated override.",
+      "outcomes": {
+        "implementation": {
+          "result": "PASS",
+          "changed_tracked_paths": [
+            "src/greeter.py"
+          ],
+          "test": "python -m unittest discover -s tests",
+          "tests_passed": 1,
+          "exit_code": 0,
+          "generated_files": [
+            "src/__pycache__/",
+            "tests/__pycache__/"
+          ]
+        },
+        "fresh_read_only_verifier": {
+          "result": "PASS",
+          "confirmed_tracked_paths": [
+            "src/greeter.py"
+          ],
+          "test": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests",
+          "tests_passed": 1,
+          "pre_post_git_status_equal": true
+        },
+        "configured_elevated_boundary": {
+          "result": "PASS",
+          "inside_workspace_write": "PASS",
+          "outside_sibling_write": "BLOCKED, exit 1: Access to the path was denied",
+          "sentinel_after": "M11-P02-UNMODIFIED"
+        },
+        "unelevated_override_boundary": {
+          "result": "PASS",
+          "override": "--config windows.sandbox=\"unelevated\" (per invocation only)",
+          "inside_workspace_write": "PASS",
+          "test": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests",
+          "tests_passed": 1,
+          "outside_sibling_write": "BLOCKED, exit 1: Access to the path was denied",
+          "sentinel_after": "M11-P02-UNMODIFIED",
+          "persistent_config_changed": false
+        }
+      },
+      "native_sandbox_assessment": {
+        "result": "PASS_OBSERVED_BOUNDARY",
+        "elevated_mode": "workspace write allowed; one sibling write denied",
+        "unelevated_mode": "workspace write allowed; one sibling write denied",
+        "mechanism_limit": "The command received Windows Access Denied; the internal ACL/token mechanism was not independently inspected.",
+        "official_reference": "https://learn.chatgpt.com/docs/windows/windows-sandbox"
+      },
+      "harness_cost": {
+        "cli_invocations": 4,
+        "elapsed_seconds_approx": {
+          "implementation": 84,
+          "fresh_verifier": 98,
+          "elevated_boundary": 43,
+          "unelevated_fallback": 70,
+          "total": 295
+        },
+        "elapsed_measurement": "Approximate wall time from CLI launcher and wait intervals; not a billing measure.",
+        "token_usage": {
+          "input_tokens": 609231,
+          "cached_input_tokens": 528640,
+          "output_tokens": 8913,
+          "monetary_cost": "UNAVAILABLE"
+        }
+      },
+      "limits": [
+        "The CLI implementation task was a small synthetic task; the companion Desktop pilot exercised the real M11 adapter and repository verifier.",
+        "Codex emitted a non-blocking warning that PowerShell shell snapshots are unsupported; a remote plugin catalog refresh also failed during the fallback invocation, but the requested task completed.",
+        "The first implementation test created bytecode caches; they remained inside the disposable probe directory and were removed with it after recording results.",
+        "The persistent user config remains windows.sandbox=elevated; the tested unelevated setting was invocation-local.",
+        "Monetary cost and underlying model/runtime identity were unavailable."
+      ],
+      "evidence": [
+        "verification/m11-codex-field-pilot.json#observations.codex_cli_implementation_capability_pilot",
+        "verification/m11-history-qualification-status.json",
+        "https://learn.chatgpt.com/docs/windows/windows-sandbox"
+      ]
+    }
   },
   "evidence": [
     "verification/m11-history-qualification-status.json",
     "verification/m11-rigyard-dispositions.json"
   ],
-  "completion": "Insufficient for M11-T09/M11-V03; retain as partial observation only."
+  "completion": "M11-T09 field qualification is complete with recorded limits: the Desktop pilot exercised the real adapter/check path, and the native CLI pilot implemented and independently verified a synthetic change while demonstrating workspace-write boundaries in elevated and unelevated Windows sandbox modes."
 }

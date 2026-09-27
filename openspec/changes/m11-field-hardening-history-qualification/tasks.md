@@ -1,15 +1,21 @@
 ## 1. Dispositions and field evidence
 
 - [x] 1.1 M11-T01–T07: Inventory every active RigYard proposal and record exactly one KEEP, ADAPT, REPLACE, DELETE, or DEFER disposition with evidence and a trigger for deferred work; verify against the proposal inventory that none are missing or duplicated. Evidence: verification/m11-rigyard-dispositions.json records 8 of 8 active proposals exactly once with triggers.
-- [ ] 1.2 M11-T08: Record native Claude capability evidence only after checking Codex remains operational as the primary host; verify the retained host report separates observed, unavailable, and untested capabilities.
-- [ ] 1.3 M11-T09: Run representative authorized Codex Desktop/CLI field
+- [x] 1.2 M11-T08: Claude native qualification is out of scope for now per
+  user direction; it is not an M11 acceptance gate.
+- [x] 1.3 M11-T09: Run representative authorized Codex Desktop/CLI field
   pilots, retain trust-outcome and harness-cost observations, and record
   unavailable host actions as BLOCKED; verify each pilot record includes
-  environment, task, outcome, and evidence links. The single Desktop task has
-  a measured 133-test run; the bounded CLI-agent attempt failed with Windows
-  socket error 10013 and unreachable HTTPS fallback. Model identity/token cost
-  remain unavailable.
-- [ ] 1.4 M11-V04: Use pilot evidence to remove or downgrade mechanisms with no distinct value; verify the final disposition list and resulting product diff agree.
+  environment, task, outcome, and evidence links. Codex Desktop exercised the
+  real M11 adapter and canonical verifier. Codex CLI completed an isolated
+  implementation, fresh read-only verification, and native Windows write-boundary
+  probes under elevated and invocation-local unelevated modes. Token usage,
+  observed outcomes, and limits are in verification/m11-codex-field-pilot.json.
+- [x] 1.4 M11-V04: The M11 diff from the requested base adds no product code.
+  Unproven proposal mechanisms are deferred or optional; bounded mutation
+  verification remains because M9 evidence shows distinct detector sensitivity.
+  The disposition list and product diff agree; see
+  verification/m11-rigyard-dispositions.json.
 
 ## 2. Source-history qualification and import
 
@@ -18,9 +24,19 @@
 - [x] 2.3 M11-T12: Replace the rewritten-SHA crosswalk in `CHANGELOG.md` with source repository, full-ref inventory, exact gitlink pin, and bundle evidence. Resolve or explicitly disposition every source ref/tag and changelog discrepancy. Evidence: `verification/m11-changelog-reconciliation.json`.
 - [x] 2.4 M11-T13: Run legacy checks against source-native checkouts. Preserve
   TacticSwitch's raw failure and verify its one-file manifest patch on a
-  disposable copy. Keep AIBoarding's five-file test-portability patch separate
-  from source history. The user-provided native PowerShell run passed the full
-  suite with the patch, which applies to the pinned bundle checkout. Evidence:
+  disposable copy. Keep AIBoarding's root-held Windows adapter separate from source history; it
+  covers the five test portability paths plus the lifecycle cwd parser and its
+  regression test. The user-provided native PowerShell run passed the full
+  suite with the patch. The restricted-runtime failures came from Git Bash
+  placing temporary files under the blocked user profile. The root legacy
+  runner now confines Windows temporary files to a workspace-local directory.
+  Both probes and the full suite passed from disposable checkouts of the pinned
+  bundle with that setting. The root adapter also fixes JSON-escaped Windows
+  `cwd` parsing in the Codex lifecycle hook; its native `commandWindows`
+  regression and the full suite pass. The hook test is synthetic and does not
+  establish Codex Desktop invocation or native capability enforcement. These
+  runs used the reviewed shell fallback because the normal launcher failed;
+  source submodules and upstream history were not changed. Evidence:
   `verification/m11-legacy-check-results.json`,
   `verification/m11-tacticswitch-adapter-verification.json`, and
   `verification/m11-aiboarding-test-adapter-verification.json`.
@@ -50,5 +66,12 @@
 ## 3. M11 qualification decision
 
 - [x] 3.1 M11-V01–V02: Verify every active RigYard proposal has exactly one evidence-backed disposition and every deferred item has an observable trigger. Validation: 8 unique proposal IDs and 8 recorded triggers in verification/m11-rigyard-dispositions.json.
-- [x] 3.2 M11-V03: Verify field-pilot evidence reports trust outcomes and harness cost, or retain a precise BLOCKED record for unavailable pilots. `verification/m11-codex-field-pilot.json` satisfies the BLOCKED-record branch only; M11-T09 remains incomplete.
-- [x] 3.3 Final gate: Update verification/m11-history-qualification-status.json and ROADMAP.md from retained evidence; set M11 PASS only when all required criteria pass, otherwise record the exact blockers and keep M12 ineligible. Current result: BLOCKED; evidence is recorded in verification/m11-history-qualification-status.json.
+- [x] 3.2 M11-V03: Retain field-pilot trust outcomes, available harness-cost
+  data, and limits in `verification/m11-codex-field-pilot.json`. The Desktop
+  and CLI implementation-path results and native workspace-boundary probes
+  are recorded; M11-T09 is complete.
+- [x] 3.3 Final gate: Update verification/m11-history-qualification-status.json
+  and ROADMAP.md from retained evidence. Keep M11 BLOCKED unless every
+  required criterion has evidence; otherwise record the exact blockers and
+  keep M12 ineligible. Current result: PASS; evidence is in
+  verification/m11-history-qualification-status.json.

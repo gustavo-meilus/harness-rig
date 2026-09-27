@@ -78,18 +78,26 @@
     },
     {
       "change_id": "qualify-claude-code-native-execution",
-      "disposition": "ADAPT",
-      "decision": "Keep Claude as a secondary, host-specific experimental qualification target; do not infer support or make it a 1.0 blocker after Codex is genuinely Stable.",
+      "disposition": "DEFER",
+      "decision": "Claude native qualification is out of scope for now per user direction; it is not an M11 or M12 gate.",
       "evidence": [
         "references/rigyard-current-source-and-verification-baseline.md",
         "references/m8-host-capability-and-topology-qualification.md",
         "ROADMAP.md"
       ],
-      "trigger": "Run native Claude qualification after the Codex primary baseline is retained and an authorized Claude environment is available; promote only from recorded discovery/invocation/runtime evidence."
+      "trigger": "Reopen only after an explicit user scope decision makes Claude qualification part of a concrete product or operational workflow."
     }
   ],
   "verification": {
     "V01": "PASS: eight active changes, each listed once",
-    "V02": "PASS: deferred and conditional scope has observable reopening triggers"
+    "V02": "PASS: deferred and conditional scope has observable reopening triggers",
+    "V04": {
+      "result": "PASS",
+      "pilot_evidence": "verification/m11-codex-field-pilot.json: bounded read-only evidence assessment; no product mutation or capability enforcement claim",
+      "product_diff_base": "2cd4cf2b1808d87dcdcdacee2c586d58ff9f1906",
+      "product_diff_result": "No product code changes in the M11 diff from the requested base; the committed delta is field-pilot evidence only.",
+      "review": "Unproven pipeline, composition, richer-topology, and distributed mechanisms remain DEFER; isolated writers remain optional; diagnostics remain minimal; Claude native qualification is DEFER/out of scope; bounded mutation verification remains because M9 retained distinct detector-gap evidence.",
+      "reconciliation": "The dispositions agree with the product diff: no speculative product mechanism was added and no unsupported proposal is promoted into the product."
+    }
   }
 }

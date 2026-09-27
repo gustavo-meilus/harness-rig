@@ -3,8 +3,8 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-25-r8.10-codex-handoff
-updated: '2026-09-25'
+version: planning-baseline-2026-09-27-r8.11-m11-pass
+updated: '2026-09-27'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
 - Current AIBoarding, TacticSwitch, and Adaptive Engineering Harness implementation findings
@@ -54,7 +54,9 @@ M7 / r8.7 PASS — same-subject trusted repository enforcement
 M8 / r8.8 PASS — narrow local-process host capability and topology qualification
 M9 / r8.9 PASS — minimum gate platform, strict Playwright evidence, architecture fitness, mutation sensitivity
 M10 / r8.10 PASS — compact product CLI, machine contract, migration/rollback, cleanup, release provenance
-next: M11 RigYard disposition, source-history qualification, and field hardening
+M11 / r8.11 PASS — source-history qualification, field hardening, and
+Codex Desktop/CLI pilots
+next: M12 1.0 qualification and final simplification
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.
@@ -68,7 +70,7 @@ primary operational target   -> Codex Desktop / Codex CLI
 secondary platform target    -> Claude Code
 ```
 
-Codex must become the first fully operational real-host path in the transformed Git repository. Native capability claims remain evidence-gated: configuration or generated tool files do not prove isolation, permission, freshness, or runtime behavior. Claude qualification remains M11-T08 and follows the retained Codex operational baseline. A failed or unavailable Claude path does not weaken a genuinely qualified Codex path unless a later product requirement explicitly makes Claude mandatory.
+Codex must become the first fully operational real-host path in the transformed Git repository. Native capability claims remain evidence-gated: configuration or generated tool files do not prove isolation, permission, freshness, or runtime behavior. Claude Code native qualification is out of scope for now and is not an M11 or M12 gate; reopen it only after an explicit scope decision.
 
 After Git reconstruction, OpenSpec remains the first-class external workflow for M11/M12 planning and execution. Do not add a second planning framework.
 

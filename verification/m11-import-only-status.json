@@ -1,9 +1,11 @@
 {
   "schema": "harness-rig/m11-import-only-status/v2",
-  "date": "2026-09-26",
+  "date": "2026-09-27",
   "result": "PASS",
   "target_repository_head": "e9ce36ffe47598cbe9367035230794ad5cf3bb5a",
-  "import_only_commits": ["e9ce36ffe47598cbe9367035230794ad5cf3bb5a"],
+  "import_only_commits": [
+    "e9ce36ffe47598cbe9367035230794ad5cf3bb5a"
+  ],
   "import_only_commit_count": 1,
   "verification": {
     "result": "PASS",
@@ -35,10 +37,10 @@
   },
   "source_refs_modified": false,
   "namespaced_rewritten_refs_retained": true,
-  "m12_eligible": false,
+  "m12_eligible": true,
   "decision_gate": {
     "current_contract": "Preserve original source objects and exact source pins; report raw/adapted checks separately.",
-    "why_blocked": "Codex CLI and Claude field qualification and the V04 simplification review remain incomplete.",
-    "next_action": "Complete the authorized Codex Desktop/CLI field pilot, then qualify Claude and perform V04 review."
+    "why_blocked": null,
+    "next_action": "M11 gates are evidenced; M12 is eligible to begin."
   }
 }

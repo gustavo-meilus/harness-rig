@@ -1,7 +1,7 @@
 {
   "schema": "harness-rig/m11-source-native-qualification-evidence/v1",
-  "date": "2026-09-26",
-  "result": "BLOCKED",
+  "date": "2026-09-27",
+  "result": "PASS_WITH_RECORDED_LIMITS",
   "sources": [
     {
       "id": "aiboarding",
@@ -49,16 +49,27 @@
       "adapter": "verification/m11-adaptations/aiboarding-test-portability.patch",
       "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
       "native_run": "User-provided Windows PowerShell/Git Bash run passed every test invoked by bash tests/run.sh.",
-      "sandbox_limit": "Two Windows runtime probes could not write under the user profile in the restricted Codex sandbox."
+      "sandbox_limit": "The normal shell launcher was unavailable in this session, so reruns used the reviewed fallback; direct unprivileged sandbox enforcement was not re-exercised.",
+      "adapter_sha256": "1e408cb3a12d3aced703a141f898f04d722e55afaa5402f042def8d20ab9959c",
+      "runtime_probe_resolution": "The two restricted-run failures were caused by Git Bash mktemp inheriting a user-profile temp path. The Windows root runner now confines TMPDIR to a temporary directory under the source checkout parent. Both focused probes and the full suite passed from disposable exact-SHA bundle clones. The root adapter also corrects JSON-escaped Windows cwd parsing in the Codex lifecycle hook; the focused native commandWindows regression and full AIBoarding suite pass on a disposable exact-SHA clone.",
+      "windows_json_cwd_probe": "PASS in native Git Bash synthetic commandWindows test; this does not establish Codex Desktop hook invocation or capability enforcement."
     },
     "skill-kit": "PASS (python scripts/check.py at exact pinned source commit)",
     "import_only_commit": "PASS: e9ce36ffe47598cbe9367035230794ad5cf3bb5a; exact source gitlinks verified",
     "field_qualification": {
-      "result": "BLOCKED",
-      "open": [
-        "Codex CLI pilot: Windows socket error 10013",
-        "native Claude qualification not run",
-        "V04 simplification review pending"
+      "result": "PASS_WITH_RECORDED_LIMITS",
+      "completed": [
+        "Codex Desktop implementation/check path",
+        "Codex CLI synthetic implementation and fresh verifier",
+        "Native workspace-write boundary observed in configured elevated and invocation-local unelevated modes"
+      ],
+      "open": [],
+      "limits": [
+        "CLI fixture was synthetic; Desktop task covered the actual M11 adapter and canonical repository check. Monetary cost and model/runtime identity are unavailable.",
+        "Local GPG/SSH trust revalidation remains unavailable; upstream verification still matches exact bundled objects."
+      ],
+      "out_of_scope": [
+        "Claude Code native qualification per current user direction"
       ]
     },
     "canonical_repository_check": "PASS: 139 tests across 9 modules; Context audit 44 pages/44 rows; projection FRESH"

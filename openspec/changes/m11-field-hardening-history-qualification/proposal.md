@@ -5,7 +5,9 @@ M11 is the remaining qualification milestone before M12. The roadmap defers fina
 ## What Changes
 
 - Record one evidence-backed Harness Rig disposition for each active RigYard proposal and explicit triggers for deferred work.
-- Keep Codex Desktop/CLI as the primary operational target; establish and retain its native capability evidence before evaluating Claude as secondary.
+- Keep Codex Desktop/CLI as the primary operational target and retain its native field evidence.
+- Treat Claude Code native qualification as out of scope for now; it is not an
+  M11 acceptance gate.
 - Run representative field pilots and simplify or remove mechanisms that show no distinct value.
 - Preserve each source repository's original Git objects in a pinned submodule under its isolated legacy prefix; retain and verify the complete source-ref bundles.
 - Reconcile the pinned source refs with CHANGELOG.md, licenses, state, hooks, installation surfaces, and original commit/tag signature evidence; prove the aggregate import commit changes only the three approved gitlinks and `.gitmodules` entries.
@@ -24,4 +26,10 @@ None. No OpenSpec product capability specifications exist to modify, and the mil
 
 ## Impact
 
-Affected records include the root roadmap, progressive remediation plan, CHANGELOG.md, canonical references, manifest and navigation projections, M11 verification evidence, and the existing history preflight/import tooling. Inputs are the complete AIBoarding, TacticSwitch, and Skill Kit bundles. Each complete source repository is retained as a submodule under the approved legacy prefix; no history rewrite or path filtering is used. Codex and Claude host claims remain evidence-gated.
+Affected records include the root roadmap, progressive remediation plan,
+CHANGELOG.md, canonical references, manifest and navigation projections, M11
+verification evidence, and existing history preflight/import tooling. Inputs
+are the complete AIBoarding, TacticSwitch, and Skill Kit bundles. Each complete
+source repository is retained as a submodule under the approved legacy prefix;
+no history rewrite or path filtering is used. Codex claims remain
+evidence-gated; Claude native qualification is out of scope for now.

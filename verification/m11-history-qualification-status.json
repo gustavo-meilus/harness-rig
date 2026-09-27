@@ -1,8 +1,8 @@
 {
   "schema": "harness-rig/m11-history-qualification-status/v2",
   "milestone": "M11",
-  "date": "2026-09-26",
-  "result": "BLOCKED",
+  "date": "2026-09-27",
+  "result": "PASS",
   "progression_dependency": "required before M12",
   "m2_dependency": false,
   "traceability_baseline": "CHANGELOG.md",
@@ -27,22 +27,20 @@
     "Main-tip inventories were generated for all three source repositories and reconciled with explicit surface dispositions.",
     "TacticSwitch raw failure and separate one-file adapted-copy 200/200 pass are retained.",
     "The one-parent import-only commit e9ce36f passed exact gitlink and changed-path verification.",
+    "An authorized Codex CLI pilot completed an ephemeral, read-only assessment of the two approved evidence files; its bounded scope, token usage, and limitations are recorded.",
+    "M11-V04 simplification review passed: no product code was added after the requested base, speculative mechanisms remain deferred or optional, and bounded mutation verification remains supported by M9 detector-gap evidence.",
     "AIBoarding's test-only portability patch applies to the pinned source bundle; the user-provided native run passed the full test suite with it.",
     "Canonical repository check passed 139 tests across nine modules; Context audit and projection passed.",
-    "CHANGELOG now names exact source pins and bundle provenance; reconciliation records remaining gates."
+    "CHANGELOG now names exact source pins and bundle provenance; reconciliation records remaining gates.",
+    "The AIBoarding discrepancy is explained and addressed by a workspace-local Windows TMPDIR in the root legacy runner; the LF-stable root adapter patch applies, both affected probes pass, and the full suite passes on a disposable exact-SHA bundle checkout.",
+    "The root-held AIBoarding adapter now fixes JSON-escaped backslashes in Windows Codex hook cwd parsing; focused native Git Bash commandWindows regression and full upstream suite passed on a disposable exact-SHA clone.",
+    "M11-T09: Codex Desktop exercised the real M11 adapter and canonical verifier; Codex CLI completed an isolated implementation, fresh read-only verification, and workspace boundary probes in elevated and unelevated Windows modes. Outcomes, token usage, limits, and evidence references are recorded in verification/m11-codex-field-pilot.json."
   ],
-  "partial": [
-    "The clean AIBoarding source checkout is retained at its audited SHA; sandbox wrapper probes remain environment-blocked, while the native patched run passes.",
-    "Codex Desktop/CLI qualification is incomplete; CLI attempt was blocked by Windows socket error 10013."
+  "partial": [],
+  "not_run": [],
+  "out_of_scope": [
+    "Claude Code native qualification is out of scope for now per user direction and is not an M11 or M12 acceptance gate."
   ],
-  "not_run": [
-    "Native Claude qualification.",
-    "V04 simplification review pending completed pilot evidence."
-  ],
-  "blockers": [
-    "Complete Codex CLI field pilot when reachable and retain available host/model/cost evidence.",
-    "Complete native Claude qualification and V04 review after Codex operational evidence.",
-    "Keep M11 BLOCKED until remaining field-qualification gates pass."
-  ],
-  "m12_eligible": false
+  "blockers": [],
+  "m12_eligible": true
 }

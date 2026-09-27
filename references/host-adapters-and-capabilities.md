@@ -38,7 +38,7 @@ Operational priority for the real Git repository is:
 1. Codex Desktop/CLI first;
 2. Claude Code second.
 
-This priority does not promote a Codex adapter by declaration. The transformed repository must retain native Codex discovery/invocation/runtime evidence before any Stable host-specific claim is made. M11 field pilots should establish the Codex path first. M11-T08 then qualifies Claude independently as the secondary platform. Unsupported host capabilities remain `BLOCKED` or `UNVERIFIED`; no cross-host symmetry credit is allowed.
+This priority does not promote a Codex adapter by declaration. The transformed repository must retain native Codex discovery/invocation/runtime evidence before any Stable host-specific claim is made. M11 field pilots should establish the Codex path first. Claude Code native qualification is out of scope for now and is not an M11 or M12 gate. Unsupported host capabilities remain `BLOCKED` or `UNVERIFIED`; no cross-host symmetry credit is allowed.
 
 # Principle
 

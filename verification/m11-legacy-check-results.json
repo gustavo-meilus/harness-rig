@@ -1,6 +1,6 @@
 {
   "schema": "harness-rig/m11-legacy-check-results/v2",
-  "date": "2026-09-26",
+  "date": "2026-09-27",
   "result": "BLOCKED",
   "source_checkouts_modified": false,
   "results": [
@@ -35,21 +35,56 @@
           "passed_checks": "Every test script shown in the supplied output",
           "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
           "note": "The five-file test-portability patch was applied in the checkout during this run."
+        },
+        {
+          "result": "PASS_ADAPTER_AND_WORKSPACE_TEMP",
+          "observed_at": "2026-09-27",
+          "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+          "environment": "Windows PowerShell with Git Bash; disposable clone of the verified local bundle",
+          "results": {
+            "adapter_apply_check": "PASS after LF normalization; exact five paths retained",
+            "focused_runtime_probes": "2/2 PASS through the root legacy runner with workspace-local TMPDIR",
+            "full_suite": "PASS for bash tests/run.sh with the root adapter patch and workspace-local TMPDIR"
+          },
+          "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
+          "limitations": [
+            "Normal sandbox shell launcher failed to start; reviewed fallback was used.",
+            "No direct unprivileged sandbox rerun was captured."
+          ],
+          "checkout_disposition": "Disposable bundle clone was patched; the pinned submodule and upstream history were not changed."
+        },
+        {
+          "result": "PASS_ADAPTER_AND_WINDOWS_JSON_CWD",
+          "observed_at": "2026-09-27",
+          "source_commit": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+          "environment": "Windows with native Git Bash and PowerShell; disposable clone from the verified local bundle",
+          "results": {
+            "patch_apply_check": "PASS against exact source commit with git apply --unidiff-zero",
+            "focused_codex_lifecycle_test": "PASS, including commandWindows SubagentStart with JSON-escaped backslashes in cwd",
+            "full_suite": "PASS for bash tests/run.sh"
+          },
+          "evidence": "verification/m11-aiboarding-test-adapter-verification.json",
+          "limitations": [
+            "Synthetic hook launcher test; Codex Desktop invocation and native capability enforcement remain unproven."
+          ],
+          "checkout_disposition": "Disposable clone only; root adapter carries the fix; pinned submodule and upstream history were not changed."
         }
       ],
       "adapter": {
         "path": "verification/m11-adaptations/aiboarding-test-portability.patch",
-        "sha256": "d2561362ff5cfa2ab6825c0a2548937ceccd920fefb0e4e49945a6cd4505112f",
+        "sha256": "1e408cb3a12d3aced703a141f898f04d722e55afaa5402f042def8d20ab9959c",
         "changed_paths": [
           "tests/benchmarks/test-agent-outcomes-contracts.sh",
           "tests/plugin/test-manifests.sh",
           "tests/release/test-verify-release-sha.sh",
           "tests/run.sh",
-          "tests/self-host/test-managed-repo.sh"
+          "tests/self-host/test-managed-repo.sh",
+          "hooks/codex-lifecycle",
+          "tests/codex/test-codex-lifecycle.sh"
         ],
         "apply_check": "PASS with git apply --unidiff-zero against the exact pinned bundle commit"
       },
-      "acceptance": "PASS_ADAPTER_ONLY: source remains pinned and unchanged; native run passed with the recorded test-portability patch."
+      "acceptance": "PASS_ADAPTER_ONLY: The pinned source remains unchanged; the LF-stable root adapter patch applies, the full suite and focused runtime probes pass with workspace-local temporary files, and the native commandWindows regression confirms JSON-escaped Windows cwd parsing."
     },
     {
       "source": "tacticswitch",
