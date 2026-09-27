@@ -1,0 +1,30 @@
+{
+  "schema": "harness-rig/m12-feature-retirement-review/v1",
+  "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
+  "source_dispositions": "verification/m11-rigyard-dispositions.json",
+  "result": "PASS",
+  "product_code_changed_in_m12": false,
+  "product_code_diff_command": "git diff bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7 -- prototype",
+  "comparison": {
+    "imported_and_planned_mechanisms_reviewed": 8,
+    "active_proposals_with_dispositions": 8,
+    "speculative_or_unqualified_mechanisms_admitted": 0,
+    "distinct_mechanisms_retained_with_evidence": [
+      "optional isolated writers",
+      "bounded mutation verification",
+      "minimal operational diagnostics"
+    ],
+    "dispositions": [
+      "isolated writers: ADAPT; optional and capability-gated",
+      "mutation verification: KEEP; bounded development/field-hardening gate",
+      "approved pipeline evolution: DEFER",
+      "static composition: DEFER",
+      "richer topology: DEFER",
+      "distributed execution: DEFER",
+      "observability and effects: ADAPT; minimal diagnostics only, generic telemetry and effects deferred",
+      "Claude native qualification: DEFER/out of scope by user direction"
+    ]
+  },
+  "conclusion": "No product code was added for M12. The final supported scope is smaller than the union of imported and proposed systems because unsupported proposals remain deferred and only evidenced distinct mechanisms are retained. The claim is based on scoped dispositions and product-code delta, not a byte-size metric.",
+  "limitation": "The Codex Desktop/CLI native adapter remains unqualified; the evidence is not transferred from local-subprocess."
+}

@@ -3,7 +3,7 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-27-r8.11-m11-pass
+version: planning-baseline-2026-09-27-r8.12-m12-blocked
 updated: '2026-09-27'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
@@ -56,7 +56,9 @@ M9 / r8.9 PASS — minimum gate platform, strict Playwright evidence, architectu
 M10 / r8.10 PASS — compact product CLI, machine contract, migration/rollback, cleanup, release provenance
 M11 / r8.11 PASS — source-history qualification, field hardening, and
 Codex Desktop/CLI pilots
-next: M12 1.0 qualification and final simplification
+M12 / r8.12 BLOCKED — local suites and host evidence pass; final-revision
+hosted CI verdict and authorized independent architecture review remain open.
+next: resolve M12 blockers, then rerun canonical verification on the final commit
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.

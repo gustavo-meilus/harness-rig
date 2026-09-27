@@ -45,14 +45,15 @@ Update this block whenever execution stops so a fresh context can resume without
 
 ```yaml
 plan: harness-rig-progressive-remediation-r8
-current_milestone: M11
-current_revision: r8.11
-milestone_result: PASS
-last_completed_task: M11-T09 / M11-V03 / M11-V06
-next_task: M12-T01 full deterministic repository suite
-blocking_issue: none
+current_milestone: M12
+current_revision: r8.12
+milestone_result: BLOCKED
+last_completed_task: M12-T09 / M12-T11 / M12-V02 / M12-V03
+next_task: Commit final M12 artifacts, resolve CI obligations, and obtain accepted hosted ci / required verdict for that exact revision
+blocking_issue: Hosted final-revision CI verdict and explicit authorization for the independent architecture review payload
 verification_pending:
-  - M12-T01
+  - M12-T01 canonical python scripts/check.py after final evidence and Context projection
+  - M12-T10 / M12-V01 independent architecture review
 notes: >
   M0 through M10 completed with PASS. M10 finalized the compact product CLI and versioned machine envelope,
   fail-closed configuration precedence, verifier timeout/cancellation cleanup, atomic r8.9-to-r8.10 migration state
@@ -65,8 +66,12 @@ notes: >
   review are recorded. Codex Desktop and CLI field pilots now cover the real
   adapter/check path, synthetic implementation and fresh verification, and
   observed Windows workspace boundaries in elevated and unelevated modes.
-  M11 passed with recorded limits; M12 is eligible. Claude native qualification
-  is out of scope for now and is not an acceptance gate.
+  M11 passed with recorded limits. M12 targeted suites, Context audit, native
+  local-subprocess evidence, release fail-closed smoke, and feature-retirement
+  review pass. M12 remains blocked because current changes are uncommitted, no
+  hosted ci / required verdict exists for the final source revision, and no
+  provider-payload authorization was given for the independent architecture
+  review. Claude native qualification remains out of scope and is not a gate.
 ```
 
 ### Milestone quick index
@@ -378,25 +383,25 @@ overall gate: `verification/m11-history-qualification-status.json`.
 
 **Execution (`r8.12`):**
 
-- [ ] **M12-T01** — Run the full deterministic repository suite.
-- [ ] **M12-T02** — Run KB self-validation.
-- [ ] **M12-T03** — Run all P0 adversarial trust fixtures.
-- [ ] **M12-T04** — Run OpenSpec compatibility fixtures.
-- [ ] **M12-T05** — Run CI obligation meta-suite.
-- [ ] **M12-T06** — Verify retained native evidence for at least one Stable host.
-- [ ] **M12-T07** — Run gate-provider adversarial suite.
-- [ ] **M12-T08** — Run migration upgrade/rollback fixtures.
-- [ ] **M12-T09** — Run release provenance smoke.
-- [ ] **M12-T10** — Run one fresh-context architecture review.
-- [ ] **M12-T11** — Run final feature-retirement review.
+- [x] **M12-T01** — Canonical suite passed: 139 tests across 9 modules.
+- [x] **M12-T02** — Context audit, unchanged manifest, fresh projection.
+- [x] **M12-T03** — All P0 adversarial trust fixtures.
+- [x] **M12-T04** — OpenSpec compatibility fixtures and strict validation.
+- [!] **M12-T05** — M7 CI suite passed; bind obligations to final source SHA and obtain hosted verdict.
+- [x] **M12-T06** — Retain native `local-subprocess` evidence; Codex adapter remains unqualified.
+- [x] **M12-T07** — Gate-provider adversarial suite.
+- [x] **M12-T08** — Migration upgrade/rollback fixtures.
+- [x] **M12-T09** — Missing-verdict release smoke rejected the candidate as expected.
+- [!] **M12-T10** — Fresh-context review awaits explicit authorization for provider payload.
+- [x] **M12-T11** — Final feature-retirement review recorded.
 
 **Verification:**
 
-- [ ] **M12-V01** — No unresolved P0/P1 issue invalidates a 1.0 claim.
-- [ ] **M12-V02** — The supported trust invariant is demonstrably true.
-- [ ] **M12-V03** — The final product is smaller than the union of imported/planned systems.
+- [!] **M12-V01** — Blocked pending M12-T10 independent architecture review.
+- [x] **M12-V02** — Supported trust invariant holds within observed capability limits.
+- [x] **M12-V03** — Disposition evidence admits no speculative mechanism; M12 adds no product code.
 
-**Milestone result:** `NOT_RUN`  
+**Milestone result:** `BLOCKED` — see `verification/m12-verification-record.json`.
 **Allowed next milestone:** `NONE / 1.0 qualification complete`
 
 ---

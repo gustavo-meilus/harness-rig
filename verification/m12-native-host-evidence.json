@@ -1,0 +1,33 @@
+{
+  "schema": "harness-rig/m12-native-host-evidence/v1",
+  "observed_on": "2026-09-27",
+  "source_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
+  "working_tree": "Contains uncommitted M12 qualification artifacts; no hosted verdict is inferred from this observation.",
+  "command": "PYTHONPATH=prototype python -m harness_rig.cli doctor --json-v1",
+  "result": "PASS",
+  "host_id": "local-subprocess",
+  "adapter_maturity": "STABLE",
+  "qualification_id": "sha256:bcbcca7f9866d6e145ff4f2be27a58db298cc2f1c2f0cc9e9f921e7a4ecc1204",
+  "runtime": {
+    "platform": "Windows",
+    "executable": "%LOCALAPPDATA%/Programs/Python/Python311/python.exe",
+    "requested_equals_resolved": true,
+    "observed_clean_process": true,
+    "exit_code": 0
+  },
+  "stable_capabilities_observed": [
+    "clean_process",
+    "crash_reconciliation",
+    "process_launch",
+    "runtime_identity_observation"
+  ],
+  "unsupported_capabilities_retained": [
+    "fresh_verifier",
+    "isolated_worker",
+    "isolated_writer",
+    "permission_enforcement",
+    "read_only_worker",
+    "worktree_worker"
+  ],
+  "scope_limit": "This qualifies the local-subprocess adapter only; it does not qualify Codex Desktop or CLI as a Stable host adapter."
+}

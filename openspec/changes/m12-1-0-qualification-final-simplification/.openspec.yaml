@@ -1,0 +1,5 @@
+schema: spec-driven
+skip_specs: true
+created: 2026-09-27
+goal: Produce a truthful r8.12 PASS or precise BLOCKED result with retained
+  evidence for all M12 acceptance criteria.

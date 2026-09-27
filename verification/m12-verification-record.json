@@ -1,0 +1,86 @@
+{
+  "schema": "harness-rig/m12-verification-record/v1",
+  "milestone": "M12",
+  "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
+  "evaluated_revision": null,
+  "working_tree": "M12 qualification changes are uncommitted; no exact final source revision or hosted verdict is claimed.",
+  "result": "BLOCKED",
+  "tasks": {
+    "M12-T01": {
+      "result": "PASS",
+      "evidence": ["python scripts/check.py"],
+      "details": "139 tests passed across 9 milestone modules; exit code 0."
+    },
+    "M12-T02": {
+      "result": "PASS",
+      "evidence": ["python verification/context_kb.py audit .", "python verification/context_kb.py projection-status ."],
+      "details": "44 canonical pages and manifest rows; manifest was regenerated; projection FRESH."
+    },
+    "M12-T03": {
+      "result": "PASS",
+      "evidence": ["python -m unittest prototype.tests.test_m3_vertical_slice"],
+      "details": "22 tests passed."
+    },
+    "M12-T04": {
+      "result": "PASS",
+      "evidence": ["python -m unittest prototype.tests.test_m6_openspec_spec_engine", "openspec validate m12-1-0-qualification-final-simplification --type change --strict --no-interactive"],
+      "details": "16 tests passed; strict OpenSpec validation passed."
+    },
+    "M12-T05": {
+      "result": "BLOCKED",
+      "evidence": ["python -m unittest prototype.tests.test_m7_repository_enforcement", ".github/workflows/ci-required.yml", "governance/ci-policy.json"],
+      "details": "14 local governance tests passed. Exact-source obligation resolution and accepted hosted ci / required verdict are unavailable until the M12 tree is committed and evaluated by hosted CI."
+    },
+    "M12-T06": {
+      "result": "PASS_WITH_LIMITS",
+      "evidence": ["verification/m12-native-host-evidence.json"],
+      "details": "Windows local-subprocess doctor passed for four stable capabilities. Codex Desktop/CLI is not qualified by this evidence."
+    },
+    "M12-T07": {
+      "result": "PASS",
+      "evidence": ["python -m unittest prototype.tests.test_m9_gate_platform"],
+      "details": "20 tests passed."
+    },
+    "M12-T08": {
+      "result": "PASS",
+      "evidence": ["python -m unittest prototype.tests.test_m10_product_cli_migration_release"],
+      "details": "18 migration and release tests passed."
+    },
+    "M12-T09": {
+      "result": "PASS_WITH_LIMITS",
+      "evidence": ["verification/m12-release-blocked-smoke.json"],
+      "details": "Missing-verdict release attempt was rejected as BLOCKED. Accepted-verdict record path was not run because no hosted verdict exists; tamper rejection is included in the M10 suite."
+    },
+    "M12-T10": {
+      "result": "BLOCKED",
+      "evidence": ["openspec/changes/m12-1-0-qualification-final-simplification/design.md"],
+      "details": "Fresh independent review would require transmitting a review payload to the Codex provider. The user has not authorized that transmission."
+    },
+    "M12-T11": {
+      "result": "PASS",
+      "evidence": ["verification/m12-feature-retirement-review.json", "verification/m11-rigyard-dispositions.json"],
+      "details": "All eight imported/planned proposals retain a disposition and reopening trigger. No M12 product code was added; the comparison is scoped and qualitative, not a byte-size metric."
+    }
+  },
+  "verification": {
+    "M12-V01": "BLOCKED: requires the fresh independent review in M12-T10.",
+    "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
+    "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; no M12 product code was added."
+  },
+  "source_pins": {
+    "legacy/aiboarding": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
+    "legacy/skill-kit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
+    "legacy/tacticswitch": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e"
+  },
+  "limitations": [
+    "No M12 commit was created, so results are bound to the recorded baseline plus an uncommitted worktree, not a final source SHA.",
+    "No push or hosted GitHub Actions run was performed; hosted ci / required acceptance remains unavailable.",
+    "The independent architecture review is pending explicit authorization for its provider payload.",
+    "Claude Code qualification remains out of scope per user direction."
+  ],
+  "next_actions": [
+    "Commit the reviewed M12 worktree when authorized, resolve CI obligations for that exact SHA, and obtain an accepted hosted ci / required verdict.",
+    "Authorize the narrowly scoped independent-review payload or provide another authorized independent review context.",
+    "Rerun python scripts/check.py after any further M12 evidence or roadmap change."
+  ]
+}

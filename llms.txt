@@ -1,10 +1,10 @@
 # Harness Rig Knowledge Base
 
-Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. Current progressive revision: M10 / r8.10 PASS. M10 finalizes the compact product CLI, versioned machine JSON/exit semantics, fail-closed configuration precedence, bounded timeout/cancellation cleanup, explicit runtime/schema migration and rollback state, and deterministic release-record/checksum provenance. M11 source-history qualification remains pending and blocks 1.0 qualification. `EvidenceReceipt`, `AcceptanceVerdict`, `CapabilitySet`, and `RuntimeResolution` remain Experimental/module-owned where previously specified. The post-r8.10 repository handoff targets Codex Desktop/CLI first, Claude Code second, and resumes at M11-T01 after Git reconstruction and baseline verification.
+Canonical planning baseline for a minimum-sufficient, OpenSpec-first, Skill-Kit-knowledge-base-first engineering control plane. M11 / r8.11 PASS. M12 / r8.12 is BLOCKED pending an exact-final-revision hosted `ci / required` verdict and an authorized independent architecture review. The M12 canonical suite passes 139 tests across nine milestone modules; the Context audit passes with 44 pages and a fresh projection. `EvidenceReceipt`, `AcceptanceVerdict`, `CapabilitySet`, and `RuntimeResolution` remain Experimental/module-owned where previously specified. Codex Desktop/CLI remains unqualified; Claude Code qualification is out of scope per user direction.
 
 ## Start here
 
-- [Root execution roadmap](ROADMAP.md) — M0-M12 status, Codex-first handoff policy, and exact M11/M12 next work.
+- [Root execution roadmap](ROADMAP.md) — M0-M12 status, Codex-first handoff policy, and current M12 blockers.
 - [Codex bootstrap prompt](CODEX_BOOTSTRAP_PROMPT.md) — fresh-context Git/OpenSpec transition procedure.
 - [Git reconstruction procedure](BOOTSTRAP_GIT_HISTORY.md) — evidence-backed synthetic milestone history semantics.
 - [Usage and scope](references/usage-and-scope.md)
