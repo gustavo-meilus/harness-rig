@@ -2,8 +2,8 @@
   "schema": "harness-rig/m12-verification-record/v1",
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
-  "evaluated_revision": null,
-  "working_tree": "M12 qualification changes are uncommitted; no exact final source revision or hosted verdict is claimed.",
+  "evaluated_revision": "978c361def2d2805951fd044aa82dedc73160bc4",
+  "working_tree": "M12 qualification checkpoint commit exists; exact-SHA local obligation resolution is retained. Hosted verdict and independent review remain open.",
   "result": "BLOCKED",
   "tasks": {
     "M12-T01": {
@@ -27,9 +27,9 @@
       "details": "16 tests passed; strict OpenSpec validation passed."
     },
     "M12-T05": {
-      "result": "BLOCKED",
-      "evidence": ["python -m unittest prototype.tests.test_m7_repository_enforcement", ".github/workflows/ci-required.yml", "governance/ci-policy.json"],
-      "details": "14 local governance tests passed. Exact-source obligation resolution and accepted hosted ci / required verdict are unavailable until the M12 tree is committed and evaluated by hosted CI."
+      "result": "PASS",
+      "evidence": ["python -m unittest prototype.tests.test_m7_repository_enforcement", "verification/m12-ci-obligation-resolution.json", ".github/workflows/ci-required.yml", "governance/ci-policy.json"],
+      "details": "14 local governance tests passed and local CI obligations were resolved for commit 978c361def2d2805951fd044aa82dedc73160bc4. This is not a hosted ci / required verdict."
     },
     "M12-T06": {
       "result": "PASS_WITH_LIMITS",
@@ -67,19 +67,23 @@
     "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
     "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; no M12 product code was added."
   },
+  "external_gates": {
+    "accepted_hosted_ci_required": "BLOCKED: no accepted verdict is available for the final M12 revision; no push or hosted run was performed.",
+    "independent_architecture_review": "BLOCKED: review payload transmission is not authorized."
+  },
   "source_pins": {
     "legacy/aiboarding": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
     "legacy/skill-kit": "f4e9840d012d3961c1cc2b0aff7dec071da8078a",
     "legacy/tacticswitch": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e"
   },
   "limitations": [
-    "No M12 commit was created, so results are bound to the recorded baseline plus an uncommitted worktree, not a final source SHA.",
+    "The retained local CI obligation resolution is bound to checkpoint commit 978c361def2d2805951fd044aa82dedc73160bc4; it is not an accepted hosted verdict.",
     "No push or hosted GitHub Actions run was performed; hosted ci / required acceptance remains unavailable.",
     "The independent architecture review is pending explicit authorization for its provider payload.",
     "Claude Code qualification remains out of scope per user direction."
   ],
   "next_actions": [
-    "Commit the reviewed M12 worktree when authorized, resolve CI obligations for that exact SHA, and obtain an accepted hosted ci / required verdict.",
+    "Obtain an accepted hosted ci / required verdict for the final M12 revision through the repository's hosted CI workflow.",
     "Authorize the narrowly scoped independent-review payload or provide another authorized independent review context.",
     "Rerun python scripts/check.py after any further M12 evidence or roadmap change."
   ]

@@ -1,0 +1,58 @@
+{
+  "affected_modules": [
+    "knowledge",
+    "repository",
+    "verification"
+  ],
+  "artifact_id": "sha256:798664e51b165116376cdf91f0628e9b7827636c8783efc96efff2cb8aae2adb",
+  "changed_paths": [
+    "AGENTS.md",
+    "PROGRESSIVE_REMEDIATION_PLAN.md",
+    "ROADMAP.md",
+    "llms.txt",
+    "manifest.jsonl",
+    "openspec/changes/archive/2026-09-27-m11-field-hardening-history-qualification/.openspec.yaml",
+    "openspec/changes/archive/2026-09-27-m11-field-hardening-history-qualification/design.md",
+    "openspec/changes/archive/2026-09-27-m11-field-hardening-history-qualification/proposal.md",
+    "openspec/changes/archive/2026-09-27-m11-field-hardening-history-qualification/tasks.md",
+    "openspec/changes/m11-field-hardening-history-qualification/.openspec.yaml",
+    "openspec/changes/m11-field-hardening-history-qualification/design.md",
+    "openspec/changes/m11-field-hardening-history-qualification/proposal.md",
+    "openspec/changes/m11-field-hardening-history-qualification/tasks.md",
+    "openspec/changes/m12-1-0-qualification-final-simplification/.openspec.yaml",
+    "openspec/changes/m12-1-0-qualification-final-simplification/README.md",
+    "openspec/changes/m12-1-0-qualification-final-simplification/design.md",
+    "openspec/changes/m12-1-0-qualification-final-simplification/proposal.md",
+    "openspec/changes/m12-1-0-qualification-final-simplification/tasks.md",
+    "references/roadmap.md",
+    "verification/m12-feature-retirement-review.json",
+    "verification/m12-native-host-evidence.json",
+    "verification/m12-release-blocked-smoke.json",
+    "verification/m12-verification-record.json"
+  ],
+  "evaluated_sha": "978c361def2d2805951fd044aa82dedc73160bc4",
+  "event_name": "workflow_dispatch",
+  "event_subject": "workflow_dispatch:refs/heads/main",
+  "expected_results": [
+    {
+      "obligation_id": "kb-integrity",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/kb-integrity-v1",
+      "result_key": "sha256:0587022729cf0ec0037d164d1269abdb953e926805d57f92db7bf4604bdfeef7"
+    },
+    {
+      "obligation_id": "ordinary",
+      "privileged": false,
+      "producer_id": "harness-rig/ci/ordinary-v1",
+      "result_key": "sha256:888bbc9addea90e2d8b65aaac16b1b675519b532f26f687bba131ba41cd3f002"
+    }
+  ],
+  "mandatory_obligations": [
+    "kb-integrity",
+    "ordinary"
+  ],
+  "policy_digest": "sha256:2753644087ca1758a4e8643c5d7ffde61d1773c659ce917c9266cebdbfc3d800",
+  "policy_id": "harness-rig/repository-ci/r8.10-v1",
+  "schema": "harness-rig/ci-obligation-artifact/experimental-v1",
+  "trust_mode": "trusted"
+}

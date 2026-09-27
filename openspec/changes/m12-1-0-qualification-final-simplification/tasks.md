@@ -6,9 +6,9 @@
   the P0 trust fixtures; retain the result.
 - [x] 1.3 Run `python -m unittest prototype.tests.test_m6_openspec_spec_engine`
   and strict validation of this OpenSpec change; retain both results.
-- [!] 1.4 Bind the passing M7 enforcement suite and CI obligation resolution to
-  the exact committed M12 source revision. Local suite result is retained;
-  exact-revision resolution awaits a commit.
+- [x] 1.4 Bind the passing M7 enforcement suite and local CI obligation
+  resolution to M12 commit `978c361def2d2805951fd044aa82dedc73160bc4`.
+  The accepted hosted verdict remains task 2.2.
 - [x] 1.5 Run `python -m unittest prototype.tests.test_m9_gate_platform` and
   `python -m unittest prototype.tests.test_m10_product_cli_migration_release`;
   retain the results.

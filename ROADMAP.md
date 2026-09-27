@@ -1,8 +1,8 @@
 # Harness Rig execution roadmap
 
-**Current verified revision:** r8.11 (M11 commit `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7`)
-**Completed:** M0-M11 PASS; M12 qualification is BLOCKED pending final-revision CI and independent review.
-**Next:** Resolve the M12 blockers, then rerun the canonical suite on the committed M12 revision.
+**Current revision:** r8.12 checkpoint `978c361def2d2805951fd044aa82dedc73160bc4`
+**Completed:** M0-M11 PASS; M12 qualification remains BLOCKED.
+**Next:** Obtain final-revision hosted CI and the authorized independent review.
 V04 passed; Claude is out of scope for now.
 **Final planned qualification:** M12 / 1.0
 
@@ -228,14 +228,14 @@ If required source history is unavailable or unverifiable: **M11 = BLOCKED and M
 
 ## M12 / r8.12 - 1.0 qualification and final simplification - BLOCKED
 
-Execution is in progress from baseline `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7`; current M12 artifacts are uncommitted. See `verification/m12-verification-record.json` for exact results and limits.
+Execution is in progress from baseline `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7`; checkpoint commit `978c361def2d2805951fd044aa82dedc73160bc4` retains the current evidence. See `verification/m12-verification-record.json` for exact results and limits.
 
 Execution:
 - [x] M12-T01 canonical deterministic suite: 139 tests across 9 milestone modules;
 - [x] M12-T02 Context audit, byte-identical manifest, and fresh projection;
 - [x] M12-T03 all P0 adversarial trust fixtures;
 - [x] M12-T04 OpenSpec compatibility fixtures and strict change validation;
-- [!] M12-T05 M7 CI obligation suite passes; exact-final-SHA hosted verdict pending;
+- [x] M12-T05 M7 CI obligation suite and local exact-SHA obligation resolution pass;
 - [x] M12-T06 retained `local-subprocess` native evidence; Codex adapter unqualified;
 - [x] M12-T07 gate-provider adversarial suite;
 - [x] M12-T08 migration upgrade/rollback fixtures;
@@ -248,7 +248,7 @@ Verification:
 - [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
 - [x] M12-V03 final product remains minimum-sufficient under all eight retained proposal dispositions; no M12 product code was added.
 
-M12 remains BLOCKED. The local host doctor and release smoke are evidence only; they do not substitute for the hosted `ci / required` verdict bound to the final committed M12 revision. No push was performed.
+M12 remains BLOCKED. Local CI obligation resolution does not substitute for the hosted `ci / required` verdict bound to the final M12 revision. No push was performed.
 
 1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one genuinely Stable host, trusted repository enforcement, safe migration/release provenance, successful M11 history qualification, and final complexity retirement.
 

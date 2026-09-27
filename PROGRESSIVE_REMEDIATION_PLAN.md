@@ -49,7 +49,7 @@ current_milestone: M12
 current_revision: r8.12
 milestone_result: BLOCKED
 last_completed_task: M12-T09 / M12-T11 / M12-V02 / M12-V03
-next_task: Commit final M12 artifacts, resolve CI obligations, and obtain accepted hosted ci / required verdict for that exact revision
+next_task: Obtain accepted hosted ci / required verdict and authorized independent review
 blocking_issue: Hosted final-revision CI verdict and explicit authorization for the independent architecture review payload
 verification_pending:
   - M12-T01 canonical python scripts/check.py after final evidence and Context projection
@@ -68,8 +68,8 @@ notes: >
   observed Windows workspace boundaries in elevated and unelevated modes.
   M11 passed with recorded limits. M12 targeted suites, Context audit, native
   local-subprocess evidence, release fail-closed smoke, and feature-retirement
-  review pass. M12 remains blocked because current changes are uncommitted, no
-  hosted ci / required verdict exists for the final source revision, and no
+  review pass. M12 remains blocked because no hosted ci / required verdict
+  exists for the final source revision, and no
   provider-payload authorization was given for the independent architecture
   review. Claude native qualification remains out of scope and is not a gate.
 ```
@@ -387,7 +387,7 @@ overall gate: `verification/m11-history-qualification-status.json`.
 - [x] **M12-T02** — Context audit, unchanged manifest, fresh projection.
 - [x] **M12-T03** — All P0 adversarial trust fixtures.
 - [x] **M12-T04** — OpenSpec compatibility fixtures and strict validation.
-- [!] **M12-T05** — M7 CI suite passed; bind obligations to final source SHA and obtain hosted verdict.
+- [x] **M12-T05** — M7 CI suite and local obligations resolved for the M12 checkpoint SHA.
 - [x] **M12-T06** — Retain native `local-subprocess` evidence; Codex adapter remains unqualified.
 - [x] **M12-T07** — Gate-provider adversarial suite.
 - [x] **M12-T08** — Migration upgrade/rollback fixtures.
