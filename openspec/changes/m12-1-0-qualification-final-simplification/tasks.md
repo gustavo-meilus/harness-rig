@@ -25,6 +25,9 @@
 - [x] 2.3 Run the missing-verdict release smoke and retain its fail-closed
   result. The accepted-verdict path is conditional on 2.2 and remains unrun;
   tamper rejection is covered by the M10 release-provenance suite.
+- [x] 2.4 Trace M12 release-provenance evidence to the behavior contract in
+  `release-provenance-fail-closed`; verify its strict OpenSpec validation and
+  focused test evidence without duplicating its requirements.
 
 ## 3. Final reviews and decision
 

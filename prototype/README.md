@@ -171,5 +171,12 @@ A missing/skipped required web scenario cannot PASS. Flaky retries remain visibl
 - Config precedence is defaults < user-global < project < CLI; user-global configuration cannot define repository policy.
 - Direct verification uses process-group cleanup so timeout/cancellation cannot leave verifier descendants running.
 - `harness-rig/migration-state/v1` supports r8.9 -> r8.10 plus explicit rollback; real source-history qualification remains `PENDING_M11`.
-- `harness-rig/release-record/v1` binds accepted revision/verdict/workflow to artifact SHA-256 and fails release eligibility closed when the accepted repository verdict is unavailable.
-- No signing service or new attestation platform is introduced.
+- `harness-rig/release-record/v2` binds artifact hashes and source SHA to an explicit GitHub `OWNER/REPO`, repository ID, workflow run ID, current attempt, and `ci / required` job ID. Creation returns an unsigned `CANDIDATE`; authenticated read-only `gh api` checks establish hosted-run eligibility, while locally generated M7 JSON cannot qualify it.
+- `verification/release_provenance.py attest` submits the validated candidate
+  byte snapshot to the protected manual workflow. Artifact filenames, sizes,
+  and SHA-256 values are validated before approval; record-derived summary text
+  is escaped as literal Markdown. Verification parses one captured record
+  snapshot and checks artifact integrity, live hosted CI, and GitHub artifact
+  attestation over those bytes. V1, BLOCKED, unsigned, or changed records
+  cannot pass.
+- The `release-provenance-attestation` GitHub Environment must have a required reviewer configured. Its approval authorizes the listed artifact hashes; the workflow does not build those artifacts. Live ruleset and required-check source observation remains a separate M12 gate. The CLI requires network access and GitHub CLI authentication; repository identity is never inferred.

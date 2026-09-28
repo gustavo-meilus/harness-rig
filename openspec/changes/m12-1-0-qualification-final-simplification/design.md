@@ -5,6 +5,11 @@ M11 is archived as complete at baseline
 scope using the existing M3-M11 test modules, `scripts/check.py`, Context
 audit, CI obligation workflow, host doctor, and release provenance CLI.
 
+The release-provenance implementation is a bounded companion change owned by
+`release-provenance-fail-closed`. Its OpenSpec contract defines that behavior;
+M12 verifies its evidence and reports whether it satisfies the final
+qualification. No other product behavior is included by this exception.
+
 The current host evidence qualifies `local-subprocess` for a narrow set of
 capabilities. It does not qualify the Codex adapter as Stable. Repository
 governance also requires the accepted hosted `ci / required` verdict before a
@@ -19,11 +24,14 @@ release record can pass; local tests must not impersonate that verdict.
 - Make the final decision fail closed when hosted evidence or authorized
   independent review is unavailable.
 - Retire unsupported or speculative scope without weakening trust guarantees.
+- Qualify the bounded companion release-provenance change against its own
+  OpenSpec contract and record the result as M12 evidence.
 
 **Non-Goals:**
 
 - Change product behavior or introduce new dependencies or qualification
-  infrastructure.
+  infrastructure beyond the explicitly scoped
+  `release-provenance-fail-closed` companion change.
 - Publish a release, push a branch, create tags, or claim external signing or
   attestation.
 - Qualify Claude Code, Codex Desktop/CLI adapters, or unsupported isolation
@@ -47,8 +55,11 @@ release record can pass; local tests must not impersonate that verdict.
 5. **Keep current maturity claims narrow.** Re-run the local `doctor` path and
    retain only capabilities it observes. Do not transfer local-process
    evidence to Codex or another host adapter.
-6. **Keep this change evidence-only.** If a product defect appears, stop and
-   revise the proposal/design/tasks before making product changes.
+6. **Bound the product-change exception.** The only product behavior included
+   in M12 is the release-provenance change specified by
+   `release-provenance-fail-closed`; its contract remains owned by that change.
+   If another product defect appears, revise this proposal/design/tasks before
+   making that product change.
 
 ## Risks / Trade-offs
 
@@ -61,3 +72,6 @@ release record can pass; local tests must not impersonate that verdict.
   record only current observed facts.
 - [Evidence files drift from their source revision] -> Bind records to the
   exact SHA and re-run the canonical suite after evidence and Context updates.
+- [M12 evidence is confused with product requirements] -> Keep the companion
+  release-provenance change as the sole owner of that behavior contract and
+  reference its qualification evidence here.

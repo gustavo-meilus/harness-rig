@@ -1,0 +1,310 @@
+{
+  "schema": "harness-rig/m12-independent-review/v1",
+  "reviewed_revision": "9936768a1ad23f99249e69744535ee5b6dada15",
+  "review_context": "Independent read-only architecture review; result copied from the local Codex terminal review provided in this task.",
+  "result": "FAIL",
+  "finding": {
+    "area": "release-provenance verification",
+    "summary": "The verify command reported PASS after verify_release_record returned, regardless of record status or whether its repository verdict was validated.",
+    "impact": "A blocked or unvalidated release record could be presented as passing, contradicting M12's exact-source accepted-verdict requirement.",
+    "references": [
+      "openspec/changes/m12-1-0-qualification-final-simplification/design.md:8",
+      "openspec/changes/m12-1-0-qualification-final-simplification/design.md:40",
+      "prototype/tests/test_m10_product_cli_migration_release.py:299"
+    ],
+    "recommendation": "Validate a trusted repository verdict for the exact source revision, reject non-PASS records during verification, and test blocked, stale, and mismatched verdicts."
+  },
+  "scope_limits": [
+    "Hosted workflow execution and repository ruleset/settings were not observed.",
+    "Tests were not rerun during the review.",
+    "Retained host evidence was limited to local-subprocess; no Codex or Claude host qualification claim was made."
+  ],
+  "hosted_ci": "NOT_ASSESSED",
+  "follow_up": "The initial review of committed revision 9936768a1ad23f99249ee69744535ee5b6dada15 was FAIL. The working-tree follow-up was also FAIL. The jobs-count issue was corrected afterward. The current worktree adds GitHub artifact attestation over exact candidate bytes to address the recomputed-digest finding; this fix has not been independently reviewed.",
+  "follow_up_review": {
+    "reviewed_revision": "9936768a1ad23f99249e69744535ee5b6dada15",
+    "review_target": "working tree, including tracked and untracked files",
+    "review_date": "2026-09-27",
+    "result": "FAIL",
+    "findings": [
+      {
+        "severity": "P1",
+        "summary": "The record integrity ID is an unkeyed digest. An editor can replace an artifact, update its digest and size in the record, recompute record_id, and pass the local record/artifact checks while hosted CI remains valid.",
+        "status": "ADDRESSED_IN_WORKTREE; PENDING_INDEPENDENT_REVIEW"
+      },
+      {
+        "severity": "P1",
+        "summary": "A jobs API response with total_count smaller than the returned jobs list was accepted.",
+        "status": "CORRECTED_AFTER_REVIEW; PENDING_INDEPENDENT_REVIEW"
+      }
+    ],
+    "scope_limits": [
+      "Hosted ci / required and live repository enforcement were not assessed.",
+      "No live GitHub API lookup or tests were performed by the reviewer."
+    ],
+    "reviewed_files": [
+      "AGENTS.md",
+      "ROADMAP.md",
+      "manifest.jsonl",
+      "prototype/README.md",
+      "prototype/harness_rig/release.py",
+      "prototype/tests/test_m10_product_cli_migration_release.py",
+      "references/ci-review-and-release-governance.md",
+      "references/m10-product-cli-migration-release-provenance.md",
+      "verification/m10-verification-record.json",
+      "verification/m12-verification-record.json",
+      "verification/release_provenance.py",
+      "openspec/changes/release-provenance-fail-closed/.openspec.yaml",
+      "openspec/changes/release-provenance-fail-closed/design.md",
+      "openspec/changes/release-provenance-fail-closed/proposal.md",
+      "openspec/changes/release-provenance-fail-closed/specs/release-provenance/spec.md",
+      "openspec/changes/release-provenance-fail-closed/tasks.md",
+      "verification/m12-independent-review.json"
+    ]
+  },
+  "worktree_fix": {
+    "status": "IMPLEMENTED; SOURCE_REVIEW_PASS_WITH_LIMITS",
+    "summary": "The exact-byte correction and both P3 documentation/provenance corrections are present; the final-tree review found no remaining source finding in the reviewed areas.",
+    "limitations": [
+      "The overall review verdict remains BLOCKED by the canonical-check process-launch failure and unobserved hosted gates.",
+      "The checkout has no Git remote and its stored gh token is invalid, so hosted evidence could not be observed.",
+      "No attestation workflow was dispatched and no hosted result was observed.",
+      "The attestation anchors the manifest; it does not prove that the signing workflow built the listed artifacts."
+    ]
+  },
+  "latest_follow_up_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "review_target": "current working tree, including tracked changes and untracked files",
+    "review_date": "2026-09-27",
+    "result": "FAIL",
+    "finding": {
+      "severity": "P1",
+      "area": "release-provenance exact-byte binding",
+      "summary": "Verification parsed a record from the selected path but later asked gh attestation verify to read that path again; the bytes attested could differ from the record whose artifact and hosted-CI checks passed.",
+      "status": "CORRECTED_IN_WORKTREE; PENDING_INDEPENDENT_REVIEW",
+      "correction": "Capture record bytes once, parse them inside the verifier, and verify those same bytes from a private temporary snapshot. The attest CLI now validates and dispatches the same captured bytes."
+    },
+    "checks_performed": [
+      "Read-only inspection of git status, HEAD, tracked/staged diffs, untracked files, OpenSpec, code, tests, workflow, documentation, and M12 evidence.",
+      "git diff --check passed."
+    ],
+    "checks_not_performed": [
+      "Unit tests, canonical python scripts/check.py, strict OpenSpec validation, Context audit/projection, and all live GitHub checks were not performed by this reviewer."
+    ],
+    "scope_limits": [
+      "Hosted ci / required, protected-environment reviewer settings, and live repository enforcement were not observed.",
+      "No workflow was dispatched and no files were changed by the reviewer."
+    ]
+  },
+  "exact_byte_correction_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "review_target": "working tree, including tracked and untracked changes",
+    "review_date": "2026-09-27",
+    "result": "PASS",
+    "scope": "Exact-byte correction",
+    "finding": {
+      "severity": "P3",
+      "area": "OpenSpec change metadata",
+      "summary": "The change goal described embedded repository CI evidence instead of live GitHub evidence and exact-byte attestation.",
+      "status": "CORRECTED_AFTER_REVIEW",
+      "correction": "Updated .openspec.yaml goal to require live GitHub CI evidence and a trusted attestation over exact candidate record bytes."
+    },
+    "checks_performed": [
+      "Inspected tracked diff, untracked workflow/OpenSpec/evidence files, and confirmed HEAD 9936768a1ad23f99249ee69744535ee5b6dada15.",
+      "git diff --check HEAD passed."
+    ],
+    "checks_not_performed": [
+      "Tests and strict OpenSpec validation were not run by the reviewer.",
+      "Hosted CI, protected-environment reviewer settings, and live ruleset/required-check-source evidence were not observed."
+    ],
+    "post_review_checks": [
+      "openspec validate release-provenance-fail-closed --type change --strict --no-interactive passed after correcting the stale goal.",
+      "git diff --check passed after the goal and evidence updates."
+    ]
+  },
+  "latest_working_tree_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "review_target": "working tree including 11 modified tracked files and 7 untracked files; clean index",
+    "review_date": "2026-09-27",
+    "result": "BLOCKED",
+    "exact_byte_correction": "PASS",
+    "findings": [
+      {
+        "severity": "P3",
+        "area": "Context provenance front matter",
+        "summary": "An unquoted colon caused the provenance value to parse as a mapping; the generated manifest rendered its dictionary representation as a string.",
+        "status": "CORRECTED_IN_WORKTREE",
+        "correction": "Quoted the provenance entry and regenerated manifest.jsonl."
+      },
+      {
+        "severity": "P3",
+        "area": "Release provenance documentation",
+        "summary": "The CLI documentation duplicated the word candidate in the candidate-byte description.",
+        "status": "CORRECTED_IN_WORKTREE",
+        "correction": "Reworded the sentence to say validated candidate bytes."
+      }
+    ],
+    "checks_performed": [
+      "Strict OpenSpec validation passed.",
+      "27 focused M10 tests passed after correcting PYTHONPATH; the initial invocation without PYTHONPATH failed to import the module.",
+      "Context audit passed for 44 canonical pages and manifest rows; projection was fresh.",
+      "git diff --check HEAD and untracked-file trailing-whitespace check passed."
+    ],
+    "checks_not_performed": [
+      "python scripts/check.py was not rerun; the prior verification record reports the Git for Windows sh.exe signal-pipe failure.",
+      "No push, workflow dispatch, or hosted GitHub checks were performed."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "NOT_OBSERVED",
+      "protected_environment_reviewers": "NOT_OBSERVED",
+      "ruleset_and_required_check_source": "NOT_OBSERVED",
+      "independent_review_of_current_corrections": "PENDING"
+    }
+  },
+  "final_tree_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "branch": "main",
+    "review_target": "current worktree: 11 modified tracked files and 7 untracked paths; clean index; final status matched initial snapshot",
+    "review_date": "2026-09-27",
+    "overall_verdict": "BLOCKED",
+    "source_review": "PASS_WITH_LIMITS",
+    "source_findings": [],
+    "confirmed_corrections": [
+      "Exact-byte verification parses and attests the same captured record bytes; CLI candidate validation and dispatch use the same captured bytes.",
+      "The provenance front-matter entry is a string and matches the generated manifest row.",
+      "The duplicated candidate wording is removed."
+    ],
+    "verification_blocker": {
+      "severity": "P3",
+      "summary": "Canonical python scripts/check.py fails because test_f05_dirty_consumed_submodule_changes_state cannot start Git for Windows sh.exe (Win32 error 5 creating signal pipe).",
+      "status": "OPEN_ENVIRONMENT_BLOCKER"
+    },
+    "checks_performed": [
+      "Strict OpenSpec validation passed.",
+      "27 focused M10 tests passed.",
+      "Context audit passed for 44 pages and rows; projection status FRESH.",
+      "git diff --check HEAD and trailing-whitespace check for seven untracked files passed."
+    ],
+    "checks_not_performed": [
+      "The reviewer did not rerun python scripts/check.py; the prior run failed at the M3 submodule process launch.",
+      "No push, workflow dispatch, hosted run, or live repository settings check was performed."
+    ],
+    "access_limitations": [
+      "The checkout has no Git remote.",
+      "gh auth status reported an invalid stored token."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "NOT_OBSERVED",
+      "protected_environment_reviewers": "NOT_OBSERVED",
+      "ruleset_and_required_check_source": "NOT_OBSERVED"
+    }
+  },
+  "m12_scope_traceability_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "review_target": "working tree, including tracked and untracked files",
+    "review_date": "2026-09-27",
+    "review_context": "Independent read-only review feedback supplied by the user in this task.",
+    "result_at_review": "FAIL",
+    "finding": {
+      "severity": "P3",
+      "area": "M12 OpenSpec scope and traceability",
+      "summary": "M12 described itself as evidence-only and excluded product fixes, while the working tree included release-provenance product changes defined by a companion OpenSpec change. M12 did not reference or bound that companion scope.",
+      "status": "CORRECTED_IN_WORKTREE; PENDING_INDEPENDENT_REVIEW",
+      "correction": "Updated M12 proposal, design, and tasks to name release-provenance-fail-closed as the sole bounded product-change exception, leave its behavior contract with that companion change, and trace M12 qualification evidence to it."
+    },
+    "checks_reported_by_reviewer": [
+      "python -m unittest prototype.tests.test_m3_vertical_slice passed 22 tests with PYTHONPATH=prototype.",
+      "python -m unittest prototype.tests.test_m10_product_cli_migration_release passed 27 tests with PYTHONPATH=prototype.",
+      "Strict OpenSpec validation passed for the M12 and release-provenance changes.",
+      "python scripts/check.py passed 148 tests; Context audit passed for 44 pages and rows; projection was FRESH; diff check passed.",
+      "git diff --check HEAD passed."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "NOT_OBSERVED",
+      "protected_environment_reviewers": "NOT_OBSERVED",
+      "ruleset_and_required_check_source": "NOT_OBSERVED",
+      "independent_review_of_scope_correction": "PENDING"
+    }
+  },
+  "attestation_summary_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "review_target": "working tree, including tracked and untracked files",
+    "review_date": "2026-09-27",
+    "review_context": "Independent fresh-context read-only review feedback supplied by the user in this task.",
+    "result_at_review": "FAIL",
+    "finding": {
+      "severity": "P2",
+      "area": "Protected attestation approval summary",
+      "summary": "Artifact path, size, and sha256 fields were not structurally validated before the workflow interpolated candidate values into Markdown. Because record_id is recomputable, a candidate could inject summary content and misrepresent the manifest to the environment reviewer.",
+      "status": "CORRECTED_IN_WORKTREE; PENDING_INDEPENDENT_REVIEW",
+      "correction": "Record building/parsing now validates portable single-filename paths, non-negative integer sizes, and lowercase 64-character SHA-256 digests. A tested candidate-summary command encodes every record-derived value as Markdown-safe text, and the workflow invokes it only after candidate validation."
+    },
+    "checks_reported_by_reviewer": [
+      "Focused M3 tests passed: 22 tests with PYTHONPATH=prototype.",
+      "Focused M10 tests passed: 27 tests with PYTHONPATH=prototype.",
+      "Strict validation passed for both M12 and release-provenance OpenSpec changes.",
+      "python scripts/check.py passed 148 tests; Context audit passed for 44 pages and rows; projection was FRESH.",
+      "git diff --check HEAD passed."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "NOT_OBSERVED",
+      "protected_environment_reviewers": "NOT_OBSERVED",
+      "ruleset_and_required_check_source": "NOT_OBSERVED",
+      "independent_review_of_correction": "PENDING"
+    },
+    "post_review_checks": [
+      "29 focused M10 tests passed after implementing metadata validation and summary escaping.",
+      "Strict OpenSpec validation passed for both M12 and release-provenance changes.",
+      "python scripts/check.py passed 150 tests across nine milestone modules.",
+      "Context audit passed for 44 pages and rows; projection was FRESH.",
+      "git diff --check passed."
+    ]
+  },
+  "latest_final_tree_review": {
+    "reviewed_revision": "9936768a1ad23f99249ee69744535ee5b6dada15",
+    "branch": "main",
+    "review_target": "working tree with 15 modified tracked files and 3 untracked paths; no staged changes; reviewer reported final status matched initial snapshot",
+    "review_date": "2026-09-27",
+    "review_context": "Independent read-only review output supplied by the user.",
+    "source_verdict": "PASS",
+    "qualification_status": "BLOCKED",
+    "source_findings": [],
+    "tracking_finding": {
+      "severity": "P3",
+      "area": "ROADMAP M12 review status",
+      "summary": "ROADMAP.md still said the current tree needed independent review after this review had covered it.",
+      "status": "CORRECTED_IN_THIS_EVIDENCE_UPDATE",
+      "correction": "Recorded this review and updated the roadmap to show source review complete while leaving hosted and repository-enforcement gates open."
+    },
+    "confirmed_areas": [
+      "M12 bounds release-provenance-fail-closed as its sole product-change exception and leaves behavioral requirements with the companion change.",
+      "Artifact metadata validation and Markdown-safe approval-summary rendering reject or safely display candidate values before signing.",
+      "Verification, candidate validation, and dispatch use the same captured record bytes; overall PASS requires artifact integrity, hosted CI, and attestation.",
+      "Hosted repository, source, workflow, event, branch, attempt, job identity/count, signer workflow, and signer ref checks fail closed.",
+      "The M3 dirty-submodule regression test uses a mode-160000 gitlink without git submodule add.",
+      "The audited legacy gitlink pins match the recorded values and are unchanged in the reviewed worktree.",
+      "The provenance YAML and duplicated candidate wording findings remain resolved."
+    ],
+    "checks_performed": [
+      "Focused M3 suite passed: 22 tests with PYTHONPATH=prototype.",
+      "Focused M10 suite passed: 29 tests with PYTHONPATH=prototype.",
+      "Strict OpenSpec validation passed for M12 and release-provenance changes.",
+      "python scripts/check.py passed 150 tests across nine modules; Context audit passed for 44 pages and rows; projection was FRESH.",
+      "git diff --check HEAD passed; reviewer reported line-ending conversion warnings."
+    ],
+    "checks_not_performed": [
+      "No hosted workflow, attestation, or live GitHub enforcement query was performed.",
+      "No separate test modules were run beyond the focused suites and canonical check."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "BLOCKED: no live result observed; no remote configured and stored gh token invalid.",
+      "protected_environment_reviewers": "BLOCKED: required reviewer settings not observed live.",
+      "ruleset_and_required_check_source": "BLOCKED: live settings not observed.",
+      "independent_source_review": "PASS_WITH_LIMITS: review covered the working tree before this evidence-only recording update."
+    },
+    "limitations": [
+      "Mocked tests establish local behavior only and do not prove hosted acceptance or repository enforcement.",
+      "No workflow dispatch, hosted run, attestation, or live repository-settings query was performed."
+    ]
+  }
+}

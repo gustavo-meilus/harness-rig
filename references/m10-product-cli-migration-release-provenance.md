@@ -1,13 +1,13 @@
 ---
 id: harness-rig-m10-product-cli-migration-release-provenance
 title: M10 product CLI, migration completion, and release provenance
-summary: Implemented r8.10 compact product CLI, versioned machine contract, fail-closed configuration, bounded migration state, process cleanup, and deterministic release provenance.
-version: planning-baseline-2026-09-25-r8.10
-updated: '2026-09-25'
+summary: Implemented r8.10 compact product CLI, versioned machine contract, fail-closed configuration, bounded migration state, process cleanup, and artifact-bound release provenance; hosted acceptance requires live GitHub Actions evidence.
+version: planning-baseline-2026-09-27-r8.10-m12-release-provenance
+updated: '2026-09-27'
 provenance:
 - Harness Rig M10 implementation and adversarial verification, 2026-09-25
 - Harness Rig M2 source-disposition and M11 history-qualification separation retained through M10
-- Harness Rig M7 repository verdict contract reused as the release acceptance prerequisite
+- 'M12 release-provenance correction: live authenticated GitHub Actions API acceptance and mocked regression verification, 2026-09-27'
 - Skill Kit More With Less v1.0.2 minimum-sufficient productization doctrine applied 2026-09-25
 ---
 # Result
@@ -116,21 +116,49 @@ A small `harness-rig/history-map/v1` lookup helper is executable against synthet
 
 # Release provenance
 
-`harness-rig/release-record/v1` binds:
+`harness-rig/release-record/v2` binds:
 
 ```text
+explicit GitHub OWNER/REPO and API-returned repository ID
 accepted source revision
-accepted repository verdict
-build workflow identity
-creation time
+workflow run ID and current attempt
+unique ci / required job ID for that attempt
+build workflow identity and creation time
 artifact path/size/SHA-256
-optional attestation reference
 record integrity ID
 ```
 
-A record with no accepted repository verdict is `BLOCKED`; local tests do not impersonate hosted `ci / required` acceptance. `verification/release_provenance.py` builds or verifies immutable records. Rewriting a release record with different content is rejected, and artifact tampering is detected by size/SHA-256 mismatch.
+Creation and verification use authenticated, read-only `gh api` calls. The run
+must be completed and successful for `push` on `main`, the exact source SHA,
+and `.github/workflows/ci-required.yml`; its recorded attempt must contain
+exactly one completed successful `ci / required` job. Verification re-fetches
+the run and attempt-specific jobs, so a rerun invalidates an older record.
+Missing run or API access, malformed responses, and mismatches produce a
+BLOCKED candidate, never PASS. An eligible record is still an unsigned
+CANDIDATE. M7 obligation/result JSON is not hosted proof.
 
-Attestation is an optional reference only. M10 introduces no signing service or new attestation platform because no current consumer requires one.
+Use `verification/release_provenance.py attest` to submit the validated
+candidate bytes to `.github/workflows/release-record-attestation.yml`. The serialized
+UTF-8 input is limited to 60,000 bytes. The workflow validates record
+integrity and live hosted CI, validates artifact paths as safe single
+filenames, requires a non-negative integer size and 64-character lowercase
+SHA-256 digest, then writes the approval summary through a Markdown-safe
+renderer. It requires approval through the `release-provenance-attestation`
+environment before attesting the same bytes.
+
+Verification reads the record bytes once, parses that snapshot, and verifies
+the attestation against the same bytes from a private temporary file. The CLI
+does not reread the selected record path during verification. Verification
+reports artifact integrity, hosted CI, and attestation separately;
+overall PASS requires all three. `gh attestation verify` is scoped to the
+explicit repository, signing workflow, and `refs/heads/main`. It rejects
+blocked, unsigned, and legacy v1 records. A valid attestation detects edits
+after signing, but does not prove that the signing workflow built the listed
+artifacts; the environment approver authorizes the hashes. The checkout has no
+Git remote, so callers must supply `OWNER/REPO`; no identity is inferred. Live
+branch/ruleset settings and the required-check source remain a separate M12
+gate. Local mocked API and attestation tests make no network requests and do
+not establish hosted acceptance or repository enforcement.
 
 # Verification
 
@@ -145,7 +173,8 @@ M10 adversarial coverage proves:
 - duplicate hooks are detected;
 - supported upgrade/rollback is explicit and arbitrary downgrade is rejected;
 - old-to-new mapping lookup works on deterministic synthetic evidence;
-- release records bind build outputs and detect tampering;
+- candidate records bind artifact hashes to live CI; verified records also
+  require an exact-byte GitHub attestation;
 - release eligibility remains blocked when an accepted repository verdict is absent.
 
 # Deferred boundary

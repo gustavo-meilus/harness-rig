@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-09-27
+goal: Require live GitHub CI evidence and a trusted attestation over exact
+  candidate record bytes before release provenance can pass.

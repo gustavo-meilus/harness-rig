@@ -224,13 +224,16 @@ class HarnessRigM3Tests(unittest.TestCase):
         run_git(sub, "add", "-A")
         run_git(sub, "commit", "-m", "sub initial")
 
-        p = subprocess.run(
-            ["git", "-C", str(self.repo), "-c", "protocol.file.allow=always",
-             "submodule", "add", str(sub), "vendor/sub"],
-            text=True, capture_output=True,
+        target = self.repo/"vendor/sub"
+        target.parent.mkdir(parents=True)
+        sub.rename(target)
+        (self.repo/".gitmodules").write_text(
+            '[submodule "vendor/sub"]\n\tpath = vendor/sub\n\turl = ../sub\n',
+            encoding="utf-8",
         )
-        self.assertEqual(p.returncode, 0, p.stderr)
         self.fx.commit_all("add submodule")
+        gitlink = run_git(self.repo, "ls-files", "-s", "--", "vendor/sub").stdout
+        self.assertTrue(gitlink.startswith("160000 "), gitlink)
 
         before = capture_state(self.repo, "test-repo")
         (self.repo/"vendor/sub/lib.txt").write_text("dirty\n")

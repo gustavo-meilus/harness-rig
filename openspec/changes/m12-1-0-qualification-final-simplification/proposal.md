@@ -14,10 +14,13 @@ by evidence.
   unsupported host capabilities remain explicit non-claims.
 - Produce a complete current-revision repository verdict and verify local
   release provenance against it.
+- Qualify only the release-provenance behavior defined by the companion
+  `release-provenance-fail-closed` change; that change owns the behavior
+  requirements, while M12 records their qualification evidence.
 - Record a fresh-context architecture review, feature-retirement review, and
   final M12 decision as `PASS` or a precise `BLOCKED` result.
-- Keep the M12 scope limited to qualification and final simplification. Do not
-  add product behavior without updating this change first.
+- Keep all other M12 work limited to qualification and final simplification.
+  Any additional product behavior requires updating this change first.
 
 ## Capabilities
 
@@ -27,15 +30,17 @@ None.
 
 ### Modified Capabilities
 
-None. This change qualifies existing behavior and records evidence; it does not
-change product requirements. Specs are deliberately skipped in
-`.openspec.yaml`.
+None in M12. This change qualifies existing behavior and records evidence; it
+does not define product requirements. The companion
+`release-provenance-fail-closed` change owns the modified release-provenance
+requirements. Specs are deliberately skipped in `.openspec.yaml`.
 
 ## Impact
 
 The work uses existing product code, tests, verification scripts, M8-M11
 evidence, and CI/release contracts. It will add M12 verification artifacts and
 update the roadmap, progressive plan, canonical Context references, generated
-manifest, and agent projection. Any required product fix is out of this
-qualification scope until the OpenSpec design and acceptance criteria are
+manifest, and agent projection. The only product change qualified by M12 is the
+bounded `release-provenance-fail-closed` companion change. Any other product
+fix remains out of scope until this change's proposal, design, and tasks are
 updated.

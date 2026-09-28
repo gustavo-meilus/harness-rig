@@ -1,0 +1,102 @@
+name: release record attestation
+
+on:
+  workflow_dispatch:
+    inputs:
+      record:
+        description: Exact UTF-8 release-record candidate JSON
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  validate:
+    name: Validate release candidate
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    outputs:
+      record_sha256: ${{ steps.candidate.outputs.record_sha256 }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_REPOSITORY_ID: ${{ github.repository_id }}
+      RECORD_JSON: ${{ inputs.record }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Recreate exact candidate bytes
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          if os.environ["GITHUB_REF"] != "refs/heads/main":
+              raise SystemExit("attestation workflow must run from main")
+          raw = os.environ["RECORD_JSON"].encode("utf-8")
+          if len(raw) > 60000:
+              raise SystemExit("attestation candidate exceeds 60000 bytes")
+          path = Path(".candidate/release-record.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_bytes(raw)
+          PY
+      - name: Validate digest, repository, and live hosted CI
+        run: >-
+          python verification/release_provenance.py validate-candidate
+          --record .candidate/release-record.json
+          --repository "$GITHUB_REPOSITORY"
+          --repository-id "$EXPECTED_REPOSITORY_ID"
+      - id: candidate
+        name: Summarize approved manifest and bind bytes
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          path = Path(".candidate/release-record.json")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write("record_sha256=" + hashlib.sha256(path.read_bytes()).hexdigest() + "\n")
+          PY
+          python verification/release_provenance.py candidate-summary \
+            --record .candidate/release-record.json \
+            --output "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-record-candidate
+          path: .candidate/release-record.json
+          if-no-files-found: error
+          retention-days: 1
+
+  attest:
+    name: Approve and attest release candidate
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: release-provenance-attestation
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-record-candidate
+          path: .candidate
+      - name: Confirm validated bytes were retained
+        env:
+          EXPECTED_SHA256: ${{ needs.validate.outputs.record_sha256 }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          actual = hashlib.sha256(Path(".candidate/release-record.json").read_bytes()).hexdigest()
+          if actual != os.environ["EXPECTED_SHA256"]:
+              raise SystemExit("candidate bytes differ from the validated manifest")
+          PY
+      - name: Attest exact release-record bytes
+        uses: actions/attest@v4
+        with:
+          subject-path: .candidate/release-record.json

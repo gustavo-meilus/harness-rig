@@ -2,8 +2,8 @@
 id: harness-rig-ci-review-and-release-governance
 title: CI, review, versioning, and release governance
 summary: Repository-wide CI aggregation, review roles, versioning, schema migrations, and provenance-aware release policy.
-version: planning-baseline-2026-09-25-r8.10
-updated: '2026-09-25'
+version: planning-baseline-2026-09-27-r8.10-m12-release-provenance
+updated: '2026-09-27'
 provenance:
 - GitHub Actions workflow syntax, accessed 2026-09-21
 - GitHub rulesets documentation, accessed 2026-09-21
@@ -17,6 +17,7 @@ provenance:
 - User-supplied rigyard_current.zip source snapshot inspected 2026-09-24
 - Harness Rig M7 repository enforcement implementation and verification, 2026-09-25
 - Harness Rig M10 release-record/checksum implementation and verification, 2026-09-25
+- Harness Rig M12 live hosted-CI release-provenance correction, 2026-09-27
 - GitHub Actions workflow/merge_group/security documentation rechecked 2026-09-25
 ---
 # One canonical ordinary quality definition
@@ -155,6 +156,23 @@ immutable release
 
 # M10 release-record implementation
 
-M10 implements `harness-rig/release-record/v1` plus `verification/release_provenance.py`. A record binds the accepted source revision, accepted repository verdict identity, build workflow identity, artifact size/SHA-256, creation time, and optional external attestation reference.
+M10 introduced `harness-rig/release-record/v1`; the fail-closed correction
+uses `harness-rig/release-record/v2` in `verification/release_provenance.py`.
+V2 binds the explicit GitHub repository and API-returned repository ID, source
+revision, Actions run ID and attempt, required job ID, artifact size/SHA-256,
+and creation time. Eligible records remain unsigned CANDIDATEs. Creation and
+verification use authenticated read-only `gh api` lookups. The accepted run must be a
+completed successful `push` on `main` for the exact source SHA from
+`.github/workflows/ci-required.yml`, with one successful `ci / required` job
+in the recorded attempt. A rerun, unavailable API, or mismatch blocks.
 
-A record is `BLOCKED` when no accepted repository verdict is supplied. Local M10 test success is not substituted for the hosted repository verdict. The record is immutable once written and artifact tampering invalidates verification. No signing or attestation service is added; an attestation is only a reference when an operational release workflow later supplies one.
+`verification/release_provenance.py attest` submits the exact candidate JSON to
+the protected manual attestation workflow. Verification reports artifact
+integrity, hosted CI, and attestation separately; all three must pass. The
+signing workflow validates the candidate and CI run, then requires approval
+through the `release-provenance-attestation` environment before attesting the
+exact manifest bytes. This binds the approved artifact hashes but does not
+prove the signing workflow built the artifacts. Local mocked tests do not
+establish a hosted run, environment protection, or repository ruleset. The
+checkout's repository identity must be supplied explicitly; live ruleset and
+required-check source observation remains a separate M12 gate.

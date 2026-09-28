@@ -2,74 +2,107 @@
   "schema": "harness-rig/m12-verification-record/v1",
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
-  "evaluated_revision": "978c361def2d2805951fd044aa82dedc73160bc4",
-  "working_tree": "M12 qualification checkpoint commit exists; exact-SHA local obligation resolution is retained. Hosted verdict and independent review remain open.",
+  "evaluated_revision": "9936768a1ad23f99249e69744535ee5b6dada15",
+  "working_tree": "HEAD 9936768a1ad23f99249ee69744535ee5b6dada15 remains the reviewed baseline. The 2026-09-27 source review passed for the reviewed tree before evidence-only updates. User requested and created public repository gustavo-meilus/harness-rig; origin is configured, but git ls-remote returned no refs and no source has been pushed. The authenticated user-provided gh status is valid. Before publishing history, resolve that existing commits contain a personal author address.",
   "result": "BLOCKED",
   "tasks": {
     "M12-T01": {
       "result": "PASS",
-      "evidence": ["python scripts/check.py"],
-      "details": "139 tests passed across 9 milestone modules; exit code 0."
+      "evidence": [
+        "python scripts/check.py"
+      ],
+      "details": "python scripts/check.py passed 150 tests across nine milestone modules. The M3 dirty-submodule fixture now stages a real mode-160000 gitlink without invoking git submodule add, avoiding the Git for Windows sh.exe signal-pipe failure while preserving the state-change assertion. Context audit passed for 44 canonical pages and 44 manifest rows; projection is FRESH; git diff --check passed."
     },
     "M12-T02": {
       "result": "PASS",
-      "evidence": ["python verification/context_kb.py audit .", "python verification/context_kb.py projection-status ."],
-      "details": "44 canonical pages and manifest rows; manifest was regenerated; projection FRESH."
+      "evidence": [
+        "python verification/context_kb.py audit .",
+        "python verification/context_kb.py projection-status ."
+      ],
+      "details": "After correcting YAML front matter provenance, regenerated manifest.jsonl; audit passes for 44 canonical pages and rows, with projection FRESH."
     },
     "M12-T03": {
       "result": "PASS",
-      "evidence": ["python -m unittest prototype.tests.test_m3_vertical_slice"],
-      "details": "22 tests passed."
+      "evidence": [
+        "python -m unittest prototype.tests.test_m3_vertical_slice"
+      ],
+      "details": "22 M3 tests passed, including the dirty consumed-submodule state-change regression using a verified mode-160000 gitlink."
     },
     "M12-T04": {
       "result": "PASS",
-      "evidence": ["python -m unittest prototype.tests.test_m6_openspec_spec_engine", "openspec validate m12-1-0-qualification-final-simplification --type change --strict --no-interactive"],
-      "details": "16 tests passed; strict OpenSpec validation passed."
+      "evidence": [
+        "python -m unittest prototype.tests.test_m6_openspec_spec_engine",
+        "openspec validate m12-1-0-qualification-final-simplification --type change --strict --no-interactive",
+        "openspec validate release-provenance-fail-closed --type change --strict --no-interactive"
+      ],
+      "details": "16 tests passed; strict OpenSpec validation passed for the M12 qualification change and the release-provenance companion change."
     },
     "M12-T05": {
       "result": "PASS",
-      "evidence": ["python -m unittest prototype.tests.test_m7_repository_enforcement", "verification/m12-ci-obligation-resolution.json", ".github/workflows/ci-required.yml", "governance/ci-policy.json"],
+      "evidence": [
+        "python -m unittest prototype.tests.test_m7_repository_enforcement",
+        "verification/m12-ci-obligation-resolution.json",
+        ".github/workflows/ci-required.yml",
+        "governance/ci-policy.json"
+      ],
       "details": "14 local governance tests passed and local CI obligations were resolved for commit 978c361def2d2805951fd044aa82dedc73160bc4. This is not a hosted ci / required verdict."
     },
     "M12-T06": {
       "result": "PASS_WITH_LIMITS",
-      "evidence": ["verification/m12-native-host-evidence.json"],
+      "evidence": [
+        "verification/m12-native-host-evidence.json"
+      ],
       "details": "Windows local-subprocess doctor passed for four stable capabilities. Codex Desktop/CLI is not qualified by this evidence."
     },
     "M12-T07": {
       "result": "PASS",
-      "evidence": ["python -m unittest prototype.tests.test_m9_gate_platform"],
+      "evidence": [
+        "python -m unittest prototype.tests.test_m9_gate_platform"
+      ],
       "details": "20 tests passed."
     },
     "M12-T08": {
       "result": "PASS",
-      "evidence": ["python -m unittest prototype.tests.test_m10_product_cli_migration_release"],
-      "details": "18 migration and release tests passed."
+      "evidence": [
+        "python -m unittest prototype.tests.test_m10_product_cli_migration_release"
+      ],
+      "details": "29 focused M10 migration/release tests passed, including exact-byte verification/dispatch mutation regressions; mocked calls made no network requests."
     },
     "M12-T09": {
       "result": "PASS_WITH_LIMITS",
-      "evidence": ["verification/m12-release-blocked-smoke.json"],
-      "details": "Missing-verdict release attempt was rejected as BLOCKED. Accepted-verdict record path was not run because no hosted verdict exists; tamper rejection is included in the M10 suite."
+      "evidence": [
+        "prototype/tests/test_m10_product_cli_migration_release.py",
+        ".github/workflows/release-record-attestation.yml",
+        "openspec/changes/release-provenance-fail-closed/specs/release-provenance/spec.md"
+      ],
+      "details": "29 offline tests cover live API mismatches and jobs total_count, candidate/v1/blocked records, artifact and recomputed-digest tampering, record-path mutation during verify and dispatch, artifact metadata type/format validation, Markdown-safe approval summaries, attestation scope, exact JSON dispatch and size limits, and workflow controls. Mocked calls make no network requests; no hosted workflow or attestation was run."
     },
     "M12-T10": {
-      "result": "BLOCKED",
-      "evidence": ["openspec/changes/m12-1-0-qualification-final-simplification/design.md"],
-      "details": "Fresh independent review would require transmitting a review payload to the Codex provider. The user has not authorized that transmission."
+      "result": "PASS_WITH_LIMITS",
+      "evidence": [
+        "verification/m12-independent-review.json"
+      ],
+      "details": "The 2026-09-27 independent review passed for the reviewed source tree and found the roadmap pending-review status stale. This evidence update records the review and corrects that roadmap status. Earlier FAIL reviews remain preserved. M12 remains BLOCKED on hosted CI, protected-environment reviewer settings, and live repository-policy evidence."
     },
     "M12-T11": {
       "result": "PASS",
-      "evidence": ["verification/m12-feature-retirement-review.json", "verification/m11-rigyard-dispositions.json"],
-      "details": "All eight imported/planned proposals retain a disposition and reopening trigger. No M12 product code was added; the comparison is scoped and qualitative, not a byte-size metric."
+      "evidence": [
+        "verification/m12-feature-retirement-review.json",
+        "verification/m11-rigyard-dispositions.json"
+      ],
+      "details": "All eight imported/planned proposals retain a disposition and reopening trigger. No deferred feature mechanisms were added; the targeted release-provenance correction addresses the independent-review finding. The comparison remains qualitative, not a byte-size metric."
     }
   },
   "verification": {
-    "M12-V01": "BLOCKED: requires the fresh independent review in M12-T10.",
+    "M12-V01": "BLOCKED: local verification passed, and the 2026-09-27 independent source review passed for the reviewed working tree. This evidence-only update records that review and corrects the roadmap pending-review status. Hosted ci / required, protected-environment reviewer settings, and live ruleset/required-check-source evidence remain unobserved; gh auth is invalid and the checkout has no remote.",
     "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
-    "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; no M12 product code was added."
+    "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; the only product behavior change is the targeted release-provenance correction. The M3 workaround changes test setup only."
   },
   "external_gates": {
-    "accepted_hosted_ci_required": "BLOCKED: no accepted verdict is available for the final M12 revision; no push or hosted run was performed.",
-    "independent_architecture_review": "BLOCKED: review payload transmission is not authorized."
+    "accepted_hosted_ci_required": "BLOCKED: no hosted ci / required result was observed for the final source revision. The public repository exists and origin is configured, but it has no refs because source history has not been pushed. The existing local commit history contains a personal author address; resolve its publication before the first push.",
+    "independent_architecture_review": "PASS_WITH_LIMITS: the 2026-09-27 review found no remaining release-provenance implementation defect in the reviewed areas. Earlier FAIL results remain recorded as history. M12 qualification remains blocked on hosted CI and repository-enforcement evidence.",
+    "repository_ruleset_and_required_check_source": "BLOCKED: live GitHub enforcement settings and required-check source have not been observed; a successful workflow run alone does not establish enforcement.",
+    "protected_attestation_environment": "BLOCKED: required-reviewer configuration for release-provenance-attestation has not been observed live."
   },
   "source_pins": {
     "legacy/aiboarding": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
@@ -77,14 +110,22 @@
     "legacy/tacticswitch": "f95e3797c800b7ecc5f35dc95b25e53906df6b1e"
   },
   "limitations": [
-    "The retained local CI obligation resolution is bound to checkpoint commit 978c361def2d2805951fd044aa82dedc73160bc4; it is not an accepted hosted verdict.",
-    "No push or hosted GitHub Actions run was performed; hosted ci / required acceptance remains unavailable.",
-    "The independent architecture review is pending explicit authorization for its provider payload.",
-    "Claude Code qualification remains out of scope per user direction."
+    "Claude Code qualification remains out of scope per user direction.",
+    "Focused release tests use mocked GitHub API and attestation command responses; they make no network requests and do not prove hosted acceptance or repository enforcement.",
+    "No push, attestation workflow dispatch, or hosted GitHub Actions run was performed.",
+    "The environment approver authorizes manifest artifact hashes; the attestation does not prove the signing workflow built those artifacts.",
+    "GitHub artifact attestation availability depends on repository visibility and plan; live eligibility was not observed.",
+    "The original and follow-up independent review results remain FAIL historically. The 2026-09-27 final-tree source review passed for the reviewed working tree before this evidence-only recording update.",
+    "A prior working-tree review was BLOCKED on two P3 documentation/provenance findings; both were corrected, and a later review found no remaining finding in those areas.",
+    "A prior independent review found no remaining source finding in the reviewed corrections but could not observe hosted evidence. The checkout has no remote; user-provided gh auth status now reports valid authentication, while explicit OWNER/REPO remains outstanding.",
+    "A fresh-context independent review found a P3 M12 OpenSpec scope/traceability mismatch. The M12 proposal, design, and tasks were updated to bound the companion release-provenance change; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
+    "An independent review found a P2 risk from unvalidated artifact metadata rendered in the protected approval summary. Strict metadata validation and Markdown-safe summary rendering were added; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
+    "The new public repository is empty. Existing local history contains a personal author address; no source or history has been pushed while publication handling is unresolved."
   ],
   "next_actions": [
-    "Obtain an accepted hosted ci / required verdict for the final M12 revision through the repository's hosted CI workflow.",
-    "Authorize the narrowly scoped independent-review payload or provide another authorized independent review context.",
-    "Rerun python scripts/check.py after any further M12 evidence or roadmap change."
+    "Decide whether to publish the existing commit history with its author metadata or authorize a privacy-preserving history migration; then publish the approved source to main.",
+    "After source publication, observe and record hosted ci / required for the exact source revision.",
+    "Observe and record required-reviewer settings for the release-provenance-attestation environment.",
+    "Observe the live ruleset and confirm ci / required is required from GitHub Actions."
   ]
 }
