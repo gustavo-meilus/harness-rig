@@ -232,9 +232,9 @@ Execution is in progress from baseline `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7
 
 Execution:
 - [x] M12-T01 canonical deterministic suite: `python scripts/check.py` passes
-  150 tests across nine milestone modules, Context audit (44 pages/rows), fresh
-  projection, and `git diff --check`. The M3 fixture now creates a real gitlink
-  without launching the failing Git for Windows submodule helper;
+  151 tests across nine milestone modules, Context audit (44 pages/rows), fresh
+  projection, and `git diff --check`. The suite verifies canonical fingerprints
+  are independent of LF/CRLF checkout line endings;
 - [x] M12-T02 Context audit, byte-identical manifest, and fresh projection;
 - [x] M12-T03 all P0 adversarial trust fixtures;
 - [x] M12-T04 OpenSpec compatibility fixtures and strict change validation;
@@ -245,47 +245,38 @@ Execution:
 - [x] M12-T09 29 mocked hosted-API and attestation tests, including recomputed-
   digest tampering, dispatch limits, metadata validation, summary escaping, and
   workflow permission/environment controls;
-- [x] M12-T10 independent source review passed on 2026-09-27; earlier FAIL
-  results remain preserved in the review record;
+- [!] M12-T10 prior source review passed, but the later cross-platform
+  fingerprint correction still needs independent review; earlier FAIL results
+  remain preserved in the review record;
 - [x] M12-T11 final feature-retirement review recorded.
 
 Verification:
-- [!] M12-V01 blocked pending hosted and repository-enforcement evidence;
+- [!] M12-V01 hosted `ci / required` passed on exact source revision
+  `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`; independent review and live
+  repository-enforcement evidence remain blocked;
 - [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
 - [x] M12-V03 all eight retained proposal dispositions remain valid; no deferred feature mechanism was added.
 
-M12 remains BLOCKED. The original and follow-up FAIL results, exact-byte
-correction PASS, P3 corrections, and latest scope/traceability review are
-recorded in `verification/m12-independent-review.json` and
-`verification/m12-verification-record.json`. The follow-up identified an
-unkeyed record digest that can be recomputed after editing the artifact
-manifest; the worktree now adds an exact-byte GitHub artifact attestation, and
-the inconsistent GitHub jobs count was corrected. A later review found that
-verification could
-reread a changed record path; the worktree now parses and verifies one captured
-snapshot and dispatches that same candidate snapshot. That correction passed
-independent review. A later review found two P3 issues: an unquoted provenance
-colon that affected the generated manifest and a duplicated word in the release
-reference. Both are corrected, and a later source review found no remaining
-finding in those areas. A fresh-context review found a P3 scope mismatch:
-M12 excluded product changes while the tree contained the companion
-release-provenance implementation. M12 proposal, design, and tasks now name
-that companion as the only bounded product-change exception and leave its
-behavior contract there. A later review found a P2 risk where unvalidated
-artifact metadata could alter the protected approval summary. Record parsing
-now validates artifact names, sizes, and SHA-256 strings; a tested renderer
-encodes every record-derived summary value. The final-tree source review on
-2026-09-27 passed before this evidence-only update. It is recorded in
-`verification/m12-independent-review.json`; earlier FAIL results remain
-preserved. The
-canonical check passes after the M3 fixture was changed to stage a real gitlink
-without invoking `git submodule add`, which triggered the Windows signal-pipe
-failure. Hosted
-`ci / required`, protected-environment reviewer settings, and live
-ruleset/required-check-source observation remain open. Public repository
-`gustavo-meilus/harness-rig` now exists with `origin` configured, but has no refs.
-The existing commit history contains a personal author address; resolve its
-publication before the first push. No source was pushed or workflow dispatched.
+M12 remains BLOCKED. Original and follow-up FAIL reviews, later corrections,
+and review scope are recorded in `verification/m12-independent-review.json` and
+`verification/m12-verification-record.json`. The provenance record now requires
+an exact-byte GitHub artifact attestation, validates live hosted CI including
+the jobs count, and uses one captured byte snapshot for both verification and
+dispatch. Artifact metadata is validated before it appears in the protected
+approval summary. The companion release-provenance change is the bounded
+product-change exception in the M12 proposal, design, and tasks.
+
+The first public CI run on `2c7d59e` failed because the Context fingerprint
+included checkout line endings: Windows generated CRLF while GitHub Actions
+checked out LF. Commit `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d` normalizes line
+endings before hashing and adds a regression test. `python scripts/check.py`
+passed 151 tests, and hosted `ci / required` passed for that exact revision in
+run `36365911407`. That portability correction still needs independent review.
+The live repository query found no rulesets, `main` branch protection returned
+404, and the `release-provenance-attestation` environment returned 404. Thus
+the required check is not enforced, and protected-environment reviewer settings
+are absent. The source history is published at
+`https://github.com/gustavo-meilus/harness-rig`.
 
 1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one genuinely Stable host, trusted repository enforcement, safe migration/release provenance, successful M11 history qualification, and final complexity retirement.
 

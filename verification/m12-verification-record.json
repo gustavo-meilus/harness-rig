@@ -2,8 +2,8 @@
   "schema": "harness-rig/m12-verification-record/v1",
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
-  "evaluated_revision": "9936768a1ad23f99249e69744535ee5b6dada15",
-  "working_tree": "HEAD 9936768a1ad23f99249ee69744535ee5b6dada15 remains the reviewed baseline. The 2026-09-27 source review passed for the reviewed tree before evidence-only updates. User requested and created public repository gustavo-meilus/harness-rig; origin is configured, but git ls-remote returned no refs and no source has been pushed. The authenticated user-provided gh status is valid. Before publishing history, resolve that existing commits contain a personal author address.",
+  "evaluated_revision": "0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d",
+  "working_tree": "HEAD 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. An earlier run on 2c7d59e failed because the canonical Context fingerprint differed between Windows CRLF and Linux LF checkouts; commit 0b1ebfc normalizes text line endings and adds a regression test. The latest portability correction is not yet independently reviewed. Live branch enforcement and attestation-environment reviewer settings are absent.",
   "result": "BLOCKED",
   "tasks": {
     "M12-T01": {
@@ -11,7 +11,7 @@
       "evidence": [
         "python scripts/check.py"
       ],
-      "details": "python scripts/check.py passed 150 tests across nine milestone modules. The M3 dirty-submodule fixture now stages a real mode-160000 gitlink without invoking git submodule add, avoiding the Git for Windows sh.exe signal-pipe failure while preserving the state-change assertion. Context audit passed for 44 canonical pages and 44 manifest rows; projection is FRESH; git diff --check passed."
+      "details": "python scripts/check.py passed 151 tests across nine milestone modules. The new M5 regression confirms that canonical fingerprints are identical for LF and CRLF text. Context audit passed for 44 canonical pages and 44 manifest rows; projection is FRESH; git diff --check passed."
     },
     "M12-T02": {
       "result": "PASS",
@@ -78,11 +78,11 @@
       "details": "29 offline tests cover live API mismatches and jobs total_count, candidate/v1/blocked records, artifact and recomputed-digest tampering, record-path mutation during verify and dispatch, artifact metadata type/format validation, Markdown-safe approval summaries, attestation scope, exact JSON dispatch and size limits, and workflow controls. Mocked calls make no network requests; no hosted workflow or attestation was run."
     },
     "M12-T10": {
-      "result": "PASS_WITH_LIMITS",
+      "result": "BLOCKED",
       "evidence": [
         "verification/m12-independent-review.json"
       ],
-      "details": "The 2026-09-27 independent review passed for the reviewed source tree and found the roadmap pending-review status stale. This evidence update records the review and corrects that roadmap status. Earlier FAIL reviews remain preserved. M12 remains BLOCKED on hosted CI, protected-environment reviewer settings, and live repository-policy evidence."
+      "details": "The 2026-09-27 independent source review passed for the prior tree. The cross-platform fingerprint correction in 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d was implemented after that review and still needs independent review of the exact revision. Earlier FAIL results remain preserved."
     },
     "M12-T11": {
       "result": "PASS",
@@ -94,15 +94,15 @@
     }
   },
   "verification": {
-    "M12-V01": "BLOCKED: local verification passed, and the 2026-09-27 independent source review passed for the reviewed working tree. This evidence-only update records that review and corrects the roadmap pending-review status. Hosted ci / required, protected-environment reviewer settings, and live ruleset/required-check-source evidence remain unobserved; gh auth is invalid and the checkout has no remote.",
+    "M12-V01": "BLOCKED: hosted ci / required passed for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d (run 36365911407, attempt 1). The latest portability correction still needs independent review. No repository rulesets or main branch protection were observed, and the release-provenance-attestation environment does not exist.",
     "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
     "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; the only product behavior change is the targeted release-provenance correction. The M3 workaround changes test setup only."
   },
   "external_gates": {
-    "accepted_hosted_ci_required": "BLOCKED: no hosted ci / required result was observed for the final source revision. The public repository exists and origin is configured, but it has no refs because source history has not been pushed. The existing local commit history contains a personal author address; resolve its publication before the first push.",
-    "independent_architecture_review": "PASS_WITH_LIMITS: the 2026-09-27 review found no remaining release-provenance implementation defect in the reviewed areas. Earlier FAIL results remain recorded as history. M12 qualification remains blocked on hosted CI and repository-enforcement evidence.",
-    "repository_ruleset_and_required_check_source": "BLOCKED: live GitHub enforcement settings and required-check source have not been observed; a successful workflow run alone does not establish enforcement.",
-    "protected_attestation_environment": "BLOCKED: required-reviewer configuration for release-provenance-attestation has not been observed live."
+    "accepted_hosted_ci_required": "PASS: .github/workflows/ci-required.yml run 36365911407, attempt 1, push to main, exact SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d; completed success. All five jobs, including ci / required, completed successfully. The prior run 36365317232 on 2c7d59e failed because Windows-generated canonical fingerprints did not match Linux LF checkout line endings; the correction is in 0b1ebfc.",
+    "independent_architecture_review": "BLOCKED: the 2026-09-27 review passed on the prior tree, but the cross-platform canonical-fingerprint correction in 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d was made afterward and awaits independent review of that exact revision. Earlier FAIL results remain preserved.",
+    "repository_ruleset_and_required_check_source": "BLOCKED: live query returned no repository rulesets; GET /branches/main/protection returned 404 Branch not protected. ci / required is not enforced by an observed branch rule.",
+    "protected_attestation_environment": "BLOCKED: GET /environments/release-provenance-attestation returned 404; the environment and required-reviewer configuration do not exist."
   },
   "source_pins": {
     "legacy/aiboarding": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
@@ -112,20 +112,49 @@
   "limitations": [
     "Claude Code qualification remains out of scope per user direction.",
     "Focused release tests use mocked GitHub API and attestation command responses; they make no network requests and do not prove hosted acceptance or repository enforcement.",
-    "No push, attestation workflow dispatch, or hosted GitHub Actions run was performed.",
     "The environment approver authorizes manifest artifact hashes; the attestation does not prove the signing workflow built those artifacts.",
     "GitHub artifact attestation availability depends on repository visibility and plan; live eligibility was not observed.",
-    "The original and follow-up independent review results remain FAIL historically. The 2026-09-27 final-tree source review passed for the reviewed working tree before this evidence-only recording update.",
+    "The original and follow-up independent review results remain FAIL historically. A later review passed on the prior source tree; the portability fix at the evaluated revision still needs independent review.",
     "A prior working-tree review was BLOCKED on two P3 documentation/provenance findings; both were corrected, and a later review found no remaining finding in those areas.",
-    "A prior independent review found no remaining source finding in the reviewed corrections but could not observe hosted evidence. The checkout has no remote; user-provided gh auth status now reports valid authentication, while explicit OWNER/REPO remains outstanding.",
+    "The independent reviews are read-only source reviews; none establishes hosted behavior or repository enforcement unless separately observed.",
     "A fresh-context independent review found a P3 M12 OpenSpec scope/traceability mismatch. The M12 proposal, design, and tasks were updated to bound the companion release-provenance change; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
     "An independent review found a P2 risk from unvalidated artifact metadata rendered in the protected approval summary. Strict metadata validation and Markdown-safe summary rendering were added; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
-    "The new public repository is empty. Existing local history contains a personal author address; no source or history has been pushed while publication handling is unresolved."
+    "The initial hosted ci / required run on 2c7d59e failed due to a Windows/Linux line-ending mismatch in the canonical Context fingerprint. The fix was pushed as 0b1ebfc and its exact-SHA hosted run passed; independent review of that fix remains pending."
   ],
   "next_actions": [
-    "Decide whether to publish the existing commit history with its author metadata or authorize a privacy-preserving history migration; then publish the approved source to main.",
-    "After source publication, observe and record hosted ci / required for the exact source revision.",
-    "Observe and record required-reviewer settings for the release-provenance-attestation environment.",
-    "Observe the live ruleset and confirm ci / required is required from GitHub Actions."
+    "Obtain independent review of exact commit 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d, including the LF/CRLF fingerprint fix.",
+    "Configure and observe required reviewer settings for the release-provenance-attestation environment.",
+    "Configure a main-branch ruleset requiring ci / required, then observe its live source and enforcement."
+  ],
+  "hosted_ci_observations": [
+    {
+      "revision": "2c7d59e4e1dab5e3b20ef4529a210740f1c9f0be",
+      "run_id": 36365317232,
+      "attempt": 1,
+      "workflow": ".github/workflows/ci-required.yml",
+      "event": "push",
+      "branch": "main",
+      "status": "COMPLETED_FAILURE",
+      "required_job": "ci / required",
+      "summary": "ordinary and kb-integrity results failed because AGENTS projection fingerprint was stale on Linux after Windows CRLF hashing.",
+      "url": "https://github.com/gustavo-meilus/harness-rig/actions/runs/36365317232"
+    },
+    {
+      "revision": "0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d",
+      "run_id": 36365911407,
+      "attempt": 1,
+      "workflow": ".github/workflows/ci-required.yml",
+      "event": "push",
+      "branch": "main",
+      "status": "COMPLETED_SUCCESS",
+      "jobs": [
+        "ci / resolve",
+        "ci / governance",
+        "ci / kb-integrity",
+        "ci / ordinary",
+        "ci / required"
+      ],
+      "url": "https://github.com/gustavo-meilus/harness-rig/actions/runs/36365911407"
+    }
   ]
 }
