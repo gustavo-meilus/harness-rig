@@ -155,6 +155,27 @@ class HarnessRigM5ContextTests(unittest.TestCase):
             after = context_kb.canonical_fingerprint(root)
             self.assertEqual(before, after)
 
+    def test_canonical_fingerprint_is_independent_of_text_line_endings(self):
+        with tempfile.TemporaryDirectory(prefix="hr-m5-line-endings-") as td:
+            root = Path(td)
+            page = write_page(root, "a.md", "topic-a")
+            llms = root / "llms.txt"
+            llms.write_text("# Index\n- [A](references/a.md)\n", encoding="utf-8")
+            original = {
+                path: path.read_bytes().replace(b"\r\n", b"\n")
+                for path in (page, llms)
+            }
+
+            for path, body in original.items():
+                path.write_bytes(body)
+            lf_fingerprint = context_kb.canonical_fingerprint(root)
+
+            for path, body in original.items():
+                path.write_bytes(body.replace(b"\n", b"\r\n"))
+            crlf_fingerprint = context_kb.canonical_fingerprint(root)
+
+            self.assertEqual(lf_fingerprint, crlf_fingerprint)
+
     # M5-T05 / M5-V05
     def test_manifest_generation_is_deterministic_by_stable_id(self):
         with tempfile.TemporaryDirectory(prefix="hr-m5-manifest-") as td:

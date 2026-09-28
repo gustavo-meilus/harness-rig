@@ -134,7 +134,7 @@ def canonical_fingerprint(root: Path) -> str:
     h = hashlib.sha256()
     for path in sorted((root / "references").glob("*.md")):
         rel = path.relative_to(root).as_posix().encode("utf-8")
-        body = path.read_bytes()
+        body = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
         h.update(len(rel).to_bytes(4, "big"))
         h.update(rel)
         h.update(len(body).to_bytes(8, "big"))
@@ -142,7 +142,7 @@ def canonical_fingerprint(root: Path) -> str:
     llms = root / "llms.txt"
     if llms.exists():
         rel = b"llms.txt"
-        body = llms.read_bytes()
+        body = llms.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
         h.update(len(rel).to_bytes(4, "big"))
         h.update(rel)
         h.update(len(body).to_bytes(8, "big"))
