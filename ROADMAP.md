@@ -2,8 +2,7 @@
 
 **Current revision:** r8.12 checkpoint `978c361def2d2805951fd044aa82dedc73160bc4`
 **Completed:** M0-M11 PASS; M12 qualification remains BLOCKED.
-**Next:** Configure and observe required-check enforcement and protected
-attestation reviewers.
+**Next:** Configure and observe required reviewers for the attestation environment.
 V04 passed; Claude is out of scope for now.
 **Final planned qualification:** M12 / 1.0
 
@@ -255,7 +254,8 @@ Verification:
 - [!] M12-V01 hosted `ci / required` passed on exact source revision
   `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`, and independent source review
   passed on final published revision `11e43e1477c366ca570a1c4cbd2f75f9e668f429`;
-  live repository-enforcement evidence remains blocked;
+  the active main ruleset now requires the GitHub Actions check; protected
+  attestation-environment reviewer evidence remains blocked;
 - [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
 - [x] M12-V03 all eight retained proposal dispositions remain valid; no deferred feature mechanism was added.
 
@@ -275,11 +275,12 @@ endings before hashing and adds a regression test. `python scripts/check.py`
 passed 151 tests, and hosted `ci / required` passed for that exact revision in
 run `36365911407`. A fresh independent review of published revision
 `11e43e1477c366ca570a1c4cbd2f75f9e668f429` found no source findings; it did not
-independently query GitHub for CI or repository settings.
-The live repository query found no rulesets, `main` branch protection returned
-404, and the `release-provenance-attestation` environment returned 404. Thus
-the required check is not enforced, and protected-environment reviewer settings
-are absent. The source history is published at
+independently query GitHub for CI or repository settings. An active repository
+ruleset now applies to `main` and requires `ci / required` from GitHub Actions
+integration `15368`, with no bypass actors. The classic branch-protection
+endpoint returns 404 because enforcement is via the ruleset. The
+`release-provenance-attestation` environment does not exist yet, so required-
+reviewer settings remain open. The source history is published at
 `https://github.com/gustavo-meilus/harness-rig`.
 
 1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one genuinely Stable host, trusted repository enforcement, safe migration/release provenance, successful M11 history qualification, and final complexity retirement.
