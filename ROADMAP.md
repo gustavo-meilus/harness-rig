@@ -2,7 +2,8 @@
 
 **Current revision:** r8.12 checkpoint `978c361def2d2805951fd044aa82dedc73160bc4`
 **Completed:** M0-M11 PASS; M12 qualification remains BLOCKED.
-**Next:** Obtain final-revision hosted CI and the authorized independent review.
+**Next:** Configure and observe required-check enforcement and protected
+attestation reviewers.
 V04 passed; Claude is out of scope for now.
 **Final planned qualification:** M12 / 1.0
 
@@ -245,15 +246,16 @@ Execution:
 - [x] M12-T09 29 mocked hosted-API and attestation tests, including recomputed-
   digest tampering, dispatch limits, metadata validation, summary escaping, and
   workflow permission/environment controls;
-- [!] M12-T10 prior source review passed, but the later cross-platform
-  fingerprint correction still needs independent review; earlier FAIL results
-  remain preserved in the review record;
+- [x] M12-T10 fresh independent source review of published revision
+  `11e43e1477c366ca570a1c4cbd2f75f9e668f429` passed with no source findings;
+  earlier FAIL results remain preserved in the review record;
 - [x] M12-T11 final feature-retirement review recorded.
 
 Verification:
 - [!] M12-V01 hosted `ci / required` passed on exact source revision
-  `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`; independent review and live
-  repository-enforcement evidence remain blocked;
+  `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`, and independent source review
+  passed on final published revision `11e43e1477c366ca570a1c4cbd2f75f9e668f429`;
+  live repository-enforcement evidence remains blocked;
 - [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
 - [x] M12-V03 all eight retained proposal dispositions remain valid; no deferred feature mechanism was added.
 
@@ -271,7 +273,9 @@ included checkout line endings: Windows generated CRLF while GitHub Actions
 checked out LF. Commit `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d` normalizes line
 endings before hashing and adds a regression test. `python scripts/check.py`
 passed 151 tests, and hosted `ci / required` passed for that exact revision in
-run `36365911407`. That portability correction still needs independent review.
+run `36365911407`. A fresh independent review of published revision
+`11e43e1477c366ca570a1c4cbd2f75f9e668f429` found no source findings; it did not
+independently query GitHub for CI or repository settings.
 The live repository query found no rulesets, `main` branch protection returned
 404, and the `release-provenance-attestation` environment returned 404. Thus
 the required check is not enforced, and protected-environment reviewer settings

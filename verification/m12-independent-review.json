@@ -306,5 +306,40 @@
       "Mocked tests establish local behavior only and do not prove hosted acceptance or repository enforcement.",
       "No workflow dispatch, hosted run, attestation, or live repository-settings query was performed."
     ]
+  },
+  "published_revision_review": {
+    "reviewed_revision": "11e43e1477c366ca570a1c4cbd2f75f9e668f429",
+    "branch": "main",
+    "review_target": "committed tree; reviewer reported clean worktree before and after review",
+    "review_date": "2026-09-27",
+    "review_context": "Fresh-context independent review output supplied by the user.",
+    "source_verdict": "PASS",
+    "qualification_status": "BLOCKED",
+    "source_findings": [],
+    "confirmed_areas": [
+      "Canonical Context fingerprints normalize CRLF and lone CR to LF; the regression compares LF and CRLF fingerprints, and projection behavior uses the same fingerprint.",
+      "The M12 record distinguishes evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d from later evidence-only commits aab9229 and 11e43e1.",
+      "M12 bounds release-provenance-fail-closed as its product-change exception; release verification and dispatch bind to one captured record-byte snapshot.",
+      "The release attestation workflow checks the retained candidate hash, and required CI validates mandatory same-subject results.",
+      "All three committed legacy gitlink pins match the recorded M11 and M12 pin values."
+    ],
+    "checks_reported_by_reviewer": [
+      "python scripts/check.py passed 151 tests across nine milestone modules; Context audit and projection passed.",
+      "python verification/context_kb.py audit . passed for 44 canonical pages and 44 manifest rows; projection was fresh.",
+      "python verification/context_kb.py projection-status . reported FRESH.",
+      "Strict OpenSpec validation passed for m12-1-0-qualification-final-simplification and release-provenance-fail-closed.",
+      "git diff --check passed.",
+      "Committed gitlink object IDs matched verification/m11-source-pin-verification.json; git submodule status --recursive could not start due to Git for Windows signal-pipe error (Win32 error 5)."
+    ],
+    "external_gates": {
+      "hosted_ci_required": "The committed verification record reports PASS for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d; this reviewer did not independently query GitHub.",
+      "repository_ruleset_and_required_check_source": "NOT_OBSERVED by this review; existing live query evidence reports no rulesets and no main branch protection.",
+      "protected_attestation_environment_reviewers": "NOT_OBSERVED by this review; existing live query evidence reports that the environment is absent.",
+      "attestation_workflow": "NOT_DISPATCHED"
+    },
+    "limitations": [
+      "Source review does not establish hosted CI or live repository enforcement.",
+      "git submodule status --recursive was unavailable, but committed gitlink IDs were compared directly with the recorded pins."
+    ]
   }
 }
