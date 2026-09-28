@@ -277,8 +277,10 @@ run `36365911407`. A fresh independent review of published revision
 `11e43e1477c366ca570a1c4cbd2f75f9e668f429` found no source findings; it did not
 independently query GitHub for CI or repository settings. An active repository
 ruleset now applies to `main` and requires `ci / required` from GitHub Actions
-integration `15368`, with no bypass actors. The classic branch-protection
-endpoint returns 404 because enforcement is via the ruleset. The
+integration `15368`, with no bypass actors. PR 1 passed that required check and
+merged; the merge commit's main workflow run also passed. The classic
+branch-protection endpoint returns 404 because enforcement is via the
+ruleset. The
 `release-provenance-attestation` environment does not exist yet, so required-
 reviewer settings remain open. The source history is published at
 `https://github.com/gustavo-meilus/harness-rig`.
