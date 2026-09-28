@@ -8,10 +8,9 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 
-from .acceptance import AcceptanceVerdict, evaluate_acceptance
+from .acceptance import evaluate_acceptance
 from .assurance import AssurancePlan, AssuranceRequirement
 from .authority import AUTHORITY_REF_SCHEMA, AuthorityRef
-from .authorization import AuthorizationGrant
 from .canonical import digest, sha256_bytes
 from .evidence import ArtifactRef, EvidenceReceipt
 from .spec_engine import SPEC_ENGINE_SCHEMA, SpecArchiveMutation, SpecEngineHealth
@@ -54,12 +53,18 @@ class GuardedArchiveResult:
     authority_before: AuthorityRef | None
     state_before: StateIdentity
     pre_receipt: EvidenceReceipt | None
-    pre_verdict: AcceptanceVerdict | None
+    pre_check: EvidenceCheck | None
     mutation: SpecArchiveMutation | None
     authority_after: AuthorityRef | None
     state_after: StateIdentity
     transition_receipt: EvidenceReceipt | None
-    post_recheck_verdict: AcceptanceVerdict | None
+    post_recheck: EvidenceCheck | None
+
+
+@dataclass(frozen=True)
+class EvidenceCheck:
+    outcome: str
+    reasons: tuple[str, ...]
 
 
 @dataclass
@@ -700,15 +705,17 @@ def guarded_archive(
     repository_id: str,
     change: str,
     subject_ref: str,
-    principal: str,
-    resource: str,
-    grant: AuthorizationGrant | None,
     run_id: str,
     now: str,
-    trusted_issuers: set[str],
+    confirmed: bool = False,
     semantic_review: str = "NOT_REQUIRED",
 ) -> GuardedArchiveResult:
     state_before = capture_state(adapter.repo, repository_id)
+    if not confirmed:
+        return GuardedArchiveResult(
+            "BLOCKED", ("local-archive-confirmation-required",), None, state_before,
+            None, None, None, None, state_before, None, None,
+        )
     try:
         snapshot = adapter.authority_snapshot(change, subject_ref=subject_ref)
     except OpenSpecBlocked as exc:
@@ -737,7 +744,7 @@ def guarded_archive(
         gate_id="openspec/readiness",
         gate_contract_version=OPEN_SPEC_GATE_CONTRACT,
         decision_for="spec_archive",
-        require_authorization=True,
+        require_authorization=False,
     )
     plan = AssurancePlan.single(subject_ref=subject_ref, requirement=requirement)
     pre_verdict = evaluate_acceptance(
@@ -746,20 +753,21 @@ def guarded_archive(
         current_state=state_before,
         plan=plan,
         receipt=pre_receipt,
-        grant=grant,
-        principal=principal,
+        grant=None,
+        principal="local-operator",
         run_id=run_id,
         now=now,
-        trusted_issuers=trusted_issuers,
-        resource=resource,
+        trusted_issuers=set(),
+        resource=f"openspec:{change}",
         policy_ref="openspec-archive/experimental-v1",
     )
-    if pre_verdict.outcome != "ACCEPTED":
+    pre_check = EvidenceCheck("PASS" if pre_verdict.outcome == "ACCEPTED" else "BLOCKED", pre_verdict.reasons)
+    if pre_check.outcome != "PASS":
         state_after = capture_state(adapter.repo, repository_id)
         combined_reasons = tuple(dict.fromkeys((*semantic_reasons, *pre_verdict.reasons)))
         return GuardedArchiveResult(
             "BLOCKED", combined_reasons, snapshot.authority, state_before,
-            pre_receipt, pre_verdict, None, None, state_after, None, None,
+            pre_receipt, pre_check, None, None, state_after, None, None,
         )
 
     mutation = adapter.archive(change)
@@ -775,7 +783,7 @@ def guarded_archive(
         )
         return GuardedArchiveResult(
             "BLOCKED", mutation.reasons, snapshot.authority, state_before,
-            pre_receipt, pre_verdict, mutation, None, state_after, transition, None,
+            pre_receipt, pre_check, mutation, None, state_after, transition, None,
         )
 
     try:
@@ -798,7 +806,7 @@ def guarded_archive(
         )
         return GuardedArchiveResult(
             "BLOCKED", exc.reasons, snapshot.authority, state_before,
-            pre_receipt, pre_verdict, mutation, None, state_after, transition, None,
+            pre_receipt, pre_check, mutation, None, state_after, transition, None,
         )
 
     transition = _transition_receipt(
@@ -816,22 +824,23 @@ def guarded_archive(
         current_state=state_after,
         plan=plan,
         receipt=pre_receipt,
-        grant=grant,
-        principal=principal,
+        grant=None,
+        principal="local-operator",
         run_id=run_id,
         now=now,
-        trusted_issuers=trusted_issuers,
-        resource=resource,
+        trusted_issuers=set(),
+        resource=f"openspec:{change}",
         policy_ref="openspec-archive/post-transition-recheck/experimental-v1",
     )
-    if post_recheck.outcome == "ACCEPTED":
+    post_check = EvidenceCheck("PASS" if post_recheck.outcome == "ACCEPTED" else "BLOCKED", post_recheck.reasons)
+    if post_check.outcome == "PASS":
         return GuardedArchiveResult(
             "BLOCKED", ("post-archive-stale-preconditions-accepted",), snapshot.authority,
-            state_before, pre_receipt, pre_verdict, mutation, authority_after,
-            state_after, transition, post_recheck,
+            state_before, pre_receipt, pre_check, mutation, authority_after,
+            state_after, transition, post_check,
         )
 
     return GuardedArchiveResult(
-        "PASS", (), snapshot.authority, state_before, pre_receipt, pre_verdict,
-        mutation, authority_after, state_after, transition, post_recheck,
+        "PASS", (), snapshot.authority, state_before, pre_receipt, pre_check,
+        mutation, authority_after, state_after, transition, post_check,
     )

@@ -3,8 +3,8 @@ id: harness-rig-roadmap
 title: Harness Rig implementation roadmap
 summary: Ordered release roadmap from governance and exact-state evidence through monorepo migration, host conformance, Playwright
   integration, productization, and 1.0.
-version: planning-baseline-2026-09-27-r8.12-m12-blocked
-updated: '2026-09-27'
+version: review-remediation-2026-09-28-r8.12-m12-rework
+updated: '2026-09-28'
 provenance:
 - Consolidated Harness Rig planning analysis through 2026-09-21
 - Current AIBoarding, TacticSwitch, and Adaptive Engineering Harness implementation findings
@@ -39,6 +39,7 @@ provenance:
 - Harness Rig M9 gate-platform, Playwright, architecture, and mutation verification, 2026-09-25
 - Harness Rig M10 product CLI, migration, process cleanup, and release-provenance implementation and verification, 2026-09-25
 - User direction: post-r8.10 Git environment transformation targets Codex Desktop/CLI first and Claude Code second, 2026-09-25
+- Harness Rig final review and local-contract OpenSpec remediation, 2026-09-28
 ---
 # Progressive remediation overlay
 
@@ -50,15 +51,15 @@ M3 / r8.3 PASS — thin complete Experimental direct vertical slice
 M4 / r8.4 PASS — partial Stable core promotion and module-boundary convergence
 M5 / r8.5 PASS — canonical Context knowledge/lifecycle ownership convergence
 M6 / r8.6 PASS — OpenSpec first-class external SpecEngine and guarded archive
-M7 / r8.7 PASS — same-subject trusted repository enforcement
+M7 / r8.7 PASS — historical repository CI prototype
 M8 / r8.8 PASS — narrow local-process host capability and topology qualification
 M9 / r8.9 PASS — minimum gate platform, strict Playwright evidence, architecture fitness, mutation sensitivity
 M10 / r8.10 PASS — compact product CLI, machine contract, migration/rollback, cleanup, release provenance
 M11 / r8.11 PASS — source-history qualification, field hardening, and
 Codex Desktop/CLI pilots
-M12 / r8.12 BLOCKED — local suites and host evidence pass; final-revision
-hosted CI verdict and authorized independent architecture review remain open.
-next: resolve M12 blockers, then rerun canonical verification on the final commit
+M12 / r8.12 REWORK — local authorization and CI claims narrowed by the
+active OpenSpec change; final-source hosted and release evidence remain open.
+next: finish review-remediation-local-contract, then qualify the final commit
 ```
 
 Full Git-history preservation is deferred to **M11**, before M12 / 1.0 qualification.
@@ -175,8 +176,11 @@ This qualification must PASS before 1.0.
 
 # 1.0
 
-Require stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one stable host, trusted CI,
-migration/release provenance, successful M11 source-history qualification, and complexity retirement governance.
+Require stable canonical Context knowledge, exact evidence, OpenSpec
+integration, at least one stable host, observed project CI and ruleset state,
+migration/release provenance, successful M11 source-history qualification,
+and complexity retirement governance. Local commands do not claim authenticated
+authorization, and candidate-controlled CI is not an independent oracle.
 
 # First 15 PRs
 

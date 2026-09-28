@@ -8,12 +8,13 @@ from pathlib import Path
 from typing import Any
 
 from .authority import DirectAuthority
-from .authorization import AuthorizationGrant
+from .gate import CommandGate, GateRequest
 from .host import LocalProcessHost, qualification_to_json
 from .migration import MigrationError, apply_migration, assess_migration, rollback_migration
-from .openspec import OpenSpecAdapter, OpenSpecBlocked, guarded_archive
+from .openspec import OpenSpecAdapter, guarded_archive
 from .product import (
     CONFIG_SCHEMA,
+    PRODUCT_REVISION,
     EXIT_BLOCKED,
     EXIT_CANCELLED,
     EXIT_INVALID,
@@ -23,7 +24,6 @@ from .product import (
     project_config_path,
 )
 from .state import capture_state
-from .vertical import VerticalSliceRequest, run_vertical_slice
 
 
 def _print_envelope(env) -> int:
@@ -43,34 +43,28 @@ def _config_for(repo: Path, ns: argparse.Namespace):
 def _direct_result(ns: argparse.Namespace, command: list[str]):
     repo = Path(ns.repo).resolve()
     authority = DirectAuthority.from_file(repo, ns.authority, ns.subject)
-    state = capture_state(repo)
-    grant = AuthorizationGrant.issue(
-        issuer="local-authority",
-        principal=ns.principal,
-        action=ns.decision_for,
-        resource=ns.resource,
-        authority_id=authority.authority_id,
-        state_id=state.state_id,
-        subject_ref=ns.subject,
-        issued_at=ns.issued_at,
-        expires_at=ns.expires_at,
-    )
-    return run_vertical_slice(VerticalSliceRequest(
+    receipt = CommandGate.run(GateRequest(
         repo=repo,
         repository_id="local-repository",
-        authority_path=ns.authority,
+        authority=authority,
         subject_ref=ns.subject,
         claim_id=ns.claim,
         argv=tuple(command) if command else None,
         run_id=ns.run_id,
         producer_id="local-cli",
-        principal=ns.principal,
-        decision_for=ns.decision_for,
-        resource=ns.resource,
-        now=ns.now,
-        grant=grant,
         timeout_seconds=getattr(ns, "timeout_seconds", None) or 30.0,
     ))
+    current = capture_state(repo)
+    current_authority = DirectAuthority.from_file(repo, ns.authority, ns.subject)
+    reasons = []
+    if receipt.outcome != "PASS":
+        reasons.append(f"gate:{receipt.outcome}")
+    if receipt.certified_state_id != current.state_id:
+        reasons.append("state-stale-or-not-certified")
+    if receipt.authority_id != current_authority.authority_id:
+        reasons.append("authority-stale")
+    return {"scope": "local-evidence", "receipt": asdict(receipt),
+            "outcome": "PASS" if not reasons else "BLOCKED", "reasons": reasons}
 
 
 def _add_verify_args(ap: argparse.ArgumentParser, *, require_repo: bool = True) -> None:
@@ -79,12 +73,6 @@ def _add_verify_args(ap: argparse.ArgumentParser, *, require_repo: bool = True) 
     ap.add_argument("--subject", default="repository")
     ap.add_argument("--claim", default="project.command")
     ap.add_argument("--run-id", required=True)
-    ap.add_argument("--principal", default="local-controller")
-    ap.add_argument("--decision-for", default="merge")
-    ap.add_argument("--resource", default="repository")
-    ap.add_argument("--now", required=True)
-    ap.add_argument("--issued-at", required=True)
-    ap.add_argument("--expires-at")
     ap.add_argument("--timeout-seconds", type=float)
     ap.add_argument("command", nargs=argparse.REMAINDER)
 
@@ -98,8 +86,8 @@ def _direct_main(argv: list[str]) -> int:
     if command and command[0] == "--":
         command = command[1:]
     result = _direct_result(ns, command)
-    print(json.dumps({"receipt": asdict(result.receipt), "verdict": asdict(result.verdict)}, indent=2))
-    return 0 if result.verdict.outcome == "ACCEPTED" else 2
+    print(json.dumps(result, indent=2))
+    return 0 if result["outcome"] == "PASS" else 2
 
 
 def _verify_main(argv: list[str]) -> int:
@@ -121,10 +109,8 @@ def _verify_main(argv: list[str]) -> int:
         result = _direct_result(ns, command)
     except KeyboardInterrupt:
         return _print_envelope(envelope("verify", "CANCELLED", reasons=("cancelled",)))
-    data = {"receipt": asdict(result.receipt), "verdict": asdict(result.verdict)}
-    outcome = "PASS" if result.verdict.outcome == "ACCEPTED" else "BLOCKED"
-    reasons = () if outcome == "PASS" else (f"acceptance:{result.verdict.outcome}", f"gate:{result.receipt.outcome}")
-    return _print_envelope(envelope("verify", outcome, data=data, reasons=reasons))
+    return _print_envelope(envelope("verify", result["outcome"], data=result,
+                                    reasons=tuple(result["reasons"])))
 
 
 def _spec_archive_main(argv: list[str], *, enveloped: bool = False) -> int:
@@ -134,11 +120,8 @@ def _spec_archive_main(argv: list[str], *, enveloped: bool = False) -> int:
     ap.add_argument("--subject", default="repository")
     ap.add_argument("--repository-id", default="local-repository")
     ap.add_argument("--run-id", required=True)
-    ap.add_argument("--principal", default="local-controller")
-    ap.add_argument("--resource")
+    ap.add_argument("--confirm-local-archive", action="store_true")
     ap.add_argument("--now", required=True)
-    ap.add_argument("--issued-at", required=True)
-    ap.add_argument("--expires-at")
     ap.add_argument("--openspec-executable")
     ap.add_argument("--timeout-seconds", type=float)
     ns = ap.parse_args(argv)
@@ -151,41 +134,17 @@ def _spec_archive_main(argv: list[str], *, enveloped: bool = False) -> int:
             return _print_envelope(envelope("spec archive", "BLOCKED", reasons=(str(exc),)))
         print(json.dumps({"outcome": "BLOCKED", "reasons": [str(exc)], "mutation": None}, indent=2))
         return EXIT_BLOCKED
-    resource = ns.resource or f"openspec:{ns.change}"
     adapter = OpenSpecAdapter(repo, executable=config.openspec_executable)
     adapter.timeout_seconds = ns.timeout_seconds or config.timeout_seconds
 
-    try:
-        authority = adapter.authority_ref(ns.change, subject_ref=ns.subject)
-        state = capture_state(repo, ns.repository_id)
-    except OpenSpecBlocked as exc:
-        if enveloped:
-            return _print_envelope(envelope("spec archive", "BLOCKED", reasons=tuple(exc.reasons)))
-        print(json.dumps({"outcome": "BLOCKED", "reasons": list(exc.reasons), "mutation": None}, indent=2))
-        return EXIT_BLOCKED
-
-    grant = AuthorizationGrant.issue(
-        issuer="local-authority",
-        principal=ns.principal,
-        action="spec_archive",
-        resource=resource,
-        authority_id=authority.authority_id,
-        state_id=state.state_id,
-        subject_ref=ns.subject,
-        issued_at=ns.issued_at,
-        expires_at=ns.expires_at,
-    )
     result = guarded_archive(
         adapter,
         repository_id=ns.repository_id,
         change=ns.change,
         subject_ref=ns.subject,
-        principal=ns.principal,
-        resource=resource,
-        grant=grant,
         run_id=ns.run_id,
         now=ns.now,
-        trusted_issuers={"local-authority"},
+        confirmed=ns.confirm_local_archive,
     )
     data = asdict(result)
     if enveloped:
@@ -281,7 +240,7 @@ def _status_main(argv: list[str]) -> int:
     except (ProductError, MigrationError) as exc:
         return _print_envelope(envelope("status", "BLOCKED", reasons=(str(exc),)))
     data: dict[str, Any] = {
-        "revision": "r8.10",
+        "revision": PRODUCT_REVISION,
         "config": asdict(config),
         "migration": asdict(assessment),
     }

@@ -15,6 +15,12 @@ provenance:
 
 M7 completed with **PASS** at revision `r8.7` for the repository-local enforcement contract.
 
+This page records the historical M7 design. The r8.12 final review found
+that candidate-controlled policy, resolver, workflow, and tests cannot form
+an independent acceptance oracle. The active workflow now runs ordinary
+tests and Context audit unconditionally and checks native job results in
+`ci / required`. The resolver and path policy described below were removed.
+
 The milestone adds one deterministic obligation artifact and one final repository verdict. It does not add a general CI framework, remote attestation service, or second acceptance system.
 
 ```text

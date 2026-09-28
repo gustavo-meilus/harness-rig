@@ -11,7 +11,6 @@
         ".playwright_gate",
         ".product",
         ".release",
-        ".repository_ci",
         ".spec_engine",
         "harness_rig.architecture_gate",
         "harness_rig.host",
@@ -21,7 +20,6 @@
         "harness_rig.playwright_gate",
         "harness_rig.product",
         "harness_rig.release",
-        "harness_rig.repository_ci",
         "harness_rig.spec_engine"
       ],
       "rule_id": "core-must-not-depend-on-adapters-or-development-gates",

@@ -12,11 +12,9 @@ from pathlib import Path
 from unittest import mock
 
 from harness_rig.authority import DirectAuthorityProvider
-from harness_rig.authorization import AuthorizationGrant
 from harness_rig.cli import main as cli_main
 import harness_rig.openspec as openspec_module
 from harness_rig.openspec import OpenSpecAdapter, OpenSpecBlocked, guarded_archive
-from harness_rig.state import capture_state
 
 
 CHANGE = "add-api-limit"
@@ -436,21 +434,6 @@ class OpenSpecFixture:
     def adapter(self) -> OpenSpecAdapter:
         return FixtureAdapter(self)
 
-    def grant(self, adapter: OpenSpecAdapter, *, run_id: str = "m6-archive") -> AuthorizationGrant:
-        authority = adapter.authority_ref(CHANGE, subject_ref="repository")
-        state = capture_state(self.root, "fixture-repo")
-        return AuthorizationGrant.issue(
-            issuer="local-authority",
-            principal="local-controller",
-            action="spec_archive",
-            resource=f"openspec:{CHANGE}",
-            authority_id=authority.authority_id,
-            state_id=state.state_id,
-            subject_ref="repository",
-            issued_at="2026-09-25T11:00:00Z",
-            expires_at="2026-09-25T13:00:00Z",
-        )
-
     def close(self) -> None:
         self.tmp.cleanup()
 
@@ -610,28 +593,24 @@ class HarnessRigM6OpenSpecTests(unittest.TestCase):
     # M6-T06 / M6-V05 / M6-V06
     def test_guarded_archive_success_records_transition_and_rechecks_final_authority_state(self):
         adapter = self.fx.adapter()
-        grant = self.fx.grant(adapter)
         result = guarded_archive(
             adapter,
             repository_id="fixture-repo",
             change=CHANGE,
             subject_ref="repository",
-            principal="local-controller",
-            resource=f"openspec:{CHANGE}",
-            grant=grant,
             run_id="m6-archive",
             now=NOW,
-            trusted_issuers={"local-authority"},
+            confirmed=True,
         )
         self.assertEqual(result.outcome, "PASS")
-        self.assertEqual(result.pre_verdict.outcome, "ACCEPTED")
+        self.assertEqual(result.pre_check.outcome, "PASS")
         self.assertEqual(result.mutation.outcome, "PASS")
         self.assertEqual(result.transition_receipt.outcome, "PASS")
         self.assertNotEqual(result.state_before.state_id, result.state_after.state_id)
         self.assertNotEqual(result.authority_before.authority_id, result.authority_after.authority_id)
-        self.assertEqual(result.post_recheck_verdict.outcome, "BLOCKED")
-        self.assertIn("authority-stale", result.post_recheck_verdict.reasons)
-        self.assertIn("state-stale-or-not-certified", result.post_recheck_verdict.reasons)
+        self.assertEqual(result.post_recheck.outcome, "BLOCKED")
+        self.assertIn("authority-stale", result.post_recheck.reasons)
+        self.assertIn("state-stale-or-not-certified", result.post_recheck.reasons)
 
     def test_archive_partial_mutation_and_postcondition_mismatch_block(self):
         for mode, expected in [("partial-fail", "archive-command-failed"), ("mismatch", "archive-path-postcondition-failed")]:
@@ -642,18 +621,14 @@ class HarnessRigM6OpenSpecTests(unittest.TestCase):
                 self.fx.state["archive_mode"] = mode
                 self.fx.save()
                 adapter = self.fx.adapter()
-                grant = self.fx.grant(adapter, run_id=f"m6-{mode}")
                 result = guarded_archive(
                     adapter,
                     repository_id="fixture-repo",
                     change=CHANGE,
                     subject_ref="repository",
-                    principal="local-controller",
-                    resource=f"openspec:{CHANGE}",
-                    grant=grant,
                     run_id=f"m6-{mode}",
                     now=NOW,
-                    trusted_issuers={"local-authority"},
+                    confirmed=True,
                 )
                 self.assertEqual(result.outcome, "BLOCKED")
                 self.assertIn(expected, result.reasons)
@@ -661,18 +636,14 @@ class HarnessRigM6OpenSpecTests(unittest.TestCase):
 
     def test_required_semantic_coherence_failure_blocks_without_mutation(self):
         adapter = self.fx.adapter()
-        grant = self.fx.grant(adapter, run_id="m6-semantic")
         result = guarded_archive(
             adapter,
             repository_id="fixture-repo",
             change=CHANGE,
             subject_ref="repository",
-            principal="local-controller",
-            resource=f"openspec:{CHANGE}",
-            grant=grant,
             run_id="m6-semantic",
             now=NOW,
-            trusted_issuers={"local-authority"},
+            confirmed=True,
             semantic_review="FAIL",
         )
         self.assertEqual(result.outcome, "BLOCKED")
@@ -680,22 +651,19 @@ class HarnessRigM6OpenSpecTests(unittest.TestCase):
         self.assertEqual(result.pre_receipt.outcome, "BLOCKED")
         self.assertTrue(self.fx.state.get("active", True))
 
-    def test_archive_requires_current_bounded_authorization(self):
+    def test_archive_requires_explicit_local_confirmation(self):
         adapter = self.fx.adapter()
         result = guarded_archive(
             adapter,
             repository_id="fixture-repo",
             change=CHANGE,
             subject_ref="repository",
-            principal="local-controller",
-            resource=f"openspec:{CHANGE}",
-            grant=None,
             run_id="m6-no-grant",
             now=NOW,
-            trusted_issuers={"local-authority"},
         )
         self.assertEqual(result.outcome, "BLOCKED")
-        self.assertEqual(result.pre_verdict.outcome, "BLOCKED")
+        self.assertIn("local-archive-confirmation-required", result.reasons)
+        self.assertIsNone(result.pre_check)
         self.assertTrue(self.fx.state.get("active", True))
 
     def test_external_cli_invocation_is_argv_based_and_never_uses_shell(self):
@@ -720,15 +688,14 @@ class HarnessRigM6OpenSpecTests(unittest.TestCase):
                 "--change", CHANGE,
                 "--repository-id", "fixture-repo",
                 "--run-id", "m6-cli",
+                "--confirm-local-archive",
                 "--now", NOW,
-                "--issued-at", "2026-09-25T11:00:00Z",
-                "--expires-at", "2026-09-25T13:00:00Z",
                 "--openspec-executable", str(self.fx.exe),
                 ])
         payload = json.loads(output.getvalue())
         self.assertEqual(code, 0)
         self.assertEqual(payload["outcome"], "PASS")
-        self.assertEqual(payload["post_recheck_verdict"]["outcome"], "BLOCKED")
+        self.assertEqual(payload["post_recheck"]["outcome"], "BLOCKED")
 
 
 if __name__ == "__main__":

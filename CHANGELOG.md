@@ -2,6 +2,26 @@
 
 This file is the append-only progressive change and source-consolidation ledger for Harness Rig.
 
+## r8.12 local-contract remediation — 2026-09-28
+
+The final review found self-issued CLI grants, a candidate-controlled CI
+resolver presented as independent enforcement, inconsistent M12 status, and
+an unpublished, unattested 1.0 release. The active OpenSpec change is
+`review-remediation-local-contract`.
+
+- `verify` and `direct` now return local command-gate evidence without an
+  authorization grant or merge verdict. `spec archive` requires explicit
+  local confirmation and retains readiness, state, transition, and
+  postcondition checks without an authenticated authorization claim.
+- CI now runs ordinary tests and Context audit unconditionally. The final
+  `ci / required` job checks both GitHub job results. The unused obligation
+  resolver and policy were removed. All workflow Actions are pinned to full
+  reviewed commit IDs. Candidate-controlled CI remains project evidence.
+- New release records use v3 `source_revision` and keep exact-byte
+  attestation, hosted-run, and artifact checks. V1/v2 records cannot qualify
+  a new release. The product status reports r8.12; M12 is REWORK until the
+  exact final source and release are qualified.
+
 ## M11 source-history crosswalk — 2026-09-26
 
 The source-native imports retain each complete repository at its audited main

@@ -80,19 +80,33 @@ class HarnessRigM10Tests(unittest.TestCase):
 
         rc, status = self._cli(["status", "--repo", str(self.repo)])
         self.assertEqual(rc, 0)
-        self.assertEqual(status["data"]["revision"], "r8.10")
+        self.assertEqual(status["data"]["revision"], "r8.12")
         self.assertEqual(status["data"]["migration"]["history_qualification"], "PENDING_M11")
 
         rc, verify = self._cli([
             "verify", "--repo", str(self.repo), "--authority", "authority.txt",
-            "--run-id", "m10-verify", "--now", NOW, "--issued-at", "2026-09-25T15:00:00Z",
-            "--expires-at", "2026-09-25T17:00:00Z", "--", sys.executable, "-I", "-S", "-c", "pass",
+            "--run-id", "m10-verify", "--", sys.executable, "-I", "-S", "-c", "pass",
         ])
         self.assertEqual(rc, 0)
         self.assertEqual(verify["schema"], CLI_ENVELOPE_SCHEMA)
         self.assertEqual(verify["outcome"], "PASS")
         self.assertEqual(verify["data"]["receipt"]["outcome"], "PASS")
-        self.assertEqual(verify["data"]["verdict"]["outcome"], "ACCEPTED")
+        self.assertEqual(verify["data"]["scope"], "local-evidence")
+        self.assertNotIn("verdict", verify["data"])
+
+    def test_local_verify_and_direct_fail_without_authorized_verdict(self):
+        args = ["--repo", str(self.repo), "--authority", "authority.txt",
+                "--run-id", "local-fail", "--", sys.executable, "-I", "-S",
+                "-c", "raise SystemExit(1)"]
+        rc, verify = self._cli(["verify", *args])
+        self.assertEqual(rc, 2)
+        self.assertEqual(verify["outcome"], "BLOCKED")
+        self.assertEqual(verify["data"]["receipt"]["outcome"], "FAIL")
+        self.assertNotIn("verdict", verify["data"])
+        rc, direct = self._cli(args)
+        self.assertEqual(rc, 2)
+        self.assertEqual(direct["scope"], "local-evidence")
+        self.assertNotIn("verdict", direct)
 
     def test_t02_versioned_envelope_and_r89_backward_compatibility(self):
         v1 = {
@@ -137,7 +151,8 @@ class HarnessRigM10Tests(unittest.TestCase):
 
         rc, archive = self._cli([
             "spec", "archive", "--json-v1", "--repo", str(self.repo), "--change", "missing",
-            "--run-id", "m10-archive", "--now", NOW, "--issued-at", "2026-09-25T15:00:00Z",
+            "--confirm-local-archive",
+            "--run-id", "m10-archive", "--now", NOW,
             "--openspec-executable", "definitely-not-openspec-m10",
         ])
         self.assertEqual(rc, 2)
@@ -176,7 +191,7 @@ class HarnessRigM10Tests(unittest.TestCase):
         sentinel = self.repo / "ran.txt"
         rc, payload = self._cli([
             "verify", "--repo", str(self.repo), "--authority", "authority.txt",
-            "--run-id", "bad-config", "--now", NOW, "--issued-at", "2026-09-25T15:00:00Z",
+            "--run-id", "bad-config",
             "--", sys.executable, "-c", f"from pathlib import Path; Path({str(sentinel)!r}).write_text('ran')",
         ])
         self.assertEqual(rc, 2)
@@ -300,7 +315,7 @@ class HarnessRigM10Tests(unittest.TestCase):
             responses = self._hosted_responses()
         with mock.patch("harness_rig.release._gh_api_json", side_effect=responses):
             return build_release_record(
-                artifact_paths=[artifact], accepted_source_revision="a" * 40,
+                artifact_paths=[artifact], source_revision="a" * 40,
                 repository="owner/repo", hosted_run_id=1234,
                 build_workflow_identity="github-actions:ci-required", created_at=NOW,
             )
@@ -390,12 +405,12 @@ class HarnessRigM10Tests(unittest.TestCase):
         artifact = self.repo / "artifact.zip"
         artifact.write_bytes(b"candidate")
         with mock.patch("harness_rig.release._gh_api_json", side_effect=ReleaseError("github-api-unavailable")):
-            record = build_release_record(artifact_paths=[artifact], accepted_source_revision="a" * 40,
+            record = build_release_record(artifact_paths=[artifact], source_revision="a" * 40,
                 repository="owner/repo", hosted_run_id=1234, build_workflow_identity="local", created_at=NOW)
         self.assertEqual(record.status, "BLOCKED")
         self.assertIn("github-api-unavailable", record.reasons)
         missing = build_release_record(
-            artifact_paths=[artifact], accepted_source_revision="a" * 40, repository="owner/repo",
+            artifact_paths=[artifact], source_revision="a" * 40, repository="owner/repo",
             hosted_run_id=None, build_workflow_identity="local", created_at=NOW,
         )
         self.assertEqual(missing.status, "BLOCKED")
@@ -407,7 +422,7 @@ class HarnessRigM10Tests(unittest.TestCase):
         run, jobs = self._hosted_responses()
         record = self._make_release(artifact, [run, jobs])
         blocked = build_release_record(
-            artifact_paths=[artifact], accepted_source_revision="a" * 40, repository="owner/repo",
+            artifact_paths=[artifact], source_revision="a" * 40, repository="owner/repo",
             hosted_run_id=None, build_workflow_identity="local", created_at=NOW,
         )
         result = self._verify(blocked, [run, jobs])
@@ -434,6 +449,14 @@ class HarnessRigM10Tests(unittest.TestCase):
         legacy = replace(record, schema="harness-rig/release-record/v1")
         with self.assertRaisesRegex(ReleaseError, "unsupported-release-record-schema"):
             self._verify(legacy, [run, jobs])
+        legacy = replace(record, schema="harness-rig/release-record/v2")
+        with self.assertRaisesRegex(ReleaseError, "unsupported-release-record-schema"):
+            self._verify(legacy, [run, jobs])
+        payload = asdict(record)
+        payload["accepted_source_revision"] = payload["source_revision"]
+        from harness_rig.release import parse_release_record
+        with self.assertRaisesRegex(ReleaseError, "release-record-fields-invalid"):
+            parse_release_record(json.dumps(payload).encode("utf-8"))
 
     def test_v06_cli_requires_explicit_repository_and_reports_separate_results(self):
         artifact = self.repo / "artifact.zip"
@@ -603,7 +626,7 @@ class HarnessRigM10Tests(unittest.TestCase):
         self.assertIn("artifact-metadata: write", sign_job)
         self.assertIn("id-token: write", sign_job)
         self.assertIn("attestations: write", sign_job)
-        self.assertIn("uses: actions/attest@v4", workflow)
+        self.assertIn("uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26", workflow)
         self.assertIn("subject-path: .candidate/release-record.json", workflow)
         self.assertIn("needs.validate.outputs.record_sha256", workflow)
         self.assertIn("GITHUB_STEP_SUMMARY", workflow)

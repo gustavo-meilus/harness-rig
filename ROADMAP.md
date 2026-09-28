@@ -1,8 +1,8 @@
 # Harness Rig execution roadmap
 
-**Current revision:** r8.12 checkpoint `978c361def2d2805951fd044aa82dedc73160bc4`
-**Completed:** M0-M12 PASS, with the limits recorded below.
-**Next:** Prepare and inspect a real candidate before any future attestation.
+**Current revision:** r8.12 remediation candidate; final commit not yet qualified.
+**Completed:** M0-M11 PASS with recorded limits; M12 REWORK.
+**Next:** Complete `openspec/changes/review-remediation-local-contract/`, then qualify the exact final commit.
 V04 passed; Claude is out of scope for now.
 **Final planned qualification:** M12 / 1.0
 
@@ -100,11 +100,11 @@ Completed:
 - bounded external `OpenSpecAdapter` and Experimental `SpecEngine`;
 - authority fingerprint profile excluding task bookkeeping while binding behavior-bearing artifacts/context/rules/referenced specs;
 - fail-closed OpenSpec health/config/reference checks;
-- guarded `spec archive` using existing Assurance/Authorization/Acceptance semantics.
+- guarded `spec archive`; the r8.12 remediation requires explicit local confirmation and reports readiness and transition evidence without authenticated authorization.
 
 Current compatibility baseline: OpenSpec 1.13.2. OpenSpec remains optional to base Harness Rig and external to core.
 
-### M7 / r8.7 - Trusted repository enforcement - PASS
+### M7 / r8.7 - Repository CI prototype - PASS at the historical checkpoint
 
 Completed:
 - deterministic CI obligation artifact;
@@ -113,7 +113,7 @@ Completed:
 - unprivileged fork PR boundary;
 - governance-sensitive workflow/resolver/policy/oracle surfaces.
 
-Remote GitHub ruleset/CODEOWNERS installation remains deployment state, not locally fabricated evidence.
+The r8.12 workflow now uses unconditional ordinary and Context jobs and a final native job-result check. The candidate can edit this workflow, so its result is project CI evidence. Remote ruleset state requires separate observation.
 
 ### M8 / r8.8 - Host capability and topology qualification - PASS
 
@@ -226,71 +226,25 @@ validate complete source bundles and ref inventories
 
 If required source history is unavailable or unverifiable: **M11 = BLOCKED and M12 cannot PASS.**
 
-## M12 / r8.12 - 1.0 qualification and final simplification - PASS
+## M12 / r8.12 - 1.0 qualification and final simplification - REWORK
 
-Execution is in progress from baseline `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7`; checkpoint commit `978c361def2d2805951fd044aa82dedc73160bc4` retains the current evidence. See `verification/m12-verification-record.json` for exact results and limits.
+Earlier M12 checks and hosted runs are retained in
+`verification/m12-verification-record.json` as historical evidence. They do
+not qualify this changed source revision. The 2026-09-28 review found that
+the local CLI self-issued grants, candidate-controlled CI was presented as an
+independent oracle, and the release had not been attested or published.
 
-Execution:
-- [x] M12-T01 canonical deterministic suite: `python scripts/check.py` passes
-  151 tests across nine milestone modules, Context audit (44 pages/rows), fresh
-  projection, and `git diff --check`. The suite verifies canonical fingerprints
-  are independent of LF/CRLF checkout line endings;
-- [x] M12-T02 Context audit, byte-identical manifest, and fresh projection;
-- [x] M12-T03 all P0 adversarial trust fixtures;
-- [x] M12-T04 OpenSpec compatibility fixtures and strict change validation;
-- [x] M12-T05 M7 CI obligation suite and local exact-SHA obligation resolution pass;
-- [x] M12-T06 retained `local-subprocess` native evidence; Codex adapter unqualified;
-- [x] M12-T07 gate-provider adversarial suite;
-- [x] M12-T08 migration upgrade/rollback fixtures;
-- [x] M12-T09 29 mocked hosted-API and attestation tests, including recomputed-
-  digest tampering, dispatch limits, metadata validation, summary escaping, and
-  workflow permission/environment controls;
-- [x] M12-T10 fresh independent source review of published revision
-  `11e43e1477c366ca570a1c4cbd2f75f9e668f429` passed with no source findings;
-  earlier FAIL results remain preserved in the review record;
-- [x] M12-T11 final feature-retirement review recorded.
+The active OpenSpec change narrows the product contract to local gate and
+archive evidence, native GitHub job results, and v3 release provenance. M12
+remains REWORK until the final source SHA passes the revised local and hosted
+checks, the ruleset is observed, the source bundle is verified offline, and
+the exact v3 record is attested. A solo owner environment approval records that
+owner's action; it does not establish separation of duties.
 
-Verification:
-- [x] M12-V01 hosted `ci / required` passed on exact source revision
-  `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`, and independent source review
-  passed on final published revision `11e43e1477c366ca570a1c4cbd2f75f9e668f429`;
-  the active main ruleset requires the GitHub Actions check, and the protected
-  attestation environment is configured with the solo project owner as reviewer;
-- [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
-- [x] M12-V03 all eight retained proposal dispositions remain valid; no deferred feature mechanism was added.
-
-M12 PASS records qualification of the product and its external enforcement
-configuration; it does not claim that a release was signed or attested. Original
-and follow-up FAIL reviews, later corrections, and review scope are recorded in
-`verification/m12-independent-review.json` and
-`verification/m12-verification-record.json`. The provenance record now requires
-an exact-byte GitHub artifact attestation, validates live hosted CI including
-the jobs count, and uses one captured byte snapshot for both verification and
-dispatch. Artifact metadata is validated before it appears in the protected
-approval summary. The companion release-provenance change is the bounded
-product-change exception in the M12 proposal, design, and tasks.
-
-The first public CI run on `2c7d59e` failed because the Context fingerprint
-included checkout line endings: Windows generated CRLF while GitHub Actions
-checked out LF. Commit `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d` normalizes line
-endings before hashing and adds a regression test. `python scripts/check.py`
-passed 151 tests, and hosted `ci / required` passed for that exact revision in
-run `36365911407`. A fresh independent review of published revision
-`11e43e1477c366ca570a1c4cbd2f75f9e668f429` found no source findings; it did not
-independently query GitHub for CI or repository settings. An active repository
-ruleset now applies to `main` and requires `ci / required` from GitHub Actions
-integration `15368`, with no bypass actors. PR 1 passed that required check and
-merged; the merge commit's main workflow run also passed. The classic
-branch-protection endpoint returns 404 because enforcement is via the
-ruleset. The
-`release-provenance-attestation` environment now requires approval by the
-repository owner, allows owner self-review, blocks administrator bypass, and
-only permits protected branches. This is a personal-project approval gate, not
-separation of duties. No release candidate was supplied, so no attestation was
-dispatched. The source history is published at
-`https://github.com/gustavo-meilus/harness-rig`.
-
-1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one genuinely Stable host, trusted repository enforcement, safe migration/release provenance, successful M11 history qualification, and final complexity retirement.
+1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec
+integration, at least one genuinely Stable host, observed project CI and
+ruleset state, safe migration/release provenance, successful M11 history
+qualification, and final complexity retirement.
 
 Not required for 1.0 unless newly earned: generic recurrence, adaptive model/effort optimization, all hosts Stable, shared OpenSpec Store backbone, static composition, richer topology families, distributed execution, external-effect platform, public plugin SDK/marketplace, generic telemetry, or vector/embedding/RAG infrastructure.
 

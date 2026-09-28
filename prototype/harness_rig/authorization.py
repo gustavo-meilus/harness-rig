@@ -13,11 +13,10 @@ LEGACY_AUTHORIZATION_GRANT_SCHEMA = "harness-rig/authorization-grant/experimenta
 
 @dataclass(frozen=True)
 class AuthorizationGrant:
-    """Stable bounded authorization grant.
+    """Serialized grant data with structural and contextual validation only.
 
-    Provider credentials, revocation databases, and provider-specific status are
-    deliberately not embedded in this shared value. Action-time callers still
-    own any authoritative provider-current-status check they require.
+    The digest is unkeyed. It does not authenticate the issuer or principal.
+    Action-time callers own any independent provider authentication they need.
     """
 
     schema: str

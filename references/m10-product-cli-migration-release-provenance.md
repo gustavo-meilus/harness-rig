@@ -1,18 +1,25 @@
 ---
 id: harness-rig-m10-product-cli-migration-release-provenance
 title: M10 product CLI, migration completion, and release provenance
-summary: Implemented r8.10 compact product CLI, versioned machine contract, fail-closed configuration, bounded migration state, process cleanup, and artifact-bound release provenance; hosted acceptance requires live GitHub Actions evidence.
-version: planning-baseline-2026-09-27-r8.10-m12-release-provenance
-updated: '2026-09-27'
+summary: Historical M10 product CLI and migration, with the current r8.12 local evidence and v3 provenance correction.
+version: review-remediation-2026-09-28-r8.12
+updated: '2026-09-28'
 provenance:
 - Harness Rig M10 implementation and adversarial verification, 2026-09-25
 - Harness Rig M2 source-disposition and M11 history-qualification separation retained through M10
 - 'M12 release-provenance correction: live authenticated GitHub Actions API acceptance and mocked regression verification, 2026-09-27'
 - Skill Kit More With Less v1.0.2 minimum-sufficient productization doctrine applied 2026-09-25
+- Harness Rig final review and local-contract OpenSpec remediation, 2026-09-28
 ---
 # Result
 
 M10 completed with **PASS** at revision `r8.10` for the product CLI, runtime/schema migration, and release-provenance boundary.
+
+The current r8.12 product CLI reports local `verify`/`direct` gate evidence
+without issuing a grant or merge verdict. Archive requires explicit local
+confirmation and checks readiness, exact state, and postconditions without
+an authenticated archive authorization claim. New release records use v3;
+the earlier v1/v2 contracts remain historical.
 
 M10 does not claim M11 source-history qualification or a releasable 1.0 state. It makes those prerequisites explicit and machine-readable instead of silently treating them as complete.
 
@@ -116,11 +123,11 @@ A small `harness-rig/history-map/v1` lookup helper is executable against synthet
 
 # Release provenance
 
-`harness-rig/release-record/v2` binds:
+`harness-rig/release-record/v3` binds:
 
 ```text
 explicit GitHub OWNER/REPO and API-returned repository ID
-accepted source revision
+factual source_revision
 workflow run ID and current attempt
 unique ci / required job ID for that attempt
 build workflow identity and creation time
@@ -135,7 +142,8 @@ exactly one completed successful `ci / required` job. Verification re-fetches
 the run and attempt-specific jobs, so a rerun invalidates an older record.
 Missing run or API access, malformed responses, and mismatches produce a
 BLOCKED candidate, never PASS. An eligible record is still an unsigned
-CANDIDATE. M7 obligation/result JSON is not hosted proof.
+CANDIDATE. Candidate-controlled CI is observed project evidence, not an
+independent acceptance oracle.
 
 Use `verification/release_provenance.py attest` to submit the validated
 candidate bytes to `.github/workflows/release-record-attestation.yml`. The serialized
@@ -152,9 +160,10 @@ does not reread the selected record path during verification. Verification
 reports artifact integrity, hosted CI, and attestation separately;
 overall PASS requires all three. `gh attestation verify` is scoped to the
 explicit repository, signing workflow, and `refs/heads/main`. It rejects
-blocked, unsigned, and legacy v1 records. A valid attestation detects edits
+blocked, unsigned, and legacy v1/v2 records. A valid attestation detects edits
 after signing, but does not prove that the signing workflow built the listed
-artifacts; the environment approver authorizes the hashes. The checkout has no
+artifacts; the solo owner's approval records the approved hashes without
+separation of duties. The checkout has no
 Git remote, so callers must supply `OWNER/REPO`; no identity is inferred. Live
 branch/ruleset settings and the required-check source remain a separate M12
 gate. Local mocked API and attestation tests make no network requests and do

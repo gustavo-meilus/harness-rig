@@ -2,8 +2,8 @@
 id: harness-rig-ci-review-and-release-governance
 title: CI, review, versioning, and release governance
 summary: Repository-wide CI aggregation, review roles, versioning, schema migrations, and provenance-aware release policy.
-version: planning-baseline-2026-09-27-r8.10-m12-release-provenance
-updated: '2026-09-27'
+version: review-remediation-2026-09-28-r8.12
+updated: '2026-09-28'
 provenance:
 - GitHub Actions workflow syntax, accessed 2026-09-21
 - GitHub rulesets documentation, accessed 2026-09-21
@@ -19,33 +19,33 @@ provenance:
 - Harness Rig M10 release-record/checksum implementation and verification, 2026-09-25
 - Harness Rig M12 live hosted-CI release-provenance correction, 2026-09-27
 - GitHub Actions workflow/merge_group/security documentation rechecked 2026-09-25
+- Harness Rig final review and local-contract OpenSpec remediation, 2026-09-28
 ---
 # One canonical ordinary quality definition
 
-Hosted CI should consume the same canonical ordinary quality command used locally.
-
-Do not duplicate the ordinary correctness command list in workflow YAML.
+Hosted CI runs the ordinary Python test suite and Context audit. The workflow
+lists those two commands directly.
 
 # One required repository verdict
 
 ```text
-changed files
-    ↓
-affected-module resolver
-    ↓
-relevant workflows/gates
-    ↓
-governance check
+ordinary tests + Context audit
     ↓
 ci / required
 ```
 
-Only the final aggregate needs universal branch/ruleset enforcement after unified Harness Rig CI exists.
+The final job fails if either prerequisite fails, skips, or is cancelled.
+It runs for pull requests, main pushes, manual dispatches, and merge groups.
+The candidate can edit the workflow, so this is project CI evidence, not an
+independent acceptance oracle. Live ruleset source binding is observed
+separately.
 
 
 # M7 implemented repository verdict
 
-M7/r8.7 implements the repository-local form of this design. `governance/ci-policy.json` emits a same-subject obligation set, each job emits an obligation result, and `ci / required` recomputes/validates the complete set. The aggregate rejects missing/skipped/failed jobs and mismatched SHA, event subject, producer, result identity, or policy.
+M7/r8.7 originally implemented a repository-local obligation resolver. The
+r8.12 review found it candidate-controlled and unable to establish an
+independent verdict. It was removed in the local-contract remediation.
 
 The workflow includes `merge_group` and uses `if: ${{ always() }}` on the final job so failed prerequisites do not skip the repository verdict. Fork PR execution remains unprivileged (`pull_request`, `contents: read`, no secret references). See [M7 trusted repository enforcement](m7-trusted-repository-enforcement.md).
 
@@ -156,10 +156,11 @@ immutable release
 
 # M10 release-record implementation
 
-M10 introduced `harness-rig/release-record/v1`; the fail-closed correction
-uses `harness-rig/release-record/v2` in `verification/release_provenance.py`.
-V2 binds the explicit GitHub repository and API-returned repository ID, source
-revision, Actions run ID and attempt, required job ID, artifact size/SHA-256,
+M10 introduced `harness-rig/release-record/v1`; v2 was the earlier hosted-run
+correction. New records use `harness-rig/release-record/v3` in
+`verification/release_provenance.py`. V3 binds the explicit GitHub repository,
+API-returned repository ID, factual `source_revision`, Actions run ID and
+attempt, required job ID, artifact size/SHA-256,
 and creation time. Eligible records remain unsigned CANDIDATEs. Creation and
 verification use authenticated read-only `gh api` lookups. The accepted run must be a
 completed successful `push` on `main` for the exact source SHA from
@@ -175,4 +176,6 @@ exact manifest bytes. This binds the approved artifact hashes but does not
 prove the signing workflow built the artifacts. Local mocked tests do not
 establish a hosted run, environment protection, or repository ruleset. The
 checkout's repository identity must be supplied explicitly; live ruleset and
-required-check source observation remains a separate M12 gate.
+required-check source observation remains a separate M12 gate. V1 and v2
+records are ineligible for the new release. Provenance PASS does not establish
+independent source acceptance or separation of duties.
