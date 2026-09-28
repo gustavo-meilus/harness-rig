@@ -12,8 +12,8 @@ from typing import Iterable
 
 from .canonical import digest
 
-RELEASE_RECORD_SCHEMA = "harness-rig/release-record/v2"
-RELEASE_VERIFICATION_SCHEMA = "harness-rig/release-verification/v2"
+RELEASE_RECORD_SCHEMA = "harness-rig/release-record/v3"
+RELEASE_VERIFICATION_SCHEMA = "harness-rig/release-verification/v3"
 REQUIRED_WORKFLOW = ".github/workflows/ci-required.yml"
 REQUIRED_JOB = "ci / required"
 ATTESTATION_WORKFLOW = ".github/workflows/release-record-attestation.yml"
@@ -36,7 +36,7 @@ class ReleaseRecord:
     record_id: str
     status: str
     reasons: tuple[str, ...]
-    accepted_source_revision: str
+    source_revision: str
     build_workflow_identity: str
     created_at: str
     artifacts: tuple[ReleaseArtifact, ...]
@@ -68,10 +68,16 @@ def parse_release_record(record_bytes: bytes) -> ReleaseRecord:
     data = json.loads(record_bytes.decode("utf-8"))
     if not isinstance(data, dict):
         raise ReleaseError("release-record-invalid")
-    if data.get("schema") == "harness-rig/release-record/v1":
+    if data.get("schema") in {"harness-rig/release-record/v1", "harness-rig/release-record/v2"}:
         raise ReleaseError("unsupported-release-record-schema")
     if data.get("schema") != RELEASE_RECORD_SCHEMA:
         raise ReleaseError("unsupported-release-record-schema")
+    if set(data) != {
+        "schema", "record_id", "status", "reasons", "source_revision",
+        "build_workflow_identity", "created_at", "artifacts", "repository",
+        "repository_id", "hosted_run_id", "hosted_run_attempt", "hosted_job_id",
+    }:
+        raise ReleaseError("release-record-fields-invalid")
     if not isinstance(data.get("record_id"), str) or not re.fullmatch(r"sha256:[0-9a-f]{64}", data["record_id"]):
         raise ReleaseError("release-record-id-invalid")
     if not isinstance(data.get("status"), str) or data["status"] not in {"CANDIDATE", "BLOCKED"}:
@@ -79,7 +85,7 @@ def parse_release_record(record_bytes: bytes) -> ReleaseRecord:
     reasons = data.get("reasons", [])
     if not isinstance(reasons, list) or not all(isinstance(reason, str) for reason in reasons):
         raise ReleaseError("release-record-reasons-invalid")
-    source_revision = data.get("accepted_source_revision")
+    source_revision = data.get("source_revision")
     if not isinstance(source_revision, str) or not re.fullmatch(r"[0-9a-fA-F]{40}", source_revision):
         raise ReleaseError("invalid-source-revision")
     if not isinstance(data.get("repository"), str):
@@ -104,7 +110,7 @@ def parse_release_record(record_bytes: bytes) -> ReleaseRecord:
         ))
     return ReleaseRecord(
         schema=data["schema"], record_id=data["record_id"], status=data["status"],
-        reasons=tuple(reasons), accepted_source_revision=source_revision,
+        reasons=tuple(reasons), source_revision=source_revision,
         build_workflow_identity=data["build_workflow_identity"], created_at=data["created_at"],
         artifacts=tuple(artifacts),
         repository=data["repository"], repository_id=data.get("repository_id"),
@@ -126,7 +132,7 @@ def _record_material(record: ReleaseRecord) -> dict[str, object]:
         "schema": record.schema,
         "status": record.status,
         "reasons": list(record.reasons),
-        "accepted_source_revision": record.accepted_source_revision,
+        "source_revision": record.source_revision,
         "build_workflow_identity": record.build_workflow_identity,
         "created_at": record.created_at,
         "artifacts": [asdict(a) for a in record.artifacts],
@@ -241,11 +247,11 @@ def _blocked_hosted_reasons(repository: str, run_id: int | None, source_revision
             run_id, job_data["attempt"], job.get("id") if isinstance(job.get("id"), int) and not isinstance(job.get("id"), bool) else None, reasons)
 
 
-def build_release_record(*, artifact_paths: Iterable[Path], accepted_source_revision: str,
+def build_release_record(*, artifact_paths: Iterable[Path], source_revision: str,
                          repository: str, hosted_run_id: int | None,
                          build_workflow_identity: str, created_at: str) -> ReleaseRecord:
     _validate_repository(repository)
-    if not re.fullmatch(r"[0-9a-fA-F]{40}", accepted_source_revision):
+    if not re.fullmatch(r"[0-9a-fA-F]{40}", source_revision):
         raise ReleaseError("invalid-source-revision")
     artifacts = tuple(sorted((_validate_artifact_metadata(p.name, sha256_file(p), p.stat().st_size)
                               for p in artifact_paths), key=lambda x: x.path))
@@ -255,7 +261,7 @@ def build_release_record(*, artifact_paths: Iterable[Path], accepted_source_revi
         hosted_reasons = ("hosted-run-unavailable",)
     else:
         repository_id, run_id, run_attempt, job_id, hosted_reasons = _blocked_hosted_reasons(
-            repository, hosted_run_id, accepted_source_revision
+            repository, hosted_run_id, source_revision
         )
     reasons.extend(hosted_reasons)
     if not artifacts:
@@ -263,7 +269,7 @@ def build_release_record(*, artifact_paths: Iterable[Path], accepted_source_revi
     status = "CANDIDATE" if not reasons else "BLOCKED"
     record = ReleaseRecord(
         schema=RELEASE_RECORD_SCHEMA, record_id="", status=status, reasons=tuple(reasons),
-        accepted_source_revision=accepted_source_revision, build_workflow_identity=build_workflow_identity,
+        source_revision=source_revision, build_workflow_identity=build_workflow_identity,
         created_at=created_at, artifacts=artifacts, repository=repository,
         repository_id=repository_id, hosted_run_id=run_id, hosted_run_attempt=run_attempt,
         hosted_job_id=job_id,
@@ -299,9 +305,9 @@ def validate_release_candidate(record: ReleaseRecord, expected_repository: str,
             hosted_reasons.append("hosted-run-binding-unavailable")
         else:
             try:
-                run, job_data = _hosted_lookup(expected_repository, record.hosted_run_id, record.accepted_source_revision)
+                run, job_data = _hosted_lookup(expected_repository, record.hosted_run_id, record.source_revision)
                 hosted_reasons.extend(_hosted_reasons(
-                    expected_repository, record.accepted_source_revision, run, job_data,
+                    expected_repository, record.source_revision, run, job_data,
                     expected_repository_id=record.repository_id, expected_run_id=record.hosted_run_id,
                     expected_attempt=record.hosted_run_attempt, expected_job_id=record.hosted_job_id,
                 ))

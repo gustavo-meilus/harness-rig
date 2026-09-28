@@ -1,6 +1,6 @@
 # Harness Rig
 
-Harness Rig is an evidence-producing control plane for AI-assisted software engineering. The current verified revision is **r8.10 / M10 PASS**. The remaining planned milestones are **M11** (RigYard disposition, full source-history qualification, field hardening) and **M12** (1.0 qualification and final simplification).
+Harness Rig is an evidence-producing control plane for AI-assisted software engineering. The product revision is **r8.12**. M11 source-history qualification passed with recorded limits. M12 and the 1.0 release are **REWORK** while the local-contract remediation in `openspec/changes/review-remediation-local-contract/` is applied and verified.
 
 ## Fresh repository start
 
@@ -29,17 +29,17 @@ python verification/context_kb.py audit .
 python verification/context_kb.py projection-status .
 ```
 
-Then continue at **M11-T01** only.
+For current work, follow `ROADMAP.md` and the active OpenSpec change.
 
 ## Host priority
 
 Operational priority is:
 
 1. **Codex Desktop/CLI first**: make Harness Rig genuinely operable and natively qualified on Codex before expanding host-specific machinery.
-2. **Claude Code second**: qualify Claude as a secondary platform under M11-T08 without weakening or bypassing Codex-first guarantees.
+2. **Claude Code second**: native qualification is deferred under the current scope.
 
 Priority is not maturity. Host claims remain evidence-gated and fail closed when native behavior has not been observed.
 
 ## OpenSpec
 
-OpenSpec remains external and first-class. The current checked baseline in this handoff is **OpenSpec 1.13.2**. After Git reconstruction, use OpenSpec to drive the remaining M11/M12 development work rather than creating a second planning framework. Recheck the installed/current OpenSpec version before relying on version-sensitive behavior.
+OpenSpec remains external and first-class. The product adapter targets its checked 1.13.2 contract. The planning CLI version may differ; recheck version-sensitive behavior before relying on it.

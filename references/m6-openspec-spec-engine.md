@@ -14,6 +14,12 @@ provenance:
 
 M6 completed with **PASS** at revision `r8.6`.
 
+Current r8.12 archive behavior is defined by
+`openspec/changes/review-remediation-local-contract/`. The product CLI now
+requires explicit local confirmation and reports readiness, state, transition,
+and postcondition evidence without an authenticated authorization verdict.
+The M6 grant and verdict behavior below is historical.
+
 OpenSpec is now the first-class external `SpecEngine` for behavior-changing work while remaining optional to base Harness Rig. The compatibility profile implemented in M6 is intentionally narrow: OpenSpec `1.13.2` and its current public machine-readable CLI contracts.
 
 # Implemented boundary

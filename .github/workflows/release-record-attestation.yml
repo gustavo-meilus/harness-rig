@@ -24,7 +24,9 @@ jobs:
       EXPECTED_REPOSITORY_ID: ${{ github.repository_id }}
       RECORD_JSON: ${{ inputs.record }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
       - name: Recreate exact candidate bytes
         run: |
           python - <<'PY'
@@ -61,11 +63,12 @@ jobs:
           python verification/release_provenance.py candidate-summary \
             --record .candidate/release-record.json \
             --output "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: release-record-candidate
           path: .candidate/release-record.json
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 1
 
   attest:
@@ -79,7 +82,7 @@ jobs:
       attestations: write
       artifact-metadata: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: release-record-candidate
           path: .candidate
@@ -97,6 +100,6 @@ jobs:
               raise SystemExit("candidate bytes differ from the validated manifest")
           PY
       - name: Attest exact release-record bytes
-        uses: actions/attest@v4
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
         with:
           subject-path: .candidate/release-record.json

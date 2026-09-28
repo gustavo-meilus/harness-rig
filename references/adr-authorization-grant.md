@@ -45,6 +45,11 @@ issuance/lifetime and **expiry**, allowed delegation, schema, and integrity. Whe
 revocation/current-status semantics, the consequential action adapter must consult that provider at action time; the Stable
 grant does not claim to mirror provider status.
 
+The grant ID is an unkeyed digest. Matching an issuer name in a caller-supplied
+set and matching local fields do not authenticate the issuer or principal.
+The product CLI does not issue grants or report authorized merge/archive
+verdicts under the r8.12 local contract.
+
 A required grant that cannot be verified causes `BLOCKED`.
 
 # Action binding

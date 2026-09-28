@@ -14,197 +14,36 @@ permissions:
   contents: read
 
 jobs:
-  resolve:
-    name: ci / resolve
-    runs-on: ubuntu-latest
-    outputs:
-      artifact_b64: ${{ steps.resolve.outputs.artifact_b64 }}
-      governance_required: ${{ steps.resolve.outputs.governance_required }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      - id: resolve
-        name: Resolve same-subject obligations
-        shell: bash
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          EVALUATED_SHA: ${{ github.sha }}
-          REPOSITORY: ${{ github.repository }}
-          GIT_REF: ${{ github.ref }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PR_HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
-          MERGE_GROUP_HEAD_REF: ${{ github.event.merge_group.head_ref }}
-          MERGE_GROUP_BASE_SHA: ${{ github.event.merge_group.base_sha }}
-          BEFORE_SHA: ${{ github.event.before }}
-        run: |
-          set -euo pipefail
-          case "$EVENT_NAME" in
-            pull_request)
-              EVENT_SUBJECT="pull_request:${PR_NUMBER}"
-              if [ "$PR_HEAD_REPO" = "$REPOSITORY" ]; then TRUST_MODE=trusted; else TRUST_MODE=untrusted_fork; fi
-              git diff --name-only "$PR_BASE_SHA" "$EVALUATED_SHA" > changed-paths.txt
-              ;;
-            merge_group)
-              EVENT_SUBJECT="merge_group:${MERGE_GROUP_HEAD_REF}"
-              TRUST_MODE=trusted
-              git diff --name-only "$MERGE_GROUP_BASE_SHA" "$EVALUATED_SHA" > changed-paths.txt
-              ;;
-            push)
-              EVENT_SUBJECT="push:${GIT_REF}"
-              TRUST_MODE=trusted
-              if [ -n "$BEFORE_SHA" ] && ! printf '%s' "$BEFORE_SHA" | grep -Eq '^0+$'; then
-                git diff --name-only "$BEFORE_SHA" "$EVALUATED_SHA" > changed-paths.txt
-              else
-                git show --pretty= --name-only "$EVALUATED_SHA" > changed-paths.txt
-              fi
-              ;;
-            workflow_dispatch)
-              EVENT_SUBJECT="workflow_dispatch:${GIT_REF}"
-              TRUST_MODE=trusted
-              git show --pretty= --name-only "$EVALUATED_SHA" > changed-paths.txt
-              ;;
-            *)
-              echo "unsupported event: $EVENT_NAME" >&2
-              exit 1
-              ;;
-          esac
-          python verification/ci_obligations.py resolve \
-            --policy governance/ci-policy.json \
-            --evaluated-sha "$EVALUATED_SHA" \
-            --event-name "$EVENT_NAME" \
-            --event-subject "$EVENT_SUBJECT" \
-            --trust-mode "$TRUST_MODE" \
-            --changed-paths-file changed-paths.txt \
-            --output ci-obligation.json
-          python - <<'PY' >> "$GITHUB_OUTPUT"
-          import base64, json
-          from pathlib import Path
-          raw = Path("ci-obligation.json").read_bytes()
-          data = json.loads(raw)
-          print("artifact_b64=" + base64.b64encode(raw).decode("ascii"))
-          print("governance_required=" + ("true" if "governance" in data["mandatory_obligations"] else "false"))
-          PY
-
   ordinary:
     name: ci / ordinary
-    needs: resolve
     runs-on: ubuntu-latest
-    outputs:
-      result_b64: ${{ steps.result.outputs.result_b64 }}
     steps:
-      - uses: actions/checkout@v6
-      - name: Decode obligation artifact
-        env:
-          ARTIFACT_B64: ${{ needs.resolve.outputs.artifact_b64 }}
-        run: python -c 'import base64,os,pathlib; pathlib.Path("ci-obligation.json").write_bytes(base64.b64decode(os.environ["ARTIFACT_B64"]))'
-      - id: result
-        name: Run canonical ordinary suite and emit result
-        shell: bash
-        run: |
-          set +e
-          PYTHONPATH=prototype python -m unittest discover -s prototype/tests -p 'test_*.py' -v
-          status=$?
-          set -e
-          if [ "$status" -eq 0 ]; then outcome=PASS; else outcome=FAIL; fi
-          python verification/ci_obligations.py result \
-            --artifact ci-obligation.json \
-            --obligation ordinary \
-            --producer harness-rig/ci/ordinary-v1 \
-            --outcome "$outcome" \
-            --output ci-result.json
-          python -c 'import base64,pathlib; print("result_b64=" + base64.b64encode(pathlib.Path("ci-result.json").read_bytes()).decode("ascii"))' >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: Run ordinary tests
+        run: PYTHONPATH=prototype python -m unittest discover -s prototype/tests -p 'test_*.py' -v
 
   kb_integrity:
     name: ci / kb-integrity
-    needs: resolve
     runs-on: ubuntu-latest
-    outputs:
-      result_b64: ${{ steps.result.outputs.result_b64 }}
     steps:
-      - uses: actions/checkout@v6
-      - name: Decode obligation artifact
-        env:
-          ARTIFACT_B64: ${{ needs.resolve.outputs.artifact_b64 }}
-        run: python -c 'import base64,os,pathlib; pathlib.Path("ci-obligation.json").write_bytes(base64.b64decode(os.environ["ARTIFACT_B64"]))'
-      - id: result
-        name: Audit canonical knowledge and emit result
-        shell: bash
-        run: |
-          set +e
-          python verification/context_kb.py audit .
-          status=$?
-          set -e
-          if [ "$status" -eq 0 ]; then outcome=PASS; else outcome=FAIL; fi
-          python verification/ci_obligations.py result \
-            --artifact ci-obligation.json \
-            --obligation kb-integrity \
-            --producer harness-rig/ci/kb-integrity-v1 \
-            --outcome "$outcome" \
-            --output ci-result.json
-          python -c 'import base64,pathlib; print("result_b64=" + base64.b64encode(pathlib.Path("ci-result.json").read_bytes()).decode("ascii"))' >> "$GITHUB_OUTPUT"
-
-  governance:
-    name: ci / governance
-    needs: resolve
-    if: ${{ needs.resolve.outputs.governance_required == 'true' }}
-    runs-on: ubuntu-latest
-    outputs:
-      result_b64: ${{ steps.result.outputs.result_b64 }}
-    steps:
-      - uses: actions/checkout@v6
-      - name: Decode obligation artifact
-        env:
-          ARTIFACT_B64: ${{ needs.resolve.outputs.artifact_b64 }}
-        run: python -c 'import base64,os,pathlib; pathlib.Path("ci-obligation.json").write_bytes(base64.b64decode(os.environ["ARTIFACT_B64"]))'
-      - id: result
-        name: Run governance meta-suite and emit result
-        shell: bash
-        run: |
-          set +e
-          PYTHONPATH=prototype python -m unittest prototype.tests.test_m7_repository_enforcement -v
-          status=$?
-          set -e
-          if [ "$status" -eq 0 ]; then outcome=PASS; else outcome=FAIL; fi
-          python verification/ci_obligations.py result \
-            --artifact ci-obligation.json \
-            --obligation governance \
-            --producer harness-rig/ci/governance-v1 \
-            --outcome "$outcome" \
-            --output ci-result.json
-          python -c 'import base64,pathlib; print("result_b64=" + base64.b64encode(pathlib.Path("ci-result.json").read_bytes()).decode("ascii"))' >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - name: Audit canonical knowledge
+        run: python verification/context_kb.py audit .
 
   required:
     name: ci / required
-    needs: [resolve, ordinary, kb_integrity, governance]
+    needs: [ordinary, kb_integrity]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - name: Reconstruct obligation and result evidence
+      - name: Check mandatory jobs
         env:
-          ARTIFACT_B64: ${{ needs.resolve.outputs.artifact_b64 }}
-          ORDINARY_RESULT_B64: ${{ needs.ordinary.outputs.result_b64 }}
-          KB_RESULT_B64: ${{ needs.kb_integrity.outputs.result_b64 }}
-          GOVERNANCE_RESULT_B64: ${{ needs.governance.outputs.result_b64 }}
+          ORDINARY_RESULT: ${{ needs.ordinary.result }}
+          KB_RESULT: ${{ needs.kb_integrity.result }}
         run: |
-          python - <<'PY'
-          import base64, os
-          from pathlib import Path
-          artifact = os.environ.get("ARTIFACT_B64", "")
-          Path("ci-obligation.json").write_bytes(base64.b64decode(artifact)) if artifact else Path("ci-obligation.json").write_text("{}\n")
-          out = Path("ci-results")
-          out.mkdir()
-          for name, env_name in (("ordinary", "ORDINARY_RESULT_B64"), ("kb-integrity", "KB_RESULT_B64"), ("governance", "GOVERNANCE_RESULT_B64")):
-              value = os.environ.get(env_name, "")
-              if value:
-                  (out / f"{name}.json").write_bytes(base64.b64decode(value))
-          PY
-      - name: Validate every mandatory same-subject result
-        run: |
-          python verification/ci_obligations.py required \
-            --policy governance/ci-policy.json \
-            --artifact ci-obligation.json \
-            --results-dir ci-results \
-            --output ci-required-verdict.json
+          test "$ORDINARY_RESULT" = success
+          test "$KB_RESULT" = success

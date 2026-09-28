@@ -1,6 +1,14 @@
-# Harness Rig r8.10 prototype
+# Harness Rig r8.12 prototype
 
-This directory contains the executable direct Harness Rig trust path, M5 Context lifecycle semantics, the M6 bounded OpenSpec integration, M7 repository-CI obligation enforcement, the M8 native local-process host qualification, the M9 bounded gate platform, and the M10 compact product/migration/provenance surface.
+The current local `verify` and `direct` commands report gate evidence only.
+`spec archive` requires `--confirm-local-archive` and reports readiness and
+transition checks without an authenticated authorization claim. Repository
+CI is candidate-controlled project evidence. The release record uses v3
+`source_revision`; v1 and v2 records cannot qualify a new release.
+
+This directory contains the historical direct trust prototype, M5 Context
+lifecycle, the bounded OpenSpec adapter, the native local-process host, gate
+providers, and the compact product, migration, and provenance paths.
 
 ```text
 Direct Authority
@@ -48,9 +56,6 @@ PYTHONPATH=prototype python -S -m harness_rig \
   --repo /path/to/repo \
   --authority AUTHORITY.md \
   --run-id run-123 \
-  --now 2026-09-25T12:00:00Z \
-  --issued-at 2026-09-25T11:00:00Z \
-  --expires-at 2026-09-25T13:00:00Z \
   -- python -S -c "print('ok')"
 ```
 
@@ -60,8 +65,8 @@ The raw direct invocation remains an r8.9 compatibility surface. Product callers
 
 - `AuthorityRef` is provider-neutral: schema/provider/subject/authority identity only. Direct-file path/content canonicalization
   stays inside `DirectAuthority`.
-- `AuthorizationGrant` is bounded, nondelegable v1 authorization with integrity, lifetime and exact binding checks. It is not a
-  general IAM system.
+- `AuthorizationGrant` v1 retains nondelegable structural and contextual checks.
+  Its unkeyed digest does not authenticate the issuer or principal.
 - `StateIdentity` is Stable v1 exact Git-worktree state with revision, index, tracked/untracked content and submodule identity.
 - Stable loaders reject unknown versions/fields/integrity failures and deterministically migrate the exact M3 serialized forms.
 - M3 Experimental `AuthorizationGrant.origin` is retired during migration because no trust decision consumed it.
@@ -92,7 +97,9 @@ The raw direct invocation remains an r8.9 compatibility surface. Product callers
 - Experimental `SpecEngine` now has only the operations required by the current consumer: availability, health, authority resolution, and archive.
 - `OpenSpecAdapter` targets the verified OpenSpec 1.13.2 machine-readable CLI contract; OpenSpec remains an external optional executable.
 - The default authority profile binds non-task planning artifacts, effective context/rules, schema/artifact graph, and resolved authority-bearing referenced specs.
-- `harness-rig spec archive` is guarded by exact `(A0,S0)`, bounded `spec_archive` authorization, readiness evidence, postconditions, transition evidence, and final `(A1,S1)` stale-precondition reevaluation.
+- `harness-rig spec archive` requires explicit local confirmation and checks
+  exact `(A0,S0)`, readiness, postconditions, transition evidence, and final
+  `(A1,S1)` stale-precondition reevaluation.
 - Primary external Store roots remain unqualified for archive because Stable StateIdentity currently observes the repository worktree. Referenced stores are read-only authority inputs.
 
 ## Experimental spec archive CLI
@@ -103,17 +110,16 @@ PYTHONPATH=prototype python -m harness_rig spec archive \
   --change change-id \
   --run-id archive-123 \
   --now 2026-09-25T12:00:00Z \
-  --issued-at 2026-09-25T11:00:00Z \
-  --expires-at 2026-09-25T13:00:00Z
+  --confirm-local-archive
 ```
 
 The guarded operation is unchanged; M10 adds `--json-v1` for the versioned machine envelope while retaining the r8.9 raw JSON compatibility shape.
 
 ## M7 repository enforcement
 
-- `harness_rig.repository_ci` implements deterministic application-level CI obligation resolution and final required-verdict validation.
-- `governance/ci-policy.json` declares always-required ordinary/KB obligations and conditional governance-sensitive paths.
-- `.github/workflows/ci-required.yml` covers pull requests, main pushes, manual dispatch, and merge-group checks; `ci / required` uses `always()` after all prerequisite jobs.
+- `.github/workflows/ci-required.yml` runs ordinary tests and Context audit
+  on pull requests, main pushes, manual dispatch, and merge groups. The
+  `ci / required` job checks both native results using `always()`.
 - Fork PR execution uses `pull_request`, read-only contents permission, no secret references, and no privileged actions.
 - Remote ruleset/CODEOWNERS configuration remains an install-time repository control and is not claimed as live-qualified by this package.
 
@@ -171,12 +177,17 @@ A missing/skipped required web scenario cannot PASS. Flaky retries remain visibl
 - Config precedence is defaults < user-global < project < CLI; user-global configuration cannot define repository policy.
 - Direct verification uses process-group cleanup so timeout/cancellation cannot leave verifier descendants running.
 - `harness-rig/migration-state/v1` supports r8.9 -> r8.10 plus explicit rollback; real source-history qualification remains `PENDING_M11`.
-- `harness-rig/release-record/v2` binds artifact hashes and source SHA to an explicit GitHub `OWNER/REPO`, repository ID, workflow run ID, current attempt, and `ci / required` job ID. Creation returns an unsigned `CANDIDATE`; authenticated read-only `gh api` checks establish hosted-run eligibility, while locally generated M7 JSON cannot qualify it.
+- `harness-rig/release-record/v3` binds artifact hashes and `source_revision`
+  to an explicit GitHub repository, repository ID, workflow run ID, attempt,
+  and `ci / required` job ID. Creation returns CANDIDATE or BLOCKED; read-only
+  authenticated `gh api` calls check the hosted run.
 - `verification/release_provenance.py attest` submits the validated candidate
   byte snapshot to the protected manual workflow. Artifact filenames, sizes,
   and SHA-256 values are validated before approval; record-derived summary text
   is escaped as literal Markdown. Verification parses one captured record
   snapshot and checks artifact integrity, live hosted CI, and GitHub artifact
-  attestation over those bytes. V1, BLOCKED, unsigned, or changed records
+  attestation over those bytes. V1, v2, BLOCKED, unsigned, or changed records
   cannot pass.
-- The `release-provenance-attestation` GitHub Environment must have a required reviewer configured. Its approval authorizes the listed artifact hashes; the workflow does not build those artifacts. Live ruleset and required-check source observation remains a separate M12 gate. The CLI requires network access and GitHub CLI authentication; repository identity is never inferred.
+- The attestation environment approval records the solo owner's action over
+  listed artifact hashes. It does not provide separation of duties or an
+  independent CI oracle. Live ruleset observation is a separate release gate.

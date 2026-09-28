@@ -11,11 +11,7 @@
       "workflow_dispatch"
     ]
   },
-  "governance_sensitive_review": {
-    "path_policy": "governance/ci-policy.json",
-    "require_code_owner_or_equivalent_approval": true,
-    "owner_identity": "repository-specific-and-not-defined-by-this-package"
-  },
+  "workflow_integrity": "candidate-controlled; required check is project CI evidence, not an independent acceptance oracle",
   "fork_pull_request": {
     "workflow_event": "pull_request",
     "workflow_token_permissions": "contents:read",

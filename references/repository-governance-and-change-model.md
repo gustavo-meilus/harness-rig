@@ -102,9 +102,14 @@ Do not rely on CODEOWNERS as the complete governance engine. Critical cross-modu
 
 # M7 governance-sensitive enforcement
 
-M7 makes CI/resolver/policy/trust-oracle changes machine-detectable C3-sensitive paths. Such changes require an explicit `governance` CI obligation in addition to ordinary and KB-integrity obligations. The exact current path policy is `governance/ci-policy.json`.
+M7 historically used a candidate-controlled obligation resolver. The r8.12
+workflow now runs ordinary and Context checks unconditionally, with `ci /
+required` checking both native job results. The removed resolver and path
+policy cannot provide independent review of workflow changes.
 
-This local mechanism complements, but cannot replace, protected-branch/ruleset review controls. A deployed repository should require `ci / required` and real code-owner or equivalent approval for those paths. r8.7 intentionally does not invent a CODEOWNERS identity.
+Observe the deployed ruleset and required-check source separately. The solo
+owner's check and approval do not establish an independent acceptance oracle
+or separation of duties.
 
 # Feature maturity
 

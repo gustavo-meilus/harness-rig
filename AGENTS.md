@@ -1,7 +1,7 @@
 # Harness Rig agent navigation
 
 <!-- context-projection-schema: harness-rig/context-projection/v1 -->
-<!-- canonical-kb-fingerprint: sha256:9bbd9a96ce7afd6b4f2ba2b53de14b8f5cab2b0ba67ac89d41ad476446bd66fb -->
+<!-- canonical-kb-fingerprint: sha256:cebd53e681c52ca564e7ea7b9b8f294a3056fa18d57e7045fafc2819726dac4d -->
 
 This file is a short Context-lifecycle projection. It is not a second canonical knowledge base.
 

@@ -47,20 +47,21 @@ Update this block whenever execution stops so a fresh context can resume without
 plan: harness-rig-progressive-remediation-r8
 current_milestone: M12
 current_revision: r8.12
-milestone_result: BLOCKED
-last_completed_task: M12-T09 / M12-T11 / M12-V02 / M12-V03
-next_task: Obtain accepted hosted ci / required verdict and authorized independent review
-blocking_issue: Hosted final-revision CI verdict and explicit authorization for the independent architecture review payload
+milestone_result: REWORK
+last_completed_task: Historical M12 checkpoint; current remediation in active OpenSpec change
+next_task: Complete review-remediation-local-contract and qualify its final source SHA
+blocking_issue: Final-source hosted CI, ruleset observation, offline source-bundle check, and v3 attestation remain open
 verification_pending:
-  - M12-T01 canonical python scripts/check.py after final evidence and Context projection
-  - M12-T10 / M12-V01 independent architecture review
+  - Canonical python scripts/check.py and OpenSpec strict validation on final source
+  - Final-source hosted ci / required and ruleset observation
+  - Offline source bundle and exact v3 attestation
 notes: >
   M0 through M10 completed with PASS. M10 finalized the compact product CLI and versioned machine envelope,
   fail-closed configuration precedence, verifier timeout/cancellation cleanup, atomic r8.9-to-r8.10 migration state
   with explicit rollback, and deterministic release-record/checksum behavior. Runtime/schema migration can complete while
   source-history qualification remains PENDING_M11; M10 does not fabricate the deferred real source history maps.
-  Release eligibility is BLOCKED when no accepted repository verdict is
-  supplied. The exact source-native pins, bundles, and one-parent import commit
+  Release eligibility is BLOCKED without matching hosted CI provenance.
+  The exact source-native pins, bundles, and one-parent import commit
   are verified; the raw TacticSwitch manifest failure and separate passing
   adapter are retained. The authorized read-only Codex CLI assessment and V04
   review are recorded. Codex Desktop and CLI field pilots now cover the real
@@ -68,10 +69,10 @@ notes: >
   observed Windows workspace boundaries in elevated and unelevated modes.
   M11 passed with recorded limits. M12 targeted suites, Context audit, native
   local-subprocess evidence, release fail-closed smoke, and feature-retirement
-  review pass. M12 remains blocked because no hosted ci / required verdict
-  exists for the final source revision, and no
-  provider-payload authorization was given for the independent architecture
-  review. Claude native qualification remains out of scope and is not a gate.
+  review passed at earlier checkpoints. The 2026-09-28 final review found
+  self-issued CLI grants and candidate-controlled CI claims; the active
+  OpenSpec change narrows those claims. Earlier runs do not qualify the new
+  source. Claude native qualification remains out of scope and is not a gate.
 ```
 
 ### Milestone quick index
@@ -381,6 +382,10 @@ overall gate: `verification/m11-history-qualification-status.json`.
 
 #### M12 — 1.0 qualification and final simplification
 
+The checklist below records the earlier checkpoint, not a current M12 PASS.
+The active remediation and final qualification gates are in
+`openspec/changes/review-remediation-local-contract/tasks.md`.
+
 **Execution (`r8.12`):**
 
 - [x] **M12-T01** — Canonical suite passed: 139 tests across 9 modules.
@@ -401,8 +406,9 @@ overall gate: `verification/m11-history-qualification-status.json`.
 - [x] **M12-V02** — Supported trust invariant holds within observed capability limits.
 - [x] **M12-V03** — Disposition evidence admits no speculative mechanism; M12 adds no product code.
 
-**Milestone result:** `BLOCKED` — see `verification/m12-verification-record.json`.
-**Allowed next milestone:** `NONE / 1.0 qualification complete`
+**Milestone result:** `REWORK` — historical evidence is in
+`verification/m12-verification-record.json`.
+**Allowed next milestone:** None until the revised 1.0 gates pass.
 
 ---
 

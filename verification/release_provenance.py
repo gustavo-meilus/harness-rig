@@ -38,7 +38,7 @@ def render_candidate_summary(record_bytes: bytes) -> str:
         "",
         f"- Record ID: {_markdown_literal(record.record_id)}",
         f"- Repository: {_markdown_literal(record.repository)} (ID {_markdown_literal(record.repository_id)})",
-        f"- Source revision: {_markdown_literal(record.accepted_source_revision)}",
+        f"- Source revision: {_markdown_literal(record.source_revision)}",
         f"- Hosted run / attempt / job: {_markdown_literal(record.hosted_run_id)} / "
         f"{_markdown_literal(record.hosted_run_attempt)} / {_markdown_literal(record.hosted_job_id)}",
         "",
@@ -87,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
         if ns.command == "record":
             record = build_release_record(
                 artifact_paths=[Path(x) for x in ns.artifact],
-                accepted_source_revision=ns.source_revision,
+                source_revision=ns.source_revision,
                 repository=ns.repository,
                 hosted_run_id=ns.run_id,
                 build_workflow_identity=ns.workflow,

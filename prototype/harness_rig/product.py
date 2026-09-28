@@ -10,7 +10,7 @@ from .canonical import digest
 
 CLI_ENVELOPE_SCHEMA = "harness-rig/cli-envelope/v1"
 CONFIG_SCHEMA = "harness-rig/config/v1"
-PRODUCT_REVISION = "r8.10"
+PRODUCT_REVISION = "r8.12"
 
 EXIT_PASS = 0
 EXIT_BLOCKED = 2

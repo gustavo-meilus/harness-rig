@@ -392,16 +392,6 @@ class HarnessRigM9GatePlatformTests(unittest.TestCase):
             self.assertEqual(result.outcome.outcome, "BLOCKED")
             self.assertEqual(result.mutant_status, "NOT_APPLIED")
 
-    def test_m9_gate_oracles_are_governance_sensitive(self):
-        policy = json.loads((ROOT / "governance" / "ci-policy.json").read_text(encoding="utf-8"))
-        sensitive = set(policy["governance_sensitive_paths"])
-        for path in (
-            "prototype/harness_rig/architecture_gate.py",
-            "prototype/harness_rig/playwright_gate.py",
-            "prototype/harness_rig/mutation_gate.py",
-        ):
-            self.assertIn(path, sensitive)
-
     def test_t05_mutation_map_requires_unique_mutant_identity(self):
         case = MutationCase.create(
             invariant_id="a",
