@@ -1,8 +1,8 @@
 # Harness Rig execution roadmap
 
 **Current revision:** r8.12 checkpoint `978c361def2d2805951fd044aa82dedc73160bc4`
-**Completed:** M0-M11 PASS; M12 qualification remains BLOCKED.
-**Next:** Configure and observe required reviewers for the attestation environment.
+**Completed:** M0-M12 PASS, with the limits recorded below.
+**Next:** Prepare and inspect a real candidate before any future attestation.
 V04 passed; Claude is out of scope for now.
 **Final planned qualification:** M12 / 1.0
 
@@ -226,7 +226,7 @@ validate complete source bundles and ref inventories
 
 If required source history is unavailable or unverifiable: **M11 = BLOCKED and M12 cannot PASS.**
 
-## M12 / r8.12 - 1.0 qualification and final simplification - BLOCKED
+## M12 / r8.12 - 1.0 qualification and final simplification - PASS
 
 Execution is in progress from baseline `bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7`; checkpoint commit `978c361def2d2805951fd044aa82dedc73160bc4` retains the current evidence. See `verification/m12-verification-record.json` for exact results and limits.
 
@@ -251,16 +251,18 @@ Execution:
 - [x] M12-T11 final feature-retirement review recorded.
 
 Verification:
-- [!] M12-V01 hosted `ci / required` passed on exact source revision
+- [x] M12-V01 hosted `ci / required` passed on exact source revision
   `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`, and independent source review
   passed on final published revision `11e43e1477c366ca570a1c4cbd2f75f9e668f429`;
-  the active main ruleset now requires the GitHub Actions check; protected
-  attestation-environment reviewer evidence remains blocked;
+  the active main ruleset requires the GitHub Actions check, and the protected
+  attestation environment is configured with the solo project owner as reviewer;
 - [x] M12-V02 supported trust invariant is demonstrably true within retained capability limits;
 - [x] M12-V03 all eight retained proposal dispositions remain valid; no deferred feature mechanism was added.
 
-M12 remains BLOCKED. Original and follow-up FAIL reviews, later corrections,
-and review scope are recorded in `verification/m12-independent-review.json` and
+M12 PASS records qualification of the product and its external enforcement
+configuration; it does not claim that a release was signed or attested. Original
+and follow-up FAIL reviews, later corrections, and review scope are recorded in
+`verification/m12-independent-review.json` and
 `verification/m12-verification-record.json`. The provenance record now requires
 an exact-byte GitHub artifact attestation, validates live hosted CI including
 the jobs count, and uses one captured byte snapshot for both verification and
@@ -281,8 +283,11 @@ integration `15368`, with no bypass actors. PR 1 passed that required check and
 merged; the merge commit's main workflow run also passed. The classic
 branch-protection endpoint returns 404 because enforcement is via the
 ruleset. The
-`release-provenance-attestation` environment does not exist yet, so required-
-reviewer settings remain open. The source history is published at
+`release-provenance-attestation` environment now requires approval by the
+repository owner, allows owner self-review, blocks administrator bypass, and
+only permits protected branches. This is a personal-project approval gate, not
+separation of duties. No release candidate was supplied, so no attestation was
+dispatched. The source history is published at
 `https://github.com/gustavo-meilus/harness-rig`.
 
 1.0 requires stable canonical Context knowledge, exact evidence, OpenSpec integration, at least one genuinely Stable host, trusted repository enforcement, safe migration/release provenance, successful M11 history qualification, and final complexity retirement.
