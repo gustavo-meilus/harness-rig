@@ -3,7 +3,7 @@
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
   "evaluated_revision": "0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d",
-  "working_tree": "HEAD 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. An earlier run on 2c7d59e failed because the canonical Context fingerprint differed between Windows CRLF and Linux LF checkouts; commit 0b1ebfc normalizes text line endings and adds a regression test. The latest portability correction is not yet independently reviewed. Live branch enforcement and attestation-environment reviewer settings are absent.",
+  "working_tree": "Evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. An earlier run on 2c7d59e failed because the canonical Context fingerprint differed between Windows CRLF and Linux LF checkouts; commit 0b1ebfc normalizes text line endings and adds a regression test. The latest portability correction is not yet independently reviewed. Live branch enforcement and attestation-environment reviewer settings are absent.",
   "result": "BLOCKED",
   "tasks": {
     "M12-T01": {
