@@ -3,7 +3,7 @@
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
   "evaluated_revision": "0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d",
-  "working_tree": "Evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. A fresh independent source review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 found no source findings. An active GitHub ruleset now requires ci / required from the GitHub Actions integration on main. The release-provenance-attestation environment and reviewer settings are still absent.",
+  "working_tree": "Evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. A fresh independent source review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 found no source findings. The active GitHub Actions check ruleset was validated through PR 1 and its successful main merge run. The release-provenance-attestation environment and reviewer settings are still absent.",
   "result": "BLOCKED",
   "tasks": {
     "M12-T01": {
@@ -94,12 +94,12 @@
     }
   },
   "verification": {
-    "M12-V01": "BLOCKED: hosted ci / required passed for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d (run 36365911407, attempt 1), and independent source review passed for published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429. An active main ruleset now requires that context from the GitHub Actions integration; the release-provenance-attestation environment and required reviewers remain unconfigured.",
+    "M12-V01": "BLOCKED: hosted ci / required passed for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d (run 36365911407, attempt 1), and independent source review passed for published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429. Active main ruleset enforcement was exercised successfully by PR 1 and its merge run. The release-provenance-attestation environment and required reviewers remain unconfigured.",
     "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
     "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; the only product behavior change is the targeted release-provenance correction. The M3 workaround changes test setup only."
   },
   "external_gates": {
-    "accepted_hosted_ci_required": "PASS: .github/workflows/ci-required.yml run 36365911407, attempt 1, push to main, exact SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d; completed success. All five jobs, including ci / required, completed successfully. The prior run 36365317232 on 2c7d59e failed because Windows-generated canonical fingerprints did not match Linux LF checkout line endings; the correction is in 0b1ebfc.",
+    "accepted_hosted_ci_required": "PASS: .github/workflows/ci-required.yml run 36365911407, attempt 1, push to main, exact SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d; completed success. All five jobs, including ci / required, completed successfully. After the ruleset was installed, PR 1 run 36369326311 passed the required check and merged to main as d8e30d4; main run 36369386617 also completed successfully. The prior run 36365317232 on 2c7d59e failed because Windows-generated canonical fingerprints did not match Linux LF checkout line endings; the correction is in 0b1ebfc.",
     "independent_architecture_review": "PASS_WITH_LIMITS: fresh-context review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 reported no source findings and confirmed the portability fix, evidence lineage, exact-byte release-provenance behavior, OpenSpec scope, and pins. The reviewer did not independently query hosted CI or live repository enforcement. Earlier FAIL results remain preserved.",
     "repository_ruleset_and_required_check_source": "PASS: active repository ruleset 24093077 applies to refs/heads/main, requires ci / required from GitHub Actions integration 15368, enforces strict up-to-date checks, and has no bypass actors. The effective branch rule was confirmed through the GitHub API.",
     "protected_attestation_environment": "BLOCKED: GET /environments/release-provenance-attestation returned 404; the environment and required-reviewer configuration do not exist."
@@ -168,6 +168,15 @@
     "strict_required_status_checks_policy": true,
     "bypass_actors": [],
     "effective_rule_confirmed": true,
-    "environment_status": "release-provenance-attestation environment not found"
+    "environment_status": "release-provenance-attestation environment not found",
+    "enforcement_test": {
+      "pull_request": 1,
+      "pull_request_url": "https://github.com/gustavo-meilus/harness-rig/pull/1",
+      "pull_request_run_id": 36369326311,
+      "required_check_result": "PASS",
+      "merge_sha": "d8e30d4c503a0eb883c78da465fe4bc1fbb7f612",
+      "main_run_id": 36369386617,
+      "main_run_result": "COMPLETED_SUCCESS"
+    }
   }
 }
