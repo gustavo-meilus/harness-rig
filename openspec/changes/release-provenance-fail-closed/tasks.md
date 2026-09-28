@@ -23,7 +23,10 @@
   tampering, record-path mutation during verify and dispatch, dispatch
   size/serialization, workflow policy, and existing API and artifact cases
   without network access.
-- [x] 3.5 Update M12 review and verification evidence, roadmap, and canonical references; retain M12 BLOCKED and audited legacy pins.
+- [x] 3.5 Update M12 review and verification evidence, roadmap, and canonical
+  references; preserve audited legacy pins and carry forward M12's final
+  evidence-based result. M12 is now recorded as PASS with limits after its
+  qualification gates passed.
 - [x] 3.6 Run focused tests, strict OpenSpec validation, Context audit/projection, `python scripts/check.py`, and `git diff --check`.
 - [x] 3.7 Validate artifact path, non-negative integer size, and 64-character
   SHA-256 before signing. Use a tested renderer that safely encodes every

@@ -66,8 +66,9 @@ release record can pass; local tests must not impersonate that verdict.
 - [No hosted verdict for the current commit] -> Local success is insufficient
   for release eligibility; retain the exact missing evidence and keep M12
   blocked.
-- [Independent review payload is not authorized] -> Do not transmit repository
-  content; leave M12-T10 blocked and request narrowly scoped authorization.
+- [Independent review payload is not authorized] -> If authorization is
+  unavailable, do not transmit repository content and leave M12-T10 blocked
+  until narrowly scoped authorization is granted.
 - [Native environment differs from prior qualification] -> Re-run doctor and
   record only current observed facts.
 - [Evidence files drift from their source revision] -> Bind records to the
