@@ -19,9 +19,10 @@
 
 - [x] 2.1 Run `harness-rig doctor --json-v1` on the current Windows host and
   retain only observed `local-subprocess` capabilities.
-- [!] 2.2 Obtain an accepted hosted `ci / required` verdict bound to the exact
-  M12 source revision; if unavailable, retain the local fail-closed evidence
-  and leave release eligibility blocked.
+- [x] 2.2 Obtain an accepted hosted `ci / required` verdict bound to the exact
+  M12 source revision. Run `36365911407` passed on source revision
+  `0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d`; ruleset enforcement was later
+  confirmed on `main` and exercised by PR 1.
 - [x] 2.3 Run the missing-verdict release smoke and retain its fail-closed
   result. The accepted-verdict path is conditional on 2.2 and remains unrun;
   tamper rejection is covered by the M10 release-provenance suite.
@@ -31,12 +32,15 @@
 
 ## 3. Final reviews and decision
 
-- [!] 3.1 Complete a fresh independent architecture review of the final
-  package. The user has not authorized sending the review payload to a provider.
+- [x] 3.1 Complete a fresh independent architecture review of the final
+  package. The review of published revision
+  `11e43e1477c366ca570a1c4cbd2f75f9e668f429` reported no source findings.
 - [x] 3.2 Complete the feature-retirement review and retain each final
   mechanism disposition with its evidence or reopening trigger.
-- [!] 3.3 Verify M12-V01: no unresolved P0/P1 issue invalidates a 1.0 claim.
-  Requires the outstanding independent architecture review.
+- [x] 3.3 Verify M12-V01: no unresolved P0/P1 issue invalidates a 1.0 claim.
+  The fresh independent source review reported no findings; hosted CI,
+  required-check enforcement, and the protected attestation environment were
+  observed separately.
 - [x] 3.4 Verify M12-V02: the supported trust invariant holds end to end and
   unsupported capabilities fail closed.
 - [x] 3.5 Verify M12-V03: the final product is smaller than the union of

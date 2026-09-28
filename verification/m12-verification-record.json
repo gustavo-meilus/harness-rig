@@ -3,8 +3,8 @@
   "milestone": "M12",
   "baseline_revision": "bccbfcb7c4d03df843d7bc5a1a87a343d0b6c7d7",
   "evaluated_revision": "0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d",
-  "working_tree": "Evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is pushed to public gustavo-meilus/harness-rig on main. Hosted ci / required passed on this exact SHA. A fresh independent source review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 found no source findings. The active GitHub Actions check ruleset was validated through PR 1 and its successful main merge run. The release-provenance-attestation environment and reviewer settings are still absent.",
-  "result": "BLOCKED",
+  "working_tree": "Evaluated product-source revision 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d is published on main. Hosted ci / required passed on this exact SHA. A fresh independent source review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 found no source findings. The active GitHub Actions ruleset was exercised through a required-check PR and successful main runs. The protected attestation environment is configured with the repository owner as its sole reviewer; owner self-review is allowed because this is a personal project, and administrator bypass is disabled.",
+  "result": "PASS",
   "tasks": {
     "M12-T01": {
       "result": "PASS",
@@ -94,7 +94,7 @@
     }
   },
   "verification": {
-    "M12-V01": "BLOCKED: hosted ci / required passed for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d (run 36365911407, attempt 1), and independent source review passed for published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429. Active main ruleset enforcement was exercised successfully by PR 1 and its merge run. The release-provenance-attestation environment and required reviewers remain unconfigured.",
+    "M12-V01": "PASS_WITH_LIMITS: hosted ci / required passed for exact source SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d (run 36365911407, attempt 1); independent source review passed for published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429; active main ruleset enforcement was confirmed and exercised; protected attestation environment settings were observed via authenticated gh API. The owner is the sole reviewer and may self-approve; this is not separation of duties. No release has been attested.",
     "M12-V02": "PASS within the retained trust invariant and observed local-subprocess capability limits.",
     "M12-V03": "PASS: all eight source proposals are dispositioned; unsupported mechanisms remain deferred; the only product behavior change is the targeted release-provenance correction. The M3 workaround changes test setup only."
   },
@@ -102,7 +102,7 @@
     "accepted_hosted_ci_required": "PASS: .github/workflows/ci-required.yml run 36365911407, attempt 1, push to main, exact SHA 0b1ebfcae75c7fe665e08b25996cf8ae3c4d709d; completed success. All five jobs, including ci / required, completed successfully. After the ruleset was installed, PR 1 run 36369326311 passed the required check and merged to main as d8e30d4; main run 36369386617 also completed successfully. The prior run 36365317232 on 2c7d59e failed because Windows-generated canonical fingerprints did not match Linux LF checkout line endings; the correction is in 0b1ebfc.",
     "independent_architecture_review": "PASS_WITH_LIMITS: fresh-context review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 reported no source findings and confirmed the portability fix, evidence lineage, exact-byte release-provenance behavior, OpenSpec scope, and pins. The reviewer did not independently query hosted CI or live repository enforcement. Earlier FAIL results remain preserved.",
     "repository_ruleset_and_required_check_source": "PASS: active repository ruleset 24093077 applies to refs/heads/main, requires ci / required from GitHub Actions integration 15368, enforces strict up-to-date checks, and has no bypass actors. The effective branch rule was confirmed through the GitHub API.",
-    "protected_attestation_environment": "BLOCKED: GET /environments/release-provenance-attestation returned 404; the environment and required-reviewer configuration do not exist."
+    "protected_attestation_environment": "PASS_WITH_LIMITS: authenticated GitHub API observation on 2026-09-28 confirmed environment ID 22891268193, required reviewer gustavo-meilus (user ID 180190993), prevent_self_review=false, can_admins_bypass=false, protected_branches=true, custom_branch_policies=false. The sole project owner can self-approve; this is a personal-project approval control, not separation of duties."
   },
   "source_pins": {
     "legacy/aiboarding": "5d9f60251d2dfbfa2f91b3ef52f985ce6be91afa",
@@ -112,17 +112,18 @@
   "limitations": [
     "Claude Code qualification remains out of scope per user direction.",
     "Focused release tests use mocked GitHub API and attestation command responses; they make no network requests and do not prove hosted acceptance or repository enforcement.",
-    "The environment approver authorizes manifest artifact hashes; the attestation does not prove the signing workflow built those artifacts.",
-    "GitHub artifact attestation availability depends on repository visibility and plan; live eligibility was not observed.",
     "The original and follow-up independent review results remain FAIL historically. A fresh-context source review of published revision 11e43e1477c366ca570a1c4cbd2f75f9e668f429 passed with no source findings; it did not establish hosted behavior or live enforcement.",
     "A prior working-tree review was BLOCKED on two P3 documentation/provenance findings; both were corrected, and a later review found no remaining finding in those areas.",
     "The independent reviews are read-only source reviews; none establishes hosted behavior or repository enforcement unless separately observed.",
     "A fresh-context independent review found a P3 M12 OpenSpec scope/traceability mismatch. The M12 proposal, design, and tasks were updated to bound the companion release-provenance change; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
     "An independent review found a P2 risk from unvalidated artifact metadata rendered in the protected approval summary. Strict metadata validation and Markdown-safe summary rendering were added; the 2026-09-27 review found no remaining source finding in the reviewed areas.",
-    "The initial hosted ci / required run on 2c7d59e failed due to a Windows/Linux line-ending mismatch in the canonical Context fingerprint. The fix was pushed as 0b1ebfc and its exact-SHA hosted run passed; the final published revision later passed fresh-context source review."
+    "The initial hosted ci / required run on 2c7d59e failed due to a Windows/Linux line-ending mismatch in the canonical Context fingerprint. The fix was pushed as 0b1ebfc and its exact-SHA hosted run passed; the final published revision later passed fresh-context source review.",
+    "The release-provenance-attestation environment requires approval by the sole project owner. Owner self-review is allowed, administrator bypass is disabled, and deployments are limited to protected branches; this does not provide separation of duties.",
+    "No release candidate was supplied and no attestation workflow was dispatched. M12 qualifies readiness and enforcement configuration; it does not claim that any release was signed or attested.",
+    "The accepted-verdict release path remains unrun; M12 includes the missing-verdict fail-closed smoke and mocked artifact/attestation regressions."
   ],
   "next_actions": [
-    "Choose and configure required reviewers for the release-provenance-attestation environment, then observe its live protection settings."
+    "For a future release, prepare a candidate, review its artifact hashes, dispatch the attestation workflow, approve the manifest as repository owner, and verify the resulting attestation."
   ],
   "hosted_ci_observations": [
     {
@@ -168,7 +169,7 @@
     "strict_required_status_checks_policy": true,
     "bypass_actors": [],
     "effective_rule_confirmed": true,
-    "environment_status": "release-provenance-attestation environment not found",
+    "environment_status": "Configured and observed via authenticated gh API on 2026-09-28: sole reviewer gustavo-meilus; self-review allowed; administrator bypass disabled; protected branches required.",
     "enforcement_test": {
       "pull_request": 1,
       "pull_request_url": "https://github.com/gustavo-meilus/harness-rig/pull/1",
@@ -177,6 +178,27 @@
       "merge_sha": "d8e30d4c503a0eb883c78da465fe4bc1fbb7f612",
       "main_run_id": 36369386617,
       "main_run_result": "COMPLETED_SUCCESS"
+    },
+    "latest_main_ci": {
+      "revision": "bef1f0f1ac781513e18bbfb3efc5a02794c6fffc",
+      "run_id": 36369647662,
+      "result": "COMPLETED_SUCCESS"
     }
+  },
+  "attestation_environment_observation": {
+    "observed_date": "2026-09-28",
+    "method": "Authenticated gh api",
+    "environment_id": 22891268193,
+    "reviewers": [
+      {
+        "login": "gustavo-meilus",
+        "user_id": 180190993
+      }
+    ],
+    "prevent_self_review": false,
+    "can_admins_bypass": false,
+    "protected_branches": true,
+    "custom_branch_policies": false,
+    "limitation": "The repository owner is the sole reviewer and may self-approve; this is not separation of duties."
   }
 }
